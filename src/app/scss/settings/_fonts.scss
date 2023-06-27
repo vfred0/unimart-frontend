@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&family=Open+Sans:wght@500&display=swap');
+$text-xs: (
+        sm: (font-size: 1rem),
+        md: (font-size: 1.17rem),
+        lg: (font-size: 1.5rem),
+);
+
+$text-sm: (
+        sm: (font-size: 1.17rem),
+        md: (font-size: 1.33rem),
+        lg: (font-size: 1.67rem),
+);
+
+$text-base: (
+        sm: (font-size: 1.33rem),
+        md: (font-size: 1.5rem),
+        lg: (font-size: 1.67rem),
+);
+
+$text-lg: (
+        sm: (font-size: 1.5rem),
+        md: (font-size: 1.67rem),
+        lg: (font-size: 2rem),
+);
+
+$text-xl: (
+        sm: (font-size: 1.67rem),
+        md: (font-size: 2rem),
+        lg: (font-size: 2.5rem),
+);
+
+$text-2xl: (
+        sm: (font-size: 2rem),
+        md: (font-size: 2.5rem),
+        lg: (font-size: 3rem),
+);
+
+$text-3xl: (
+        sm: (font-size: 2.5rem),
+        md: (font-size: 3rem),
+        lg: (font-size: 3.5rem),
+);
+
+$text-4xl: (
+        sm: (font-size: 3rem),
+        md: (font-size: 3.5rem),
+        lg: (font-size: 4rem),
+);
+
+$text-5xl: (
+        sm: (font-size: 4rem),
+        md: (font-size: 4.5rem),
+        lg: (font-size: 5rem),
+);
+
+$text-6xl: (
+        sm: (font-size: 5rem),
+        md: (font-size: 5.5rem),
+        lg: (font-size: 6rem),
+);
+
+$text-7xl: (
+        sm: (font-size: 6rem),
+        md: (font-size: 6.5rem),
+        lg: (font-size: 7rem),
+);
+
+$text-8xl: (
+        sm: (font-size: 8rem),
+        md: (font-size: 8.5rem),
+        lg: (font-size: 9rem),
+);
+
+$text-9xl: (
+        sm: (font-size: 10.67rem),
+        md: (font-size: 11.17rem),
+        lg: (font-size: 11.67rem),
+);
+
+$font-sizes: (
+        xs: $text-xs,
+        sm: $text-sm,
+        base: $text-base,
+        lg: $text-lg,
+        xl: $text-xl,
+        #{'2xl'}: $text-2xl,
+        #{'3xl'}: $text-3xl,
+        #{'4xl'}: $text-4xl,
+        #{'5xl'}: $text-5xl,
+        #{'6xl'}: $text-6xl,
+        #{'7xl'}: $text-7xl,
+        #{'8xl'}: $text-8xl,
+);
