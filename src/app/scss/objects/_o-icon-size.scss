@@ -1,0 +1,45 @@
+.o-icon-size {
+  &-sm {
+    $size: 18;
+    @include only-sm() {
+      width: em($size);
+    }
+
+    @include md() {
+      width: em($size + 2);
+    }
+
+    @include lg() {
+      width: em($size + 4);
+    }
+  }
+  &-md {
+    $size: 20;
+    @include only-sm() {
+      width: em($size);
+    }
+
+    @include md() {
+      width: em($size + 2);
+    }
+
+    @include lg() {
+      width: em($size + 4);
+    }
+  }
+
+  &-lg {
+    $size: 22;
+    @include only-sm() {
+      width: em($size);
+    }
+
+    @include md() {
+      width: em($size + 2);
+    }
+
+    @include lg() {
+      width: em($size + 4);
+    }
+  }
+}

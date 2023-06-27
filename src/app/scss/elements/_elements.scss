@@ -1,0 +1,35 @@
+html {
+  box-sizing: border-box;
+  --webkit-font-smoothing: antialiased;
+  --moz-osc-font-smoothing: grayscale;
+  background-color: $neutral-white;
+  color: $accent-first;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  line-height: 160%;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: inherit;  
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+ol,
+li {
+  list-style: none;
+}

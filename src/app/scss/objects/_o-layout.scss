@@ -1,0 +1,12 @@
+.o-layout {
+  &-main {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  &-spacing {
+    display: flex;
+    flex-direction: column;
+    gap: em(24);    
+    padding: em(8);
+  }
+}

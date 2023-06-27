@@ -1,0 +1,15 @@
+.c-image {
+    width: 100%;
+    
+    @include lg {        
+        height: 90vw;                
+    }
+
+    @include md {
+        height: 70vw;        
+    }
+
+    @include only-sm {
+        height: 50vw;
+    }
+}
