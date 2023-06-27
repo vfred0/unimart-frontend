@@ -18,9 +18,9 @@ $text-base: (
 );
 
 $text-lg: (
-        sm: (font-size: 1.5rem),
-        md: (font-size: 1.67rem),
-        lg: (font-size: 2rem),
+        sm: (font-size: rem(20)),
+        md: (font-size: rem(22)),
+        lg: (font-size: rem(24))
 );
 
 $text-xl: (
