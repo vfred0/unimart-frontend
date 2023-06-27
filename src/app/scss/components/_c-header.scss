@@ -1,0 +1,17 @@
+.c-header {
+  display: flex;
+  align-items: center;
+  gap: em(16);
+  padding: em(18);
+
+  &__user-avatar {
+    width: em(50);
+    border-radius: 50%;
+    @include md() {
+      width: em(60);
+    }
+    @include lg() {
+      width: em(65);
+    }
+  }
+}
