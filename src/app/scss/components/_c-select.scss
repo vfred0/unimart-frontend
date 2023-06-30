@@ -7,8 +7,10 @@
   color: $neutral-white;
   border-radius: $em-8;
   justify-content: space-between;
+  cursor: pointer;
 
   &__content {
+    cursor: pointer;
     text-overflow: ellipsis;
     overflow: hidden;
     color: $neutral-white;
