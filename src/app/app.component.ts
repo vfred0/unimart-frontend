@@ -6,7 +6,11 @@ import {RouterOutlet} from '@angular/router';
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, RouterOutlet],
-  template: `<router-outlet></router-outlet>`,
+  template: `
+    <div class="o-layout-main">
+      <router-outlet></router-outlet>
+    </div>
+  `,
   styles: [],
 })
 export class AppComponent {
