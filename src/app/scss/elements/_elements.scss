@@ -33,3 +33,17 @@ ol,
 li {
   list-style: none;
 }
+
+input,
+button,
+textarea,
+select {
+  border: none transparent;
+}
+
+input:focus,
+button:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
