@@ -1,1 +1,30 @@
 <app-header/>
+<div class="c-explore o-layout-spacing">
+    <app-input/>
+    <app-select (onSelectedOption)="onSelectedState($event)" [options]="this.categories"/>
+    <app-select (onSelectedOption)="onSelectedCategory($event)" [options]="this.states"/>
+</div>
+
+<!--    <div class="c-tabs">-->
+<!--        <input type="radio" class="c-tabs__radio" name="tabs" id="tab1" checked>-->
+<!--        <label for="tab1" class="c-tabs__label">Publicaciones</label>-->
+<!--        <div class="c-tabs__wrapper-content">-->
+<!--            <div class="c-tabs__content">-->
+<!--                <span>Editar el perfil</span>-->
+<!--                <input type="text" class="c-explore__search o-text-base-medium" placeholder="Informacion">-->
+<!--                <input type="text" class="c-explore__search o-text-base-medium" placeholder="Informacion">-->
+<!--                <input type="text" class="c-explore__search o-text-base-medium" placeholder="Informacion">-->
+<!--                <input type="text" class="c-explore__search o-text-base-medium" placeholder="Informacion">-->
+<!--                <input type="text" class="c-explore__search o-text-base-medium" placeholder="Informacion">-->
+<!--                <input type="text" class="c-explore__search o-text-base-medium" placeholder="Informacion">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <input type="radio" class="c-tabs__radio" name="tabs" id="tab2">-->
+<!--        <label for="tab2" class="c-tabs__label">Calificaciones</label>-->
+<!--        <div class="c-tabs__wrapper-content">-->
+<!--            <div class="c-tabs__content">-->
+<!--                <span>Text2</span>-->
+<!--                <input type="text" class="c-explore__search o-text-base-medium" placeholder="Search for a project">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
