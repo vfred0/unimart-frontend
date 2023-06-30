@@ -1,7 +1,7 @@
 .c-header {
   display: flex;
   align-items: center;
-  gap: em(16);
+  gap: $em-16;
   padding: em(18);
 
   &__user-avatar {

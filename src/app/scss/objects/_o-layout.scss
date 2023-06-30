@@ -6,7 +6,7 @@
   &-spacing {
     display: flex;
     flex-direction: column;
-    gap: em(24);    
-    padding: em(8);
+    gap: $em-24;
+    padding: $em-18;
   }
 }

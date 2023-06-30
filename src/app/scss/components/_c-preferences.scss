@@ -6,10 +6,10 @@
     #{$preferences}.is-active & {
       display: flex;
       align-items: center;
-      gap: em(16);
+      gap: $em-16;
       background-color: $accent-third;
       padding: em(18);
-      border-radius: em(16);
+      border-radius: $em-16;
       border: none;
       cursor: pointer;
       z-index: $z-modal;
@@ -42,9 +42,9 @@
     padding: em(18);
     display: flex;
     flex-direction: column;
-    gap: em(16);
+    gap: $em-16;
     max-width: 84vw;
-    border-radius: em(16);
+    border-radius: $em-16;
     position: fixed;
     z-index: $z-modal;
   }

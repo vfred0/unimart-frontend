@@ -1,80 +1,81 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&family=Open+Sans:wght@500&display=swap');
+
 $text-xs: (
-        sm: (font-size: 1rem),
-        md: (font-size: 1.17rem),
-        lg: (font-size: 1.5rem),
+        sm: (font-size: rem(12)),
+        md: (font-size: rem(13)),
+        lg: (font-size: rem(14)),
 );
 
 $text-sm: (
-        sm: (font-size: 1.17rem),
-        md: (font-size: 1.33rem),
-        lg: (font-size: 1.67rem),
+        sm: (font-size: rem(14)),
+        md: (font-size: rem(15)),
+        lg: (font-size: rem(16)),
 );
 
 $text-base: (
-        sm: (font-size: 1.33rem),
-        md: (font-size: 1.5rem),
-        lg: (font-size: 1.67rem),
+        sm: (font-size: rem(16)),
+        md: (font-size: rem(17)),
+        lg: (font-size: rem(18))
 );
 
 $text-lg: (
+        sm: (font-size: rem(18)),
+        md: (font-size: rem(19)),
+        lg: (font-size: rem(20))
+);
+
+$text-xl: (
         sm: (font-size: rem(20)),
         md: (font-size: rem(22)),
         lg: (font-size: rem(24))
 );
 
-$text-xl: (
-        sm: (font-size: 1.67rem),
-        md: (font-size: 2rem),
-        lg: (font-size: 2.5rem),
-);
-
 $text-2xl: (
-        sm: (font-size: 2rem),
-        md: (font-size: 2.5rem),
-        lg: (font-size: 3rem),
+        sm: (font-size: rem(24)),
+        md: (font-size: rem(26)),
+        lg: (font-size: rem(28))
 );
 
 $text-3xl: (
-        sm: (font-size: 2.5rem),
-        md: (font-size: 3rem),
-        lg: (font-size: 3.5rem),
+        sm: (font-size: rem(28)),
+        md: (font-size: rem(30)),
+        lg: (font-size: rem(32))
 );
 
 $text-4xl: (
-        sm: (font-size: 3rem),
-        md: (font-size: 3.5rem),
-        lg: (font-size: 4rem),
+        sm: (font-size: rem(32)),
+        md: (font-size: rem(34)),
+        lg: (font-size: rem(36))
 );
 
 $text-5xl: (
-        sm: (font-size: 4rem),
-        md: (font-size: 4.5rem),
-        lg: (font-size: 5rem),
+        sm: (font-size: rem(36)),
+        md: (font-size: rem(38)),
+        lg: (font-size: rem(40))
 );
 
 $text-6xl: (
-        sm: (font-size: 5rem),
-        md: (font-size: 5.5rem),
-        lg: (font-size: 6rem),
+        sm: (font-size: rem(40)),
+        md: (font-size: rem(42)),
+        lg: (font-size: rem(44))
 );
 
 $text-7xl: (
-        sm: (font-size: 6rem),
-        md: (font-size: 6.5rem),
-        lg: (font-size: 7rem),
+        sm: (font-size: rem(44)),
+        md: (font-size: rem(46)),
+        lg: (font-size: rem(48))
 );
 
 $text-8xl: (
-        sm: (font-size: 8rem),
-        md: (font-size: 8.5rem),
-        lg: (font-size: 9rem),
+        sm: (font-size: rem(48)),
+        md: (font-size: rem(50)),
+        lg: (font-size: rem(52))
 );
 
 $text-9xl: (
-        sm: (font-size: 10.67rem),
-        md: (font-size: 11.17rem),
-        lg: (font-size: 11.67rem),
+        sm: (font-size: rem(64)),
+        md: (font-size: rem(66)),
+        lg: (font-size: rem(68))
 );
 
 $font-sizes: (
