@@ -1,0 +1,23 @@
+.c-input {
+  display: flex;
+  align-items: center;
+  padding: $em-14;
+  gap: $em-8;
+  background-color: $accent-second;
+  color: $neutral-white;
+  border-radius: $em-8;
+
+  &__text {
+    color: $neutral-white;
+    background-color: transparent;
+  }
+
+  &__container-svg {
+    width: $em-20;
+    height: $em-20;
+  }
+
+  &__icon {
+    fill: $neutral-white;
+  }
+}

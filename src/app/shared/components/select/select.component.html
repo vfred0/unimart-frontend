@@ -1,0 +1,18 @@
+<form [formGroup]="this.formSelect">
+  <div class="c-select">
+    <select class="c-select__content o-text-base-medium" formControlName="select">
+      <option
+              *ngFor="let option of this.options"
+              [ngValue]="option"
+              class="c-select__option">
+        {{ option }}
+      </option>
+    </select>
+    <div class="c-select__icon">
+      <svg-icon
+              [applyClass]="true"
+              [class]="'c-select__icon o-icon-size-lg'"
+              src="/assets/icons/arrow.svg"></svg-icon>
+    </div>
+  </div>
+</form>
