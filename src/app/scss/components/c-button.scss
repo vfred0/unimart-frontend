@@ -1,12 +1,14 @@
 .c-button {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: $em-8;
   border-radius: $em-8;
   padding: $em-16 $em-20;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   $button: &;
+  box-shadow: $shadow-md;
 
   &__icon {
     display: grid;
@@ -19,7 +21,7 @@
   }
 
   &--secondary {
-    background-color: $accent-first;
+    background-color: $accent-third;
     color: $neutral-white;
 
     #{$button}__icon {
@@ -42,6 +44,7 @@
     padding: $em-8 $em-6;
     background-color: $accent-third;
     color: $neutral-white;
+    cursor: initial;
 
     #{$button}__icon {
       stroke: $neutral-white;
