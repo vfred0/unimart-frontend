@@ -9,6 +9,7 @@
   $button: &;
 
   &__icon {
+    display: grid;
     fill: $accent-first;
     stroke: $accent-first;
   }
