@@ -1,12 +1,28 @@
 .o-layout {
-  &-main {
-    max-width: 1200px;
+  &-max-width {
+    max-width: $break-desktop;
     margin: 0 auto;
   }
+
   &-spacing {
     display: flex;
     flex-direction: column;
     gap: $em-24;
     padding: $em-18;
+  }
+
+  &-article-cards {
+    display: grid;
+    grid-gap: $em-24;
+    grid-template-columns: repeat(auto-fill, minmax($article-size-sm, 1fr));
+    justify-content: center;
+
+    @include md() {
+      grid-template-columns: repeat(auto-fill, minmax($article-size-md, 1fr));
+    }
+    @include lg() {
+      grid-template-columns: repeat(auto-fill, minmax($article-size-lg, 1fr));
+    }
+
   }
 }
