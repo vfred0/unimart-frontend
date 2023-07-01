@@ -1,7 +1,7 @@
 <button class="c-button c-button--{{ typeButton }}">
     <svg-icon
             [applyClass]="true"
-            [class]="'c-button__icon o-icon-size-lg'"
+            [class]="'c-button__icon o-icon-size-'.concat(this.iconSize)"
             src="/assets/icons/{{this.icon}}.svg"></svg-icon>
-    <span class="c-button__description o-text-base-medium">{{ description }}</span>
+    <span class="c-button__text o-text-{{this.fontSize}}">{{ this.description }}</span>
 </button>

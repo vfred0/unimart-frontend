@@ -17,4 +17,22 @@ export class ButtonComponent {
         this.description = this.typeButton;
         this.icon = 'hand';
     }
+
+    get fontSize(): string {
+        if (this.isTag()) {
+            return 'sm-semibold';
+        }
+        return 'base-semibold';
+    }
+
+    get iconSize(): string {
+        if (this.isTag()) {
+            return 'sm';
+        }
+        return 'lg';
+    }
+
+    private isTag(): boolean {
+        return this.typeButton === TypeButton.Tag;
+    }
 }
