@@ -1,0 +1,38 @@
+.c-button {
+  display: flex;
+  align-items: center;
+  gap: $em-8;
+  border-radius: $em-8;
+  padding: $em-16 $em-20;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  $button: &;
+
+  &__icon {
+    stroke: $accent-first;
+  }
+
+  &--primary {
+    background-color: $neutral-white;
+  }
+
+  &--secondary {
+    background-color: $accent-first;
+    color: $neutral-white;
+  }
+
+  &--contact {
+    background-color: $accent-contact-first;
+    color: $accent-contact-second;
+
+    &:hover {
+      background-color: $accent-contact-second;
+      color: $neutral-white;
+
+      #{$button}__icon {
+        stroke: $neutral-white;
+        fill: $neutral-white;
+      }
+    }
+  }
+}
