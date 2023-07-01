@@ -6,11 +6,14 @@ import {SelectModule} from "@shared/components/select/select.module";
 import {Category} from "@core/types/category";
 import {EnumUtils} from "@core/types/enum-utils";
 import {State} from "@core/types/state";
+import {ButtonModule} from "@shared/components/button/button.module";
+import {ArticleCardComponent} from "@components/article-card/article-card.component";
+import {ArticleCard} from "@core/models/articleCard";
 
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [HeaderComponent, CommonModule, InputModule, SelectModule],
+    imports: [HeaderComponent, CommonModule, InputModule, SelectModule, ButtonModule, ArticleCardComponent],
     templateUrl: './home.component.html',
     styles: []
 })
@@ -19,12 +22,96 @@ export class HomeComponent {
     states: Array<string>;
     optionSelected: string;
     category: Category;
+    articleCards: Array<ArticleCard>;
 
     constructor(private cd: ChangeDetectorRef) {
         this.categories = EnumUtils.getAllValues(Category);
         this.states = State.getAllValues();
         this.optionSelected = {} as string;
         this.category = Category.Clothing;
+        this.articleCards = [
+            {
+                image: 'https://source.unsplash.com/featured/?electronics,laptop',
+                title: 'Ryzen 4600G',
+                dateOfPublication: 'Hoy',
+                proposalsQuantity: 5,
+                category: Category.Electronics,
+                state: State.New
+            },
+            {
+                image: 'https://source.unsplash.com/featured/?electronics,laptop',
+                title: 'MacBook Pro 2021',
+                dateOfPublication: 'Ayer',
+                proposalsQuantity: 3,
+                category: Category.Electronics,
+                state: State.Preowned
+            },
+            {
+                image: 'https://source.unsplash.com/featured/?electronics,phone',
+                title: 'Samsung Galaxy S21',
+                dateOfPublication: 'Hace 1 día',
+                proposalsQuantity: 8,
+                category: Category.Electronics,
+                state: State.Used
+            },
+            {
+                image: 'https://source.unsplash.com/featured/?electronics,camera',
+                title: 'Canon EOS R5',
+                dateOfPublication: 'Hace 2 días',
+                proposalsQuantity: 2,
+                category: Category.Electronics,
+                state: State.LowQuality
+            },
+            {
+                image: 'https://source.unsplash.com/featured/?books,reading',
+                title: 'Harry Potter and the Philosopher\'s Stone',
+                dateOfPublication: 'Hoy',
+                proposalsQuantity: 1,
+                category: Category.TextBooksEducationalMaterial,
+                state: State.New
+            },
+            {
+                image: 'https://source.unsplash.com/featured/?books,novel',
+                title: 'The Great Gatsby',
+                dateOfPublication: 'Ayer',
+                proposalsQuantity: 0,
+                category: Category.TextBooksEducationalMaterial,
+                state: State.Preowned
+            },
+            {
+                image: 'https://source.unsplash.com/featured/?books,fantasy',
+                title: 'El señor de los anillos',
+                dateOfPublication: 'Hace 1 día',
+                proposalsQuantity: 4,
+                category: Category.TextBooksEducationalMaterial,
+                state: State.Used
+            },
+            {
+                image: 'https://source.unsplash.com/featured/?art,painting',
+                title: 'Pintura al óleo',
+                dateOfPublication: 'Hace 2 días',
+                proposalsQuantity: 3,
+                category: Category.ArtsHandicrafts,
+                state: State.New
+            },
+            {
+                image: 'https://source.unsplash.com/featured/?music,guitar',
+                title: 'Guitarra acústica',
+                dateOfPublication: 'Hoy',
+                proposalsQuantity: 6,
+                category: Category.MusicalInstruments,
+                state: State.Used
+            },
+            {
+                image: 'https://source.unsplash.com/featured/?sports,football',
+                title: 'Balón de fútbol',
+                dateOfPublication: 'Ayer',
+                proposalsQuantity: 2,
+                category: Category.SportingGoods,
+                state: State.New
+            }
+        ];
+
     }
 
     onSelectedState(state: string) {
@@ -35,5 +122,4 @@ export class HomeComponent {
     onSelectedCategory(category: string) {
         this.cd.detectChanges();
     }
-
 }

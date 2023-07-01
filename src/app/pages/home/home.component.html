@@ -5,13 +5,10 @@
         <app-select (onSelectedOption)="onSelectedState($event)" [options]="this.categories"/>
         <app-select (onSelectedOption)="onSelectedCategory($event)" [options]="this.states"/>
     </div>
-
     <span class="o-text-lg-semibold">20 resultados</span>
-
     <div class="o-layout-article-cards">
-        <app-article-card *ngFor="let articleCard of this.cardArticles" [articleCard]="articleCard"/>
+        <app-article-card *ngFor="let articleCard of this.articleCards" [articleCard]="articleCard"/>
     </div>
-
 </div>
 
 <!--    <div class="c-tabs">-->
