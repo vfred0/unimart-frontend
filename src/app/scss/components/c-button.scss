@@ -9,7 +9,6 @@
   transition: all 0.2s ease-in-out;
   $button: &;
   box-shadow: $shadow-md;
-  width: 100%;
 
   &__icon {
     display: grid;
