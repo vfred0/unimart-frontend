@@ -12,13 +12,16 @@ import {TypeButton} from "@core/types/type-button";
     styles: []
 })
 export class HeaderComponent {
-    isActive: boolean;
     @Input() isBack: boolean;
+    @Input() title: string;
+
+    isActive: boolean;
     protected readonly TypeButton = TypeButton;
 
     constructor() {
         this.isActive = false;
         this.isBack = false;
+        this.title = 'Victor Arreaga';
     }
 
     togglePreferences() {
