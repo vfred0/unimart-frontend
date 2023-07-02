@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {AngularSvgIconModule} from "angular-svg-icon";
 import {ButtonComponent} from "@components/button/button.component";
 import {TypeButton} from "@core/types/type-button";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-header',
@@ -18,7 +19,7 @@ export class HeaderComponent {
     isActive: boolean;
     protected readonly TypeButton = TypeButton;
 
-    constructor() {
+    constructor(private router: Router) {
         this.isActive = false;
         this.isBack = false;
         this.title = 'Victor Arreaga';
@@ -29,6 +30,6 @@ export class HeaderComponent {
     }
 
     redirectToBack() {
-
+        this.router.navigate(['/']).then();
     }
 }

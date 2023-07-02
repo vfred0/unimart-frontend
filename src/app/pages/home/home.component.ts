@@ -33,6 +33,7 @@ export class HomeComponent {
         this.category = Category.Clothing;
         this.articleCards = [
             {
+                id: 1,
                 image: 'https://source.unsplash.com/featured/?electronics,laptop',
                 title: 'Ryzen 4600G',
                 dateOfPublication: 'Hoy',
@@ -41,6 +42,7 @@ export class HomeComponent {
                 state: State.New
             },
             {
+                id: 2,
                 image: 'https://source.unsplash.com/featured/?electronics,laptop',
                 title: 'MacBook Pro 2021',
                 dateOfPublication: 'Ayer',
@@ -49,6 +51,7 @@ export class HomeComponent {
                 state: State.Preowned
             },
             {
+                id: 2,
                 image: 'https://source.unsplash.com/featured/?electronics,phone',
                 title: 'Samsung Galaxy S21',
                 dateOfPublication: 'Hace 1 día',
@@ -57,6 +60,7 @@ export class HomeComponent {
                 state: State.Used
             },
             {
+                id: 2,
                 image: 'https://source.unsplash.com/featured/?electronics,camera',
                 title: 'Canon EOS R5',
                 dateOfPublication: 'Hace 2 días',
@@ -65,6 +69,7 @@ export class HomeComponent {
                 state: State.LowQuality
             },
             {
+                id: 2,
                 image: 'https://source.unsplash.com/featured/?books,reading',
                 title: 'Harry Potter and the Philosopher\'s Stone',
                 dateOfPublication: 'Hoy',
@@ -73,6 +78,7 @@ export class HomeComponent {
                 state: State.New
             },
             {
+                id: 2,
                 image: 'https://source.unsplash.com/featured/?books,novel',
                 title: 'The Great Gatsby',
                 dateOfPublication: 'Ayer',
@@ -81,6 +87,7 @@ export class HomeComponent {
                 state: State.Preowned
             },
             {
+                id: 2,
                 image: 'https://source.unsplash.com/featured/?books,fantasy',
                 title: 'El señor de los anillos',
                 dateOfPublication: 'Hace 1 día',
@@ -89,6 +96,7 @@ export class HomeComponent {
                 state: State.Used
             },
             {
+                id: 2,
                 image: 'https://source.unsplash.com/featured/?art,painting',
                 title: 'Pintura al óleo',
                 dateOfPublication: 'Hace 2 días',
@@ -97,6 +105,7 @@ export class HomeComponent {
                 state: State.New
             },
             {
+                id: 2,
                 image: 'https://source.unsplash.com/featured/?music,guitar',
                 title: 'Guitarra acústica',
                 dateOfPublication: 'Hoy',
@@ -118,7 +127,7 @@ export class HomeComponent {
         this.cd.detectChanges();
     }
 
-    redirectToViewArticle() {
-        // this.router.navigate(['/view-article'])
+    redirectToViewArticle(articleCard: ArticleCard) {
+        this.router.navigate([`/view-article/${articleCard.id}`]).then();
     }
 }

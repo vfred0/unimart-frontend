@@ -1,4 +1,4 @@
-<div class="c-header o-layout-max-width">
+<div [class.c-header--back]="this.isBack" class="c-header o-layout-max-width">
     <div class="c-header__user-and-avatar">
         <img (click)="togglePreferences()" alt="" class="c-header__user-avatar" src="assets/images/avatar.png">
         <span class="o-text-lg-bold">{{this.title}}</span>
