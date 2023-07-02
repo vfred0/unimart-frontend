@@ -3,7 +3,6 @@ import {TypeButton} from "@core/types/type-button";
 import {CommonModule} from "@angular/common";
 import {AngularSvgIconModule} from "angular-svg-icon";
 
-
 @Component({
     selector: 'app-button',
     standalone: true,
@@ -14,6 +13,8 @@ export class ButtonComponent {
     @Input() description: string;
     @Input() typeButton: TypeButton;
     @Input() icon: string;
+    protected readonly TypeButton = TypeButton;
+
     constructor() {
         this.typeButton = TypeButton.Primary;
         this.description = this.typeButton;
@@ -21,20 +22,16 @@ export class ButtonComponent {
     }
 
     get fontSize(): string {
-        if (this.isTag()) {
+        if (TypeButton.isTag(this.typeButton)) {
             return 'sm-semibold';
         }
         return 'base-semibold';
     }
 
     get iconSize(): string {
-        if (this.isTag()) {
+        if (TypeButton.isTag(this.typeButton)) {
             return 'sm';
         }
         return 'lg';
-    }
-
-    private isTag(): boolean {
-        return this.typeButton === TypeButton.Tag;
     }
 }
