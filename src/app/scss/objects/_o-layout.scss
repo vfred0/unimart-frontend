@@ -15,7 +15,6 @@
     display: grid;
     grid-gap: $em-24;
     grid-template-columns: repeat(auto-fill, minmax($article-size-sm, 1fr));
-    justify-content: center;
 
     @include md() {
       grid-template-columns: repeat(auto-fill, minmax($article-size-md, 1fr));
