@@ -1,2 +1,0 @@
-import{Fa as t,Ma as p,Q as a,eb as m,sa as i,ta as r}from"./chunk-36FSVKPW.js";import"./chunk-OC64LIZX.js";var c=(()=>{let e=class{},n=e;return(()=>{e.\u0275fac=function(o){return new(o||e)}})(),(()=>{e.\u0275cmp=a({type:e,selectors:[["app-view-article-page"]],standalone:!0,features:[p],decls:5,vars:0,template:function(o,l){o&1&&(i(0,"p"),t(1,"view-article-page works!"),r(),i(2,"p"),t(3,"view-article-page works!"),r(),t(4,`q
-`))},dependencies:[m],encapsulation:2})})(),n})();var w=[{path:"",component:c}];export{w as routes};
