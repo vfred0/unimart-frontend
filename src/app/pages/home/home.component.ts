@@ -10,6 +10,7 @@ import {ArticleCardComponent} from "@components/article-card/article-card.compon
 import {ArticleCard} from "@core/models/articleCard";
 import {MenuComponent} from "@components/menu/menu.component";
 import {ButtonComponent} from "@components/button/button.component";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-home',
@@ -25,7 +26,7 @@ export class HomeComponent {
     category: Category;
     articleCards: Array<ArticleCard>;
 
-    constructor(private cd: ChangeDetectorRef) {
+    constructor(private cd: ChangeDetectorRef, private router: Router) {
         this.categories = EnumUtils.getAllValues(Category);
         this.states = State.getAllValues();
         this.optionSelected = {} as string;
@@ -115,5 +116,9 @@ export class HomeComponent {
 
     onSelectedCategory(category: string) {
         this.cd.detectChanges();
+    }
+
+    redirectToViewArticle() {
+        this.router.navigate(['/view-article']).then();
     }
 }
