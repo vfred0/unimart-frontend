@@ -1,15 +1,32 @@
 <app-header [isBack]="true" [title]="'Artículo'"/>
 
-<div class="c-article-banner">
-    <img class="c-article-banner__image" src="https://source.unsplash.com/featured/?music,guitar">
-    <div class="c-article-banner__container">
-        <span class="c-article-banner__title o-text-xl-semibold">Teclado Mecánico Logitech</span>
-        <span class="c-article-banner__description o-text-normal-medium">Este teclado me lo dieron de regalo, está nuevo, apenas lo usé para comprobar que funciona, entrgo con su caja y accesorios.</span>
-        <span class="c-article-banner__date-published o-text-sm-light">Publicado hace 1 mes</span>
+<div class="c-article-view">
+    <div class="c-article-view__banner">
+        <img class="c-article-view__banner-image" src="{{this.article.image}}">
+        <div class="c-article-view__banner-container">
+            <span class="c-article-view__banner-title o-text-xl-semibold">{{this.article.title}}</span>
+            <span class="c-article-view__banner-description o-text-normal-medium">{{this.article.description}}</span>
+            <span class="c-article-view__banner-date-published o-text-sm-light">{{this.article.datePublished}}</span>
+        </div>
+        <div class="c-article-view__banner-buttons">
+            <app-button [description]="this.rating" [icon]="'state'" [typeButton]="TypeButton.Tag"/>
+            <app-button [description]="this.proposalsQuantity" [typeButton]="TypeButton.Tag"/>
+        </div>
     </div>
-    <div class="c-article-banner__buttons">
-        <app-button [description]="'Seminuevo'" [icon]="'state'" [typeButton]="TypeButton.Tag"/>
-        <app-button [description]="'20 propuestas'" [typeButton]="TypeButton.Tag"/>
+    <div class="c-article-view__content">
+        <div class="c-article-view__user-card">
+            <app-header [image]="this.article.user.image" [title]="this.article.user.name" [withPreferences]="false"/>
+            <span class="o-text-base-normal"> {{this.article.user.description}}</span>
+            <div class="c-article-view__user-card-buttons">
+                <app-button [description]="this.rating" [icon]="'star'" [typeButton]="TypeButton.Tag"/>
+                <app-button [description]="this.exchangesQuantity" [icon]="'exchanges'" [typeButton]="TypeButton.Tag"/>
+            </div>
+        </div>
+        <div class="c-article-view__section-gallery"><span class="c-article-view__title">Galería</span>
+            <div class="c-article-view__gallery">
+
+            </div>
+        </div>
     </div>
 </div>
 
