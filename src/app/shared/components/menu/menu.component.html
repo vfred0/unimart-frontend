@@ -1,0 +1,5 @@
+<div class="c-menu">
+    <div *ngFor="let menuItem of this.menuItems"  class="c-menu__item" [class.is-selected]="menuItem.isSelected" (click)="menuItemSelected(menuItem)">
+        <svg-icon [applyClass]="true" [class]="'c-menu__icon o-icon-size-menu-icon'" src="assets/icons/{{menuItem.icon}}.svg"/>
+    </div>
+</div>

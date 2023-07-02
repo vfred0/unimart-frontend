@@ -1,0 +1,40 @@
+.c-menu {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 55vh;
+  bottom: $em-18;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: $neutral-black;
+  padding: $em-18 $em-14;
+  box-shadow: $shadow-sm;
+  border-radius: $em-20;
+
+  @include only-sm() {
+    width: 90%;
+  }
+  $menu: &;
+  &__item {
+    padding: $em-8;
+    cursor: pointer;
+
+    &.is-selected {
+      padding: $em-12;
+      background-color: $accent-third;
+      border-radius: $em-16;
+
+      #{$menu}__icon {
+        fill: $neutral-white;
+        stroke: $neutral-white;
+      }
+    }
+  }
+
+  &__icon {
+    display: grid;
+    fill: $accent-third;
+    stroke: $accent-third;
+  }
+}

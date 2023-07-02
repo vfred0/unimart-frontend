@@ -1,0 +1,14 @@
+.c-explore {
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+    gap: $em-16;
+  }
+
+  &__search {
+    padding: $em-14;
+    background-color: $accent-second;
+    color: $neutral-white;
+  }
+
+}
