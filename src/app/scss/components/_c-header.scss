@@ -1,8 +1,18 @@
 .c-header {
   display: flex;
   align-items: center;
-  gap: $em-16;
+  justify-content: space-between;
   padding: em(18);
+  position: fixed;
+  width: 100%;
+  background-color: $neutral-black;
+  z-index: $z-modal;
+
+  &__user-and-avatar {
+    display: flex;
+    align-items: center;
+    gap: $em-16;
+  }
 
   &__user-avatar {
     width: em(50);
