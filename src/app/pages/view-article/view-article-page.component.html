@@ -1,1 +1,15 @@
 <app-header [isBack]="true" [title]="'Artículo'"/>
+
+<div class="c-article-banner">
+    <img class="c-article-banner__image" src="https://source.unsplash.com/featured/?music,guitar">
+    <div class="c-article-banner__container">
+        <span class="c-article-banner__title o-text-xl-semibold">Teclado Mecánico Logitech</span>
+        <span class="c-article-banner__description o-text-normal-medium">Este teclado me lo dieron de regalo, está nuevo, apenas lo usé para comprobar que funciona, entrgo con su caja y accesorios.</span>
+        <span class="c-article-banner__date-published o-text-sm-light">Publicado hace 1 mes</span>
+    </div>
+    <div class="c-article-banner__buttons">
+        <app-button [description]="'Seminuevo'" [icon]="'state'" [typeButton]="TypeButton.Tag"/>
+        <app-button [description]="'20 propuestas'" [typeButton]="TypeButton.Tag"/>
+    </div>
+</div>
+
