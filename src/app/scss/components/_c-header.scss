@@ -7,10 +7,10 @@
   &__user-avatar {
     width: em(50);
     border-radius: 50%;
-    @include md() {
+    @include tablet() {
       width: em(60);
     }
-    @include lg() {
+    @include desktop() {
       width: em(65);
     }
   }
