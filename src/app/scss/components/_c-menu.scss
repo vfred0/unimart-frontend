@@ -12,7 +12,7 @@
   box-shadow: $shadow-sm;
   border-radius: $em-20;
 
-  @include only-sm() {
+  @include only-mobile() {
     width: 90%;
   }
   $menu: &;

@@ -1,72 +1,75 @@
-@mixin media-top-up($mq) {
+@mixin _media-top-up($mq) {
   @media (min-width: $mq) {
     @content;
   }
 }
 
-@mixin media-top-down($mq) {
+@mixin _media-top-down($mq) {
   @media (max-width: $mq) {
     @content;
   }
 }
 
-@mixin media-between($mq-min, $mq-max) {
+@mixin _media-between($mq-min, $mq-max) {
   @media (min-width: $mq-min) and (max-width: $mq-max) {
     @content;
   }
 }
 
-@mixin only-sm() {
-  @include media-top-down($break-tablet) {
+@mixin only-mobile() {
+  @include _media-top-down($break-tablet) {
     @content;
   }
 }
 
-@mixin md() {
-  @include media-top-up($break-tablet + 1) {
+@mixin tablet() {
+  @include _media-top-up($break-tablet + 1) {
     @content;
   }
 }
 
-// 611px and 1190px (included)
-@mixin only-md() {
-  @include media-between($break-tablet + 1, $break-desktop) {
+@mixin only-tablet() {
+  @include _media-between($break-tablet + 1, $break-desktop) {
     @content;
   }
 }
 
-// 1991px (included) and infinity
-@mixin lg() {
-  @include media-top-up($break-desktop + 1) {
+@mixin desktop() {
+  @include _media-top-up($break-desktop + 1) {
     @content;
   }
 }
 
-@mixin a-set-values($values) {
+@mixin only-desktop() {
+  @include _media-between($break-desktop + 1, 1991px) {
+    @content;
+  }
+}
 
+@mixin _set-value-from-size($values) {
   @each $key,
   $value in $values {
     #{$key}: $value;
   }
 }
 
-@mixin a-set($values) {
+@mixin set-values-from-sizes($values) {
   $values-sm: map-get($values, 'sm');
   $values-md: map-get($values, 'md');
   $values-lg: map-get($values, 'lg');
 
-  @include a-set-values($values-sm);
+  @include _set-value-from-size($values-sm);
 
-  @include md {
-    @include a-set-values($values-md);
+  @include tablet {
+    @include _set-value-from-size($values-md);
   }
 
-  @include lg {
-    @include a-set-values($values-lg);
+  @include desktop {
+    @include _set-value-from-size($values-lg);
   }
 }
 
 @mixin set-font-style($weight, $size) {
   font-weight: $weight;
-  @include a-set(map-get($font-sizes, $size));
+  @include set-values-from-sizes(map-get($font-sizes, $size));
 }

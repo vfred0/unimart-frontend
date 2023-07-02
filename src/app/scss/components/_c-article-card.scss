@@ -17,11 +17,11 @@
     height: $image-size-sm;
     width: 100%;
     box-shadow: $shadow-lg;
-    @include md() {
+    @include tablet() {
       height: $image-size-md;
     }
 
-    @include lg() {
+    @include desktop() {
       height: $image-size-lg;
     }
   }
@@ -43,7 +43,7 @@
     display: flex;
     gap: $em-8;
 
-    @include only-sm() {
+    @include only-mobile() {
       overflow-x: auto;
       white-space: nowrap;
       -ms-overflow-style: none;
@@ -68,6 +68,14 @@
         grid-template-columns: repeat(2, 1fr);
         gap: $em-8;
       }
+    }
+  }
+
+  @include only-desktop() {
+    &:hover {
+      background-color: $accent-third;
+      box-shadow: $shadow-lg;
+      transition: all 0.9s ease-in-out;
     }
   }
 }
