@@ -2,11 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: em(18);
-  position: fixed;
-  width: 100%;
-  background-color: $neutral-black;
-  z-index: $z-modal;
+  $header: &;
 
   &__user-and-avatar {
     display: flex;
@@ -15,17 +11,28 @@
   }
 
   &__user-avatar {
-    width: em(50);
+    width: em(55);
+    height: em(55);
     border-radius: 50%;
     @include tablet() {
       width: em(60);
+      height: em(60);
     }
     @include desktop() {
       width: em(65);
+      height: em(65);
     }
   }
 
-  &--back {
-    background-color: transparent;
+  &.is-active-preferences {
+    position: fixed;
+    width: 100%;
+    z-index: $z-modal;
+    background-color: $neutral-black;
+    padding: em(18);
+
+    &#{$header}--back {
+      background-color: transparent;
+    }
   }
 }
