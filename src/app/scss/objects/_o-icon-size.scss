@@ -42,4 +42,19 @@
       width: em($size + 4);
     }
   }
+
+  &-menu-icon {
+    $size: 35;
+    @include only-sm() {
+      width: em($size);
+    }
+
+    @include md() {
+      width: em($size + 10);
+    }
+
+    @include lg() {
+      width: em($size + 20);
+    }
+  }
 }
