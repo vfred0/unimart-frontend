@@ -41,8 +41,17 @@
 
   &__tags {
     display: flex;
-    flex-wrap: wrap;
     gap: $em-8;
+
+    @include only-sm() {
+      overflow-x: auto;
+      white-space: nowrap;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
   }
 
   &__button {
