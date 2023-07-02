@@ -1,6 +1,11 @@
 <div class="c-header">
-    <img (click)="togglePreferences()" alt="" class="c-header__user-avatar" src="assets/images/avatar.png">
-    <span class="o-text-lg-bold">Victor Arreaga</span>
+    <div class="c-header__user-and-avatar">
+        <img (click)="togglePreferences()" alt="" class="c-header__user-avatar" src="assets/images/avatar.png">
+        <span class="o-text-lg-bold">Victor Arreaga</span>
+    </div>
+    <ng-template [ngIf]="this.isBack">
+        <app-button (click)="this.redirectToBack()" [description]="'Volver'" [typeButton]="TypeButton.Back"/>
+    </ng-template>
 </div>
 
 <div [class.is-active]="this.isActive" class="c-preferences">
