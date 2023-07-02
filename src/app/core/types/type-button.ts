@@ -3,4 +3,15 @@ export enum TypeButton {
     Secondary = 'secondary',
     Contact = 'contact',
     Tag = 'tag',
+    Back = 'back',
+}
+
+export namespace TypeButton {
+    export function isTag(typeButton: TypeButton): boolean {
+        return typeButton === TypeButton.Tag;
+    }
+
+    export function isBack(typeButton: TypeButton): boolean {
+        return typeButton === TypeButton.Back;
+    }
 }
