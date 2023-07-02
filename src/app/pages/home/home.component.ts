@@ -5,7 +5,7 @@ import {Category} from "@core/types/category";
 import {EnumUtils} from "@core/types/enum-utils";
 import {State} from "@core/types/state";
 import {ArticleCardComponent} from "@components/article-card/article-card.component";
-import {ArticleCard} from "@core/models/articleCard";
+import {ArticleCard} from "@core/models/article-card";
 import {MenuComponent} from "@components/menu/menu.component";
 import {ButtonComponent} from "@components/button/button.component";
 import {Router} from "@angular/router";
