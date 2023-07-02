@@ -1,8 +1,6 @@
 import {ChangeDetectorRef, Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HeaderComponent} from "@shared/components/header/header.component";
-import {InputModule} from "@shared/components/input/input.module";
-import {SelectModule} from "@shared/components/select/select.module";
 import {Category} from "@core/types/category";
 import {EnumUtils} from "@core/types/enum-utils";
 import {State} from "@core/types/state";
@@ -11,11 +9,13 @@ import {ArticleCard} from "@core/models/articleCard";
 import {MenuComponent} from "@components/menu/menu.component";
 import {ButtonComponent} from "@components/button/button.component";
 import {Router} from "@angular/router";
+import {InputComponent} from "@components/input/input.component";
+import {SelectComponent} from "@components/select/select.component";
 
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [HeaderComponent, CommonModule, InputModule, SelectModule, ButtonComponent, ArticleCardComponent, MenuComponent],
+    imports: [HeaderComponent, CommonModule, InputComponent, SelectComponent, ButtonComponent, ArticleCardComponent, MenuComponent],
     templateUrl: './home.component.html',
     styles: []
 })
@@ -119,6 +119,6 @@ export class HomeComponent {
     }
 
     redirectToViewArticle() {
-        this.router.navigate(['/view-article']).then();
+        // this.router.navigate(['/view-article'])
     }
 }

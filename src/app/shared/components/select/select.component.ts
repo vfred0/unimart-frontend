@@ -1,8 +1,12 @@
 import {AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {CommonModule} from "@angular/common";
+import {AngularSvgIconModule} from "angular-svg-icon";
 
 @Component({
+    standalone: true,
     selector: 'app-select',
+    imports: [CommonModule, ReactiveFormsModule, AngularSvgIconModule],
     templateUrl: './select.component.html',
 })
 export class SelectComponent implements OnInit, AfterViewInit {
