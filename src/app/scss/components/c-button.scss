@@ -52,4 +52,10 @@
       fill: $neutral-white;
     }
   }
+
+  &--back {
+    background-color: transparent;
+    color: $neutral-white;
+    box-shadow: none;
+  }
 }
