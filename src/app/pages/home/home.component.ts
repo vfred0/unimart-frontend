@@ -6,14 +6,15 @@ import {SelectModule} from "@shared/components/select/select.module";
 import {Category} from "@core/types/category";
 import {EnumUtils} from "@core/types/enum-utils";
 import {State} from "@core/types/state";
-import {ButtonModule} from "@shared/components/button/button.module";
 import {ArticleCardComponent} from "@components/article-card/article-card.component";
 import {ArticleCard} from "@core/models/articleCard";
+import {MenuComponent} from "@components/menu/menu.component";
+import {ButtonComponent} from "@components/button/button.component";
 
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [HeaderComponent, CommonModule, InputModule, SelectModule, ButtonModule, ArticleCardComponent],
+    imports: [HeaderComponent, CommonModule, InputModule, SelectModule, ButtonComponent, ArticleCardComponent, MenuComponent],
     templateUrl: './home.component.html',
     styles: []
 })
@@ -102,14 +103,7 @@ export class HomeComponent {
                 category: Category.MusicalInstruments,
                 state: State.Used
             },
-            {
-                image: 'https://source.unsplash.com/featured/?sports,football',
-                title: 'Balón de fútbol',
-                dateOfPublication: 'Ayer',
-                proposalsQuantity: 2,
-                category: Category.SportingGoods,
-                state: State.New
-            }
+
         ];
 
     }
