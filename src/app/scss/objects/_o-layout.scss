@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     gap: $em-24;
-    padding: $em-18;
+    padding: $em-18 $em-18 em(124);
   }
 
   &-article-cards {
