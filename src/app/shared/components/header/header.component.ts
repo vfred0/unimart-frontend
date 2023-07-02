@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {AngularSvgIconModule} from "angular-svg-icon";
 import {ButtonComponent} from "@components/button/button.component";
@@ -13,14 +13,19 @@ import {TypeButton} from "@core/types/type-button";
 })
 export class HeaderComponent {
     isActive: boolean;
+    @Input() isBack: boolean;
+    protected readonly TypeButton = TypeButton;
 
     constructor() {
         this.isActive = false;
+        this.isBack = false;
     }
 
     togglePreferences() {
         this.isActive = !this.isActive;
     }
 
-    protected readonly TypeButton = TypeButton;
+    redirectToBack() {
+
+    }
 }
