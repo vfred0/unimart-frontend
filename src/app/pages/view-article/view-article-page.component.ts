@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HeaderComponent} from "@components/header/header.component";
 import {ActivatedRoute} from "@angular/router";
@@ -8,10 +8,12 @@ import {Article} from "@core/models/article";
 import {Category} from "@core/types/category";
 import {State} from "@core/types/state";
 
+
 @Component({
     selector: 'app-view-article-page',
     standalone: true,
     imports: [HeaderComponent, CommonModule, ButtonComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
     templateUrl: './view-article-page.component.html'
 })
 export class ViewArticlePageComponent {
@@ -32,19 +34,11 @@ export class ViewArticlePageComponent {
             user: {
                 image: 'https://picsum.photos/200/300',
                 name: 'Juan Perez',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget ' +
-                    'consectetur aliquam, nisl nisl aliquet nisl, euismod. ',
+                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget ' + 'consectetur aliquam, nisl nisl aliquet nisl, euismod. ',
                 rating: 4,
                 numberOfExchanges: 5
             },
-            gallery: [
-                'https://picsum.photos/200/300',
-                'https://picsum.photos/200/300',
-                'https://picsum.photos/200/300',
-                'https://picsum.photos/200/300',
-                'https://picsum.photos/200/300',
-                'https://picsum.photos/200/300',
-            ]
+            gallery: ['https://picsum.photos/200/300', 'https://picsum.photos/200/300', 'https://picsum.photos/200/300', 'https://picsum.photos/200/300', 'https://picsum.photos/200/300', 'https://picsum.photos/200/300',]
         }
     }
 
