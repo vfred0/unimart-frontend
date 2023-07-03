@@ -31,8 +31,13 @@
     background-color: $neutral-black;
     padding: em(18);
 
+    &#{$header}__user-avatar {
+      cursor: pointer;
+    }
+
     &#{$header}--back {
       background-color: transparent;
+      position: absolute;
     }
   }
 }
