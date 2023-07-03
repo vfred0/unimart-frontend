@@ -33,7 +33,7 @@ export class ViewArticlePageComponent {
             state: State.New,
             user: {
                 image: 'https://picsum.photos/200/300',
-                name: 'Juan Perez',
+                name: 'Víctor Arreaga',
                 description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget ' + 'consectetur aliquam, nisl nisl aliquet nisl, euismod. ',
                 rating: 4,
                 numberOfExchanges: 5
