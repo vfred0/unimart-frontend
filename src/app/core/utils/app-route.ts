@@ -9,6 +9,6 @@ export enum AppRoute {
 
 export namespace AppRoute {
     export function isWithMenu(url: string): boolean {
-        return !url.includes(AppRoute.ViewArticle)
+        return url !== AppRoute.ViewArticle;
     }
 }

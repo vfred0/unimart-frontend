@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {AngularSvgIconModule} from "angular-svg-icon";
 import {MenuItem} from "@core/utils/menu-item";
-import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
+import {NavigationEnd, Router} from "@angular/router";
 import {AppRoute} from "@core/utils/app-route";
 
 @Component({
@@ -15,31 +15,39 @@ export class MenuComponent {
     menuItems: Array<MenuItem>;
     showMenu: boolean;
 
-    constructor(private router: Router, private activatedRoute: ActivatedRoute) {
-        this.showMenu = true;
-        this.menuItems = [
-            {icon: 'home', isSelected: true, route: AppRoute.Home},
-            {icon: 'exchanges', isSelected: false, route: AppRoute.Exchanges},
-            {icon: 'publication', isSelected: false, route: AppRoute.PublishArticle},
-            {icon: 'profile', isSelected: false, route: AppRoute.Profile}
-        ];
-
+    constructor(private router: Router) {
+        this.showMenu = false;
+        this.menuItems = [{icon: 'home', isSelected: false, route: AppRoute.Home}, {
+            icon: 'exchanges',
+            isSelected: false,
+            route: AppRoute.Exchanges
+        }, {icon: 'publication', isSelected: false, route: AppRoute.PublishArticle}, {
+            icon: 'profile',
+            isSelected: false,
+            route: AppRoute.Profile
+        }];
         this.router.events.subscribe((event) => {
             if (event instanceof NavigationEnd) {
-                this.showMenu = AppRoute.isWithMenu(event.url);
+                let route = event.url.split('/')[1];
+                this.showMenu = AppRoute.isWithMenu(route);
+                let menuItem = this.menuItems.find((item: MenuItem) => item.route === route) || this.menuItems[0];
+                this.menuItemSelected(menuItem, false);
             }
         });
     }
 
-    menuItemSelected(menuItem: MenuItem): void {
+    menuItemSelected(menuItem: MenuItem, redirect: boolean = true): void {
         this.menuItems = this.menuItems.map((item: MenuItem) => {
             if (!Object.is(item, menuItem)) {
                 item = {...item, isSelected: false};
             } else {
                 item = {...item, isSelected: true};
-                this.router.navigate([item.route]);
+                if (redirect) {
+                    this.router.navigate([item.route]).then();
+                }
             }
             return item;
         });
     }
+
 }
