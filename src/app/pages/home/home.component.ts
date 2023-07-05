@@ -11,11 +11,12 @@ import {ButtonComponent} from "@components/button/button.component";
 import {Router} from "@angular/router";
 import {InputComponent} from "@components/input/input.component";
 import {SelectComponent} from "@components/select/select.component";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [HeaderComponent, CommonModule, InputComponent, SelectComponent, ButtonComponent, ArticleCardComponent, MenuComponent],
+    imports: [HeaderComponent, CommonModule, InputComponent, SelectComponent, ButtonComponent, ArticleCardComponent, MenuComponent, ReactiveFormsModule],
     templateUrl: './home.component.html',
     styles: []
 })
@@ -119,15 +120,20 @@ export class HomeComponent {
     }
 
     onSelectedState(state: string) {
-
         this.cd.detectChanges();
+        console.log(state);
     }
 
     onSelectedCategory(category: string) {
         this.cd.detectChanges();
+        console.log(category);
     }
 
     redirectToViewArticle(articleCard: ArticleCard) {
         this.router.navigate([`/view-article/${articleCard.id}`]).then();
+    }
+
+    onTextSearchChanged($event: string) {
+        console.log($event);
     }
 }

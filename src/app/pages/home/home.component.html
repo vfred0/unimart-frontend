@@ -1,11 +1,11 @@
 <app-header/>
 <div class="c-explore o-layout-spacing">
     <div class="c-explore__inputs">
-        <app-input/>
+        <app-input (onTextChanged)="this.onTextSearchChanged($event)"/>
         <app-select (onSelectedOption)="onSelectedState($event)" [options]="this.categories"/>
         <app-select (onSelectedOption)="onSelectedCategory($event)" [options]="this.states"/>
     </div>
-    <span class="o-text-lg-semibold">{{this.articleCards.length}} resultados</span>
+    <span class="o-text-lg-semibold">{{this.articleCards.length}} resultados </span>
     <div class="o-layout-article-cards">
         <app-article-card (click)="redirectToViewArticle(articleCard)"
                           *ngFor="let articleCard of this.articleCards" [articleCard]="articleCard"/>
