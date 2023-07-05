@@ -1,13 +1,20 @@
 .c-select {
   display: flex;
-  align-items: center;
-  padding: $em-14;
-  gap: $em-8;
-  background-color: $accent-second;
-  color: $neutral-white;
-  border-radius: $em-8;
-  justify-content: space-between;
-  cursor: pointer;
+  flex-direction: column;
+  gap: $em-12;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    padding: $em-14;
+    gap: $em-8;
+    background-color: $accent-second;
+    color: $neutral-white;
+    border-radius: $em-8;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+
 
   &__content {
     cursor: pointer;
@@ -29,5 +36,13 @@
     & > path {
       stroke: $neutral-white;
     }
+  }
+
+
+  &__includes {
+    border-radius: $em-6;
+    padding: $em-12;
+    background-color: $accent-first;
+    box-shadow: $shadow-sm;
   }
 }
