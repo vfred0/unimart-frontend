@@ -23,7 +23,13 @@
     color: $neutral-white;
     background-color: transparent;
     width: 100%;
+
+    &-area {
+      background-color: $accent-second;
+      padding: $em-14;
+    }
   }
+
 
   &__icon {
     fill: $neutral-white;

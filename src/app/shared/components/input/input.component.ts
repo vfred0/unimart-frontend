@@ -13,11 +13,13 @@ export class InputComponent {
     @Input() icon: string;
     @Input() placeholder: string;
     @Input() title: string;
+    @Input() isTextArea: boolean;
     @Output() onTextChanged: EventEmitter<string>;
     private inputForm: FormGroup;
 
     constructor() {
         this.icon = 'search';
+        this.isTextArea = false;
         this.placeholder = '';
         this.title = '';
 
