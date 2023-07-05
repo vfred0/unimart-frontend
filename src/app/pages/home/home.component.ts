@@ -29,7 +29,7 @@ export class HomeComponent {
 
     constructor(private cd: ChangeDetectorRef, private router: Router) {
         this.categories = EnumUtils.getAllValues(Category);
-        this.states = State.getAllValues();
+        this.states = EnumUtils.getAllValues(State);
         this.optionSelected = {} as string;
         this.category = Category.Clothing;
         this.articleCards = [

@@ -3,14 +3,14 @@
     <div class="c-explore__inputs">
         <app-input (onTextChanged)="this.onTextSearchChanged($event)"/>
         <app-select (onSelectedOption)="onSelectedState($event)" [options]="this.categories"/>
-        <app-select (onSelectedOption)="onSelectedCategory($event)" [options]="this.states"/>
+        <app-select (onSelectedOption)="onSelectedCategory($event)" [label]="'Ordenar por estado:'"
+                    [options]="this.states"/>
     </div>
     <span class="o-text-lg-semibold">{{this.articleCards.length}} resultados </span>
     <div class="o-layout-article-cards">
         <app-article-card (click)="redirectToViewArticle(articleCard)"
                           *ngFor="let articleCard of this.articleCards" [articleCard]="articleCard"/>
     </div>
-    <app-menu/>
 </div>
 
 <!--    <div class="c-tabs">-->
