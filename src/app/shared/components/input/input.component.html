@@ -1,13 +1,17 @@
 <div class="c-input">
-    <div class="c-input__container-svg">
-        <svg-icon
-                [applyClass]="true"
-                [class]="'c-input__icon'" src="assets/icons/{{ this.icon }}">
-        </svg-icon>
+    <ng-template [ngIf]="this.withTitle">
+        <span class="o-text-base-medium">{{ this.title }}</span>
+    </ng-template>
+
+    <div class="c-input__container">
+        <div class="c-input__container-svg">
+            <svg-icon
+                    [applyClass]="true"
+                    [class]="'c-input__icon'" src="assets/icons/{{ this.icon }}.svg">
+            </svg-icon>
+        </div>
+        <input [formControl]="this.inputValue" class="c-input__text o-text-base-medium"
+               placeholder="{{ this.placeholder }}"
+               type="text"/>
     </div>
-    <input
-            [formControl]="this.inputValue"
-            class="c-input__text o-text-base-medium"
-            placeholder="{{ this.placeholder }}"
-            type="{{ this.type }}"/>
 </div>

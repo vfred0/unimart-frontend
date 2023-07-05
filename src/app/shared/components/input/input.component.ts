@@ -1,23 +1,26 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {AngularSvgIconModule} from "angular-svg-icon";
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {NgIf} from "@angular/common";
 
 @Component({
     standalone: true,
     selector: 'app-input',
-    imports: [AngularSvgIconModule, ReactiveFormsModule],
+    imports: [AngularSvgIconModule, ReactiveFormsModule, NgIf],
     templateUrl: './input.component.html',
 })
 export class InputComponent {
-    @Input() styles: string = '';
-    @Input() icon: string = 'search.svg';
-    @Input() placeholder: string = 'Placeholder';
-    @Input() type: string = 'Text';
+    @Input() icon: string;
+    @Input() placeholder: string;
+    @Input() title: string;
     @Output() onTextChanged: EventEmitter<string>;
-
     private inputForm: FormGroup;
 
     constructor() {
+        this.icon = 'search';
+        this.placeholder = '';
+        this.title = '';
+
         this.onTextChanged = new EventEmitter<string>();
         this.inputForm = new FormGroup({
             inputValue: new FormControl('')
@@ -29,5 +32,9 @@ export class InputComponent {
 
     get inputValue(): FormControl {
         return this.inputForm.get('inputValue') as FormControl;
+    }
+
+    get withTitle(): boolean {
+        return this.title !== '';
     }
 }
