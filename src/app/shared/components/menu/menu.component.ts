@@ -2,7 +2,8 @@ import {Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {AngularSvgIconModule} from "angular-svg-icon";
 import {MenuItem} from "@core/utils/menu-item";
-import {Router} from "@angular/router";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
+import {AppRoute} from "@core/utils/app-route";
 
 @Component({
     selector: 'app-menu',
@@ -12,14 +13,23 @@ import {Router} from "@angular/router";
 })
 export class MenuComponent {
     menuItems: Array<MenuItem>;
+    showMenu: boolean;
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+        this.showMenu = true;
         this.menuItems = [
-            {icon: 'home', isSelected: true},
-            {icon: 'exchanges', isSelected: false},
-            {icon: 'publication', isSelected: false},
-            {icon: 'profile', isSelected: false}
+            {icon: 'home', isSelected: true, route: AppRoute.Home},
+            {icon: 'exchanges', isSelected: false, route: AppRoute.Exchanges},
+            {icon: 'publication', isSelected: false, route: AppRoute.PublishArticle},
+            {icon: 'profile', isSelected: false, route: AppRoute.Profile}
         ];
+
+        this.router.events.subscribe((event) => {
+            if (event instanceof NavigationEnd) {
+                this.showMenu = AppRoute.isWithMenu(event.url);
+                console.log(this.showMenu);
+            }
+        });
     }
 
     menuItemSelected(menuItem: MenuItem): void {
@@ -28,13 +38,9 @@ export class MenuComponent {
                 item = {...item, isSelected: false};
             } else {
                 item = {...item, isSelected: true};
+                this.router.navigate([item.route]);
             }
             return item;
         });
-
-        console.log(this.menuItems);
-
     }
-
-
 }
