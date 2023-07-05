@@ -27,7 +27,6 @@ export class MenuComponent {
         this.router.events.subscribe((event) => {
             if (event instanceof NavigationEnd) {
                 this.showMenu = AppRoute.isWithMenu(event.url);
-                console.log(this.showMenu);
             }
         });
     }
