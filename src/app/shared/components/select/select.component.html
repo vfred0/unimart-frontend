@@ -8,7 +8,7 @@
         <div class="c-select__container">
             <select class="c-select__content o-text-base-medium" formControlName="select">
                 <option *ngFor="let option of this.options" [ngValue]="option"
-                        class="c-select__option">{{ option }} </option>
+                        class="c-select__option"> {{this.label}} {{ option }} </option>
             </select>
             <div class="c-select__icon">
                 <svg-icon

@@ -12,15 +12,17 @@ import {EnumUtils} from "@core/types/enum-utils";
     templateUrl: './select.component.html',
 })
 export class SelectComponent implements OnInit {
-    formSelect: FormGroup;
     @Output() onSelectedOption: EventEmitter<string>;
     @Input() options: string[];
     @Input() optionSelected: string;
     @Input() title: string;
+    @Input() label: string;
     categoryIncludes: string;
+    formSelect: FormGroup;
 
     constructor() {
         this.title = '';
+        this.label = '';
         this.onSelectedOption = new EventEmitter<string>();
         this.options = [];
         this.formSelect = new FormGroup({});
