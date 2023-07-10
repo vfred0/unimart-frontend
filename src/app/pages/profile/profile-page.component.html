@@ -1,38 +1,51 @@
-<app-header />
+<app-header/>
 
 <div class="o-layout-spacing">
-  <div class="c-tabs">
-    <input type="radio" class="c-tabs__radio" name="tabs" id="tab1" checked />
-    <label for="tab1" class="c-tabs__label">Publicaciones</label>
-    <div class="c-tabs__wrapper-content">
-      <div class="c-tabs__content">
-        <app-input
-          class="o-layout-width-100"
-          [icon]="'search'"
-          [placeholder]="'Nombre del artículo'" />
-        <app-select
-          class="o-layout-width-100"
-          [options]="this.typeArticles"
-          (selectedOption)="this.onSelectedTypeArticle($event)" />        
-        <div class="o-layout-article-cards">
-          <app-article-card
-            (click)="redirectToViewArticle(articleCard)"
-            *ngFor="let articleCard of this.articleCards"
-            [articleCard]="articleCard"
-            [typeArticleCard]="this.typeArticleCard" />
+    <div class="c-tabs">
+        <input checked class="c-tabs__radio" id="tab1" name="tabs" type="radio"/>
+        <label class="c-tabs__label" for="tab1">Publicaciones</label>
+        <div class="c-tabs__wrapper-content">
+            <div class="c-tabs__content">
+                <app-input
+                        [icon]="'search'"
+                        [placeholder]="'Nombre del artículo'"
+                        class="o-layout-width-100"/>
+                <app-select
+                        (selectedOption)="this.onSelectedTypeArticle($event)"
+                        [options]="this.typeArticles"
+                        class="o-layout-width-100"/>
+                <div class="o-layout-article-cards">
+                    <app-article-card
+                            (click)="redirectToViewArticle(articleCard)"
+                            *ngFor="let articleCard of this.articleCards"
+                            [articleCard]="articleCard"
+                            [typeArticleCard]="this.typeArticleCard"/>
+                </div>
+            </div>
         </div>
-      </div>
+        <input class="c-tabs__radio" id="tab2" name="tabs" type="radio"/>
+        <label class="c-tabs__label" for="tab2">Calificaciones</label>
+        <div class="c-tabs__wrapper-content">
+            <div class="c-tabs__content">
+                <app-select
+                        (selectedOption)="this.onSelectedRating($event)"
+                        [label]="'Ordenar por:'"
+                        [options]="this.ratings"
+                        class="o-layout-width-100"/>
+                <div class="c-tabs__content-row o-layout-width-100 ">
+                    <span class="o-text-lg-semibold o-layout-width-100 ">{{ this.viewRatingCards.length }}
+                        resultados </span>
+                    <app-button [description]="this.averageRating" [icon]="'star'"
+                                [typeButton]="TypeButton.Secondary"/>
+                </div>
+
+                <div class="o-layout-view-rating-cards">
+
+                    <app-view-rating *ngFor="let viewRatingCard of this.viewRatingCards"
+                                     [viewRatingCard]="viewRatingCard"/>
+
+                </div>
+            </div>
+        </div>
     </div>
-    <input type="radio" class="c-tabs__radio" name="tabs" id="tab2" />
-    <label for="tab2" class="c-tabs__label">Calificaciones</label>
-    <div class="c-tabs__wrapper-content">
-      <div class="c-tabs__content">
-        <span>Text2</span>
-        <input
-          type="text"
-          class="c-explore__search o-text-base-medium"
-          placeholder="Search for a project" />
-      </div>
-    </div>
-  </div>
 </div>
