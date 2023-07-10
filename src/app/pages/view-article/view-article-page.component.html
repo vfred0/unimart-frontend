@@ -1,31 +1,61 @@
-<app-header [isBack]="true" [title]="'Artículo'"/>
+<app-header [isBack]="true" [title]="'Artículo'" />
 
 <div class="c-article-view">
-    <div class="c-article-view__banner">
-        <img class="c-article-view__banner-image" src="{{this.article.image}}">
-        <div class="c-article-view__banner-container">
-            <span class="c-article-view__banner-title o-text-xl-semibold">{{this.article.title}}</span>
-            <span class="c-article-view__banner-description o-text-normal-medium">{{this.article.description}}</span>
-            <span class="c-article-view__banner-date-published o-text-sm-light">{{this.article.datePublished}}</span>
-        </div>
-        <div class="c-article-view__banner-buttons">
-            <app-button [description]="this.article.state" [icon]="'state'" [typeButton]="TypeButton.Tag"/>
-            <app-button [description]="this.proposalsQuantity" [typeButton]="TypeButton.Tag"/>
-        </div>
+  <div class="c-article-view__banner">
+    <img class="c-article-view__banner-image" src="{{ this.article.image }}" />
+    <div class="c-article-view__banner-container">
+      <span class="c-article-view__banner-title o-text-xl-semibold">{{
+        this.article.title
+      }}</span>
+      <span class="c-article-view__banner-description o-text-normal-medium">{{
+        this.article.description
+      }}</span>
+      <span class="c-article-view__banner-date-published o-text-sm-light">{{
+        this.article.datePublished
+      }}</span>
     </div>
-    <div class="c-article-view__content">
-        <span class="o-text-xl-semibold">Publicador</span>
-        <div class="c-article-view__user-card">
-            <app-header [image]="this.article.user.image" [title]="this.article.user.name" [withPreferences]="false"/>
-            <span class="o-text-base-normal"> {{this.article.user.description}}</span>
-            <div class="c-article-view__user-card-buttons">
-                <app-button [description]="this.rating" [icon]="'star'" [typeButton]="TypeButton.Tag"/>
-                <app-button [description]="this.exchangesQuantity" [icon]="'exchanges'" [typeButton]="TypeButton.Tag"/>
-            </div>
-        </div>
-        <app-gallery [images]="this.article.gallery"/>
-        <div class="c-article-view__container-proposed">
-            <app-button [description]="'Proponer artículo'" [typeButton]="TypeButton.Primary"/>
-        </div>
+    <div class="c-article-view__banner-buttons">
+      <app-button
+        [description]="this.article.state"
+        [icon]="'state'"
+        [typeButton]="TypeButton.Tag"
+      />
+      <app-button
+        [description]="this.proposalsQuantity"
+        [typeButton]="TypeButton.Tag"
+      />
     </div>
+  </div>
+  <div class="c-article-view__content">
+    <span class="o-text-xl-semibold">Publicador</span>
+    <div class="c-article-view__user-card">
+      <app-header
+        [image]="this.article.user.image"
+        [title]="this.article.user.name"
+        [withPreferences]="false"
+      />
+      <span class="o-text-base-normal">
+        {{ this.article.user.description }}</span
+      >
+      <div class="c-article-view__user-card-buttons">
+        <app-button
+          [description]="this.rating"
+          [icon]="'star'"
+          [typeButton]="TypeButton.Tag"
+        />
+        <app-button
+          [description]="this.exchangesQuantity"
+          [icon]="'exchanges'"
+          [typeButton]="TypeButton.Tag"
+        />
+      </div>
+    </div>
+    <app-gallery [images]="this.article.gallery" />
+    <div class="c-article-view__container-proposed">
+      <app-button
+        [description]="'Proponer artículo'"
+        [typeButton]="TypeButton.Primary"
+      />
+    </div>
+  </div>
 </div>

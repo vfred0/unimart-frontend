@@ -24,12 +24,9 @@
     gap: $em-12;
   }
 
-
   &__buttons {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: $em-18;
   }
-
-
 }

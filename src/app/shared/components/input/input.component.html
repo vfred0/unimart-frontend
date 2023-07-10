@@ -1,24 +1,33 @@
 <div class="c-input">
-    <ng-template [ngIf]="this.withTitle">
-        <span class="o-text-base-medium">{{ this.title }}</span>
-    </ng-template>
+  <ng-template [ngIf]="this.withTitle">
+    <span class="o-text-base-medium">{{ this.title }}</span>
+  </ng-template>
 
-    <ng-template [ngIfElse]="elseBlock" [ngIf]="this.isTextArea">
-        <textarea [formControl]="this.inputValue"
-                  class="c-input__text-area o-text-base-medium"
-                  cols="5" placeholder="{{ this.placeholder }}" rows="5"></textarea>
-    </ng-template>
-    <ng-template #elseBlock>
-        <div class="c-input__container">
-            <div class="c-input__container-svg">
-                <svg-icon
-                        [applyClass]="true"
-                        [class]="'c-input__icon'" src="assets/icons/{{ this.icon }}.svg">
-                </svg-icon>
-            </div>
-            <input [formControl]="this.inputValue" class="c-input__text o-text-base-medium"
-                   placeholder="{{ this.placeholder }}"
-                   type="text"/>
-        </div>
-    </ng-template>
+  <ng-template [ngIfElse]="elseBlock" [ngIf]="this.isTextArea">
+    <textarea
+      [formControl]="this.inputValue"
+      class="c-input__text-area o-text-base-medium"
+      cols="5"
+      placeholder="{{ this.placeholder }}"
+      rows="5"
+    ></textarea>
+  </ng-template>
+  <ng-template #elseBlock>
+    <div class="c-input__container">
+      <div class="c-input__container-svg">
+        <svg-icon
+          [applyClass]="true"
+          [class]="'c-input__icon'"
+          src="assets/icons/{{ this.icon }}.svg"
+        >
+        </svg-icon>
+      </div>
+      <input
+        [formControl]="this.inputValue"
+        class="c-input__text o-text-base-medium"
+        placeholder="{{ this.placeholder }}"
+        type="text"
+      />
+    </div>
+  </ng-template>
 </div>

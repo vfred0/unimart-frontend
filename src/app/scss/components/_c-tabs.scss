@@ -15,7 +15,7 @@
   }
 
   &__content {
-    background-color: $accent-first;
+    // background-color: $accent-second;
     padding: $em-16;
     display: flex;
     flex-wrap: wrap;
@@ -34,6 +34,7 @@
     color: $neutral-white;
     border: $em-2 solid $neutral-white;
     border-radius: $em-8;
+    background-color: $accent-second;
   }
 
   &__radio:checked + &__label + &__wrapper-content {

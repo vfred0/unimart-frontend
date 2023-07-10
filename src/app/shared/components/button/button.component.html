@@ -1,9 +1,12 @@
 <button class="c-button c-button--{{ typeButton }}">
-    <ng-template [ngIf]="!TypeButton.isBack(this.typeButton)">
-        <svg-icon
-                [applyClass]="true"
-                [class]="'c-button__icon o-icon-size-'.concat(this.iconSize)"
-                src="assets/icons/{{this.icon}}.svg"></svg-icon>
-    </ng-template>
-    <span class="c-button__text o-text-{{this.fontSize}}">{{ this.description }}</span>
+  <ng-template [ngIf]="!this.isBack">
+    <svg-icon
+      [applyClass]="true"
+      [class]="'c-button__icon o-icon-size-'.concat(this.iconSize)"
+      src="assets/icons/{{ this.icon }}.svg"
+    ></svg-icon>
+  </ng-template>
+  <span class="c-button__text o-text-{{ this.fontSize }}">{{
+    this.description
+  }}</span>
 </button>

@@ -1,40 +1,75 @@
-<div class="c-article-card c-article-card--{{this.typeArticle}}">
-    <img alt="{{this.articleCard.title}}" class="c-article-card__image" src="{{this.articleCard.image}}">
-    <div class="c-article-card__content">
-        <div class="c-article-card__category-date o-text-sm-light">
-            <span class="c-article-card__category o-text-ellipsis">{{this.articleCard.category}}</span>
-            <span class="c-article-card__date o-text-ellipsis">{{this.articleCard.dateOfPublication}}</span>
-        </div>
-        <span class="c-article-card__title o-text-base-semibold o-text-ellipsis">{{this.articleCard.title}}</span>
-        <div class="c-article-card__tags">
-            <app-button [description]="this.articleCard.state" [icon]="'state'" [typeButton]="TypeButton.Tag"/>
-            <app-button [description]="this.getProposalsQuantity()" [typeButton]="TypeButton.Tag"/>
-        </div>
-        <ng-template [ngIf]="TypeArticle.isPropose(this.typeArticle)">
-            <app-button [description]="'Proponer artículo'" [typeButton]="TypeButton.Primary"
-                        class="c-article-card__button"/>
-        </ng-template>
-
-        <ng-template [ngIf]="TypeArticle.isProposed(this.typeArticle)">
-            <app-button [description]="'Ver publicación'" [typeButton]="TypeButton.Primary"
-                        class="c-article-card__button"/>
-            <app-button [description]="'Eliminar propuesta'" [typeButton]="TypeButton.Secondary"
-                        class="c-article-card__button"/>
-        </ng-template>
-
-        <ng-template [ngIf]="TypeArticle.isPublished(this.typeArticle)">
-            <div class="c-article-card__buttons">
-                <app-button [description]="'Propuestas'" [typeButton]="TypeButton.Primary"
-                            class="c-article-card__button"/>
-                <div class="c-article-card__buttons-row">
-                    <app-button [description]="'Editar'" [icon]="'edit'"
-                                [typeButton]="TypeButton.Secondary"
-                                class="c-article-card__button"/>
-                    <app-button [description]="'Eliminar'" [icon]="'delete'"
-                                [typeButton]="TypeButton.Secondary"
-                                class="c-article-card__button"/>
-                </div>
-            </div>
-        </ng-template>
+<div class="c-article-card c-article-card--{{ this.typeArticleCard }}">
+  <img
+    alt="{{ this.articleCard.title }}"
+    class="c-article-card__image"
+    src="{{ this.articleCard.image }}"
+  />
+  <div class="c-article-card__content">
+    <div class="c-article-card__category-date o-text-sm-light">
+      <span class="c-article-card__category o-text-ellipsis">{{
+        this.articleCard.category
+      }}</span>
+      <span class="c-article-card__date o-text-ellipsis">{{
+        this.articleCard.dateOfPublication
+      }}</span>
     </div>
+    <span class="c-article-card__title o-text-base-semibold o-text-ellipsis">{{
+      this.articleCard.title
+    }}</span>
+    <div class="c-article-card__tags">
+      <app-button
+        [description]="this.articleCard.state"
+        [icon]="'state'"
+        [typeButton]="TypeButton.Tag"
+      />
+      <app-button
+        [description]="this.getProposalsQuantity()"
+        [typeButton]="TypeButton.Tag"
+      />
+    </div>
+    <ng-template [ngIf]="this.isPropose">
+      <app-button
+        [description]="'Proponer artículo'"
+        [typeButton]="TypeButton.Primary"
+        class="c-article-card__button"
+      />
+    </ng-template>
+
+    <ng-template [ngIf]="this.isProposed">
+      <app-button
+        [description]="'Ver publicación'"
+        [typeButton]="TypeButton.Primary"
+        class="c-article-card__button"
+      />
+      <app-button
+        [description]="'Eliminar propuesta'"
+        [typeButton]="TypeButton.Secondary"
+        class="c-article-card__button"
+      />
+    </ng-template>
+
+    <ng-template [ngIf]="isPublished">
+      <div class="c-article-card__buttons">
+        <app-button
+          [description]="'Propuestas'"
+          [typeButton]="TypeButton.Primary"
+          class="c-article-card__button"
+        />
+        <div class="c-article-card__buttons-row">
+          <app-button
+            [description]="'Editar'"
+            [icon]="'edit'"
+            [typeButton]="TypeButton.Secondary"
+            class="c-article-card__button"
+          />
+          <app-button
+            [description]="'Eliminar'"
+            [icon]="'delete'"
+            [typeButton]="TypeButton.Secondary"
+            class="c-article-card__button"
+          />
+        </div>
+      </div>
+    </ng-template>
+  </div>
 </div>

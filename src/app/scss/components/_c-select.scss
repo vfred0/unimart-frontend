@@ -15,7 +15,6 @@
     cursor: pointer;
   }
 
-
   &__content {
     cursor: pointer;
     text-overflow: ellipsis;
@@ -37,7 +36,6 @@
       stroke: $neutral-white;
     }
   }
-
 
   &__includes {
     border-radius: $em-6;

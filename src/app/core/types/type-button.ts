@@ -1,17 +1,15 @@
 export enum TypeButton {
-    Primary = 'primary',
-    Secondary = 'secondary',
-    Contact = 'contact',
-    Tag = 'tag',
-    Back = 'back',
+  Primary = 'primary',
+  Secondary = 'secondary',
+  Contact = 'contact',
+  Tag = 'tag',
+  Back = 'back',
 }
 
-export namespace TypeButton {
-    export function isTag(typeButton: TypeButton): boolean {
-        return typeButton === TypeButton.Tag;
-    }
+export function isTag(typeButton: TypeButton): boolean {
+  return typeButton === TypeButton.Tag;
+}
 
-    export function isBack(typeButton: TypeButton): boolean {
-        return typeButton === TypeButton.Back;
-    }
+export function isBack(typeButton: TypeButton): boolean {
+  return typeButton === TypeButton.Back;
 }

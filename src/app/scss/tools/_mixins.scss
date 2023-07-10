@@ -47,16 +47,15 @@
 }
 
 @mixin _set-value-from-size($values) {
-  @each $key,
-  $value in $values {
+  @each $key, $value in $values {
     #{$key}: $value;
   }
 }
 
 @mixin set-values-from-sizes($values) {
-  $values-sm: map-get($values, 'sm');
-  $values-md: map-get($values, 'md');
-  $values-lg: map-get($values, 'lg');
+  $values-sm: map-get($values, "sm");
+  $values-md: map-get($values, "md");
+  $values-lg: map-get($values, "lg");
 
   @include _set-value-from-size($values-sm);
 
