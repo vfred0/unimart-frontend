@@ -6,8 +6,21 @@
     <label for="tab1" class="c-tabs__label">Publicaciones</label>
     <div class="c-tabs__wrapper-content">
       <div class="c-tabs__content">
-        <app-input [icon]="'search'" [placeholder]="'Nombre del artículo'" />
-        <app-select [options]="this.typeArticles" />
+        <app-input
+          class="o-layout-width-100"
+          [icon]="'search'"
+          [placeholder]="'Nombre del artículo'" />
+        <app-select
+          class="o-layout-width-100"
+          [options]="this.typeArticles"
+          (selectedOption)="this.onSelectedTypeArticle($event)" />        
+        <div class="o-layout-article-cards">
+          <app-article-card
+            (click)="redirectToViewArticle(articleCard)"
+            *ngFor="let articleCard of this.articleCards"
+            [articleCard]="articleCard"
+            [typeArticleCard]="this.typeArticleCard" />
+        </div>
       </div>
     </div>
     <input type="radio" class="c-tabs__radio" name="tabs" id="tab2" />
@@ -18,8 +31,7 @@
         <input
           type="text"
           class="c-explore__search o-text-base-medium"
-          placeholder="Search for a project"
-        />
+          placeholder="Search for a project" />
       </div>
     </div>
   </div>
