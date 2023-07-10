@@ -1,4 +1,4 @@
 export enum TypeArticle {
-  Published = "published",
-  Proposed = "proposed",
+  Published = 'Publicados',
+  Proposed = 'Propuestos',
 }
