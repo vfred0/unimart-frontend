@@ -1,25 +1,32 @@
 <app-header/>
 <div class="c-publish-article-page o-layout-spacing">
-    <div class="c-publish-article-page__inputs">
-        <app-input (onTextChanged)="this.onTitleChanged($event)" [icon]="'edit'" [placeholder]="'Ingresa el nombre del artículo'"
-                   [title]="'Título'"/>
-        <app-select (onSelectedOption)="onSelectedCategory($event)" [options]="this.categories" [title]="'Categorías'"/>
+    <app-input (onTextChanged)="this.onTitleChanged($event)" [icon]="'edit'"
+               [placeholder]="'Ingresa el nombre del artículo'"
+               [title]="'Título'"/>
+    <app-select (onSelectedOption)="onSelectedCategory($event)" [options]="this.categories" [title]="'Categorías'"/>
 
-        <div class="c-publish-article-page__gender-state">
-            <ng-template [ngIf]="this.withGender">
-                <app-select (onSelectedOption)="onSelectedState($event)" [options]="this.genders" [title]="'Género'"/>
-            </ng-template>
-            <app-select (onSelectedOption)="onSelectedState($event)" [options]="this.states" [title]="'Estado'"/>
-        </div>
-        <span class="o-text-xl-semibold">Descripción</span>
-        <app-input/>
-        <span class="o-text-xl-semibold">Galería</span>
-        <div class="c-publish-article-page__gallery">
-            <ng-template [ngIf]="this.containsImages">
-                <app-gallery [images]="this.images"/>
-            </ng-template>
+    <div [class.double-column]="this.withGender" class="c-publish-article-page__gender-state">
+        <ng-template [ngIf]="this.withGender">
+            <app-select (onSelectedOption)="onSelectedGender($event)" [options]="this.genders" [title]="'Género'"/>
+        </ng-template>
+        <app-select (onSelectedOption)="onSelectedState($event)" [options]="this.states" [title]="'Estado'"/>
+    </div>
+    <app-input (onTextChanged)="this.onDescriptionChanged($event)" [isTextArea]="true"
+               [placeholder]="'Ingresa la descripción del artículo'"
+               [title]="'Descripción'"/>
+    <span class="o-text-xl-semibold">Galería</span>
+    <div class="c-publish-article-page__gallery">
+        <ng-template [ngIf]="this.containsImages">
+            <app-gallery [images]="this.images"/>
+        </ng-template>
+        <div [class.c-publish-article-page__gallery-buttons]="this.containsImages">
             <app-button [description]="'Cargar foto'" [icon]="'camera'" [typeButton]="TypeButton.Secondary"/>
+            <ng-template [ngIf]="this.containsImages">
+                <app-button [description]="'Eliminar fotos'" [icon]="'delete'" [typeButton]="TypeButton.Secondary"/>
+            </ng-template>
         </div>
-        <app-button [description]="'Proponer artículo'" [typeButton]="TypeButton.Primary"/>
+    </div>
+    <div (click)="this.publishArticle()" class="c-publish-article-page__container-proposed">
+        <app-button [description]="'Publicar artículo'" [icon]="'save'" [typeButton]="TypeButton.Primary"/>
     </div>
 </div>
