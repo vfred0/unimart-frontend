@@ -1,0 +1,35 @@
+.c-publish-article-page {
+  display: flex;
+  flex-direction: column;
+  gap: $em-24;
+
+  &__gender-state {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: $em-24;
+
+    &.double-column {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $em-16;
+  }
+
+  &__container-proposed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__gallery-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $em-8;
+  }
+
+}
