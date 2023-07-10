@@ -30,7 +30,7 @@
                 <app-select
                         (selectedOption)="this.onSelectedRating($event)"
                         [label]="'Ordenar por:'"
-                        [options]="this.ratings"
+                        [options]="this.filterRatings"
                         class="o-layout-width-100"/>
                 <div class="c-tabs__content-row o-layout-width-100 ">
                     <span class="o-text-lg-semibold o-layout-width-100 ">{{ this.viewRatingCards.length }}
