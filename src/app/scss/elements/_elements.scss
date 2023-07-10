@@ -47,3 +47,10 @@ textarea:focus,
 select:focus {
   outline: none;
 }
+
+textarea {
+  resize: none;
+  font-family: inherit;
+  background-color: inherit;
+  color: inherit;
+}
