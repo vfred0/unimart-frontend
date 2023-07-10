@@ -6,10 +6,10 @@ import { TypeButton } from "@core/types/type-button";
 import { Router } from "@angular/router";
 
 @Component({
-  selector: "app-header",
+  selector: 'app-header',
   standalone: true,
   imports: [CommonModule, AngularSvgIconModule, ButtonComponent],
-  templateUrl: "./header.component.html",
+  templateUrl: './header.component.html',
   styles: [],
 })
 export class HeaderComponent {
@@ -17,6 +17,7 @@ export class HeaderComponent {
   @Input() withPreferences: boolean;
   @Input() title: string;
   @Input() image: string;
+  @Input() description: string;
 
   isActive: boolean;
   protected readonly TypeButton = TypeButton;
@@ -25,8 +26,13 @@ export class HeaderComponent {
     this.isActive = false;
     this.isBack = false;
     this.withPreferences = true;
-    this.title = "Victor Arreaga";
-    this.image = "https://avatars.githubusercontent.com/u/18092385?v=4";
+    this.title = 'Victor Arreaga';
+    this.image = 'https://avatars.githubusercontent.com/u/18092385?v=4';
+    this.description = '';
+  }
+
+  get withDescription(): boolean {
+    return this.description !== '';
   }
 
   togglePreferences() {
@@ -34,6 +40,6 @@ export class HeaderComponent {
   }
 
   redirectToBack() {
-    this.router.navigate(["/"]).then();
+    this.router.navigate(['/']).then();
   }
 }

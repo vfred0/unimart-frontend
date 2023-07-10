@@ -1,23 +1,28 @@
 <div
   [class.c-header--back]="this.isBack"
   [class.is-active-preferences]="this.withPreferences"
-  class="c-header o-layout-max-width"
->
+  class="c-header o-layout-max-width">
   <div class="c-header__user-and-avatar">
     <img
       (click)="togglePreferences()"
       alt=""
       class="c-header__user-avatar"
-      src="{{ this.image }}"
-    />
-    <span class="o-text-lg-bold">{{ this.title }}</span>
+      src="{{ this.image }}" />
+    <ng-container *ngIf="this.withDescription; else elseBlock">
+      <div class="c-header__title-date">
+        <span class="o-text-lg-bold">{{ this.title }}</span>
+        <span class="o-text-sm-light">{{ this.description }}</span>
+      </div>
+    </ng-container>
+    <ng-template #elseBlock>
+      <span class="o-text-lg-bold">{{ this.title }}</span>
+    </ng-template>
   </div>
   <ng-template [ngIf]="this.isBack">
     <app-button
       (click)="this.redirectToBack()"
       [description]="'Volver'"
-      [typeButton]="TypeButton.Back"
-    />
+      [typeButton]="TypeButton.Back" />
   </ng-template>
 </div>
 
@@ -26,12 +31,10 @@
     <app-button
       [description]="'Editar perfil'"
       [icon]="'edit'"
-      [typeButton]="TypeButton.Secondary"
-    />
+      [typeButton]="TypeButton.Secondary" />
     <app-button
       [description]="'Cerrar sesión'"
       [icon]="'logout'"
-      [typeButton]="TypeButton.Secondary"
-    />
+      [typeButton]="TypeButton.Secondary" />
   </div>
 </ng-template>
