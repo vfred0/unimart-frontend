@@ -6,12 +6,12 @@ import { ViewRatingCard } from '@core/types/view-rating-card';
 import { TypeButton } from '@core/types/type-button';
 
 @Component({
-  selector: 'app-view-rating',
+  selector: 'app-view-rating-card',
   standalone: true,
   templateUrl: './view-rating-card.component.html',
   imports: [CommonModule, ButtonComponent, HeaderComponent],
 })
-export class ViewRatingComponent {
+export class ViewRatingCardComponent {
   @Input() viewRatingCard: ViewRatingCard;
   protected readonly TypeButton = TypeButton;
 

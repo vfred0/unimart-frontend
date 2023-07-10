@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { Data } from '@core/utils/data';
 import { TypeArticleCard } from '@core/types/type-article-card';
 import { FilterRating } from '@core/types/filter-rating';
-import { ViewRatingComponent } from '@components/rating/view-rating-card/view-rating-card.component';
+import { ViewRatingCardComponent } from '@components/rating/view-rating-card/view-rating-card.component';
 import { ViewRatingCard } from '@core/types/view-rating-card';
 import { TypeButton } from '@core/types/type-button';
 import { ButtonComponent } from '@components/button/button.component';
@@ -26,7 +26,7 @@ import { ButtonComponent } from '@components/button/button.component';
     HeaderComponent,
     SelectComponent,
     ArticleCardComponent,
-    ViewRatingComponent,
+    ViewRatingCardComponent,
     ButtonComponent,
   ],
 })
