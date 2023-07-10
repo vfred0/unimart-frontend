@@ -11,11 +11,13 @@
   padding: $em-18 $em-14;
   box-shadow: $shadow-sm;
   border-radius: $em-20;
+  z-index: $z-modal;
 
   @include only-mobile() {
     width: 90%;
   }
   $menu: &;
+
   &__item {
     padding: $em-8;
     cursor: pointer;
