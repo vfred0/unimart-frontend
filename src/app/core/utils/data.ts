@@ -129,5 +129,32 @@ export const Data: Data = {
         'El producto está en perfectas condiciones, coordinamos la entrega y todo salió bien.',
       date: '02.02.2022, 9:10',
     },
+
+    {
+      exchangeId: 'UUID',
+      userName: 'Maria Rodriguez',
+      userPhoto: 'https://source.unsplash.com/featured/?person',
+      comment:
+        'El producto está en perfectas condiciones, coordinamos la entrega y todo salió bien.',
+      date: '02.02.2022, 9:10',
+    },
+
+    {
+      exchangeId: 'UUID',
+      userName: 'Maria Rodriguez',
+      userPhoto: 'https://source.unsplash.com/featured/?person',
+      comment:
+        'El producto está en perfectas condiciones, coordinamos la entrega y todo salió bien.',
+      date: '02.02.2022, 9:10',
+    },
+
+    {
+      exchangeId: 'UUID',
+      userName: 'Maria Rodriguez',
+      userPhoto: 'https://source.unsplash.com/featured/?person',
+      comment:
+        'El producto está en perfectas condiciones, coordinamos la entrega y todo salió bien.',
+      date: '02.02.2022, 9:10',
+    },
   ],
 };

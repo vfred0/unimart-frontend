@@ -3,7 +3,19 @@
                 [title]="this.exchangeCard.userName" [withPreferences]="false"/>
     <span class="o-text-base-normal">{{ this.exchangeCard.comment }}</span>
     <div class="c-exchange-card__buttons">
-        <app-button [description]="'Calificar intercambio'" [icon]="'star'" [typeButton]="TypeButton.Primary"/>
-        <app-button [description]="'Descartar intercambio'" [icon]="'delete'" [typeButton]="TypeButton.Secondary"/>
+        <ng-template [ngIfElse]="showAddRatingTemplate" [ngIf]="!this.showAddRating">
+            <app-button (click)="onShowRating()" [description]="'Calificar intercambio'" [icon]="'star'"
+                        [typeButton]="TypeButton.Primary"/>
+            <app-button (click)="onDiscardExchange()" [description]="'Descartar intercambio'" [icon]="'delete'"
+                        [typeButton]="TypeButton.Secondary"/>
+        </ng-template>
+        <ng-template #showAddRatingTemplate>
+            <app-button (click)="onShowRating()" [description]="'Cerrar'" [icon]="'delete'"
+                        [typeButton]="TypeButton.Secondary"/>
+        </ng-template>
     </div>
+
+    <ng-template [ngIf]="this.showAddRating">
+        <app-add-rating/>
+    </ng-template>
 </div>
