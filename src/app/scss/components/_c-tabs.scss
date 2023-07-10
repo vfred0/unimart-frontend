@@ -23,6 +23,11 @@
     align-items: center;
     align-content: start;
     gap: em(25);
+
+    &-row {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 
   &__radio {
