@@ -42,4 +42,18 @@
       grid-template-columns: repeat(auto-fill, minmax($view-rating-card-size-lg, 1fr));
     }
   }
+
+  &-exchange-cards {
+    display: grid;
+    grid-gap: $em-24;
+    width: 100%;
+    grid-template-columns: repeat(1, 1fr);
+
+    @include tablet() {
+      grid-template-columns: repeat(auto-fill, minmax($exchange-card-size-md, 1fr));
+    }
+    @include desktop() {
+      grid-template-columns: repeat(auto-fill, minmax($exchange-card-size-lg, 1fr));
+    }
+  }
 }
