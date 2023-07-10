@@ -1,8 +1,10 @@
 import { ArticleCard } from '@core/models/article-card';
 import { Category } from '@core/types/category';
 import { State } from '@core/types/state';
+import { ViewRatingCard } from '@core/types/view-rating-card';
 
 interface Data {
+  viewRatingCards: Array<ViewRatingCard>;
   articleCards: Array<ArticleCard>;
 }
 
@@ -88,6 +90,24 @@ export const Data: Data = {
       proposalsQuantity: 6,
       category: Category.MusicalInstruments,
       state: State.Used,
+    },
+  ],
+  viewRatingCards: [
+    {
+      userName: 'Juan Perez',
+      userPhoto: 'https://source.unsplash.com/featured/?person',
+      rating: 4,
+      publishDate: '30.08.2023, 13:45',
+      comment:
+        'El producto está en perfectas condiciones, coordinamos la entrega y todo salió bien.',
+    },
+    {
+      userName: 'Maria Rodriguez',
+      userPhoto: 'https://source.unsplash.com/featured/?person',
+      rating: 5,
+      publishDate: '02.02.2022, 9:10',
+      comment:
+        'El producto está en perfectas condiciones, coordinamos la entrega y todo salió bien.',
     },
   ],
 };
