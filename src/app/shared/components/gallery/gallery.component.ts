@@ -10,7 +10,6 @@ import {CommonModule} from '@angular/common';
 })
 export class GalleryComponent {
     @Input() images: Array<string>;
-
     constructor() {
         this.images = [];
     }
