@@ -15,7 +15,6 @@
   }
 
   &__content {
-    // background-color: $accent-second;
     padding: $em-16;
     display: flex;
     flex-wrap: wrap;
@@ -37,9 +36,10 @@
   &__radio:checked + &__label {
     font-weight: bold;
     color: $neutral-white;
-    border: $em-2 solid $neutral-white;
+    border: $em-2 solid $accent-first;
     border-radius: $em-8;
     background-color: $accent-second;
+    box-shadow: $shadow-md;
   }
 
   &__radio:checked + &__label + &__wrapper-content {
