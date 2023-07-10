@@ -7,8 +7,9 @@
   padding: $em-16 $em-20;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  $button: &;
   box-shadow: $shadow-md;
+  width: 100%;
+  $button: &;
 
   &__icon {
     display: grid;

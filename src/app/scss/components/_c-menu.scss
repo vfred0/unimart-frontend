@@ -3,7 +3,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 55vw;
   bottom: $em-18;
   left: 50%;
   transform: translateX(-50%);
@@ -12,10 +11,19 @@
   box-shadow: $shadow-sm;
   border-radius: $em-20;
   z-index: $z-modal;
+  max-width: 500px;
 
   @include only-mobile() {
-    width: 90%;
+    width: 80%;
   }
+  @include tablet() {
+    width: 55vw;
+  }
+
+  @include desktop() {
+    width: 30vw;
+  }
+
   $menu: &;
 
   &__item {
