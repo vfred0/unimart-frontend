@@ -1,1 +1,9 @@
-<p>exhanges-page works!</p>
+<app-header/>
+
+<div class="c-exchanges-page o-layout-spacing">
+
+    <div class="o-layout-view-rating-cards">
+        <app-exchange-card *ngFor="let exchangeCard of exchangeCards" [exchangeCard]="exchangeCard"/>
+    </div>
+
+</div>
