@@ -24,6 +24,12 @@
     }
   }
 
+  &__title-description {
+    display: flex;
+    flex-direction: column;
+    gap: $em-4;
+  }
+
   &.is-active-preferences {
     position: fixed;
     width: 100%;
