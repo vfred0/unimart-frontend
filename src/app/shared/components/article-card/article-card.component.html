@@ -1,4 +1,4 @@
-<div class="c-article-card c-article-card--{{ this.typeArticleCard }}">
+<div class="c-article-card">
   <img
     alt="{{ this.articleCard.title }}"
     class="c-article-card__image"
@@ -27,7 +27,7 @@
         [typeButton]="TypeButton.Tag"
       />
     </div>
-    <ng-template [ngIf]="this.isPropose">
+    <ng-template *ngIf="this.isSuggest">
       <app-button
         [description]="'Proponer artículo'"
         [typeButton]="TypeButton.Primary"
@@ -48,7 +48,7 @@
       />
     </ng-template>
 
-    <ng-template [ngIf]="isPublished">
+    <ng-template [ngIf]="this.isPublished">
       <div class="c-article-card__buttons">
         <app-button
           [description]="'Propuestas'"

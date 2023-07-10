@@ -5,7 +5,7 @@ import { ArticleCard } from '@core/models/article-card';
 import { ButtonComponent } from '@components/button/button.component';
 import {
   TypeArticleCard,
-  isPropose,
+  isSuggest,
   isProposed,
   isPublished,
 } from '@core/types/type-article-card';
@@ -35,8 +35,8 @@ export class ArticleCardComponent {
     return isPublished(this.typeArticleCard);
   }
 
-  get isPropose(): boolean {
-    return isPropose(this.typeArticleCard);
+  get isSuggest(): boolean {
+    return isSuggest(this.typeArticleCard);
   }
 
   get isProposed(): boolean {
