@@ -58,16 +58,14 @@
     display: grid;
   }
 
-  &--published {
-    #{$article}__buttons {
-      display: grid;
-      gap: $em-8;
+  &__buttons {
+    display: grid;
+    gap: $em-8;
 
-      &-row {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: $em-8;
-      }
+    &-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: $em-8;
     }
   }
 
