@@ -2,9 +2,11 @@ import { ArticleCard } from '@core/models/article-card';
 import { Category } from '@core/types/category';
 import { State } from '@core/types/state';
 import { ViewRatingCard } from '@core/types/view-rating-card';
+import { ExchangeCard } from '@core/types/exchange-card';
 
 interface Data {
   viewRatingCards: Array<ViewRatingCard>;
+  exchangeCards: Array<ExchangeCard>;
   articleCards: Array<ArticleCard>;
 }
 
@@ -108,6 +110,24 @@ export const Data: Data = {
       publishDate: '02.02.2022, 9:10',
       comment:
         'El producto está en perfectas condiciones, coordinamos la entrega y todo salió bien.',
+    },
+  ],
+  exchangeCards: [
+    {
+      exchangeId: 'UUID',
+      userName: 'Juan Perez',
+      userPhoto: 'https://source.unsplash.com/featured/?person',
+      comment:
+        'El producto está en perfectas condiciones, coordinamos la entrega y todo salió bien.',
+      date: '30.08.2023, 13:45',
+    },
+    {
+      exchangeId: 'UUID',
+      userName: 'Maria Rodriguez',
+      userPhoto: 'https://source.unsplash.com/featured/?person',
+      comment:
+        'El producto está en perfectas condiciones, coordinamos la entrega y todo salió bien.',
+      date: '02.02.2022, 9:10',
     },
   ],
 };
