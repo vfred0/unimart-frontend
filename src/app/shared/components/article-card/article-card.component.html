@@ -51,7 +51,7 @@
     <ng-template [ngIf]="this.isPublished">
       <div class="c-article-card__buttons">
         <app-button
-          [description]="'Propuestas'"
+          [description]="this.getProposalsQuantity()"
           [typeButton]="TypeButton.Primary"
           class="c-article-card__button"
         />
