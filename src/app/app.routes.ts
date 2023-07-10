@@ -13,5 +13,9 @@ export const routes: Routes = [
     {
         path: AppRoute.PublishArticle,
         loadChildren: () => import('@pages/publish-article/publish-article-page.routes').then(m => m.routes)
-    }
+    },
+    {
+        path: AppRoute.Profile,
+        loadChildren: () => import('@pages/profile/profile-page.routes').then(m => m.routes)
+    },
 ];
