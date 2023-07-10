@@ -9,9 +9,9 @@
       class="c-header__user-avatar"
       src="{{ this.image }}" />
     <ng-container *ngIf="this.withDescription; else elseBlock">
-      <div class="c-header__title-date">
-        <span class="o-text-lg-bold">{{ this.title }}</span>
-        <span class="o-text-sm-light">{{ this.description }}</span>
+      <div class="c-header__title-date o-text-ellipsis">
+        <span class="o-text-lg-bold o-text-ellipsis">{{ this.title }}</span>
+        <span class="o-text-sm-ligh o-text-ellipsis">{{ this.description }}</span>
       </div>
     </ng-container>
     <ng-template #elseBlock>
