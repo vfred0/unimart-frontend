@@ -22,7 +22,8 @@
         <div [class.c-publish-article-page__gallery-buttons]="this.containsImages">
             <app-button [description]="'Cargar foto'" [icon]="'camera'" [typeButton]="TypeButton.Secondary"/>
             <ng-template [ngIf]="this.containsImages">
-                <app-button [description]="'Eliminar fotos'" [icon]="'delete'" [typeButton]="TypeButton.Secondary"/>
+                <app-button (click)="this.onDeleteImages()" [description]="'Eliminar fotos'" [icon]="'delete'"
+                            [typeButton]="TypeButton.Secondary"/>
             </ng-template>
         </div>
     </div>

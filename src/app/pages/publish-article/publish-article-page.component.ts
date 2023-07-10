@@ -80,6 +80,10 @@ export class PublishArticlePageComponent {
         this.setValue('description', description);
     }
 
+    onDeleteImages() {
+        this.form.get('images')!.setValue([]);
+    }
+
     publishArticle() {
         if (this.form.valid) {
             console.log(this.form.value);
