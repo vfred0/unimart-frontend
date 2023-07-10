@@ -1,1 +1,9 @@
-<p>exchange-card works!</p>
+<div class="c-exchange-card">
+    <app-header [description]="this.exchangeCard.date" [image]="this.exchangeCard.userPhoto"
+                [title]="this.exchangeCard.userName" [withPreferences]="false"/>
+    <span class="o-text-base-normal">{{ this.exchangeCard.comment }}</span>
+    <div class="c-exchange-card__buttons">
+        <app-button [description]="'Calificar intercambio'" [icon]="'star'" [typeButton]="TypeButton.Primary"/>
+        <app-button [description]="'Descartar intercambio'" [icon]="'delete'" [typeButton]="TypeButton.Secondary"/>
+    </div>
+</div>
