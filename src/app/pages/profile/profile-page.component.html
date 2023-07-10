@@ -13,6 +13,7 @@
                 <app-select
                         (selectedOption)="this.onSelectedTypeArticle($event)"
                         [options]="this.typeArticles"
+                        [label]="'Artículos:'"
                         class="o-layout-width-100"/>
                 <div class="o-layout-article-cards">
                     <app-article-card
