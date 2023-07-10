@@ -11,9 +11,14 @@
     padding: em(100) $em-18 em(136);
   }
 
+  &-width-100 {
+    width: 100%;
+  }
+
   &-article-cards {
     display: grid;
     grid-gap: $em-24;
+    width: 100%;
     grid-template-columns: repeat(auto-fill, minmax($article-size-sm, 1fr));
 
     @include tablet() {
