@@ -21,7 +21,6 @@ export class ArticleCardComponent {
   @Input() articleCard: ArticleCard;
   @Input() typeArticleCard: TypeArticleCard;
   protected readonly TypeButton = TypeButton;
-  protected readonly TypeArticle = TypeArticleCard;
 
   constructor() {
     this.typeArticleCard = TypeArticleCard.Normal;
