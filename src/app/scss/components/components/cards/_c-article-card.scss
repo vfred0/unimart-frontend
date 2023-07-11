@@ -8,9 +8,17 @@
   gap: $em-18;
   background-color: $accent-second;
   border-radius: $em-16;
-  cursor: pointer;
-  $article: &;
   box-shadow: $shadow-md;
+
+  &--normal {
+    cursor: pointer;
+    transition: background-color 0.8s ease-in-out;
+
+    &:hover {
+      background-color: $accent-third;
+      border-radius: $em-16;
+    }
+  }
 
   &__image {
     border-radius: $em-8;
@@ -68,10 +76,5 @@
         grid-template-columns: repeat(2, 1fr);
       }
     }
-  }
-
-  &:active {
-    background-color: $accent-second;
-    border-radius: $em-16;
   }
 }
