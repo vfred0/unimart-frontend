@@ -9,12 +9,17 @@ import { ArticleCardComponent } from '@shared/components/article-card/article-ca
 import { ArticleCard } from '@core/models/article-card';
 import { Router } from '@angular/router';
 import { Data } from '@core/utils/data';
-import { TypeArticleCard } from '@core/types/type-article-card';
+import {
+  isProposed,
+  isPublished,
+  TypeArticleCard,
+} from '@core/types/type-article-card';
 import { FilterRating } from '@core/types/filter-rating';
 import { ViewRatingCardComponent } from '@components/rating/view-rating-card/view-rating-card.component';
 import { ViewRatingCard } from '@core/types/view-rating-card';
 import { TypeButton } from '@core/types/type-button';
 import { ButtonComponent } from '@components/button/button.component';
+import { AppRoute } from '@core/utils/app-route';
 
 @Component({
   selector: 'app-profile-page',
@@ -38,14 +43,6 @@ export class ProfilePageComponent {
   viewRatingCards: Array<ViewRatingCard>;
   protected readonly TypeButton = TypeButton;
 
-  redirectToViewArticle(articleCard: ArticleCard) {
-    this.router.navigate(['/article', articleCard.id]);
-  }
-
-  onSelectedTypeArticle(typeArticle: string) {
-    this.typeArticleCard = typeArticle as TypeArticleCard;
-  }
-
   constructor(private router: Router) {
     this.typeArticles = getAllValues(TypeArticle);
     this.articleCards = Data.articleCards;
@@ -59,6 +56,20 @@ export class ProfilePageComponent {
       this.viewRatingCards.reduce((acc, curr) => acc + curr.rating, 0) /
       this.viewRatingCards.length
     ).toString();
+  }
+
+  navigateTo(articleCardId: string) {
+    if (isProposed(this.typeArticleCard)) {
+      this.router.navigate([AppRoute.ViewArticle, articleCardId]).then();
+    } else if (isPublished(this.typeArticleCard)) {
+      this.router
+        .navigate([`${AppRoute.Profile}/proposed`, articleCardId])
+        .then();
+    }
+  }
+
+  onSelectedTypeArticle(typeArticle: string) {
+    this.typeArticleCard = typeArticle as TypeArticleCard;
   }
 
   onSelectedRating(rating: string) {
