@@ -1,9 +1,9 @@
-import { Component, Input } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { AngularSvgIconModule } from "angular-svg-icon";
-import { ButtonComponent } from "@components/button/button.component";
-import { TypeButton } from "@core/types/type-button";
-import { Router } from "@angular/router";
+import { Component, Input } from '@angular/core';
+import { CommonModule, Location } from '@angular/common';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { ButtonComponent } from '@components/button/button.component';
+import { TypeButton } from '@core/types/type-button';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -22,7 +22,10 @@ export class HeaderComponent {
   isActive: boolean;
   protected readonly TypeButton = TypeButton;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private location: Location
+  ) {
     this.isActive = false;
     this.isBack = false;
     this.withPreferences = true;
@@ -40,6 +43,6 @@ export class HeaderComponent {
   }
 
   redirectToBack() {
-    this.router.navigate(['/']).then();
+    this.location.back();
   }
 }
