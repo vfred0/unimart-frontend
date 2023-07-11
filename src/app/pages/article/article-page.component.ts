@@ -9,7 +9,11 @@ import { GalleryComponent } from '@components/gallery/gallery.component';
 import { Data } from '@core/utils/data';
 import { Icon } from '@core/utils/icon';
 import { AppRoute } from '@core/utils/app-route';
-import { isProposed, TypeArticleCard } from '@core/types/type-article-card';
+import {
+  isProposed,
+  isSuggest,
+  TypeArticleCard,
+} from '@core/types/type-article-card';
 
 @Component({
   standalone: true,
@@ -28,6 +32,11 @@ export class ArticlePageComponent {
   ) {
     this.article = Data.article;
     this.typeArticle = history.state.typeArticle;
+    console.log(this.typeArticle);
+  }
+
+  get isSuggest(): boolean {
+    return isSuggest(this.typeArticle);
   }
 
   get proposalsQuantity(): string {
@@ -61,5 +70,9 @@ export class ArticlePageComponent {
     } else {
       console.log('Aceptar propuesta');
     }
+  }
+
+  onContactWhatsApp() {
+    console.log('Contactar por WhatsApp');
   }
 }

@@ -52,18 +52,22 @@
         </div>
         <app-gallery [images]="this.article.gallery"/>
         <div class="c-article-page__buttons">
-            <app-button
-                    (click)="this.onSuggestOrProposedArticle()"
-                    [description]="this.isProposed ? 'Aceptar intercambio' : 'Proponer artículo'"
-                    [icon]="this.isProposed ? Icon.Exchanges : Icon.Hand"
-                    [typeButton]="TypeButton.Primary"
-            />
+            <ng-template [ngIf]="!this.isSuggest">
+                <app-button
+                        (click)="this.onSuggestOrProposedArticle()"
+                        [description]="this.isProposed ? 'Aceptar intercambio' : 'Proponer artículo'"
+                        [icon]="this.isProposed ? Icon.Exchanges : Icon.Hand"
+                        [typeButton]="TypeButton.Primary"
+                />
+            </ng-template>
             <ng-template [ngIf]="this.isProposed">
                 <app-button
+                        (click)="this.onContactWhatsApp()"
                         [description]="'Contactar por WhatsApp'"
                         [typeButton]="TypeButton.Contact"
                 />
             </ng-template>
+
         </div>
     </div>
 </div>
