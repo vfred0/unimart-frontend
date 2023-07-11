@@ -1,54 +1,33 @@
-import { Component } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { HeaderComponent } from "@components/header/header.component";
-import { ActivatedRoute } from "@angular/router";
-import { ButtonComponent } from "@components/button/button.component";
-import { TypeButton } from "@core/types/type-button";
-import { Article } from "@core/models/article";
-import { Category } from "@core/types/category";
-import { State } from "@core/types/state";
-import { GalleryComponent } from "@components/gallery/gallery.component";
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HeaderComponent } from '@components/header/header.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ButtonComponent } from '@components/button/button.component';
+import { TypeButton } from '@core/types/type-button';
+import { Article } from '@core/models/article';
+import { GalleryComponent } from '@components/gallery/gallery.component';
+import { Data } from '@core/utils/data';
+import { Icon } from '@core/utils/icon';
+import { AppRoute } from '@core/utils/app-route';
 
 @Component({
-  selector: "app-view-article-page",
   standalone: true,
   imports: [HeaderComponent, CommonModule, ButtonComponent, GalleryComponent],
-  templateUrl: "./view-article-page.component.html",
+  templateUrl: './view-article-page.component.html',
 })
 export class ViewArticlePageComponent {
   article: Article;
+  isProposed: boolean;
   protected readonly TypeButton = TypeButton;
+  protected readonly Icon = Icon;
 
-  constructor(private activatedRoute: ActivatedRoute) {
-    console.log(this.activatedRoute.snapshot.params["id"]);
-    this.article = {
-      id: 1,
-      image: "https://picsum.photos/200/300",
-      title: "Teclado Mecánico Logitech",
-      description:
-        "Este teclado me lo dieron de regalo, está nuevo, apenas lo usé para comprobar que funciona, entrgo con su caja y accesorios.",
-      datePublished: "Hace 2 días",
-      proposalsQuantity: 3,
-      category: Category.SportingGoods,
-      state: State.New,
-      user: {
-        image: "https://picsum.photos/200/300",
-        name: "Víctor Arreaga",
-        description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget " +
-          "consectetur aliquam, nisl nisl aliquet nisl, euismod. ",
-        rating: 4,
-        numberOfExchanges: 5,
-      },
-      gallery: [
-        "https://picsum.photos/200/300",
-        "https://picsum.photos/200/300",
-        "https://picsum.photos/200/300",
-        "https://picsum.photos/200/300",
-        "https://picsum.photos/200/300",
-        "https://picsum.photos/200/300",
-      ],
-    };
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {
+    this.article = Data.article;
+    this.isProposed = false;
+    this.isProposed = history.state.isProposed;
   }
 
   get proposalsQuantity(): string {
@@ -65,5 +44,16 @@ export class ViewArticlePageComponent {
     return this.article.user.numberOfExchanges > 1
       ? `${this.article.user.numberOfExchanges} intercambios`
       : `${this.article.user.numberOfExchanges} intercambio`;
+  }
+
+  onSuggestOrProposedArticle() {
+    const isSuggest = !this.isProposed;
+    if (isSuggest) {
+      this.router
+        .navigate([`${AppRoute.ViewArticle}/${this.article.id}/suggest/`])
+        .then();
+    } else {
+      console.log('Aceptar propuesta');
+    }
   }
 }

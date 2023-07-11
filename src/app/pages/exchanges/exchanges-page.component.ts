@@ -7,7 +7,6 @@ import { Data } from '@core/utils/data';
 import { AddRatingComponent } from '@components/rating/add-rating/add-rating.component';
 
 @Component({
-  selector: 'app-exchanges-page',
   standalone: true,
   imports: [
     CommonModule,

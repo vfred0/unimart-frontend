@@ -16,7 +16,6 @@ import { getAllValues } from '@core/types/enum-utils';
 import { Icon } from '@core/utils/icon';
 
 @Component({
-  selector: 'app-publish-article-page',
   standalone: true,
   imports: [
     CommonModule,

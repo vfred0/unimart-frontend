@@ -23,7 +23,6 @@ import { AppRoute } from '@core/utils/app-route';
 import { Icon } from '@core/utils/icon';
 
 @Component({
-  selector: 'app-profile-page',
   standalone: true,
   templateUrl: './profile-page.component.html',
   imports: [
