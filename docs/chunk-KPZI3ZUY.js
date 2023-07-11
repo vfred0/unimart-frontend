@@ -1,0 +1,1 @@
+var r=(()=>(r=r||{},r.Normal="normal",r.Suggest="Proponer",r.Published="Publicados",r.Proposed="Propuestos",r))();function e(o){return o===r.Suggest}function t(o){return o===r.Published}function u(o){return o===r.Proposed}function s(o){return o===r.Normal}export{r as a,e as b,t as c,u as d,s as e};
