@@ -4,7 +4,8 @@ import { AppRoute } from '@core/utils/app-route';
 export const routes: Routes = [
   {
     path: AppRoute.Home,
-    loadChildren: () => import('@pages/home/home.routes').then(m => m.routes),
+    loadChildren: () =>
+      import('@pages/home/home-page.routes').then(m => m.routes),
   },
   {
     path: `${AppRoute.ViewArticle}/:id`,

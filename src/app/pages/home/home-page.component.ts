@@ -15,7 +15,6 @@ import { getAllValues } from '@core/types/enum-utils';
 import { Data } from '@core/utils/data';
 
 @Component({
-  selector: 'app-home',
   standalone: true,
   imports: [
     HeaderComponent,
@@ -27,10 +26,10 @@ import { Data } from '@core/utils/data';
     MenuComponent,
     ReactiveFormsModule,
   ],
-  templateUrl: './home.component.html',
+  templateUrl: './home-page.component.html',
   styles: [],
 })
-export class HomeComponent {
+export class HomePageComponent {
   categories: Array<string>;
   states: Array<string>;
   optionSelected: string;
