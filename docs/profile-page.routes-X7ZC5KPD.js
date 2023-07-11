@@ -1,0 +1,1 @@
+import"./chunk-OC64LIZX.js";var e=[{path:"",loadComponent:()=>import("./profile-page.component-WILOJTL6.js").then(o=>o.ProfilePageComponent)},{path:"proposed/:articleId",loadComponent:()=>import("./proposed-page.component-K3Z5X3YQ.js").then(o=>o.ProposedPageComponent)}];export{e as routes};
