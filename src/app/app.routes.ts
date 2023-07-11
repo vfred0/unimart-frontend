@@ -8,11 +8,9 @@ export const routes: Routes = [
       import('@pages/home/home-page.routes').then(m => m.routes),
   },
   {
-    path: `${AppRoute.ViewArticle}/:id`,
+    path: `${AppRoute.Article}/:id`,
     loadChildren: () =>
-      import('@pages/view-article/view-article-page.routes').then(
-        m => m.routes
-      ),
+      import('@pages/article/article-page.routes').then(m => m.routes),
   },
   {
     path: AppRoute.PublishArticle,
