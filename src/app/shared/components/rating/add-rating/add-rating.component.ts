@@ -9,6 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { InputComponent } from '@components/input/input.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { TypeButton } from '@core/types/type-button';
+import { Icon } from '@core/utils/icon';
 
 @Component({
   selector: 'app-add-rating',
@@ -48,4 +49,6 @@ export class AddRatingComponent {
   onRating() {
     console.log(this.form.value);
   }
+
+  protected readonly Icon = Icon;
 }

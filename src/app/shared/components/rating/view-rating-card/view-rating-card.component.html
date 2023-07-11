@@ -2,7 +2,7 @@
     <div class="c-view-rating-card__header-rating">
         <app-header [description]="this.viewRatingCard.publishDate" [image]="this.viewRatingCard.userPhoto"
                     [title]="this.viewRatingCard.userName" [withPreferences]="false"/>
-        <app-button [description]="this.viewRatingCard.rating.toString()" [icon]="'star'"
+        <app-button [description]="this.viewRatingCard.rating.toString()" [icon]="Icon.Star"
                     [typeButton]="TypeButton.Secondary"/>
     </div>
     <span class="o-text-base-normal">{{ this.viewRatingCard.comment }}</span>

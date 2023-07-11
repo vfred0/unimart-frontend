@@ -18,9 +18,9 @@
     }}</span>
     <div class="c-article-card__tags">
       <app-button
-        [description]="this.articleCard.state"
-        [icon]="'state'"
-        [typeButton]="TypeButton.Tag"
+              [description]="this.articleCard.state"
+              [icon]="Icon.State"
+              [typeButton]="TypeButton.Tag"
       />
       <app-button
         [description]="this.getProposalsQuantity()"
@@ -57,16 +57,16 @@
         />
         <div class="c-article-card__buttons-row">
           <app-button
-            [description]="'Editar'"
-            [icon]="'edit'"
-            [typeButton]="TypeButton.Secondary"
-            class="c-article-card__button"
+                  [description]="'Editar'"
+                  [icon]="Icon.Edit"
+                  [typeButton]="TypeButton.Secondary"
+                  class="c-article-card__button"
           />
           <app-button
-            [description]="'Eliminar'"
-            [icon]="'delete'"
-            [typeButton]="TypeButton.Secondary"
-            class="c-article-card__button"
+                  [description]="'Eliminar'"
+                  [icon]="Icon.Delete"
+                  [typeButton]="TypeButton.Secondary"
+                  class="c-article-card__button"
           />
         </div>
       </div>

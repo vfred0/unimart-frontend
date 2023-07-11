@@ -5,6 +5,7 @@ import { ExchangeCard } from '@core/types/exchange-card';
 import { ButtonComponent } from '@components/button/button.component';
 import { TypeButton } from '@core/types/type-button';
 import { AddRatingComponent } from '@components/rating/add-rating/add-rating.component';
+import { Icon } from '@core/utils/icon';
 
 @Component({
   selector: 'app-exchange-card',
@@ -17,6 +18,7 @@ export class ExchangeCardComponent {
   @Output() discardExchange: EventEmitter<string>;
   showAddRating: boolean;
   protected readonly TypeButton = TypeButton;
+  protected readonly Icon = Icon;
 
   constructor() {
     this.exchangeCard = {} as ExchangeCard;

@@ -4,11 +4,12 @@ import { TypeButton } from '@core/types/type-button';
 import { ArticleCard } from '@core/models/article-card';
 import { ButtonComponent } from '@components/button/button.component';
 import {
-  TypeArticleCard,
-  isSuggest,
   isProposed,
   isPublished,
+  isSuggest,
+  TypeArticleCard,
 } from '@core/types/type-article-card';
+import { Icon } from '@core/utils/icon';
 
 @Component({
   selector: 'app-article-card',
@@ -42,4 +43,6 @@ export class ArticleCardComponent {
   get isProposed(): boolean {
     return isProposed(this.typeArticleCard);
   }
+
+  protected readonly Icon = Icon;
 }

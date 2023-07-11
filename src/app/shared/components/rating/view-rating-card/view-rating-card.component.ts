@@ -4,6 +4,7 @@ import { ButtonComponent } from '@shared/components/button/button.component';
 import { HeaderComponent } from '@shared/components/header/header.component';
 import { ViewRatingCard } from '@core/types/view-rating-card';
 import { TypeButton } from '@core/types/type-button';
+import { Icon } from '@core/utils/icon';
 
 @Component({
   selector: 'app-view-rating-card',
@@ -18,4 +19,6 @@ export class ViewRatingCardComponent {
   constructor() {
     this.viewRatingCard = {} as ViewRatingCard;
   }
+
+  protected readonly Icon = Icon;
 }

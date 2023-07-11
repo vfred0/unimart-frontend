@@ -1,10 +1,10 @@
 <app-header />
 <div class="c-publish-article-page o-layout-spacing">
   <app-input
-    (textChanged)="this.onTitleChanged($event)"
-    [icon]="'edit'"
-    [placeholder]="'Ingresa el nombre del artículo'"
-    [title]="'Título'"
+          (textChanged)="this.onTitleChanged($event)"
+          [icon]="Icon.Edit"
+          [placeholder]="'Ingresa el nombre del artículo'"
+          [title]="'Título'"
   />
   <app-select
     (selectedOption)="onSelectedCategory($event)"
@@ -42,16 +42,16 @@
     </ng-template>
     <div [class.c-publish-article-page__gallery-buttons]="this.containsImages">
       <app-button
-        [description]="'Cargar foto'"
-        [icon]="'camera'"
-        [typeButton]="TypeButton.Secondary"
+              [description]="'Cargar foto'"
+              [icon]="Icon.Camera"
+              [typeButton]="TypeButton.Secondary"
       />
       <ng-template [ngIf]="this.containsImages">
         <app-button
-          (click)="this.onDeleteImages()"
-          [description]="'Eliminar fotos'"
-          [icon]="'delete'"
-          [typeButton]="TypeButton.Secondary"
+                (click)="this.onDeleteImages()"
+                [description]="'Eliminar fotos'"
+                [icon]="Icon.Delete"
+                [typeButton]="TypeButton.Secondary"
         />
       </ng-template>
     </div>
@@ -61,9 +61,9 @@
     class="c-publish-article-page__container-proposed"
   >
     <app-button
-      [description]="'Publicar artículo'"
-      [icon]="'save'"
-      [typeButton]="TypeButton.Primary"
+            [description]="'Publicar artículo'"
+            [icon]="Icon.Save"
+            [typeButton]="TypeButton.Primary"
     />
   </div>
 </div>

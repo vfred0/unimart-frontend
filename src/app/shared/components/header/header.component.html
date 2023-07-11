@@ -29,12 +29,12 @@
 <ng-template [ngIf]="this.withPreferences">
   <div [class.is-active]="this.isActive" class="c-preferences">
     <app-button
-      [description]="'Editar perfil'"
-      [icon]="'edit'"
-      [typeButton]="TypeButton.Secondary" />
+            [description]="'Editar perfil'"
+            [icon]="Icon.Edit"
+            [typeButton]="TypeButton.Secondary" />
     <app-button
-      [description]="'Cerrar sesión'"
-      [icon]="'logout'"
-      [typeButton]="TypeButton.Secondary" />
+            [description]="'Cerrar sesión'"
+            [icon]="Icon.Logout"
+            [typeButton]="TypeButton.Secondary" />
   </div>
 </ng-template>

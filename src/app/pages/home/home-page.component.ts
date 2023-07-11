@@ -74,7 +74,7 @@ export class HomePageComponent {
       articleCard =>
         articleCard.state === this.state &&
         articleCard.category === this.category &&
-        articleCard.title.includes(this.title)
+        articleCard.title.toLowerCase().includes(this.title.toLowerCase())
     );
     this.cd.detectChanges();
   }

@@ -4,6 +4,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ButtonComponent } from '@components/button/button.component';
 import { TypeButton } from '@core/types/type-button';
 import { Router } from '@angular/router';
+import { Icon } from '@core/utils/icon';
 
 @Component({
   selector: 'app-header',
@@ -45,4 +46,6 @@ export class HeaderComponent {
   redirectToBack() {
     this.location.back();
   }
+
+  protected readonly Icon = Icon;
 }

@@ -20,6 +20,7 @@ import { ViewRatingCard } from '@core/types/view-rating-card';
 import { TypeButton } from '@core/types/type-button';
 import { ButtonComponent } from '@components/button/button.component';
 import { AppRoute } from '@core/utils/app-route';
+import { Icon } from '@core/utils/icon';
 
 @Component({
   selector: 'app-profile-page',
@@ -58,15 +59,7 @@ export class ProfilePageComponent {
     ).toString();
   }
 
-  navigateTo(articleCardId: string) {
-    if (isProposed(this.typeArticleCard)) {
-      this.router.navigate([AppRoute.ViewArticle, articleCardId]).then();
-    } else if (isPublished(this.typeArticleCard)) {
-      this.router
-        .navigate([`${AppRoute.Profile}/proposed`, articleCardId])
-        .then();
-    }
-  }
+  protected readonly Icon = Icon;
 
   onSelectedTypeArticle(typeArticle: string) {
     this.typeArticleCard = typeArticle as TypeArticleCard;
@@ -74,5 +67,15 @@ export class ProfilePageComponent {
 
   onSelectedRating(rating: string) {
     console.info(`%cINFO: ${JSON.stringify(rating)}`, 'color: #bcf0da;');
+  }
+
+  navigateTo(articleCardId: string) {
+    if (isProposed(this.typeArticleCard)) {
+      this.router.navigate([`${AppRoute.Profile}/${articleCardId}`]).then();
+    } else if (isPublished(this.typeArticleCard)) {
+      this.router
+        .navigate([`${AppRoute.Profile}/proposed`, articleCardId])
+        .then();
+    }
   }
 }

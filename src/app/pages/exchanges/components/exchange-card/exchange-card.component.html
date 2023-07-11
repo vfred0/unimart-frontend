@@ -4,13 +4,13 @@
     <span class="o-text-base-normal">{{ this.exchangeCard.comment }}</span>
     <div class="c-exchange-card__buttons">
         <ng-template [ngIfElse]="showAddRatingTemplate" [ngIf]="!this.showAddRating">
-            <app-button (click)="onShowRating()" [description]="'Calificar intercambio'" [icon]="'star'"
+            <app-button (click)="onShowRating()" [description]="'Calificar intercambio'" [icon]="Icon.Star"
                         [typeButton]="TypeButton.Primary"/>
-            <app-button (click)="onDiscardExchange()" [description]="'Descartar intercambio'" [icon]="'delete'"
+            <app-button (click)="onDiscardExchange()" [description]="'Descartar intercambio'" [icon]="Icon.Delete"
                         [typeButton]="TypeButton.Secondary"/>
         </ng-template>
         <ng-template #showAddRatingTemplate>
-            <app-button (click)="onShowRating()" [description]="'Cerrar'" [icon]="'delete'"
+            <app-button (click)="onShowRating()" [description]="'Cerrar'" [icon]="Icon.Delete"
                         [typeButton]="TypeButton.Secondary"/>
         </ng-template>
     </div>

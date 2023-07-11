@@ -7,7 +7,7 @@
         <div class="c-tabs__wrapper-content">
             <div class="c-tabs__content">
                 <app-input
-                        [icon]="'search'"
+                        [icon]="Icon.Search"
                         [placeholder]="'Nombre del artículo'"
                         class="o-layout-width-100"/>
                 <app-select
@@ -36,7 +36,7 @@
                 <div class="c-tabs__content-row o-layout-width-100 ">
                     <span class="o-text-lg-semibold o-layout-width-100 ">{{ this.viewRatingCards.length }}
                         resultados </span>
-                    <app-button [description]="this.averageRating" [icon]="'star'"
+                    <app-button [description]="this.averageRating" [icon]="Icon.Star"
                                 [typeButton]="TypeButton.Secondary"/>
                 </div>
 

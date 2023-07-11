@@ -13,6 +13,7 @@ import { ButtonComponent } from '@components/button/button.component';
 import { TypeButton } from '@core/types/type-button';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { getAllValues } from '@core/types/enum-utils';
+import { Icon } from '@core/utils/icon';
 
 @Component({
   selector: 'app-publish-article-page',
@@ -98,4 +99,6 @@ export class PublishArticlePageComponent {
       console.log(this.form.value);
     }
   }
+
+  protected readonly Icon = Icon;
 }
