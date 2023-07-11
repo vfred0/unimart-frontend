@@ -9,18 +9,15 @@ import { ArticleCardComponent } from '@shared/components/article-card/article-ca
 import { ArticleCard } from '@core/models/article-card';
 import { Router } from '@angular/router';
 import { Data } from '@core/utils/data';
-import {
-  isProposed,
-  isPublished,
-  TypeArticleCard,
-} from '@core/types/type-article-card';
+import { isPublished, TypeArticleCard } from '@core/types/type-article-card';
 import { FilterRating } from '@core/types/filter-rating';
 import { ViewRatingCardComponent } from '@components/rating/view-rating-card/view-rating-card.component';
 import { ViewRatingCard } from '@core/types/view-rating-card';
 import { TypeButton } from '@core/types/type-button';
 import { ButtonComponent } from '@components/button/button.component';
-import { AppRoute } from '@core/utils/app-route';
 import { Icon } from '@core/utils/icon';
+import { PublishedArticleCardComponent } from '@components/article-card/published-article-card/published-article-card.component';
+import { ProposedArticleCardComponent } from '@components/article-card/proposed-article-card/proposed-article-card.component';
 
 @Component({
   standalone: true,
@@ -33,6 +30,8 @@ import { Icon } from '@core/utils/icon';
     ArticleCardComponent,
     ViewRatingCardComponent,
     ButtonComponent,
+    PublishedArticleCardComponent,
+    ProposedArticleCardComponent,
   ],
 })
 export class ProfilePageComponent {
@@ -42,6 +41,7 @@ export class ProfilePageComponent {
   filterRatings: Array<FilterRating>;
   viewRatingCards: Array<ViewRatingCard>;
   protected readonly TypeButton = TypeButton;
+  protected readonly Icon = Icon;
 
   constructor(private router: Router) {
     this.typeArticles = getAllValues(TypeArticle);
@@ -58,8 +58,6 @@ export class ProfilePageComponent {
     ).toString();
   }
 
-  protected readonly Icon = Icon;
-
   onSelectedTypeArticle(typeArticle: string) {
     this.typeArticleCard = typeArticle as TypeArticleCard;
   }
@@ -68,13 +66,15 @@ export class ProfilePageComponent {
     console.info(`%cINFO: ${JSON.stringify(rating)}`, 'color: #bcf0da;');
   }
 
-  navigateTo(articleCardId: string) {
-    if (isProposed(this.typeArticleCard)) {
-      this.router.navigate([`${AppRoute.Profile}/${articleCardId}`]).then();
-    } else if (isPublished(this.typeArticleCard)) {
-      this.router
-        .navigate([`${AppRoute.Profile}/proposed`, articleCardId])
-        .then();
-    }
+  get isPublished(): boolean {
+    return isPublished(this.typeArticleCard);
+  }
+
+  onDeleteArticle(articleId: string) {
+    console.log(`Eliminar artículo ${articleId}`);
+  }
+
+  onDeleteProposed(articleId: string) {
+    console.log(`Eliminar propuesta ${articleId}`);
   }
 }

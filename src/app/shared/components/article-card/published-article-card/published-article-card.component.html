@@ -1,0 +1,27 @@
+<app-article-card [articleCard]="articleCard"
+                  [typeArticleCard]="typeArticleCard">
+    <div class="c-article-card__buttons">
+        <app-button
+                (click)="this.onShowProposals()"
+                [description]="this.getProposalsQuantity()"
+                [typeButton]="TypeButton.Primary"
+                class="c-article-card__button"
+        />
+        <div class="c-article-card__buttons-row">
+            <app-button
+                    (click)="this.onEditArticle()"
+                    [description]="'Editar'"
+                    [icon]="Icon.Edit"
+                    [typeButton]="TypeButton.Secondary"
+                    class="c-article-card__button"
+            />
+            <app-button
+                    (click)="this.onDeleteArticle()"
+                    [description]="'Eliminar'"
+                    [icon]="Icon.Delete"
+                    [typeButton]="TypeButton.Secondary"
+                    class="c-article-card__button"
+            />
+        </div>
+    </div>
+</app-article-card>

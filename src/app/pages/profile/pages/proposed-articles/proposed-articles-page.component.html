@@ -4,7 +4,7 @@
     <span class="o-text-lg-semibold o-layout-width-100 ">{{ this.articleCards.length }} resultados </span>
     <div class="o-layout-article-cards">
         <app-article-card
-                (click)="navigateToViewArticle(articleCard.id.toString())"
+                (click)="onNavigateToArticle(articleCard.id)"
                 *ngFor="let articleCard of this.articleCards"
                 [articleCard]="articleCard"
         />

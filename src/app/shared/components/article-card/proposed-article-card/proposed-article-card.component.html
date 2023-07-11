@@ -1,0 +1,16 @@
+<app-article-card [articleCard]="articleCard"
+                  [typeArticleCard]="typeArticleCard">
+    <app-button
+            (click)="onViewPublication()"
+            [description]="'Ver publicación'"
+            [typeButton]="TypeButton.Primary"
+            class="c-article-card__button"
+    />
+    <app-button
+            (click)="onDeleteProposed()"
+            [description]="'Eliminar propuesta'"
+            [icon]="Icon.Delete"
+            [typeButton]="TypeButton.Secondary"
+            class="c-article-card__button"
+    />
+</app-article-card>
