@@ -1,1 +1,0 @@
-var e=(()=>(e=e||{},e.Home="",e.ViewArticle="view-article",e.PublishArticle="publish-article",e.Exchanges="exchanges",e.Profile="profile",e))();function r(i){return i!==e.ViewArticle}export{e as a,r as b};
