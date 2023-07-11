@@ -1,4 +1,4 @@
-.c-article-view {
+.c-view-article-page {
   display: flex;
   flex-direction: column;
   gap: $em-24;
@@ -63,8 +63,12 @@
     }
   }
 
-  &__container-proposed {
+  &__buttons {
     display: flex;
-    justify-content: center;
+    margin: 0 auto;
+    gap: $em-8;
+    @include only-mobile {
+      flex-direction: column;
+    }
   }
 }

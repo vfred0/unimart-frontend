@@ -42,15 +42,13 @@
   &__tags {
     display: flex;
     gap: $em-8;
+    overflow-x: auto;
+    white-space: nowrap;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 
-    @include only-mobile() {
-      overflow-x: auto;
-      white-space: nowrap;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-      &::-webkit-scrollbar {
-        display: none;
-      }
+    &::-webkit-scrollbar {
+      display: none;
     }
   }
 
@@ -72,11 +70,8 @@
     }
   }
 
-  @include only-desktop() {
-    &:hover {
-      background-color: $accent-third;
-      box-shadow: $shadow-lg;
-      transition: all 0.9s ease-in-out;
-    }
+  &:active {
+    background-color: $accent-second;
+    border-radius: $em-16;
   }
 }
