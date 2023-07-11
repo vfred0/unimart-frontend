@@ -1,9 +1,9 @@
-import { Category } from "@core/types/category";
-import { State } from "@core/types/state";
-import { User } from "@core/models/user";
+import { Category } from '@core/types/category';
+import { State } from '@core/types/state';
+import { User } from '@core/models/user';
 
 export interface Article {
-  id: number;
+  id: string;
   image: string;
   title: string;
   description: string;

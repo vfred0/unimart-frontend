@@ -3,8 +3,10 @@ import { Category } from '@core/types/category';
 import { State } from '@core/types/state';
 import { ViewRatingCard } from '@core/types/view-rating-card';
 import { ExchangeCard } from '@core/types/exchange-card';
+import { Article } from '@core/models/article';
 
 interface Data {
+  article: Article;
   viewRatingCards: Array<ViewRatingCard>;
   exchangeCards: Array<ExchangeCard>;
   articleCards: Array<ArticleCard>;
@@ -157,4 +159,32 @@ export const Data: Data = {
       date: '02.02.2022, 9:10',
     },
   ],
+  article: {
+    id: '1',
+    image: 'https://picsum.photos/200/300',
+    title: 'Teclado Mecánico Logitech',
+    description:
+      'Este teclado me lo dieron de regalo, está nuevo, apenas lo usé para comprobar que funciona, entrgo con su caja y accesorios.',
+    datePublished: 'Hace 2 días',
+    proposalsQuantity: 3,
+    category: Category.SportingGoods,
+    state: State.New,
+    user: {
+      image: 'https://picsum.photos/200/300',
+      name: 'Víctor Arreaga',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget ' +
+        'consectetur aliquam, nisl nisl aliquet nisl, euismod. ',
+      rating: 4,
+      numberOfExchanges: 5,
+    },
+    gallery: [
+      'https://picsum.photos/200/300',
+      'https://picsum.photos/200/300',
+      'https://picsum.photos/200/300',
+      'https://picsum.photos/200/300',
+      'https://picsum.photos/200/300',
+      'https://picsum.photos/200/300',
+    ],
+  },
 };
