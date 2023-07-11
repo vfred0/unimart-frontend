@@ -9,7 +9,7 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'proposed-articles/:articleId',
+    path: `${AppRoute.ProposedArticles}/:articleId`,
     loadComponent: () =>
       import(
         '@pages/profile/pages/proposed-articles/proposed-articles-page.component'
