@@ -1,7 +1,7 @@
-<app-header />
-<div class="c-explore o-layout-spacing">
-  <div class="c-explore__inputs">
-    <app-input (textChanged)="this.onTextSearchChanged($event)" />
+<app-header/>
+<div class="c-home-page o-layout-spacing">
+  <div class="c-home-page__inputs">
+    <app-input (textChanged)="this.onTextSearchChanged($event)"/>
     <app-select
             (selectedOption)="onSelectedCategory($event)"
             [options]="this.categories"
