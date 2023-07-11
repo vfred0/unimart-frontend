@@ -3,13 +3,13 @@
   <div class="c-explore__inputs">
     <app-input (textChanged)="this.onTextSearchChanged($event)" />
     <app-select
-      (selectedOption)="onSelectedState($event)"
-      [options]="this.categories"
+            (selectedOption)="onSelectedCategory($event)"
+            [options]="this.categories"
     />
     <app-select
-      (selectedOption)="onSelectedCategory($event)"
-      [label]="'Ordenar por estado:'"
-      [options]="this.states"
+            (selectedOption)="onSelectedState($event)"
+            [label]="'Ordenar por estado:'"
+            [options]="this.states"
     />
   </div>
   <span class="o-text-lg-semibold"
@@ -17,9 +17,9 @@
   </span>
   <div class="o-layout-article-cards">
     <app-article-card
-      (click)="redirectToViewArticle(articleCard)"
-      *ngFor="let articleCard of this.articleCards"
-      [articleCard]="articleCard"
+            (click)="navigateTo(articleCard.id)"
+            *ngFor="let articleCard of this.articleCards"
+            [articleCard]="articleCard"
     />
   </div>
 </div>

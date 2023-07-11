@@ -13,6 +13,7 @@ import { SelectComponent } from '@components/select/select.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { getAllValues } from '@core/types/enum-utils';
 import { Data } from '@core/utils/data';
+import { AppRoute } from '@core/utils/app-route';
 
 @Component({
   standalone: true,
@@ -30,10 +31,11 @@ import { Data } from '@core/utils/data';
   styles: [],
 })
 export class HomePageComponent {
+  title: string;
+  category: Category;
+  state: State;
   categories: Array<string>;
   states: Array<string>;
-  optionSelected: string;
-  category: Category;
   articleCards: Array<ArticleCard>;
 
   constructor(
@@ -42,26 +44,38 @@ export class HomePageComponent {
   ) {
     this.categories = getAllValues(Category);
     this.states = getAllValues(State);
-    this.optionSelected = {} as string;
-    this.category = Category.Clothing;
+    this.title = '';
+    this.category = {} as Category;
+    this.state = {} as State;
     this.articleCards = Data.articleCards;
   }
 
   onSelectedState(state: string) {
-    this.cd.detectChanges();
-    console.log(state);
+    this.state = state as State;
+    this.updateArticleCards();
   }
 
   onSelectedCategory(category: string) {
+    this.category = category as Category;
+    this.updateArticleCards();
+  }
+
+  navigateTo(articleCardId: string) {
+    this.router.navigate([`${AppRoute.ViewArticle}/${articleCardId}`]).then();
+  }
+
+  onTextSearchChanged(title: string) {
+    this.title = title;
+    this.updateArticleCards();
+  }
+
+  private updateArticleCards() {
+    this.articleCards = Data.articleCards.filter(
+      articleCard =>
+        articleCard.state === this.state &&
+        articleCard.category === this.category &&
+        articleCard.title.includes(this.title)
+    );
     this.cd.detectChanges();
-    console.log(category);
-  }
-
-  redirectToViewArticle(articleCard: ArticleCard) {
-    this.router.navigate([`/view-article/${articleCard.id}`]).then();
-  }
-
-  onTextSearchChanged(text: string) {
-    console.log(text);
   }
 }
