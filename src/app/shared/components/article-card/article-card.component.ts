@@ -3,13 +3,10 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { TypeButton } from '@core/types/type-button';
 import { ArticleCard } from '@core/models/article-card';
 import { ButtonComponent } from '@components/button/button.component';
-import {
-  isProposed,
-  isPublished,
-  isSuggest,
-  TypeArticleCard,
-} from '@core/types/type-article-card';
+import { isNormal, TypeArticleCard } from '@core/types/type-article-card';
 import { Icon } from '@core/utils/icon';
+import { Router } from '@angular/router';
+import { AppRoute } from '@core/utils/app-route';
 
 @Component({
   selector: 'app-article-card',
@@ -21,27 +18,26 @@ export class ArticleCardComponent {
   @Input() articleCard: ArticleCard;
   @Input() typeArticleCard: TypeArticleCard;
   protected readonly TypeButton = TypeButton;
+  protected readonly Icon = Icon;
 
-  constructor() {
+  constructor(protected router: Router) {
     this.typeArticleCard = TypeArticleCard.Normal;
     this.articleCard = {} as ArticleCard;
+  }
+
+  get isNormal(): boolean {
+    return isNormal(this.typeArticleCard);
   }
 
   getProposalsQuantity(): string {
     return `${this.articleCard.proposalsQuantity} propuestas`;
   }
 
-  get isPublished(): boolean {
-    return isPublished(this.typeArticleCard);
+  navigateToViewArticle() {
+    if (isNormal(this.typeArticleCard)) {
+      this.router
+        .navigate([`${AppRoute.Article}/${this.articleCard.id}`])
+        .then();
+    }
   }
-
-  get isSuggest(): boolean {
-    return isSuggest(this.typeArticleCard);
-  }
-
-  get isProposed(): boolean {
-    return isProposed(this.typeArticleCard);
-  }
-
-  protected readonly Icon = Icon;
 }

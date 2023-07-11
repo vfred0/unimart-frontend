@@ -1,4 +1,5 @@
-<div class="c-article-card">
+<div (click)="this.navigateToViewArticle()" [class.c-article-card--normal]="this.isNormal"
+     class="c-article-card">
     <img
             alt="{{ this.articleCard.title }}"
             class="c-article-card__image"
@@ -27,49 +28,6 @@
                     [typeButton]="TypeButton.Tag"
             />
         </div>
-        <ng-template [ngIf]="this.isSuggest">
-            <app-button
-                    [description]="'Proponer artículo'"
-                    [typeButton]="TypeButton.Primary"
-                    class="c-article-card__button"
-            />
-        </ng-template>
-
-        <ng-template [ngIf]="this.isProposed">
-            <app-button
-                    [description]="'Ver publicación'"
-                    [typeButton]="TypeButton.Primary"
-                    class="c-article-card__button"
-            />
-            <app-button
-                    [description]="'Eliminar propuesta'"
-                    [typeButton]="TypeButton.Secondary"
-                    class="c-article-card__button"
-            />
-        </ng-template>
-
-        <ng-template [ngIf]="this.isPublished">
-            <div class="c-article-card__buttons">
-                <app-button
-                        [description]="this.getProposalsQuantity()"
-                        [typeButton]="TypeButton.Primary"
-                        class="c-article-card__button"
-                />
-                <div class="c-article-card__buttons-row">
-                    <app-button
-                            [description]="'Editar'"
-                            [icon]="Icon.Edit"
-                            [typeButton]="TypeButton.Secondary"
-                            class="c-article-card__button"
-                    />
-                    <app-button
-                            [description]="'Eliminar'"
-                            [icon]="Icon.Delete"
-                            [typeButton]="TypeButton.Secondary"
-                            class="c-article-card__button"
-                    />
-                </div>
-            </div>
-        </ng-template>
     </div>
+    <ng-content/>
 </div>
