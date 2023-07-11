@@ -13,7 +13,6 @@ import { SelectComponent } from '@components/select/select.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { getAllValues } from '@core/types/enum-utils';
 import { Data } from '@core/utils/data';
-import { AppRoute } from '@core/utils/app-route';
 
 @Component({
   standalone: true,
@@ -59,11 +58,6 @@ export class HomePageComponent {
     this.category = category as Category;
     this.updateArticleCards();
   }
-
-  navigateTo(articleCardId: string) {
-    this.router.navigate([`${AppRoute.ViewArticle}/${articleCardId}`]).then();
-  }
-
   onTextSearchChanged(title: string) {
     this.title = title;
     this.updateArticleCards();

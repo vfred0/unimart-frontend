@@ -17,7 +17,6 @@
   </span>
   <div class="o-layout-article-cards">
     <app-article-card
-            (click)="navigateTo(articleCard.id)"
             *ngFor="let articleCard of this.articleCards"
             [articleCard]="articleCard"
     />
