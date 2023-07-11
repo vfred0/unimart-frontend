@@ -1,11 +1,18 @@
-import { Routes } from "@angular/router";
+import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: "",
+    path: '',
     loadComponent: () =>
-      import("@pages/profile/profile-page.component").then(
-        (m) => m.ProfilePageComponent,
+      import('@pages/profile/profile-page.component').then(
+        m => m.ProfilePageComponent
+      ),
+  },
+  {
+    path: 'proposed/:articleId',
+    loadComponent: () =>
+      import('@pages/profile/pages/proposed/proposed-page.component').then(
+        m => m.ProposedPageComponent
       ),
   },
 ];

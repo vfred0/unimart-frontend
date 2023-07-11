@@ -17,7 +17,7 @@
                         class="o-layout-width-100"/>
                 <div class="o-layout-article-cards">
                     <app-article-card
-                            (click)="redirectToViewArticle(articleCard)"
+                            (click)="redirectToViewArticle(articleCard.id)"
                             *ngFor="let articleCard of this.articleCards"
                             [articleCard]="articleCard"
                             [typeArticleCard]="this.typeArticleCard"/>
@@ -41,10 +41,8 @@
                 </div>
 
                 <div class="o-layout-view-rating-cards">
-
                     <app-view-rating-card *ngFor="let viewRatingCard of this.viewRatingCards"
                                           [viewRatingCard]="viewRatingCard"/>
-
                 </div>
             </div>
         </div>
