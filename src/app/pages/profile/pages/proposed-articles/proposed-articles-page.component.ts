@@ -16,9 +16,9 @@ import { AppRoute } from '@core/utils/app-route';
     ArticleCardComponent,
     SelectComponent,
   ],
-  templateUrl: './proposed-page.component.html',
+  templateUrl: './proposed-articles-page.component.html',
 })
-export class ProposedPageComponent {
+export class ProposedArticlesPageComponent {
   articleCards: Array<ArticleCard>;
   categories: Array<string>;
 
@@ -34,8 +34,12 @@ export class ProposedPageComponent {
       );
   }
 
-  redirectToViewArticle(articleCardId: string) {
-    this.router.navigate([`${AppRoute.ViewArticle}/${articleCardId}`]).then();
+  navigateToViewArticle(articleCardId: string) {
+    this.router
+      .navigate([`${AppRoute.ViewArticle}/${articleCardId}`], {
+        state: { isProposed: true },
+      })
+      .then();
   }
 
   onSelectedCategory(category: string) {

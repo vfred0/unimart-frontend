@@ -9,10 +9,10 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'proposed/:articleId',
+    path: 'proposed-articles/:articleId',
     loadComponent: () =>
-      import('@pages/profile/pages/proposed/proposed-page.component').then(
-        m => m.ProposedPageComponent
-      ),
+      import(
+        '@pages/profile/pages/proposed-articles/proposed-articles-page.component'
+      ).then(m => m.ProposedArticlesPageComponent),
   },
 ];
