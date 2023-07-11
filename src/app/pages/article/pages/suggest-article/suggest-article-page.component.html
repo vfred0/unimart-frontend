@@ -4,8 +4,7 @@
     <app-select (selectedOption)="onSelectedCategory($event)" [options]="this.categories"/>
     <span class="o-text-lg-semibold o-layout-width-100 ">{{ this.articleCards.length }} resultados </span>
     <div class="o-layout-article-cards">
-        <app-article-card
-                (click)="suggestArticle(articleCard.id)"
+        <app-suggest-article-card
                 *ngFor="let articleCard of this.articleCards"
                 [articleCard]="articleCard"
                 [typeArticleCard]="TypeArticleCard.Suggest"

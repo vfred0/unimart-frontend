@@ -1,0 +1,8 @@
+<app-article-card [articleCard]="articleCard"
+                  [typeArticleCard]="typeArticleCard">
+    <app-button
+            (click)="onSuggestArticle(articleCard.id)"
+            [description]="'Proponer artículo'"
+            [typeButton]="TypeButton.Primary"
+            class="c-article-card__button"/>
+</app-article-card>

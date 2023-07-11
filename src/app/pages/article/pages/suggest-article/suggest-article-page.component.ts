@@ -8,6 +8,7 @@ import { ArticleCard } from '@core/models/article-card';
 import { Data } from '@core/utils/data';
 import { TypeArticleCard } from '@core/types/type-article-card';
 import { Category } from '@core/types/category';
+import { SuggestArticleCardComponent } from '@components/article-card/suggest-article-card/suggest-article-card.component';
 
 @Component({
   standalone: true,
@@ -17,6 +18,7 @@ import { Category } from '@core/types/category';
     HeaderComponent,
     SelectComponent,
     InputComponent,
+    SuggestArticleCardComponent,
   ],
   templateUrl: './suggest-article-page.component.html',
 })
