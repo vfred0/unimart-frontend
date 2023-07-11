@@ -1,11 +1,14 @@
 export enum AppRoute {
   Home = '',
-  ViewArticle = 'view-article',
-  PublishArticle = 'publish-article',
-  Exchanges = 'exchanges',
-  Profile = 'profile',
+  Article = 'articulo',
+  PublishArticle = 'publicar-articulo',
+  Exchanges = 'intercambios',
+  Profile = 'perfil',
+  Suggest = 'proponer',
+  ProposedArticles = 'articulos-propuestos',
+  ProfileProposedArticles = 'perfil/articulos-propuestos',
 }
 
 export function isWithMenu(url: string): boolean {
-  return url !== AppRoute.ViewArticle;
+  return url !== AppRoute.Article;
 }
