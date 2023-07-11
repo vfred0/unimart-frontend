@@ -16,3 +16,7 @@ export function isPublished(typeArticle: TypeArticleCard): boolean {
 export function isProposed(typeArticle: TypeArticleCard): boolean {
   return typeArticle === TypeArticleCard.Proposed;
 }
+
+export function isNormal(typeArticle: TypeArticleCard): boolean {
+  return typeArticle === TypeArticleCard.Normal;
+}
