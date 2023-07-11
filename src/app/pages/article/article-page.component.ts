@@ -9,15 +9,16 @@ import { GalleryComponent } from '@components/gallery/gallery.component';
 import { Data } from '@core/utils/data';
 import { Icon } from '@core/utils/icon';
 import { AppRoute } from '@core/utils/app-route';
+import { isProposed, TypeArticleCard } from '@core/types/type-article-card';
 
 @Component({
   standalone: true,
   imports: [HeaderComponent, CommonModule, ButtonComponent, GalleryComponent],
-  templateUrl: './view-article-page.component.html',
+  templateUrl: './article-page.component.html',
 })
-export class ViewArticlePageComponent {
+export class ArticlePageComponent {
   article: Article;
-  isProposed: boolean;
+  typeArticle: TypeArticleCard;
   protected readonly TypeButton = TypeButton;
   protected readonly Icon = Icon;
 
@@ -26,8 +27,7 @@ export class ViewArticlePageComponent {
     private router: Router
   ) {
     this.article = Data.article;
-    this.isProposed = false;
-    this.isProposed = history.state.isProposed;
+    this.typeArticle = history.state.typeArticle;
   }
 
   get proposalsQuantity(): string {
@@ -46,11 +46,17 @@ export class ViewArticlePageComponent {
       : `${this.article.user.numberOfExchanges} intercambio`;
   }
 
+  get isProposed(): boolean {
+    return isProposed(this.typeArticle);
+  }
+
   onSuggestOrProposedArticle() {
     const isSuggest = !this.isProposed;
     if (isSuggest) {
       this.router
-        .navigate([`${AppRoute.ViewArticle}/${this.article.id}/suggest/`])
+        .navigate([
+          `${AppRoute.Article}/${this.article.id}/${AppRoute.Suggest}`,
+        ])
         .then();
     } else {
       console.log('Aceptar propuesta');
