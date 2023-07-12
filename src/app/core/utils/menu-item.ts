@@ -1,7 +1,8 @@
-import { AppRoute } from "@core/utils/app-route";
+import { AppRoute } from '@core/utils/app-route';
+import { Icon } from '@core/utils/icon';
 
 export interface MenuItem {
-  icon: string;
+  icon: Icon;
   isSelected: boolean;
   route: AppRoute;
 }

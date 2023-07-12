@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { MenuItem } from '@core/utils/menu-item';
 import { NavigationEnd, Router } from '@angular/router';
-import { AppRoute, isWithMenu } from '@core/utils/app-route';
+import { AppRoute, isEquals, isWithMenu } from '@core/utils/app-route';
+import { Icon } from '@core/utils/icon';
 
 @Component({
   selector: 'app-menu',
@@ -18,30 +19,32 @@ export class MenuComponent {
   constructor(private router: Router) {
     this.showMenu = false;
     this.menuItems = [
-      { icon: 'home', isSelected: false, route: AppRoute.Home },
+      { icon: Icon.Home, isSelected: false, route: AppRoute.Home },
       {
-        icon: 'exchanges',
+        icon: Icon.Exchanges,
         isSelected: false,
         route: AppRoute.Exchanges,
       },
       {
-        icon: 'publication',
+        icon: Icon.Publication,
         isSelected: false,
         route: AppRoute.PublishArticle,
       },
       {
-        icon: 'profile',
+        icon: Icon.Profile,
         isSelected: false,
         route: AppRoute.Profile,
       },
     ];
+
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        const route = event.url.split('/')[1];
+        const route = event.url;
         this.showMenu = isWithMenu(route);
         const menuItem =
-          this.menuItems.find((item: MenuItem) => item.route === route) ||
-          this.menuItems[0];
+          this.menuItems.find((item: MenuItem) =>
+            isEquals(item.route, route)
+          ) || this.menuItems[0];
         this.menuItemSelected(menuItem, false);
       }
     });
