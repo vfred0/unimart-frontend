@@ -13,6 +13,7 @@ import { Icon } from '@core/utils/icon';
 export class InputComponent {
   @Input() title: string;
   @Input() icon: Icon;
+  @Input() value: string;
   @Input() placeholder: string;
   @Input() type: string;
   @Input() isTextArea: boolean;
@@ -25,9 +26,10 @@ export class InputComponent {
     this.placeholder = '';
     this.title = '';
     this.type = '';
+    this.value = '';
     this.textChanged = new EventEmitter<string>();
     this.inputForm = new FormGroup({
-      inputValue: new FormControl(''),
+      inputValue: new FormControl(this.value),
     });
     this.inputValue.valueChanges.subscribe(value => {
       this.textChanged.emit(value);
