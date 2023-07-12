@@ -10,19 +10,20 @@ import { NgIf } from '@angular/common';
   templateUrl: './input.component.html',
 })
 export class InputComponent {
-  @Input() icon: string;
-  @Input() placeholder: string;
   @Input() title: string;
+  @Input() icon: Icon;
+  @Input() placeholder: string;
+  @Input() type: string;
   @Input() isTextArea: boolean;
   @Output() textChanged: EventEmitter<string>;
   private inputForm: FormGroup;
 
   constructor() {
-    this.icon = 'search';
+    this.icon = Icon.Search;
     this.isTextArea = false;
     this.placeholder = '';
     this.title = '';
-
+    this.type = '';
     this.textChanged = new EventEmitter<string>();
     this.inputForm = new FormGroup({
       inputValue: new FormControl(''),

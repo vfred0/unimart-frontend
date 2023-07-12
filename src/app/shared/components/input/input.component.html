@@ -23,10 +23,10 @@
         </svg-icon>
       </div>
       <input
-        [formControl]="this.inputValue"
-        class="c-input__text o-text-base-medium"
-        placeholder="{{ this.placeholder }}"
-        type="text"
+              [formControl]="this.inputValue"
+              [type]="this.type"
+              class="c-input__text o-text-base-medium"
+              placeholder="{{ this.placeholder }}"
       />
     </div>
   </ng-template>
