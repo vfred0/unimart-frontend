@@ -1,6 +1,6 @@
 <div class="c-exchange-card">
     <app-header [description]="this.exchangeCard.date" [image]="this.exchangeCard.userPhoto"
-                [title]="this.exchangeCard.userName" [withPreferences]="false"/>
+                [isWithPreferences]="false" [title]="this.exchangeCard.userName"/>
     <span class="o-text-base-normal">{{ this.exchangeCard.comment }}</span>
     <div class="c-exchange-card__buttons">
         <ng-template [ngIfElse]="showAddRatingTemplate" [ngIf]="!this.showAddRating">

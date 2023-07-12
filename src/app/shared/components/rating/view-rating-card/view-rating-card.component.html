@@ -1,7 +1,14 @@
 <div class="c-view-rating-card">
     <div class="c-view-rating-card__header-rating">
-        <app-header [description]="this.viewRatingCard.publishDate" [image]="this.viewRatingCard.userPhoto"
-                    [title]="this.viewRatingCard.userName" [withPreferences]="false"/>
+        <div class="c-header__user-and-avatar">
+            <img alt="this.title"
+                 class="c-header__user-avatar"
+                 src="{{ this.viewRatingCard.userPhoto }}"/>
+            <div class="c-header__title-description o-text-ellipsis">
+                <span class="o-text-lg-bold o-text-ellipsis">{{ this.viewRatingCard.userName }}</span>
+                <span class="o-text-sm-ligh o-text-ellipsis">{{ this.viewRatingCard.publishDate }}</span>
+            </div>
+        </div>
         <app-button [description]="this.viewRatingCard.rating.toString()" [icon]="Icon.Star"
                     [typeButton]="TypeButton.Secondary"/>
     </div>
