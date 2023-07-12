@@ -1,4 +1,4 @@
-<app-header [isBack]="true"/>
+<!--<app-header [isBack]="true" [title]="'Editar perfil'"  />-->
 <div class="c-edit-profile-page o-layout-spacing">
     <div class="c-edit-profile-page__upload-photo">
         <img [alt]="this.user.name" class="c-edit-profile-page__photo" src="{{this.user.photo}}"
@@ -10,7 +10,9 @@
                [placeholder]="'Escribe algo sobre ti'"
                [title]="'Acerca de mí'"
                [value]="this.user.about"/>
-    <app-input (textChanged)="onWhatsappChanged($event)" [icon]="Icon.Whatsapp" [placeholder]="'Escribe tu número de WhatsApp'"
+    <app-input (textChanged)="onWhatsappChanged($event)" [icon]="Icon.Whatsapp"
+               [placeholder]="'Escribe tu número de WhatsApp'"
                [title]="'WhatsApp'"
                [value]="this.user.whatsapp"/>
+    <app-button (click)="onEditProfile()" [description]="'Guardar cambios'" [icon]="Icon.Save"/>
 </div>

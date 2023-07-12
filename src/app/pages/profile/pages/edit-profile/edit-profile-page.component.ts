@@ -31,4 +31,6 @@ export class EditProfilePageComponent {
   onWhatsappChanged(whatsapp: string) {}
 
   onPhotoChanged() {}
+
+  onEditProfile() {}
 }

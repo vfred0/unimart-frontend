@@ -1,21 +1,15 @@
 .c-edit-profile-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   gap: $em-24;
 
   &__upload-photo {
     display: flex;
+    align-items: center;
     gap: $em-24;
-
-    @include only-mobile {
-      flex-direction: column;
-    }
   }
 
   &__photo {
-    width: $em-20;
-    height: $em-20;
+    width: em(125);
+    height: em(125);
+    border-radius: 50%;
   }
 }
