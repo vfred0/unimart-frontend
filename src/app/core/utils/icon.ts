@@ -13,4 +13,6 @@ export enum Icon {
   Search = 'search',
   Star = 'star',
   State = 'state',
+  Security = 'security',
+  Login = 'login',
 }
