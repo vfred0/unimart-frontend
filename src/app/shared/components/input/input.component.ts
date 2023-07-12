@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
@@ -10,7 +10,7 @@ import { Icon } from '@core/utils/icon';
   imports: [AngularSvgIconModule, ReactiveFormsModule, NgIf],
   templateUrl: './input.component.html',
 })
-export class InputComponent {
+export class InputComponent implements OnInit {
   @Input() title: string;
   @Input() icon: Icon;
   @Input() value: string;
@@ -28,6 +28,10 @@ export class InputComponent {
     this.type = '';
     this.value = '';
     this.textChanged = new EventEmitter<string>();
+    this.inputForm = new FormGroup({});
+  }
+
+  ngOnInit() {
     this.inputForm = new FormGroup({
       inputValue: new FormControl(this.value),
     });
