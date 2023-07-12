@@ -10,7 +10,7 @@ import { Icon } from '@core/utils/icon';
   selector: 'app-view-rating-card',
   standalone: true,
   templateUrl: './view-rating-card.component.html',
-  imports: [CommonModule, ButtonComponent, HeaderComponent],
+  imports: [CommonModule, ButtonComponent, HeaderComponent, HeaderComponent],
 })
 export class ViewRatingCardComponent {
   @Input() viewRatingCard: ViewRatingCard;

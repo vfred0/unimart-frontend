@@ -17,7 +17,13 @@ import {
 
 @Component({
   standalone: true,
-  imports: [HeaderComponent, CommonModule, ButtonComponent, GalleryComponent],
+  imports: [
+    HeaderComponent,
+    CommonModule,
+    ButtonComponent,
+    GalleryComponent,
+    HeaderComponent,
+  ],
   templateUrl: './article-page.component.html',
 })
 export class ArticlePageComponent {

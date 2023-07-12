@@ -41,11 +41,13 @@ export class MenuComponent {
       if (event instanceof NavigationEnd) {
         const route = event.url;
         this.showMenu = isWithMenu(route);
-        const menuItem =
-          this.menuItems.find((item: MenuItem) =>
-            isEquals(item.route, route)
-          ) || this.menuItems[0];
-        this.menuItemSelected(menuItem, false);
+        if (this.showMenu) {
+          const menuItem =
+            this.menuItems.find((item: MenuItem) =>
+              isEquals(item.route, route)
+            ) || this.menuItems[0];
+          this.menuItemSelected(menuItem, false);
+        }
       }
     });
   }
