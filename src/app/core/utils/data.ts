@@ -33,7 +33,7 @@ export const Data: Data = {
       state: State.Preowned,
     },
     {
-      id: '2',
+      id: '3',
       image: 'https://source.unsplash.com/featured/?electronics,phone',
       title: 'Samsung Galaxy S21',
       dateOfPublication: 'Hace 1 día',
@@ -42,7 +42,7 @@ export const Data: Data = {
       state: State.Used,
     },
     {
-      id: '2',
+      id: '4',
       image: 'https://source.unsplash.com/featured/?electronics,camera',
       title: 'Canon EOS R5',
       dateOfPublication: 'Hace 2 días',
@@ -51,7 +51,7 @@ export const Data: Data = {
       state: State.LowQuality,
     },
     {
-      id: '2',
+      id: '5',
       image: 'https://source.unsplash.com/featured/?books,reading',
       title: "Harry Potter and the Philosopher's Stone",
       dateOfPublication: 'Hoy',
@@ -60,7 +60,7 @@ export const Data: Data = {
       state: State.New,
     },
     {
-      id: '2',
+      id: '6',
       image: 'https://source.unsplash.com/featured/?books,novel',
       title: 'The Great Gatsby',
       dateOfPublication: 'Ayer',
@@ -69,7 +69,7 @@ export const Data: Data = {
       state: State.Preowned,
     },
     {
-      id: '2',
+      id: '7',
       image: 'https://source.unsplash.com/featured/?books,fantasy',
       title: 'El señor de los anillos',
       dateOfPublication: 'Hace 1 día',
@@ -78,7 +78,7 @@ export const Data: Data = {
       state: State.Used,
     },
     {
-      id: '2',
+      id: '8',
       image: 'https://source.unsplash.com/featured/?art,painting',
       title: 'Pintura al óleo',
       dateOfPublication: 'Hace 2 días',
@@ -87,7 +87,16 @@ export const Data: Data = {
       state: State.New,
     },
     {
-      id: '2',
+      id: '9',
+      image: 'https://source.unsplash.com/featured/?music,guitar',
+      title: 'Guitarra acústica',
+      dateOfPublication: 'Hoy',
+      proposalsQuantity: 6,
+      category: Category.MusicalInstruments,
+      state: State.Used,
+    },
+    {
+      id: '10',
       image: 'https://source.unsplash.com/featured/?music,guitar',
       title: 'Guitarra acústica',
       dateOfPublication: 'Hoy',

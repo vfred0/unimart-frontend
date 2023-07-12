@@ -14,6 +14,7 @@ import { TypeButton } from '@core/types/type-button';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { getAllValues } from '@core/types/enum-utils';
 import { Icon } from '@core/utils/icon';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -36,10 +37,14 @@ export class PublishArticlePageComponent {
   form: FormGroup;
   protected readonly TypeButton = TypeButton;
 
-  constructor() {
+  constructor(private activatedRoute: ActivatedRoute) {
     this.categories = getAllValues(Category);
     this.states = getAllValues(State);
     this.genders = getAllValues(Gender);
+    console.info(
+      `Debug:  Edit article ${this.activatedRoute.snapshot.params['id']}`
+    );
+
     this.form = new FormGroup({
       title: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
@@ -47,7 +52,11 @@ export class PublishArticlePageComponent {
       category: new FormControl(this.categories[0], [Validators.required]),
       gender: new FormControl(this.genders[0], [Validators.required]),
       images: new FormControl(
-        ['https://source.unsplash.com/featured/?electronics,laptop'],
+        [
+          'https://source.unsplash.com/featured/?electronics,laptop',
+          'https://source.unsplash.com/featured/?electronics,laptop',
+          'https://source.unsplash.com/featured/?electronics,laptop',
+        ],
         [Validators.required]
       ),
     });
