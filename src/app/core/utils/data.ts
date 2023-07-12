@@ -179,13 +179,16 @@ export const Data: Data = {
     category: Category.SportingGoods,
     state: State.New,
     user: {
-      image: 'https://picsum.photos/200/300',
+      photo: 'https://picsum.photos/200/300',
       name: 'Víctor Arreaga',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget ' +
         'consectetur aliquam, nisl nisl aliquet nisl, euismod. ',
       rating: 4,
       numberOfExchanges: 5,
+      about:
+        'Me gusta a idea de reutilizar cosas, por eso estoy en esta plataforma.',
+      whatsapp: '0999999999',
     },
     gallery: [
       'https://picsum.photos/200/300',

@@ -9,6 +9,7 @@ export enum AppRoute {
   ProfileProposedArticles = 'perfil/articulos-propuestos',
   EditArticle = 'editar-articulo',
   Auth = 'auth',
+  EditProfile = 'editar-perfil',
 }
 
 export function isWithMenu(url: string): boolean {

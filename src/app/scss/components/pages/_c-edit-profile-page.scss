@@ -1,0 +1,21 @@
+.c-edit-profile-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $em-24;
+
+  &__upload-photo {
+    display: flex;
+    gap: $em-24;
+
+    @include only-mobile {
+      flex-direction: column;
+    }
+  }
+
+  &__photo {
+    width: $em-20;
+    height: $em-20;
+  }
+}

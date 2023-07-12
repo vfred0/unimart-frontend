@@ -1,0 +1,16 @@
+<app-header [isBack]="true"/>
+<div class="c-edit-profile-page o-layout-spacing">
+    <div class="c-edit-profile-page__upload-photo">
+        <img [alt]="this.user.name" class="c-edit-profile-page__photo" src="{{this.user.photo}}"
+        />
+        <app-button (click)="onPhotoChanged()" [description]="'Cambiar foto'" [icon]="Icon.Camera"/>
+    </div>
+    <app-input (textChanged)="onAboutMeChanged($event)"
+               [isTextArea]="true"
+               [placeholder]="'Escribe algo sobre ti'"
+               [title]="'Acerca de mí'"
+               [value]="this.user.about"/>
+    <app-input (textChanged)="onWhatsappChanged($event)" [icon]="Icon.Whatsapp" [placeholder]="'Escribe tu número de WhatsApp'"
+               [title]="'WhatsApp'"
+               [value]="this.user.whatsapp"/>
+</div>
