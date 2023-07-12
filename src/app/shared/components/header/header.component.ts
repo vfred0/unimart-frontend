@@ -5,13 +5,13 @@ import { ButtonComponent } from '@components/button/button.component';
 import { TypeButton } from '@core/types/type-button';
 import { Router } from '@angular/router';
 import { Icon } from '@core/utils/icon';
+import { AppRoute } from '@core/utils/app-route';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [CommonModule, AngularSvgIconModule, ButtonComponent],
   templateUrl: './header.component.html',
-  styles: [],
 })
 export class HeaderComponent {
   @Input() isBack: boolean;
@@ -48,4 +48,10 @@ export class HeaderComponent {
   }
 
   protected readonly Icon = Icon;
+
+  navigateToEditProfile() {
+    this.router
+      .navigate([`${AppRoute.Profile}/${AppRoute.EditProfile}`])
+      .then();
+  }
 }

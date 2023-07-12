@@ -16,4 +16,11 @@ export const routes: Routes = [
         '@pages/profile/pages/proposed-articles/proposed-articles-page.component'
       ).then(m => m.ProposedArticlesPageComponent),
   },
+  {
+    path: `${AppRoute.EditProfile}`,
+    loadComponent: () =>
+      import(
+        '@pages/profile/pages/edit-profile/edit-profile-page.component'
+      ).then(m => m.EditProfilePageComponent),
+  },
 ];
