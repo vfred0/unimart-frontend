@@ -66,7 +66,8 @@
 
   &__buttons {
     display: grid;
-    gap: $em-8;
+    gap: $em-18;
+    width: 100%;
 
     &-row {
       display: grid;
