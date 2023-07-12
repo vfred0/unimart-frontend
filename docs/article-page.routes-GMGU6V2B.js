@@ -1,0 +1,1 @@
+import{a as o}from"./chunk-ZUPCRYFB.js";import"./chunk-OC64LIZX.js";var p=[{path:"",loadComponent:()=>import("./article-page.component-ET2BKT5M.js").then(t=>t.ArticlePageComponent)},{path:`${o.Suggest}`,loadComponent:()=>import("./suggest-article-page.component-T5NEXNXC.js").then(t=>t.SuggestArticlePageComponent)}];export{p as routes};

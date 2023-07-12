@@ -1,0 +1,1 @@
+var r=(()=>(r=r||{},r.Home="",r.Article="articulo",r.PublishArticle="publicar-articulo",r.Exchanges="intercambios",r.Profile="perfil",r.Suggest="proponer",r.ProposedArticles="articulos-propuestos",r.ProfileProposedArticles="perfil/articulos-propuestos",r.EditArticle="editar-articulo",r.Auth="auth",r))();function t(e){return e!==r.Article}export{r as a,t as b};
