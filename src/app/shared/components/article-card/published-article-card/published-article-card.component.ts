@@ -26,10 +26,9 @@ export class PublishedArticleCardComponent extends ArticleCardComponent {
   }
 
   onEditArticle() {
-    // this.router
-    //   .navigate([`${AppRoute.EditArticle}/${this.articleCard.id}`])
-    //   .then();
-    console.log('Editar artículo');
+    this.router
+      .navigate([`${AppRoute.EditArticle}/${this.articleCard.id}`])
+      .then();
   }
 
   onDeleteArticle() {
