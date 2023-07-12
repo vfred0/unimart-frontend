@@ -36,6 +36,7 @@ export class PublishArticlePageComponent {
   genders: Array<string>;
   form: FormGroup;
   protected readonly TypeButton = TypeButton;
+  protected readonly Icon = Icon;
 
   constructor(private activatedRoute: ActivatedRoute) {
     this.categories = getAllValues(Category);
@@ -107,6 +108,4 @@ export class PublishArticlePageComponent {
       console.log(this.form.value);
     }
   }
-
-  protected readonly Icon = Icon;
 }

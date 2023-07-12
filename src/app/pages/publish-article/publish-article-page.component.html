@@ -1,69 +1,55 @@
-<app-header />
+<app-header/>
 <div class="c-publish-article-page o-layout-spacing">
-  <app-input
-          (textChanged)="this.onTitleChanged($event)"
-          [icon]="Icon.Edit"
-          [placeholder]="'Ingresa el nombre del artículo'"
-          [title]="'Título'"
-  />
-  <app-select
-    (selectedOption)="onSelectedCategory($event)"
-    [options]="this.categories"
-    [title]="'Categorías'"
-  />
-
-  <div
-    [class.double-column]="this.withGender"
-    class="c-publish-article-page__gender-state"
-  >
-    <ng-template [ngIf]="this.withGender">
-      <app-select
-        (selectedOption)="onSelectedGender($event)"
-        [options]="this.genders"
-        [title]="'Género'"
-      />
-    </ng-template>
+    <app-input
+            (textChanged)="this.onTitleChanged($event)"
+            [icon]="Icon.Edit"
+            [placeholder]="'Ingresa el nombre del artículo'"
+            [title]="'Título'"/>
     <app-select
-      (selectedOption)="onSelectedState($event)"
-      [options]="this.states"
-      [title]="'Estado'"
-    />
-  </div>
-  <app-input
-    (textChanged)="this.onDescriptionChanged($event)"
-    [isTextArea]="true"
-    [placeholder]="'Ingresa la descripción del artículo'"
-    [title]="'Descripción'"
-  />
-  <span class="o-text-xl-semibold">Galería</span>
-  <div class="c-publish-article-page__gallery">
-    <ng-template [ngIf]="this.containsImages">
-      <app-gallery [images]="this.images" />
-    </ng-template>
-    <div [class.c-publish-article-page__gallery-buttons]="this.containsImages">
-      <app-button
-              [description]="'Cargar foto'"
-              [icon]="Icon.Camera"
-              [typeButton]="TypeButton.Secondary"
-      />
-      <ng-template [ngIf]="this.containsImages">
-        <app-button
-                (click)="this.onDeleteImages()"
-                [description]="'Eliminar fotos'"
-                [icon]="Icon.Delete"
-                [typeButton]="TypeButton.Secondary"
+            (selectedOption)="onSelectedCategory($event)"
+            [options]="this.categories"
+            [title]="'Categorías'"/>
+
+    <div [class.double-column]="this.withGender"
+         class="c-publish-article-page__gender-state">
+        <ng-template [ngIf]="this.withGender">
+            <app-select (selectedOption)="onSelectedGender($event)"
+                        [options]="this.genders"
+                        [title]="'Género'"/>
+        </ng-template>
+        <app-select (selectedOption)="onSelectedState($event)"
+                    [options]="this.states"
+                    [title]="'Estado'"
         />
-      </ng-template>
     </div>
-  </div>
-  <div
-    (click)="this.publishArticle()"
-    class="c-publish-article-page__container-proposed"
-  >
-    <app-button
-            [description]="'Publicar artículo'"
-            [icon]="Icon.Save"
-            [typeButton]="TypeButton.Primary"
+    <app-input (textChanged)="this.onDescriptionChanged($event)"
+               [isTextArea]="true"
+               [placeholder]="'Ingresa la descripción del artículo'"
+               [title]="'Descripción'"
     />
-  </div>
+    <span class="o-text-xl-semibold">Galería</span>
+    <ng-template [ngIf]="this.containsImages">
+        <app-gallery [images]="this.images"/>
+    </ng-template>
+
+    <div [class.c-publish-article-page__gallery-buttons]="this.containsImages">
+        <app-button
+                [description]="'Cargar foto'"
+                [icon]="Icon.Camera"
+                [typeButton]="TypeButton.Secondary"/>
+        <ng-template [ngIf]="this.containsImages">
+            <app-button
+                    (click)="this.onDeleteImages()"
+                    [description]="'Eliminar fotos'"
+                    [icon]="Icon.Delete"
+                    [typeButton]="TypeButton.Secondary"/>
+        </ng-template>
+    </div>
+    <div (click)="this.publishArticle()"
+         class="c-publish-article-page__container-proposed">
+        <app-button
+                [description]="'Publicar artículo'"
+                [icon]="Icon.Save"
+                [typeButton]="TypeButton.Primary"/>
+    </div>
 </div>
