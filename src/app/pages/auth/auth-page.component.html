@@ -1,0 +1,15 @@
+<div class="c-auth-page o-layout-auth-page">
+    <svg-icon [applyClass]="true"
+              [class]="'c-auth-page__logo'"
+              src="assets/icons/logo.svg"/>
+    <div class="c-auth-page__content">
+        <app-input [icon]="Icon.Profile"
+                   [placeholder]="'Ingrese su nombre de usuario'"
+                   [title]="'Usuario'"/>
+        <app-input [icon]="Icon.Security"
+                   [placeholder]="'Ingrese su contraseña'"
+                   [title]="'Contraseña'"
+                   [type]="'password'"/>
+        <app-button [description]="'Iniciar sesión'" [icon]="Icon.Login" [typeButton]="TypeButton.Primary"/>
+    </div>
+</div>
