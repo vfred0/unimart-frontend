@@ -1,7 +1,9 @@
 export interface User {
-  image: string;
+  photo: string;
   name: string;
+  about: string;
   description: string;
-  rating: number;
   numberOfExchanges: number;
+  rating: number;
+  whatsapp: string;
 }

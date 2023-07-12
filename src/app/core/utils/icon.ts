@@ -15,4 +15,5 @@ export enum Icon {
   State = 'state',
   Security = 'security',
   Login = 'login',
+  Whatsapp = 'whatsapp',
 }
