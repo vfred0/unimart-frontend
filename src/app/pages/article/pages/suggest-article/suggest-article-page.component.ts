@@ -9,6 +9,7 @@ import { Data } from '@core/utils/data';
 import { TypeArticleCard } from '@core/types/type-article-card';
 import { Category } from '@core/types/category';
 import { SuggestArticleCardComponent } from '@components/article-card/suggest-article-card/suggest-article-card.component';
+import { getLayout } from '@core/utils/app-route';
 
 @Component({
   standalone: true,
@@ -61,4 +62,6 @@ export class SuggestArticlePageComponent {
         articleCard.title.toLowerCase().includes(this.title.toLowerCase())
     );
   }
+
+  protected readonly getLayout = getLayout;
 }

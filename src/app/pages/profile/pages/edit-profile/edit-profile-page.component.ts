@@ -6,6 +6,7 @@ import { ButtonComponent } from '@components/button/button.component';
 import { Icon } from '@core/utils/icon';
 import { User } from '@core/models/user';
 import { Data } from '@core/utils/data';
+import { getLayout } from '@core/utils/app-route';
 
 @Component({
   standalone: true,
@@ -33,4 +34,6 @@ export class EditProfilePageComponent {
   onPhotoChanged() {}
 
   onEditProfile() {}
+
+  protected readonly getLayout = getLayout;
 }

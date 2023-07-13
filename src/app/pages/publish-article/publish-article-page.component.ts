@@ -15,6 +15,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { getAllValues } from '@core/types/enum-utils';
 import { Icon } from '@core/utils/icon';
 import { ActivatedRoute } from '@angular/router';
+import { getLayout } from '@core/utils/app-route';
 
 @Component({
   standalone: true,
@@ -108,4 +109,6 @@ export class PublishArticlePageComponent {
       console.log(this.form.value);
     }
   }
+
+  protected readonly getLayout = getLayout;
 }

@@ -6,7 +6,7 @@ import { Data } from '@core/utils/data';
 import { ArticleCardComponent } from '@components/article-card/article-card.component';
 import { Router } from '@angular/router';
 import { SelectComponent } from '@components/select/select.component';
-import { AppRoute } from '@core/utils/app-route';
+import { AppRoute, getLayout } from '@core/utils/app-route';
 import { TypeArticle } from '@core/types/type-article';
 import { ProposedArticleCardComponent } from '@components/article-card/proposed-article-card/proposed-article-card.component';
 
@@ -47,4 +47,6 @@ export class ProposedArticlesPageComponent {
       articleCard => articleCard.category === category
     );
   }
+
+  protected readonly getLayout = getLayout;
 }

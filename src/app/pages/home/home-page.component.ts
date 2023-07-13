@@ -13,6 +13,7 @@ import { SelectComponent } from '@components/select/select.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { getAllValues } from '@core/types/enum-utils';
 import { Data } from '@core/utils/data';
+import { getLayout } from '@core/utils/app-route';
 
 @Component({
   standalone: true,
@@ -36,6 +37,7 @@ export class HomePageComponent {
   categories: Array<string>;
   states: Array<string>;
   articleCards: Array<ArticleCard>;
+  protected readonly getLayout = getLayout;
 
   constructor(
     private cd: ChangeDetectorRef,
@@ -58,6 +60,7 @@ export class HomePageComponent {
     this.category = category as Category;
     this.updateArticleCards();
   }
+
   onTextSearchChanged(title: string) {
     this.title = title;
     this.updateArticleCards();

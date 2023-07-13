@@ -62,7 +62,6 @@ export function isWithHeader(route: string): boolean {
 export function getRouteTitle(route: string): string {
   if (!isEquals(route, AppRoute.Home)) {
     const routeWithoutSlash = getRoute(route);
-    // and remove '-'
     return (
       routeWithoutSlash.charAt(0).toUpperCase() + routeWithoutSlash.slice(1)
     ).replace('-', ' ');
@@ -70,10 +69,17 @@ export function getRouteTitle(route: string): string {
   return Data.article.user.name;
 }
 
-export function getRoute(route: string): AppRoute {
+function getRoute(route: string): AppRoute {
   const routeWithoutSlash: string = route.substring(1);
   if (containsValue(AppRoute, routeWithoutSlash)) {
     return routeWithoutSlash as AppRoute;
   }
   return routeWithoutSlash.slice(0, routeWithoutSlash.length - 2) as AppRoute;
+}
+
+export function getLayout(): string {
+  const className = 'o-layout';
+  return isWithMenu(window.location.pathname)
+    ? `${className}-with-menu`
+    : `${className}-without-menu`;
 }

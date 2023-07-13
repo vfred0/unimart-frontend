@@ -18,6 +18,7 @@ import { ButtonComponent } from '@components/button/button.component';
 import { Icon } from '@core/utils/icon';
 import { PublishedArticleCardComponent } from '@components/article-card/published-article-card/published-article-card.component';
 import { ProposedArticleCardComponent } from '@components/article-card/proposed-article-card/proposed-article-card.component';
+import { getLayout } from '@core/utils/app-route';
 
 @Component({
   standalone: true,
@@ -77,4 +78,6 @@ export class ProfilePageComponent {
   onDeleteProposed(articleId: string) {
     console.log(`Eliminar propuesta ${articleId}`);
   }
+
+  protected readonly getLayout = getLayout;
 }

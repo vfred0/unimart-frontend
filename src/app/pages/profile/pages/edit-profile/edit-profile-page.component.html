@@ -1,5 +1,4 @@
-<!--<app-header [isBack]="true" [title]="'Editar perfil'"  />-->
-<div class="c-edit-profile-page o-layout-spacing">
+<div class="c-edit-profile-page {{getLayout()}}">
     <div class="c-edit-profile-page__upload-photo">
         <img [alt]="this.user.name" class="c-edit-profile-page__photo" src="{{this.user.photo}}"
         />

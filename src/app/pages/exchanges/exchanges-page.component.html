@@ -1,6 +1,7 @@
-<div class="o-layout-spacing">
+<div [class]="this.layout">
     <div class="o-layout-view-rating-cards">
-        <app-exchange-card (discardExchange)="onDiscardRating(exchangeCard.exchangeId)" *ngFor="let exchangeCard of exchangeCards"
+        <app-exchange-card (discardExchange)="onDiscardRating(exchangeCard.exchangeId)"
+                           *ngFor="let exchangeCard of exchangeCards"
                            [exchangeCard]="exchangeCard"/>
     </div>
 </div>

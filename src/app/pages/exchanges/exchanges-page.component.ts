@@ -5,6 +5,7 @@ import { ExchangeCardComponent } from '@pages/exchanges/components/exchange-card
 import { ExchangeCard } from '@core/types/exchange-card';
 import { Data } from '@core/utils/data';
 import { AddRatingComponent } from '@components/rating/add-rating/add-rating.component';
+import { getLayout } from '@core/utils/app-route';
 
 @Component({
   standalone: true,
@@ -18,9 +19,11 @@ import { AddRatingComponent } from '@components/rating/add-rating/add-rating.com
 })
 export class ExchangesPageComponent {
   exchangeCards: Array<ExchangeCard>;
+  layout: string;
 
   constructor() {
     this.exchangeCards = Data.exchangeCards;
+    this.layout = getLayout();
   }
 
   onDiscardRating(exchangeId: string): void {
