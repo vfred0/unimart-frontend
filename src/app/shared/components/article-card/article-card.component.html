@@ -1,32 +1,20 @@
-<div (click)="this.navigateToViewArticle()" [class.c-article-card--normal]="this.isNormal"
+<div (click)="this.navigateToViewArticle()" [ngClass]="{'c-article-card--normal': isNormal}"
      class="c-article-card">
-    <img
-            alt="{{ this.articleCard.title }}"
-            class="c-article-card__image"
-            src="{{ this.articleCard.image }}"
-    />
+    <img alt="{{ this.articleCard.title }}"
+         class="c-article-card__image"
+         src="{{ this.articleCard.image }}"/>
     <div class="c-article-card__content">
         <div class="c-article-card__category-date o-text-sm-light">
-      <span class="c-article-card__category o-text-ellipsis">{{
-          this.articleCard.category
-          }}</span>
-            <span class="c-article-card__date o-text-ellipsis">{{
-                this.articleCard.dateOfPublication
-                }}</span>
+            <span class="c-article-card__category o-text-ellipsis">{{ this.articleCard.category }}</span>
+            <span class="c-article-card__date o-text-ellipsis">{{ this.articleCard.dateOfPublication }}</span>
         </div>
-        <span class="c-article-card__title o-text-base-semibold o-text-ellipsis">{{
-            this.articleCard.title
-            }}</span>
+        <span class="c-article-card__title o-text-base-semibold o-text-ellipsis">{{this.articleCard.title }}</span>
         <div class="c-article-card__tags">
-            <app-button
-                    [description]="this.articleCard.state"
-                    [icon]="Icon.State"
-                    [typeButton]="TypeButton.Tag"
-            />
-            <app-button
-                    [description]="this.getProposalsQuantity()"
-                    [typeButton]="TypeButton.Tag"
-            />
+            <app-button [description]="this.articleCard.state"
+                        [icon]="Icon.State"
+                        [typeButton]="TypeButton.Tag"/>
+            <app-button [description]="this.getProposalsQuantity()"
+                        [typeButton]="TypeButton.Tag"/>
         </div>
     </div>
     <ng-content/>

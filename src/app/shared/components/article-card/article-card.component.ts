@@ -18,10 +18,11 @@ export class ArticleCardComponent {
   @Input() articleCard: ArticleCard;
   @Input() typeArticleCard: TypeArticleCard;
   protected readonly TypeButton = TypeButton;
+  protected readonly TypeArticleCard = TypeArticleCard;
   protected readonly Icon = Icon;
 
   constructor(protected router: Router) {
-    this.typeArticleCard = TypeArticleCard.Normal;
+    this.typeArticleCard = this.TypeArticleCard.Normal;
     this.articleCard = {} as ArticleCard;
   }
 
@@ -36,7 +37,9 @@ export class ArticleCardComponent {
   navigateToViewArticle() {
     if (isNormal(this.typeArticleCard)) {
       this.router
-        .navigate([`${AppRoute.Article}/${this.articleCard.id}`])
+        .navigate([`${AppRoute.Article}/${this.articleCard.id}`], {
+          state: { typeArticle: this.typeArticleCard },
+        })
         .then();
     }
   }

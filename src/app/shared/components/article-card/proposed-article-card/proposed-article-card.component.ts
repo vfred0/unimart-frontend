@@ -4,7 +4,6 @@ import { ArticleCardComponent } from '@components/article-card/article-card.comp
 import { ButtonComponent } from '@components/button/button.component';
 import { Router } from '@angular/router';
 import { AppRoute } from '@core/utils/app-route';
-import { TypeArticleCard } from '@core/types/type-article-card';
 
 @Component({
   selector: 'app-proposed-article-card',
@@ -25,10 +24,6 @@ export class ProposedArticleCardComponent extends ArticleCardComponent {
   }
 
   onViewPublication() {
-    this.router
-      .navigate([`${AppRoute.Article}/${this.articleCard.id}`], {
-        state: { typeArticle: TypeArticleCard.Suggest },
-      })
-      .then();
+    this.router.navigate([`${AppRoute.Article}/${this.articleCard.id}`]).then();
   }
 }

@@ -18,15 +18,13 @@
                         <app-published-article-card
                                 (deleteArticle)="onDeleteArticle(articleCard.id)"
                                 *ngFor="let articleCard of this.articleCards"
-                                [articleCard]="articleCard"
-                                [typeArticleCard]="this.typeArticleCard"/>
+                                [articleCard]="articleCard"/>
                     </ng-template>
                     <ng-template #proposedTemplate>
                         <app-proposed-article-card
                                 (deleteProposed)="onDeleteProposed(articleCard.id)"
                                 *ngFor="let articleCard of this.articleCards"
-                                [articleCard]="articleCard"
-                                [typeArticleCard]="this.typeArticleCard"/>
+                                [articleCard]="articleCard"/>
                     </ng-template>
                 </div>
             </div>

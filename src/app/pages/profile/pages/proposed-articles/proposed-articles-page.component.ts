@@ -9,6 +9,7 @@ import { SelectComponent } from '@components/select/select.component';
 import { AppRoute, getLayout } from '@core/utils/app-route';
 import { TypeArticle } from '@core/types/type-article';
 import { ProposedArticleCardComponent } from '@components/article-card/proposed-article-card/proposed-article-card.component';
+import { TypeArticleCard } from '@core/types/type-article-card';
 
 @Component({
   standalone: true,
@@ -24,6 +25,7 @@ import { ProposedArticleCardComponent } from '@components/article-card/proposed-
 export class ProposedArticlesPageComponent {
   articleCards: Array<ArticleCard>;
   categories: Array<string>;
+  protected readonly getLayout = getLayout;
 
   constructor(private router: Router) {
     this.articleCards = Data.articleCards;
@@ -48,5 +50,5 @@ export class ProposedArticlesPageComponent {
     );
   }
 
-  protected readonly getLayout = getLayout;
+  protected readonly TypeArticleCard = TypeArticleCard;
 }
