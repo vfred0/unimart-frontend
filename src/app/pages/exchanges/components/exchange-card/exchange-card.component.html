@@ -1,7 +1,16 @@
 <div class="c-exchange-card">
-    <app-header [description]="this.exchangeCard.date" [image]="this.exchangeCard.userPhoto"
-                [isWithPreferences]="false" [title]="this.exchangeCard.userName"/>
-    <span class="o-text-base-normal">{{ this.exchangeCard.comment }}</span>
+    <div class="c-header__user-and-avatar">
+        <img alt="this.title"
+             class="c-header__user-avatar"
+             src="{{ this.exchangeCard.userPhoto}}"/>
+        <div class="c-header__title-description o-text-ellipsis">
+            <span class="o-text-lg-bold o-text-ellipsis">{{ this.exchangeCard.userName }}</span>
+            <span class="o-text-sm-ligh o-text-ellipsis">{{ this.exchangeCard.date }}</span>
+        </div>
+    </div>
+    <span class="o-text-base-normal">
+        Has elegido intercambiar {{this.exchangeCard.articleToExchange}} con {{this.exchangeCard.articleToReceive}}.
+    </span>
     <div class="c-exchange-card__buttons">
         <ng-template [ngIfElse]="showAddRatingTemplate" [ngIf]="!this.showAddRating">
             <app-button (click)="onShowRating()" [description]="'Calificar intercambio'" [icon]="Icon.Star"

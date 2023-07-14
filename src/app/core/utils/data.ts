@@ -128,16 +128,16 @@ export const Data: Data = {
       exchangeId: 'UUID',
       userName: 'Juan Perez',
       userPhoto: 'https://source.unsplash.com/featured/?person',
-      comment:
-        'El producto está en perfectas condiciones, coordinamos la entrega y todo salió bien.',
+      articleToExchange: 'Ryzen 4600G',
+      articleToReceive: 'MacBook Pro 2021',
       date: '30.08.2023, 13:45',
     },
     {
       exchangeId: 'UUID',
       userName: 'Maria Rodriguez',
       userPhoto: 'https://source.unsplash.com/featured/?person',
-      comment:
-        'El producto está en perfectas condiciones, coordinamos la entrega y todo salió bien.',
+      articleToExchange: 'Pantalón de vestir',
+      articleToReceive: 'Camisa de vestir',
       date: '02.02.2022, 9:10',
     },
 
@@ -145,8 +145,8 @@ export const Data: Data = {
       exchangeId: 'UUID',
       userName: 'Maria Rodriguez',
       userPhoto: 'https://source.unsplash.com/featured/?person',
-      comment:
-        'El producto está en perfectas condiciones, coordinamos la entrega y todo salió bien.',
+      articleToExchange: 'Cámara Canon EOS R5',
+      articleToReceive: 'Cámara Xiaomi',
       date: '02.02.2022, 9:10',
     },
 
@@ -154,17 +154,8 @@ export const Data: Data = {
       exchangeId: 'UUID',
       userName: 'Maria Rodriguez',
       userPhoto: 'https://source.unsplash.com/featured/?person',
-      comment:
-        'El producto está en perfectas condiciones, coordinamos la entrega y todo salió bien.',
-      date: '02.02.2022, 9:10',
-    },
-
-    {
-      exchangeId: 'UUID',
-      userName: 'Maria Rodriguez',
-      userPhoto: 'https://source.unsplash.com/featured/?person',
-      comment:
-        'El producto está en perfectas condiciones, coordinamos la entrega y todo salió bien.',
+      articleToExchange: 'Xiamo Redmi Note 10',
+      articleToReceive: 'Samsung Galaxy S21',
       date: '02.02.2022, 9:10',
     },
   ],
