@@ -3,14 +3,15 @@ import { Data } from '@core/utils/data';
 export enum AppRoute {
   Home = '',
   Article = 'articulo',
-  PublishArticle = 'publicar-articulo',
-  Exchanges = 'intercambios',
-  Profile = 'perfil',
   Suggest = 'proponer',
+  ArticleSuggest = 'articulo/proponer',
+  PublishArticle = 'publicar-articulo',
+  EditArticle = 'editar-articulo',
   ProposedArticles = 'articulos-propuestos',
   ProfileProposedArticles = 'perfil/articulos-propuestos',
-  EditArticle = 'editar-articulo',
   Auth = 'auth',
+  Exchanges = 'intercambios',
+  Profile = 'perfil',
   EditProfile = 'editar-perfil',
   ProfileEditProfile = 'perfil/editar-perfil',
 }
@@ -39,8 +40,8 @@ const routes: Array<IRoute> = [
     path: AppRoute.Article,
     title: 'Artículo',
     withMenu: false,
-    withHeader: false,
-    withBack: false,
+    withHeader: true,
+    withBack: true,
     withPreferences: false,
     withPreferencesAndButtonEditProfile: false,
   },
@@ -72,9 +73,9 @@ const routes: Array<IRoute> = [
     withPreferencesAndButtonEditProfile: true,
   },
   {
-    path: AppRoute.Suggest,
+    path: AppRoute.ArticleSuggest,
     title: 'Proponer artículo',
-    withMenu: true,
+    withMenu: false,
     withHeader: true,
     withBack: true,
     withPreferences: false,
@@ -159,6 +160,12 @@ export function isWithHeader(): boolean {
 export function getRouteTitle(): string {
   const routePreference = getRoutePreference();
   return routePreference ? routePreference.title : '';
+}
+
+export function isArticleRoute(): boolean {
+  console.log(`${route} - ${AppRoute.Article} - ${route === AppRoute.Article}`);
+
+  return route === AppRoute.Article;
 }
 
 export function getLayout(): string {
