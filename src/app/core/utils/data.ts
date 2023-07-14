@@ -3,11 +3,14 @@ import { Category } from '@core/types/category';
 import { State } from '@core/types/state';
 import { ViewRatingCard } from '@core/types/view-rating-card';
 import { ExchangeCard } from '@core/types/exchange-card';
-import { Article } from '@core/models/article';
+import { ArticlePage } from '@core/models/article-page';
 import { HeaderDetail } from '@core/types/header-detail';
+import { Gender } from '@core/types/gender';
+import { Article } from '@core/models/article';
 
 interface Data {
   headerDetail: HeaderDetail;
+  articlePage: ArticlePage;
   article: Article;
   viewRatingCards: Array<ViewRatingCard>;
   exchangeCards: Array<ExchangeCard>;
@@ -166,7 +169,7 @@ export const Data: Data = {
       date: '02.02.2022, 9:10',
     },
   ],
-  article: {
+  articlePage: {
     id: '1',
     image: 'https://picsum.photos/200/300',
     title: 'Teclado Mecánico Logitech',
@@ -188,7 +191,8 @@ export const Data: Data = {
         'Me gusta a idea de reutilizar cosas, por eso estoy en esta plataforma.',
       whatsapp: '0999999999',
     },
-    gallery: [
+    gender: Gender.Female,
+    images: [
       'https://picsum.photos/200/300',
       'https://picsum.photos/200/300',
       'https://picsum.photos/200/300',
@@ -196,5 +200,15 @@ export const Data: Data = {
       'https://picsum.photos/200/300',
       'https://picsum.photos/200/300',
     ],
+  },
+  article: {
+    id: '1',
+    description:
+      'Este pantalón me lo dieron de regalo, está nuevo, apenas lo usé para comprobar que funciona, entrgo con su caja y accesorios.',
+    category: Category.Clothing,
+    state: State.Used,
+    title: 'Panatalón de vestir',
+    images: ['https://is.gd/AE9rmG', 'https://is.gd/AE9rmG'],
+    gender: Gender.Male,
   },
 };

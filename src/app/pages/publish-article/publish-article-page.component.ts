@@ -16,6 +16,8 @@ import { getAllValues } from '@core/types/enum-utils';
 import { Icon } from '@core/utils/icon';
 import { ActivatedRoute } from '@angular/router';
 import { getLayout } from '@core/utils/app-route';
+import { Data } from '@core/utils/data';
+import { Article } from '@core/models/article';
 
 @Component({
   standalone: true,
@@ -36,31 +38,43 @@ export class PublishArticlePageComponent {
   states: Array<string>;
   genders: Array<string>;
   form: FormGroup;
+  articleId: string;
+  article: Article;
   protected readonly TypeButton = TypeButton;
   protected readonly Icon = Icon;
+  protected readonly getLayout = getLayout;
 
   constructor(private activatedRoute: ActivatedRoute) {
     this.categories = getAllValues(Category);
     this.states = getAllValues(State);
     this.genders = getAllValues(Gender);
-    console.info(
-      `Debug:  Edit article ${this.activatedRoute.snapshot.params['id']}`
-    );
+    this.articleId = this.activatedRoute.snapshot.params['id'];
+
+    if (this.articleId) {
+      this.article = Data.article;
+    } else {
+      this.article = {
+        id: Data.article.id,
+        title: '',
+        description: '',
+        state: Data.article.state,
+        category: Data.article.category,
+        gender: Data.article.gender,
+        images: Data.article.images,
+      };
+    }
+
+    console.log(this.article);
 
     this.form = new FormGroup({
-      title: new FormControl('', [Validators.required]),
-      description: new FormControl('', [Validators.required]),
-      state: new FormControl(this.states[0], [Validators.required]),
-      category: new FormControl(this.categories[0], [Validators.required]),
-      gender: new FormControl(this.genders[0], [Validators.required]),
-      images: new FormControl(
-        [
-          'https://source.unsplash.com/featured/?electronics,laptop',
-          'https://source.unsplash.com/featured/?electronics,laptop',
-          'https://source.unsplash.com/featured/?electronics,laptop',
-        ],
-        [Validators.required]
-      ),
+      title: new FormControl(this.article.title, [Validators.required]),
+      description: new FormControl(this.article.description, [
+        Validators.required,
+      ]),
+      state: new FormControl(this.article.state, [Validators.required]),
+      category: new FormControl(this.article.category, [Validators.required]),
+      gender: new FormControl(this.article.gender, [Validators.required]),
+      images: new FormControl(this.article.images, [Validators.required]),
     });
   }
 
@@ -109,6 +123,4 @@ export class PublishArticlePageComponent {
       console.log(this.form.value);
     }
   }
-
-  protected readonly getLayout = getLayout;
 }

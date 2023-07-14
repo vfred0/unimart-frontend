@@ -24,7 +24,7 @@ export class EditProfilePageComponent {
   protected readonly Icon = Icon;
 
   constructor() {
-    this.user = Data.article.user;
+    this.user = Data.articlePage.user;
   }
 
   onAboutMeChanged(aboutMe: string) {}
