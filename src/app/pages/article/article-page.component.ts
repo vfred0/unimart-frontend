@@ -4,7 +4,7 @@ import { HeaderComponent } from '@components/header/header.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonComponent } from '@components/button/button.component';
 import { TypeButton } from '@core/types/type-button';
-import { Article } from '@core/models/article';
+import { ArticlePage } from '@core/models/articlePage';
 import { GalleryComponent } from '@components/gallery/gallery.component';
 import { Data } from '@core/utils/data';
 import { Icon } from '@core/utils/icon';
@@ -30,7 +30,7 @@ import { HeaderDetail } from '@core/types/header-detail';
   templateUrl: './article-page.component.html',
 })
 export class ArticlePageComponent {
-  article: Article;
+  articlePage: ArticlePage;
   typeArticle: TypeArticleCard;
   headerDetail: HeaderDetail;
   protected readonly TypeButton = TypeButton;
@@ -40,17 +40,13 @@ export class ArticlePageComponent {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
-    this.article = Data.article;
+    this.articlePage = Data.articlePage;
     this.typeArticle = history.state.typeArticle;
     this.headerDetail = Data.headerDetail;
   }
 
   get isOnlyViewPublication(): boolean {
-    const onlyViewPublication = history.state.onlyViewPublication;
-    if (onlyViewPublication !== undefined) {
-      return onlyViewPublication;
-    }
-    return false;
+    return history.state.onlyViewPublication;
   }
 
   get isSuggest(): boolean {
@@ -58,19 +54,19 @@ export class ArticlePageComponent {
   }
 
   get proposalsQuantity(): string {
-    return this.article.proposalsQuantity > 1
-      ? `${this.article.proposalsQuantity} propuestas`
-      : `${this.article.proposalsQuantity} propuesta`;
+    return this.articlePage.proposalsQuantity > 1
+      ? `${this.articlePage.proposalsQuantity} propuestas`
+      : `${this.articlePage.proposalsQuantity} propuesta`;
   }
 
   get rating(): string {
-    return this.article.user.rating.toString();
+    return this.articlePage.user.rating.toString();
   }
 
   get exchangesQuantity(): string {
-    return this.article.user.numberOfExchanges > 1
-      ? `${this.article.user.numberOfExchanges} intercambios`
-      : `${this.article.user.numberOfExchanges} intercambio`;
+    return this.articlePage.user.numberOfExchanges > 1
+      ? `${this.articlePage.user.numberOfExchanges} intercambios`
+      : `${this.articlePage.user.numberOfExchanges} intercambio`;
   }
 
   get isProposed(): boolean {
@@ -82,7 +78,7 @@ export class ArticlePageComponent {
     if (isSuggest) {
       this.router
         .navigate([
-          `${AppRoute.Article}/${this.article.id}/${AppRoute.Suggest}`,
+          `${AppRoute.Article}/${this.articlePage.id}/${AppRoute.Suggest}`,
         ])
         .then();
     } else {
