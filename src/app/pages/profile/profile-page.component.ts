@@ -43,6 +43,7 @@ export class ProfilePageComponent {
   viewRatingCards: Array<ViewRatingCard>;
   protected readonly TypeButton = TypeButton;
   protected readonly Icon = Icon;
+  protected readonly getLayout = getLayout;
 
   constructor(private router: Router) {
     this.typeArticles = getAllValues(TypeArticle);
@@ -59,16 +60,21 @@ export class ProfilePageComponent {
     ).toString();
   }
 
+  get isPublished(): boolean {
+    return isPublished(this.typeArticleCard);
+  }
+
   onSelectedTypeArticle(typeArticle: string) {
     this.typeArticleCard = typeArticle as TypeArticleCard;
   }
 
-  onSelectedRating(rating: string) {
-    console.info(`%cINFO: ${JSON.stringify(rating)}`, 'color: #bcf0da;');
-  }
-
-  get isPublished(): boolean {
-    return isPublished(this.typeArticleCard);
+  onSelectedRating(filterRating: string) {
+    if (filterRating === FilterRating.High) {
+      this.viewRatingCards.sort((a, b) => b.rating - a.rating);
+    }
+    if (filterRating === FilterRating.Low) {
+      this.viewRatingCards.sort((a, b) => a.rating - b.rating);
+    }
   }
 
   onDeleteArticle(articleId: string) {
@@ -78,6 +84,4 @@ export class ProfilePageComponent {
   onDeleteProposed(articleId: string) {
     console.log(`Eliminar propuesta ${articleId}`);
   }
-
-  protected readonly getLayout = getLayout;
 }
