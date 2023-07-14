@@ -38,7 +38,14 @@ export class ArticlePageComponent {
   ) {
     this.article = Data.article;
     this.typeArticle = history.state.typeArticle;
-    console.log(this.typeArticle);
+  }
+
+  get isOnlyViewPublication(): boolean {
+    const onlyViewPublication = history.state.onlyViewPublication;
+    if (onlyViewPublication !== undefined) {
+      return onlyViewPublication;
+    }
+    return false;
   }
 
   get isSuggest(): boolean {
