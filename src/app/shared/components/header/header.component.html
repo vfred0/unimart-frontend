@@ -2,21 +2,8 @@
     <div [ngClass]="{ 'c-header--is-for-article-page': isForArticlePage,
     'c-header--is-with-preferences': isWithPreferences}"
          class="c-header o-layout-max-width">
-        <div class="c-header__user-and-photo">
-            <img (click)="togglePreferences()"
-                 alt="this.title"
-                 class="c-header__user-photo"
-                 src="{{ this.image }}"/>
-            <ng-container *ngIf="this.withDescription; else elseBlock">
-                <div class="c-header__title-description o-text-ellipsis">
-                    <span class="o-text-lg-bold o-text-ellipsis">{{ this.title }}</span>
-                    <span class="o-text-sm-ligh o-text-ellipsis">{{ this.description }}</span>
-                </div>
-            </ng-container>
-            <ng-template #elseBlock>
-                <span class="o-text-lg-bold">{{ this.title }}</span>
-            </ng-template>
-        </div>
+        <app-header-detail (clickedPhoto)="togglePreferences()" [headerDetail]="this.headerDetail"
+                           [withClickedPhoto]="this.isWithPreferences" [withDescription]="false"/>
         <ng-template [ngIf]="this.isWithBack">
             <app-button
                     (click)="this.redirectToBack()"

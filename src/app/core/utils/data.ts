@@ -4,8 +4,10 @@ import { State } from '@core/types/state';
 import { ViewRatingCard } from '@core/types/view-rating-card';
 import { ExchangeCard } from '@core/types/exchange-card';
 import { Article } from '@core/models/article';
+import { HeaderDetail } from '@core/types/header-detail';
 
 interface Data {
+  headerDetail: HeaderDetail;
   article: Article;
   viewRatingCards: Array<ViewRatingCard>;
   exchangeCards: Array<ExchangeCard>;
@@ -13,6 +15,11 @@ interface Data {
 }
 
 export const Data: Data = {
+  headerDetail: {
+    photo: 'https://source.unsplash.com/featured/?person',
+    title: 'Juan Perez',
+    description: '2021.06.01, 10:00',
+  },
   articleCards: [
     {
       id: '1',

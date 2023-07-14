@@ -15,6 +15,8 @@ import {
   isWithPreferencesAndButtonEditProfile,
   setRoute,
 } from '@core/utils/app-route';
+import { HeaderDetailComponent } from '@components/header-detail/header-detail.component';
+import { HeaderDetail } from '@core/types/header-detail';
 import { Data } from '@core/utils/data';
 
 @Component({
@@ -25,20 +27,18 @@ import { Data } from '@core/utils/data';
     AngularSvgIconModule,
     ButtonComponent,
     NgOptimizedImage,
+    HeaderDetailComponent,
   ],
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit {
   @Input() isWithPreferences: boolean;
   isForArticlePage: boolean;
-  @Input() title: string;
-  @Input() image: string;
-  @Input() description: string;
-
   showPreferences: boolean;
   showHeader: boolean;
   isWithButtonEditProfile: boolean;
   isWithBack: boolean;
+  headerDetail: HeaderDetail;
   protected readonly TypeButton = TypeButton;
   protected readonly Icon = Icon;
 
@@ -51,14 +51,8 @@ export class HeaderComponent implements OnInit {
     this.isWithPreferences = false;
     this.isWithButtonEditProfile = false;
     this.isWithBack = false;
-    this.title = Data.article.user.name;
-    this.image = Data.article.user.photo;
-    this.description = '';
     this.isForArticlePage = false;
-  }
-
-  get withDescription(): boolean {
-    return this.description !== '';
+    this.headerDetail = {} as HeaderDetail;
   }
 
   ngOnInit(): void {
@@ -72,7 +66,8 @@ export class HeaderComponent implements OnInit {
           this.isWithButtonEditProfile =
             isWithPreferencesAndButtonEditProfile();
           this.isWithBack = isWithBack();
-          this.title = getRouteTitle();
+          this.headerDetail.title = getRouteTitle();
+          this.headerDetail.photo = Data.headerDetail.photo;
           this.isForArticlePage = isArticleRoute();
         }
       }

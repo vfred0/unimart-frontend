@@ -3,22 +3,14 @@
     <div class="c-article-page__banner">
         <img class="c-article-page__banner-image" src="{{ this.article.image }}"/>
         <div class="c-article-page__banner-container">
-      <span class="c-article-page__banner-title o-text-xl-semibold">{{
-          this.article.title
-          }}</span>
-            <span class="c-article-page__banner-description o-text-normal-medium">{{
-                this.article.description
-                }}</span>
-            <span class="c-article-page__banner-date-published o-text-sm-light">{{
-                this.article.datePublished
-                }}</span>
+            <span class="c-article-page__banner-title o-text-xl-semibold">{{this.article.title}}</span>
+            <span class="c-article-page__banner-description o-text-normal-medium">{{this.article.description}}</span>
+            <span class="c-article-page__banner-date-published o-text-sm-light">{{this.article.datePublished}}</span>
         </div>
         <div class="c-article-page__banner-buttons">
-            <app-button
-                    [description]="this.article.state"
-                    [icon]="Icon.State"
-                    [typeButton]="TypeButton.Tag"
-            />
+            <app-button [description]="this.article.state"
+                        [icon]="Icon.State"
+                        [typeButton]="TypeButton.Tag"/>
             <app-button
                     [description]="this.proposalsQuantity"
                     [typeButton]="TypeButton.Tag"
@@ -28,25 +20,15 @@
     <div class="c-article-page__content">
         <span class="o-text-xl-semibold">Publicador</span>
         <div class="c-article-page__user-card">
-            <app-header
-                    [image]="this.article.user.photo"
-                    [title]="this.article.user.name"
-                    [isWithPreferences]="false"
-            />
-            <span class="o-text-base-normal">
-        {{ this.article.user.description }}</span
-            >
+            <app-header-detail [headerDetail]="this.headerDetail"/>
+            <span class="o-text-base-normal"> {{ this.article.user.description }}</span>
             <div class="c-article-page__user-card-buttons">
-                <app-button
-                        [description]="this.rating"
-                        [icon]="Icon.Star"
-                        [typeButton]="TypeButton.Tag"
-                />
-                <app-button
-                        [description]="this.exchangesQuantity"
-                        [icon]="Icon.Exchanges"
-                        [typeButton]="TypeButton.Tag"
-                />
+                <app-button [description]="this.rating"
+                            [icon]="Icon.Star"
+                            [typeButton]="TypeButton.Tag"/>
+                <app-button [description]="this.exchangesQuantity"
+                            [icon]="Icon.Exchanges"
+                            [typeButton]="TypeButton.Tag"/>
             </div>
         </div>
         <app-gallery [images]="this.article.gallery"/>

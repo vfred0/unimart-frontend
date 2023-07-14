@@ -6,11 +6,20 @@ import { ButtonComponent } from '@components/button/button.component';
 import { TypeButton } from '@core/types/type-button';
 import { AddRatingComponent } from '@components/rating/add-rating/add-rating.component';
 import { Icon } from '@core/utils/icon';
+import { HeaderDetailComponent } from '@components/header-detail/header-detail.component';
+import { HeaderDetail } from '@core/types/header-detail';
+import { Data } from '@core/utils/data';
 
 @Component({
   selector: 'app-exchange-card',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, ButtonComponent, AddRatingComponent],
+  imports: [
+    CommonModule,
+    HeaderComponent,
+    ButtonComponent,
+    AddRatingComponent,
+    HeaderDetailComponent,
+  ],
   templateUrl: './exchange-card.component.html',
 })
 export class ExchangeCardComponent {
@@ -19,11 +28,13 @@ export class ExchangeCardComponent {
   showAddRating: boolean;
   protected readonly TypeButton = TypeButton;
   protected readonly Icon = Icon;
+  headerDetail: HeaderDetail;
 
   constructor() {
     this.exchangeCard = {} as ExchangeCard;
     this.discardExchange = new EventEmitter<string>();
     this.showAddRating = false;
+    this.headerDetail = Data.headerDetail;
   }
 
   onDiscardExchange() {

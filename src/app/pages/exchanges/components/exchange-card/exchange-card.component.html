@@ -1,13 +1,5 @@
 <div class="c-exchange-card">
-    <div class="c-header__user-and-avatar">
-        <img alt="this.title"
-             class="c-header__user-avatar"
-             src="{{ this.exchangeCard.userPhoto}}"/>
-        <div class="c-header__title-description o-text-ellipsis">
-            <span class="o-text-lg-bold o-text-ellipsis">{{ this.exchangeCard.userName }}</span>
-            <span class="o-text-sm-ligh o-text-ellipsis">{{ this.exchangeCard.date }}</span>
-        </div>
-    </div>
+    <app-header-detail [headerDetail]="this.headerDetail" [withDescription]="true"/>
     <span class="o-text-base-normal">
         Has elegido intercambiar {{this.exchangeCard.articleToExchange}} con {{this.exchangeCard.articleToReceive}}.
     </span>

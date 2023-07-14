@@ -9,38 +9,10 @@
   padding: em(18);
   $header: &;
 
-  &__user-and-photo {
-    display: flex;
-    align-items: center;
-    gap: $em-16;
-
-  }
-
-  &__user-photo {
-    width: em(45);
-    height: em(45);
-    border-radius: 50%;
-    @include tablet() {
-      width: em(50);
-      height: em(50);
-    }
-    @include desktop() {
-      width: em(55);
-      height: em(55);
-    }
-  }
-
-  &__title-description {
-    display: flex;
-    flex-direction: column;
-    gap: $em-4;
-  }
-
   &--is-with-preferences {
     #{$header}__user-photo {
       cursor: pointer;
     }
-
   }
 
   &--is-for-article-page {

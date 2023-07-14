@@ -14,6 +14,8 @@ import {
   isSuggest,
   TypeArticleCard,
 } from '@core/types/type-article-card';
+import { HeaderDetailComponent } from '@components/header-detail/header-detail.component';
+import { HeaderDetail } from '@core/types/header-detail';
 
 @Component({
   standalone: true,
@@ -23,12 +25,14 @@ import {
     ButtonComponent,
     GalleryComponent,
     HeaderComponent,
+    HeaderDetailComponent,
   ],
   templateUrl: './article-page.component.html',
 })
 export class ArticlePageComponent {
   article: Article;
   typeArticle: TypeArticleCard;
+  headerDetail: HeaderDetail;
   protected readonly TypeButton = TypeButton;
   protected readonly Icon = Icon;
 
@@ -38,6 +42,7 @@ export class ArticlePageComponent {
   ) {
     this.article = Data.article;
     this.typeArticle = history.state.typeArticle;
+    this.headerDetail = Data.headerDetail;
   }
 
   get isOnlyViewPublication(): boolean {
