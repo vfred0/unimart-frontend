@@ -12,6 +12,7 @@ import {
   isWithHeader,
   isWithPreferences,
   isWithPreferencesAndButtonEditProfile,
+  setRoute,
 } from '@core/utils/app-route';
 import { Data } from '@core/utils/data';
 
@@ -62,14 +63,15 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.showHeader = isWithHeader(event.url);
+        const currentUrl = event.url;
+        setRoute(currentUrl);
+        this.showHeader = isWithHeader();
         if (this.showHeader) {
-          this.isWithPreferences = isWithPreferences(event.url);
-          this.isWithButtonEditProfile = isWithPreferencesAndButtonEditProfile(
-            event.url
-          );
-          this.isWithBack = isWithBack(event.url);
-          this.title = getRouteTitle(event.url);
+          this.isWithPreferences = isWithPreferences();
+          this.isWithButtonEditProfile =
+            isWithPreferencesAndButtonEditProfile();
+          this.isWithBack = isWithBack();
+          this.title = getRouteTitle();
         }
       }
     });
