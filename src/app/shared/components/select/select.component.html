@@ -6,31 +6,27 @@
 
     <div class="c-select__container">
       <select
-        class="c-select__content o-text-base-medium"
-        formControlName="select"
-      >
+              class="c-select__content o-text-base-medium"
+              formControlName="select">
         <option
-          *ngFor="let option of this.options"
-          [ngValue]="option"
-          class="c-select__option"
-        >
+                *ngFor="let option of this.options"
+                [ngValue]="option"
+                class="c-select__option">
           {{ this.label }} {{ option }}
         </option>
       </select>
       <div class="c-select__icon">
         <svg-icon
-          [applyClass]="true"
-          [class]="'c-select__icon o-icon-size-lg'"
-          src="assets/icons/arrow.svg"
-        ></svg-icon>
+                [applyClass]="true"
+                [class]="'c-select__icon o-icon-size-lg'"
+                src="assets/icons/arrow.svg"></svg-icon>
       </div>
     </div>
 
     <ng-template [ngIf]="this.withIncludes">
       <div class="c-select__includes">
         <span class="o-text-sm-light">
-          Esta categoría incluye: {{ this.categoryIncludes }}</span
-        >
+          Esta categoría incluye: {{ this.categoryIncludes }}</span>
       </div>
     </ng-template>
   </div>

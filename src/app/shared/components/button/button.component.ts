@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { TypeButton, isBack, isTag } from '@core/types/type-button';
+import { isBack, isTag, TypeButton } from '@core/types/type-button';
 import { CommonModule } from '@angular/common';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 
@@ -34,6 +34,7 @@ export class ButtonComponent {
     }
     return 'lg';
   }
+
   get isBack(): boolean {
     return isBack(this.typeButton);
   }

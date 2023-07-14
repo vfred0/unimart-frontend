@@ -1,15 +1,10 @@
 <ng-template [ngIf]="showMenu">
-  <div class="c-menu">
-    <div
-            (click)="menuItemSelected(menuItem)"
-            *ngFor="let menuItem of this.menuItems"
-            [class.is-selected]="menuItem.isSelected"
-            class="c-menu__item">
-      <svg-icon
-              [applyClass]="true"
-              [class]="'c-menu__icon o-icon-size-menu-icon'"
-              src="assets/icons/{{ menuItem.icon }}.svg"
-      />
+    <div class="c-menu">
+        <div (click)="menuItemSelected(menuItem)" *ngFor="let menuItem of this.menuItems"
+             [class.is-selected]="menuItem.isSelected"
+             class="c-menu__item">
+            <svg-icon [applyClass]="true" [class]="'c-menu__icon o-icon-size-menu-icon'"
+                      src="assets/icons/{{ menuItem.icon }}.svg"/>
+        </div>
     </div>
-  </div>
 </ng-template>

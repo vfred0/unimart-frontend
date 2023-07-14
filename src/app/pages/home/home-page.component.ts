@@ -7,7 +7,6 @@ import { ArticleCardComponent } from '@components/article-card/article-card.comp
 import { ArticleCard } from '@core/models/article-card';
 import { MenuComponent } from '@components/menu/menu.component';
 import { ButtonComponent } from '@components/button/button.component';
-import { Router } from '@angular/router';
 import { InputComponent } from '@components/input/input.component';
 import { SelectComponent } from '@components/select/select.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -39,10 +38,7 @@ export class HomePageComponent {
   articleCards: Array<ArticleCard>;
   protected readonly getLayout = getLayout;
 
-  constructor(
-    private cd: ChangeDetectorRef,
-    private router: Router
-  ) {
+  constructor(private cd: ChangeDetectorRef) {
     this.categories = getAllValues(Category);
     this.states = getAllValues(State);
     this.title = '';

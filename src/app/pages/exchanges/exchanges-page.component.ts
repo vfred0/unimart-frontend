@@ -19,11 +19,10 @@ import { getLayout } from '@core/utils/app-route';
 })
 export class ExchangesPageComponent {
   exchangeCards: Array<ExchangeCard>;
-  layout: string;
+  protected readonly getLayout = getLayout;
 
   constructor() {
     this.exchangeCards = Data.exchangeCards;
-    this.layout = getLayout();
   }
 
   onDiscardRating(exchangeId: string): void {

@@ -26,9 +26,9 @@ export class ExchangeCardComponent {
   @Input() exchangeCard: ExchangeCard;
   @Output() discardExchange: EventEmitter<string>;
   showAddRating: boolean;
+  headerDetail: HeaderDetail;
   protected readonly TypeButton = TypeButton;
   protected readonly Icon = Icon;
-  headerDetail: HeaderDetail;
 
   constructor() {
     this.exchangeCard = {} as ExchangeCard;

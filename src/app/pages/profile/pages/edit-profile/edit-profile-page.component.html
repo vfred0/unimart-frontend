@@ -1,7 +1,6 @@
 <div class="c-edit-profile-page {{getLayout()}}">
     <div class="c-edit-profile-page__upload-photo">
-        <img [alt]="this.user.name" class="c-edit-profile-page__photo" src="{{this.user.photo}}"
-        />
+        <img [alt]="this.user.name" class="c-edit-profile-page__photo" src="{{this.user.photo}}"/>
         <app-button (click)="onPhotoChanged()" [description]="'Cambiar foto'" [icon]="Icon.Camera"/>
     </div>
     <app-input (textChanged)="onAboutMeChanged($event)"

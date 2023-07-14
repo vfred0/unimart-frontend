@@ -1,23 +1,15 @@
 <div class="c-home-page  {{getLayout()}}">
     <div class="c-home-page__inputs">
         <app-input (textChanged)="this.onTextSearchChanged($event)"/>
-        <app-select
-                (selectedOption)="onSelectedCategory($event)"
-                [options]="this.categories"
-        />
-        <app-select
-                (selectedOption)="onSelectedState($event)"
-                [label]="'Ordenar por estado:'"
-                [options]="this.states"
-        />
+        <app-select (selectedOption)="onSelectedCategory($event)"
+                    [options]="this.categories"/>
+        <app-select (selectedOption)="onSelectedState($event)"
+                    [label]="'Ordenar por estado:'"
+                    [options]="this.states"/>
     </div>
-    <span class="o-text-lg-semibold"
-    >{{ this.articleCards.length }} resultados
-  </span>
+    <span class="o-text-lg-semibold">{{ this.articleCards.length }} resultados </span>
     <div class="o-layout-article-cards">
-        <app-article-card
-                *ngFor="let articleCard of this.articleCards"
-                [articleCard]="articleCard"
-        />
+        <app-article-card *ngFor="let articleCard of this.articleCards"
+                          [articleCard]="articleCard"/>
     </div>
 </div>

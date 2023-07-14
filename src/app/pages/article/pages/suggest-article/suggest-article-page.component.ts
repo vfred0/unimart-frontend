@@ -6,7 +6,6 @@ import { SelectComponent } from '@components/select/select.component';
 import { InputComponent } from '@components/input/input.component';
 import { ArticleCard } from '@core/models/article-card';
 import { Data } from '@core/utils/data';
-import { TypeArticleCard } from '@core/types/type-article-card';
 import { Category } from '@core/types/category';
 import { SuggestArticleCardComponent } from '@components/article-card/suggest-article-card/suggest-article-card.component';
 import { getLayout } from '@core/utils/app-route';
@@ -28,7 +27,7 @@ export class SuggestArticlePageComponent {
   categories: Array<string>;
   title: string;
   category: Category;
-  protected readonly TypeArticleCard = TypeArticleCard;
+  protected readonly getLayout = getLayout;
 
   constructor() {
     this.articleCards = Data.articleCards;
@@ -62,6 +61,4 @@ export class SuggestArticlePageComponent {
         articleCard.title.toLowerCase().includes(this.title.toLowerCase())
     );
   }
-
-  protected readonly getLayout = getLayout;
 }

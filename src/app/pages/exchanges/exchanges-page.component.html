@@ -1,4 +1,4 @@
-<div [class]="this.layout">
+<div class="{{getLayout()}}">
     <div class="o-layout-view-rating-cards">
         <app-exchange-card (discardExchange)="onDiscardRating(exchangeCard.exchangeId)"
                            *ngFor="let exchangeCard of exchangeCards"

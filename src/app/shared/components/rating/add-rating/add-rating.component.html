@@ -1,17 +1,12 @@
 <div class="c-add-rating-card">
     <div class="c-add-rating-card__title-rating">
         <span class="o-text-base-semibold">Calificaión: </span>
-
         <div class="c-add-rating-card__score-rating">
-            <svg-icon
-                    [applyClass]="true"
-                    [class]="'c-add-rating-card__icon o-icon-size-lg'"
-                    src="assets/icons/star.svg"
-            ></svg-icon>
+            <svg-icon [applyClass]="true" [class]="'c-add-rating-card__icon o-icon-size-lg'"
+                      src="assets/icons/star.svg"/>
             <app-select (selectedOption)="onSelectedScoreRating($event)" [options]="this.scoreRatings"/>
         </div>
     </div>
-
     <app-input (textChanged)="onChangeComment($event)" [isTextArea]="true" [placeholder]="'Escribe un comentario'"/>
     <app-button (click)="onRating()" [description]="'Calificar'" [icon]="Icon.Star" [typeButton]="TypeButton.Primary"/>
 </div>
