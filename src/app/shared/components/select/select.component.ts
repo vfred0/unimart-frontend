@@ -39,7 +39,9 @@ export class SelectComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.optionSelected = this.options[0];
+    if (!this.optionSelected) {
+      this.optionSelected = this.options[0];
+    }
     this.formSelect = new FormGroup({
       select: new FormControl(this.optionSelected),
     });
