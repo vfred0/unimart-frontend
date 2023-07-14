@@ -49,7 +49,6 @@ export class MenuComponent implements OnDestroy {
         const currentUrl = event.url;
         setRoute(currentUrl);
         this.showMenu = isWithMenu();
-        console.log('this.showMenu', this.showMenu);
         if (this.showMenu) {
           for (const menuItem of this.menuItems) {
             if (isEqualsRoute(menuItem.route)) {

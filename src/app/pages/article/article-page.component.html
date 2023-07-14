@@ -1,4 +1,4 @@
-<app-header [isForBanner]="true" [title]="'Artículo'"/>
+<app-header [title]="'Artículo'"/>
 <div class="c-article-page">
     <div class="c-article-page__banner">
         <img class="c-article-page__banner-image" src="{{ this.article.image }}"/>
@@ -50,23 +50,20 @@
             </div>
         </div>
         <app-gallery [images]="this.article.gallery"/>
-        <div class="c-article-page__buttons">
-            <ng-template [ngIf]="!this.isSuggest">
-                <app-button
-                        (click)="this.onSuggestOrProposedArticle()"
-                        [description]="this.isProposed ? 'Aceptar intercambio' : 'Proponer artículo'"
-                        [icon]="this.isProposed ? Icon.Exchanges : Icon.Hand"
-                        [typeButton]="TypeButton.Primary"
-                />
-            </ng-template>
-            <ng-template [ngIf]="this.isProposed">
-                <app-button
-                        (click)="this.onContactWhatsApp()"
-                        [description]="'Contactar por WhatsApp'"
-                        [typeButton]="TypeButton.Contact"
-                />
-            </ng-template>
-
-        </div>
+        <ng-template [ngIf]="!this.isOnlyViewPublication">
+            <div class="c-article-page__buttons">
+                <ng-template [ngIf]="!this.isSuggest">
+                    <app-button (click)="this.onSuggestOrProposedArticle()"
+                                [description]="this.isProposed ? 'Aceptar intercambio' : 'Proponer artículo'"
+                                [icon]="this.isProposed ? Icon.Exchanges : Icon.Hand"
+                                [typeButton]="TypeButton.Primary"/>
+                </ng-template>
+                <ng-template [ngIf]="this.isProposed">
+                    <app-button (click)="this.onContactWhatsApp()"
+                                [description]="'Contactar por WhatsApp'"
+                                [typeButton]="TypeButton.Contact"/>
+                </ng-template>
+            </div>
+        </ng-template>
     </div>
 </div>

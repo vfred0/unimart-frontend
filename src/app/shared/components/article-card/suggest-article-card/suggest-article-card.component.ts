@@ -20,5 +20,6 @@ export class SuggestArticleCardComponent extends ArticleCardComponent {
 
   onSuggestArticle(articleId: string) {
     this.suggestArticle.emit(articleId);
+    console.log('Suggest article: ' + articleId);
   }
 }

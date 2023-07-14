@@ -6,10 +6,8 @@ import { Data } from '@core/utils/data';
 import { ArticleCardComponent } from '@components/article-card/article-card.component';
 import { Router } from '@angular/router';
 import { SelectComponent } from '@components/select/select.component';
-import { AppRoute, getLayout } from '@core/utils/app-route';
-import { TypeArticle } from '@core/types/type-article';
+import { getLayout } from '@core/utils/app-route';
 import { ProposedArticleCardComponent } from '@components/article-card/proposed-article-card/proposed-article-card.component';
-import { TypeArticleCard } from '@core/types/type-article-card';
 
 @Component({
   standalone: true,
@@ -26,7 +24,6 @@ export class ProposedArticlesPageComponent {
   articleCards: Array<ArticleCard>;
   categories: Array<string>;
   protected readonly getLayout = getLayout;
-
   constructor(private router: Router) {
     this.articleCards = Data.articleCards;
     this.categories = this.articleCards
@@ -36,19 +33,9 @@ export class ProposedArticlesPageComponent {
       );
   }
 
-  onNavigateToArticle(articleCardId: string) {
-    this.router
-      .navigate([`${AppRoute.Article}/${articleCardId}`], {
-        state: { typeArticle: TypeArticle.Proposed },
-      })
-      .then();
-  }
-
   onSelectedCategory(category: string) {
     this.articleCards = Data.articleCards.filter(
       articleCard => articleCard.category === category
     );
   }
-
-  protected readonly TypeArticleCard = TypeArticleCard;
 }

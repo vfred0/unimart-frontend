@@ -22,6 +22,7 @@
                     </ng-template>
                     <ng-template #proposedTemplate>
                         <app-proposed-article-card
+                                [onlyViewPublication]="true"
                                 (deleteProposed)="onDeleteProposed(articleCard.id)"
                                 *ngFor="let articleCard of this.articleCards"
                                 [articleCard]="articleCard"/>
