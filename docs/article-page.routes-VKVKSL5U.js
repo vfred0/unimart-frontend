@@ -1,0 +1,1 @@
+import{f as o}from"./chunk-7ANFATKS.js";import"./chunk-OC64LIZX.js";var p=[{path:"",loadComponent:()=>import("./article-page.component-KLS7KVWC.js").then(t=>t.ArticlePageComponent)},{path:`${o.Suggest}`,loadComponent:()=>import("./suggest-article-page.component-ILYBCJEA.js").then(t=>t.SuggestArticlePageComponent)}];export{p as routes};
