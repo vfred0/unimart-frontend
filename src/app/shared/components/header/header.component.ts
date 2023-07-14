@@ -8,6 +8,7 @@ import { Icon } from '@core/utils/icon';
 import {
   AppRoute,
   getRouteTitle,
+  isArticleRoute,
   isWithBack,
   isWithHeader,
   isWithPreferences,
@@ -29,12 +30,12 @@ import { Data } from '@core/utils/data';
 })
 export class HeaderComponent implements OnInit {
   @Input() isWithPreferences: boolean;
-  @Input() isForBanner: boolean;
+  isForArticlePage: boolean;
   @Input() title: string;
   @Input() image: string;
   @Input() description: string;
 
-  isActive: boolean;
+  showPreferences: boolean;
   showHeader: boolean;
   isWithButtonEditProfile: boolean;
   isWithBack: boolean;
@@ -45,7 +46,7 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private location: Location
   ) {
-    this.isActive = false;
+    this.showPreferences = false;
     this.showHeader = false;
     this.isWithPreferences = false;
     this.isWithButtonEditProfile = false;
@@ -53,7 +54,7 @@ export class HeaderComponent implements OnInit {
     this.title = Data.article.user.name;
     this.image = Data.article.user.photo;
     this.description = '';
-    this.isForBanner = false;
+    this.isForArticlePage = false;
   }
 
   get withDescription(): boolean {
@@ -72,20 +73,16 @@ export class HeaderComponent implements OnInit {
             isWithPreferencesAndButtonEditProfile();
           this.isWithBack = isWithBack();
           this.title = getRouteTitle();
+          this.isForArticlePage = isArticleRoute();
         }
       }
     });
-
-    if (this.isForBanner) {
-      this.showHeader = true;
-      this.isWithPreferences = true;
-      this.isWithButtonEditProfile = true;
-      this.isWithBack = true;
-    }
   }
 
   togglePreferences() {
-    this.isActive = !this.isActive;
+    if (this.isWithPreferences) {
+      this.showPreferences = !this.showPreferences;
+    }
   }
 
   redirectToBack() {

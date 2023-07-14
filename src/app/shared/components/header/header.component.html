@@ -1,11 +1,11 @@
 <ng-template [ngIf]="this.showHeader">
-    <div [class.c-header--back]="this.isWithBack"
-         [class.is-active-preferences]="this.isWithPreferences"
+    <div [ngClass]="{ 'c-header--is-for-article-page': isForArticlePage,
+    'c-header--is-with-preferences': isWithPreferences}"
          class="c-header o-layout-max-width">
-        <div class="c-header__user-and-avatar">
+        <div class="c-header__user-and-photo">
             <img (click)="togglePreferences()"
                  alt="this.title"
-                 class="c-header__user-avatar"
+                 class="c-header__user-photo"
                  src="{{ this.image }}"/>
             <ng-container *ngIf="this.withDescription; else elseBlock">
                 <div class="c-header__title-description o-text-ellipsis">
@@ -25,8 +25,8 @@
         </ng-template>
     </div>
 </ng-template>
-<ng-template [ngIf]="this.isWithPreferences">
-    <div [class.is-active]="this.isActive" class="c-preferences">
+<ng-template [ngIf]="this.isWithPreferences && this.showPreferences">
+    <div class="c-header__preferences">
         <ng-template [ngIf]="this.isWithButtonEditProfile">
             <app-button
                     (click)="this.navigateToEditProfile()"
