@@ -29,7 +29,7 @@ interface IRoute {
 const routes: Array<IRoute> = [
   {
     path: AppRoute.Home,
-    title: Data.article.user.name,
+    title: Data.articlePage.user.name,
     withMenu: true,
     withHeader: true,
     withBack: false,
