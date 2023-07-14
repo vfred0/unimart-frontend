@@ -3,7 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { Category, CategoryService } from '@core/types/category';
-import { containsValue } from '@core/types/enum-utils';
+import { containsValue } from '@core/utils/enum-utils';
 
 @Component({
   standalone: true,

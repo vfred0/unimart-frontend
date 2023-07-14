@@ -2,11 +2,11 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '@shared/components/button/button.component';
 import { HeaderComponent } from '@shared/components/header/header.component';
-import { ViewRatingCard } from '@core/types/view-rating-card';
+import { ViewRatingCard } from '@core/models/view-rating-card';
 import { TypeButton } from '@core/types/type-button';
-import { Icon } from '@core/utils/icon';
+import { Icon } from '@core/types/icon';
 import { HeaderDetailComponent } from '@components/header-detail/header-detail.component';
-import { HeaderDetail } from '@core/types/header-detail';
+import { HeaderDetail } from '@core/utils/header-detail';
 import { Data } from '@core/utils/data';
 
 @Component({

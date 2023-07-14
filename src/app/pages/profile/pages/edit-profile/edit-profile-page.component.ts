@@ -3,7 +3,7 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { HeaderComponent } from '@components/header/header.component';
 import { InputComponent } from '@components/input/input.component';
 import { ButtonComponent } from '@components/button/button.component';
-import { Icon } from '@core/utils/icon';
+import { Icon } from '@core/types/icon';
 import { User } from '@core/models/user';
 import { Data } from '@core/utils/data';
 import { getLayout } from '@core/utils/app-route';

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { InputComponent } from '@components/input/input.component';
 import { SelectComponent } from '@components/select/select.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { getAllValues } from '@core/types/enum-utils';
+import { getAllValues } from '@core/utils/enum-utils';
 import { Data } from '@core/utils/data';
 import { getLayout } from '@core/utils/app-route';
 

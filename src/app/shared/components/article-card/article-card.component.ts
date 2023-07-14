@@ -4,7 +4,7 @@ import { TypeButton } from '@core/types/type-button';
 import { ArticleCard } from '@core/models/article-card';
 import { ButtonComponent } from '@components/button/button.component';
 import { isNormal, TypeArticleCard } from '@core/types/type-article-card';
-import { Icon } from '@core/utils/icon';
+import { Icon } from '@core/types/icon';
 import { Router } from '@angular/router';
 import { AppRoute } from '@core/utils/app-route';
 

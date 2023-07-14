@@ -1,10 +1,10 @@
 import { ArticleCard } from '@core/models/article-card';
 import { Category } from '@core/types/category';
 import { State } from '@core/types/state';
-import { ViewRatingCard } from '@core/types/view-rating-card';
-import { ExchangeCard } from '@core/types/exchange-card';
+import { ViewRatingCard } from '@core/models/view-rating-card';
+import { ExchangeCard } from '@core/models/exchange-card';
 import { ArticlePage } from '@core/models/article-page';
-import { HeaderDetail } from '@core/types/header-detail';
+import { HeaderDetail } from '@core/utils/header-detail';
 import { Gender } from '@core/types/gender';
 import { Article } from '@core/models/article';
 

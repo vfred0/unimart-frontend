@@ -9,7 +9,7 @@ import {
   isWithMenu,
   setRoute,
 } from '@core/utils/app-route';
-import { Icon } from '@core/utils/icon';
+import { Icon } from '@core/types/icon';
 import { Subscription } from 'rxjs';
 
 @Component({

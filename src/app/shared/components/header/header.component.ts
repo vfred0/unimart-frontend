@@ -4,7 +4,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ButtonComponent } from '@components/button/button.component';
 import { TypeButton } from '@core/types/type-button';
 import { NavigationEnd, Router } from '@angular/router';
-import { Icon } from '@core/utils/icon';
+import { Icon } from '@core/types/icon';
 import {
   AppRoute,
   getRouteTitle,
@@ -16,7 +16,7 @@ import {
   setRoute,
 } from '@core/utils/app-route';
 import { HeaderDetailComponent } from '@components/header-detail/header-detail.component';
-import { HeaderDetail } from '@core/types/header-detail';
+import { HeaderDetail } from '@core/utils/header-detail';
 import { Data } from '@core/utils/data';
 
 @Component({

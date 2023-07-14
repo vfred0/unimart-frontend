@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderDetail } from '@core/types/header-detail';
+import { HeaderDetail } from '@core/utils/header-detail';
 
 @Component({
   selector: 'app-header-detail',

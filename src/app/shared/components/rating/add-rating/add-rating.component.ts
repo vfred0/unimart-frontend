@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '@components/button/button.component';
 import { HeaderComponent } from '@components/header/header.component';
 import { SelectComponent } from '@components/select/select.component';
-import { getAllValues } from '@core/types/enum-utils';
+import { getAllValues } from '@core/utils/enum-utils';
 import { ScoreRating } from '@core/types/score-rating';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { InputComponent } from '@components/input/input.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { TypeButton } from '@core/types/type-button';
-import { Icon } from '@core/utils/icon';
+import { Icon } from '@core/types/icon';
 
 @Component({
   selector: 'app-add-rating',

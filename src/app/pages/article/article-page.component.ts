@@ -7,7 +7,7 @@ import { TypeButton } from '@core/types/type-button';
 import { ArticlePage } from '@core/models/article-page';
 import { GalleryComponent } from '@components/gallery/gallery.component';
 import { Data } from '@core/utils/data';
-import { Icon } from '@core/utils/icon';
+import { Icon } from '@core/types/icon';
 import { AppRoute } from '@core/utils/app-route';
 import {
   isProposed,
@@ -15,7 +15,7 @@ import {
   TypeArticleCard,
 } from '@core/types/type-article-card';
 import { HeaderDetailComponent } from '@components/header-detail/header-detail.component';
-import { HeaderDetail } from '@core/types/header-detail';
+import { HeaderDetail } from '@core/utils/header-detail';
 
 @Component({
   standalone: true,

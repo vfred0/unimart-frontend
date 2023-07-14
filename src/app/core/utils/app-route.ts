@@ -52,7 +52,7 @@ const routes: Array<IRoute> = [
     withHeader: true,
     withBack: false,
     withPreferences: true,
-    withPreferencesAndButtonEditProfile: false,
+    withPreferencesAndButtonEditProfile: true,
   },
   {
     path: AppRoute.EditArticle,
@@ -163,8 +163,6 @@ export function getRouteTitle(): string {
 }
 
 export function isArticleRoute(): boolean {
-  console.log(`${route} - ${AppRoute.Article} - ${route === AppRoute.Article}`);
-
   return route === AppRoute.Article;
 }
 

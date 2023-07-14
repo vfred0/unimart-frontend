@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '@components/header/header.component';
-import { ExchangeCard } from '@core/types/exchange-card';
+import { ExchangeCard } from '@core/models/exchange-card';
 import { ButtonComponent } from '@components/button/button.component';
 import { TypeButton } from '@core/types/type-button';
 import { AddRatingComponent } from '@components/rating/add-rating/add-rating.component';
-import { Icon } from '@core/utils/icon';
+import { Icon } from '@core/types/icon';
 import { HeaderDetailComponent } from '@components/header-detail/header-detail.component';
-import { HeaderDetail } from '@core/types/header-detail';
+import { HeaderDetail } from '@core/utils/header-detail';
 import { Data } from '@core/utils/data';
 
 @Component({
