@@ -4,7 +4,7 @@ import { HeaderComponent } from '@components/header/header.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonComponent } from '@components/button/button.component';
 import { TypeButton } from '@core/types/type-button';
-import { ArticlePage } from '@core/models/articlePage';
+import { ArticlePage } from '@core/models/article-page';
 import { GalleryComponent } from '@components/gallery/gallery.component';
 import { Data } from '@core/utils/data';
 import { Icon } from '@core/utils/icon';
