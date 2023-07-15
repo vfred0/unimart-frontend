@@ -1,7 +1,5 @@
 .c-header-detail {
-  display: flex;
-  align-items: center;
-  gap: $em-16;
+  @include row($em-16);
   $header-detail: &;
 
   &__photo {
@@ -19,9 +17,7 @@
   }
 
   &__title-description {
-    display: flex;
-    flex-direction: column;
-    gap: $em-4;
+    @include column($em-4);
   }
 
   &.is-with-clicked-photo {

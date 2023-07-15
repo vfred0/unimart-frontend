@@ -1,16 +1,12 @@
 .c-auth-page {
-  display: flex;
-  flex-direction: column;
-  //align-items: center;
+  @include column($em-48);
+
   margin: 0 auto;
-  gap: $em-48;
   padding: $em-18;
   max-width: 800px;
 
   &__content {
-    display: flex;
-    flex-direction: column;
-    gap: $em-24;
+    @include column($em-24);
   }
 
   &__logo {

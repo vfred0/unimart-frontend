@@ -72,3 +72,22 @@
   font-weight: $weight;
   @include set-values-from-sizes(map-get($font-sizes, $size));
 }
+
+@mixin display-grid($grid-gap) {
+  display: grid;
+  grid-gap: $grid-gap;
+  @content;
+}
+
+@mixin column($gap) {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+}
+
+@mixin row($gap) {
+  display: flex;
+  align-items: center;
+  gap: $gap;
+  @content;
+}

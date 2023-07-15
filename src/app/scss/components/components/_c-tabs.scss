@@ -16,12 +16,10 @@
 
   &__content {
     padding: $em-16;
-    display: flex;
+    @include column($em-24);
     flex-wrap: wrap;
-    flex-direction: column;
     align-items: center;
     align-content: start;
-    gap: em(25);
 
     &-row {
       display: flex;

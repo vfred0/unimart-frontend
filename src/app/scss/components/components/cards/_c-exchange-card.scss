@@ -1,15 +1,11 @@
 .c-exchange-card {
-  display: flex;
-  flex-direction: column;
+  @include column($em-18);
   background-color: $accent-second;
   padding: $em-16;
-  gap: $em-18;
   border-radius: $em-16;
 
   &__buttons {
-    display: flex;
-    flex-direction: column;
-    gap: $em-18;
+    @include column($em-18);
   }
 
 }

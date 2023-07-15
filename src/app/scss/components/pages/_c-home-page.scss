@@ -1,8 +1,6 @@
 .c-home-page {
   &__inputs {
-    display: flex;
-    flex-direction: column;
-    gap: $em-16;
+    @include column($em-16);
   }
 
   &__search {

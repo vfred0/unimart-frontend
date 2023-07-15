@@ -1,16 +1,12 @@
 .c-input {
-  display: flex;
-  flex-direction: column;
-  gap: $em-12;
+  @include column($em-12);
 
   &__container {
-    display: flex;
-    align-items: center;
+    @include row($em-8);
     padding: $em-14;
-    gap: $em-8;
     background-color: $accent-second;
-    color: $neutral-white;
     border-radius: $em-8;
+    color: $neutral-white;
 
     &-svg {
       width: $em-20;

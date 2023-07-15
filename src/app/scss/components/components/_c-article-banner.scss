@@ -1,10 +1,8 @@
 .c-article-banner {
   position: relative;
   background: linear-gradient(180deg, rgba(22, 29, 34, 0.35) 0%, #040404 100%);
-  display: flex;
-  flex-direction: column;
+  @include column($em-24);
   justify-content: center;
-  gap: $em-24;
   padding: em(100) $em-18 $em-18;
 
   &__image {
@@ -18,10 +16,8 @@
   }
 
   &__container {
-    display: flex;
-    flex-direction: column;
+    @include column($em-12);
     justify-content: center;
-    gap: $em-12;
   }
 
   &__buttons {

@@ -1,26 +1,20 @@
 .c-article-page {
-  display: flex;
-  flex-direction: column;
-  gap: $em-24;
+  @include column($em-24);
 
   &__content {
-    display: flex;
-    flex-direction: column;
-    gap: $em-24;
+    @include column($em-24);
     padding: 0 $em-18 $em-18;
   }
 
   &__banner {
     position: relative;
     background: linear-gradient(
-      180deg,
-      rgba(22, 29, 34, 0.35) 0%,
-      #040404 100%
+                    180deg,
+                    rgba(22, 29, 34, 0.35) 0%,
+                    #040404 100%
     );
-    display: flex;
-    flex-direction: column;
+    @include column($em-24);
     justify-content: center;
-    gap: $em-24;
     padding: em(100) $em-18 $em-18;
 
     &-image {
@@ -34,32 +28,24 @@
     }
 
     &-container {
-      display: flex;
-      flex-direction: column;
+      @include column($em-12);
       justify-content: center;
-      gap: $em-12;
     }
 
     &-buttons {
-      display: flex;
-      align-items: center;
-      gap: $em-8;
+      @include row($em-8);
     }
   }
 
   &__user-card {
-    display: flex;
-    flex-direction: column;
-    gap: $em-16;
+    @include column($em-16);
     background-color: $accent-second;
     padding: $em-16;
     border-radius: $em-16;
     box-shadow: $shadow-md;
 
     &-buttons {
-      display: flex;
-      align-items: center;
-      gap: $em-8;
+      @include row($em-8);
     }
   }
 

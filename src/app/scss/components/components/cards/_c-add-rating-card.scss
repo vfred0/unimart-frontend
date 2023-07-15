@@ -1,16 +1,12 @@
 .c-add-rating-card {
-  display: flex;
-  flex-direction: column;
+  @include column($em-16);
   padding: $em-16;
-  gap: $em-16;
   background-color: $accent-second;
   border-radius: $em-16;
 
   &__title-rating {
-    display: flex;
+    @include row($em-8);
     justify-content: space-between;
-    align-items: center;
-    gap: $em-8;
   }
 
   &__score-rating {

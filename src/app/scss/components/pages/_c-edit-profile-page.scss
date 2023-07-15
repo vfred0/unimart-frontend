@@ -2,9 +2,7 @@
   gap: $em-24;
 
   &__upload-photo {
-    display: flex;
-    align-items: center;
-    gap: $em-24;
+    @include row($em-24);
   }
 
   &__photo {
