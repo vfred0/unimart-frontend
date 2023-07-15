@@ -1,20 +1,10 @@
 .c-gallery {
   &__image {
-    width: 100%;
-    border-radius: $em-16;
-    object-fit: contain !important;
-
-    @include only-mobile {
-      object-fit: fill !important;
-      height: 25vh;
-    }
-    @include tablet {
-      height: 30vw;
-    }
-
-    @include desktop {
-      height: 15vw;
-    }
+    object-fit: fill !important;
+    width: em(300);
+    height: em(300);
+    padding: $em-16;
+    border-radius: $em-32;
   }
 }
 
