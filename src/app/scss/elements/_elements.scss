@@ -4,6 +4,7 @@ html {
   --moz-osc-font-smoothing: grayscale;
   background-color: $neutral-black;
   color: $neutral-white;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
