@@ -9,6 +9,7 @@
   transition: all 0.2s ease-in-out;
   box-shadow: $shadow-md;
   width: 100%;
+  white-space: nowrap;
   $button: &;
 
   &__icon {
