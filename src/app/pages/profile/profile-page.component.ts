@@ -60,6 +60,12 @@ export class ProfilePageComponent {
     ).toString();
   }
 
+  onTextSearchChanged(title: string) {
+    this.articleCards = Data.articleCards.filter(articleCard =>
+      articleCard.title.toLowerCase().includes(title.toLowerCase())
+    );
+  }
+
   get isPublished(): boolean {
     return isPublished(this.typeArticleCard);
   }
