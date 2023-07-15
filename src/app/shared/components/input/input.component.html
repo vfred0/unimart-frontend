@@ -1,11 +1,11 @@
 <div class="c-input">
     <ng-template [ngIf]="this.withTitle">
-        <span class="o-text-base-medium">{{ this.title }}</span>
+        <span class="o-text-lg-semibold">{{ this.title }}</span>
     </ng-template>
     <ng-template [ngIfElse]="elseBlock" [ngIf]="this.isTextArea">
     <textarea
             [formControl]="this.inputValue"
-            class="c-input__text-area o-text-base-medium"
+            class="c-input__text-area o-text-base-regular"
             cols="5"
             placeholder="{{ this.placeholder }}"
             rows="5"></textarea>
@@ -16,7 +16,7 @@
                 <svg-icon [applyClass]="true" [class]="'c-input__icon'"
                           src="assets/icons/{{ this.icon }}.svg"/>
             </div>
-            <input [formControl]="this.inputValue" [type]="this.type" class="c-input__text o-text-base-medium"
+            <input [formControl]="this.inputValue" [type]="this.type" class="c-input__text o-text-base-regular"
                    placeholder="{{ this.placeholder }}"/>
         </div>
     </ng-template>

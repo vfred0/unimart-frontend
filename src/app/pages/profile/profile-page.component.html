@@ -5,6 +5,7 @@
         <div class="c-tabs__wrapper-content">
             <div class="c-tabs__content">
                 <app-input
+                        (textChanged)="onTextSearchChanged($event)"
                         [icon]="Icon.Search"
                         [placeholder]="'Nombre del artículo'"
                         class="o-layout-width-100"/>
