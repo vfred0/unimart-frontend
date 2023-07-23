@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { ApiSignalState } from '@shared/services/api-signal-state';
-import { ArticleDto } from '@core/dtos/article-dto';
+import { ArticleDto } from '@core/dtos/article.dto';
 import { HttpClient } from '@angular/common/http';
 import { HeaderDetail } from '@core/utils/header-detail';
 import { ArticlePage } from '@core/models/article-page';
