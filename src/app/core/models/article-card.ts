@@ -6,7 +6,7 @@ export interface ArticleCard {
   image: string;
   title: string;
   dateOfPublication: string;
-  proposalsQuantity: number;
+  numberProposals: number;
   category: Category;
   state: State;
 }

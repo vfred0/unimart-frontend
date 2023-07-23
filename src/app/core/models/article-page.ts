@@ -3,7 +3,7 @@ import { Article } from '@core/models/article';
 
 export interface ArticlePage extends Article {
   image: string;
-  datePublished: string;
-  proposalsQuantity: number;
+  date: string;
+  numbersProposals: number;
   user: User;
 }
