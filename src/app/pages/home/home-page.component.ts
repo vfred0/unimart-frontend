@@ -1,18 +1,24 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '@shared/components/header/header.component';
 import { Category } from '@core/types/category';
 import { State } from '@core/types/state';
 import { ArticleCardComponent } from '@components/article-card/article-card.component';
-import { ArticleCard } from '@core/models/article-card';
 import { MenuComponent } from '@components/menu/menu.component';
 import { ButtonComponent } from '@components/button/button.component';
 import { InputComponent } from '@components/input/input.component';
 import { SelectComponent } from '@components/select/select.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { getAllValues } from '@core/utils/enum-utils';
-import { Data } from '@core/utils/data';
 import { getLayout } from '@core/utils/app-route';
+import { ArticleCard } from '@core/models/article-card';
+import { HomeService } from '@shared/services/home.service';
+import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
 
 @Component({
   standalone: true,
@@ -26,8 +32,9 @@ import { getLayout } from '@core/utils/app-route';
     MenuComponent,
     ReactiveFormsModule,
   ],
+  providers: [HomeService, ArticleMapperService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './home-page.component.html',
-  styles: [],
 })
 export class HomePageComponent {
   title: string;
@@ -35,16 +42,17 @@ export class HomePageComponent {
   state: State;
   categories: Array<string>;
   states: Array<string>;
-  articleCards: Array<ArticleCard>;
+  homeService: HomeService = inject(HomeService);
+  articlesCards: Array<ArticleCard>;
   protected readonly getLayout = getLayout;
 
   constructor(private cd: ChangeDetectorRef) {
     this.categories = getAllValues(Category);
     this.states = getAllValues(State);
     this.title = '';
-    this.category = {} as Category;
-    this.state = {} as State;
-    this.articleCards = Data.articleCards;
+    this.category = Category.TextBooksEducationalMaterial;
+    this.state = State.New;
+    this.articlesCards = [] as Array<ArticleCard>;
   }
 
   onSelectedState(state: string) {
@@ -63,12 +71,19 @@ export class HomePageComponent {
   }
 
   private updateArticleCards() {
-    this.articleCards = Data.articleCards.filter(
-      articleCard =>
-        articleCard.state === this.state &&
-        articleCard.category === this.category &&
-        articleCard.title.toLowerCase().includes(this.title.toLowerCase())
-    );
+    const filterArticle = {
+      title: this.title,
+      category: this.category,
+      state: this.state,
+    };
+
+    // this.homeService
+    //   .search(filterArticle)
+    //   .subscribe(articlesCards => {
+    //     this.articlesCards = articlesCards;
+    //   })
+    //   .unsubscribe();
+    this.homeService.search(filterArticle);
     this.cd.detectChanges();
   }
 }

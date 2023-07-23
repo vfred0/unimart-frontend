@@ -7,9 +7,17 @@
                     [label]="'Ordenar por estado:'"
                     [options]="this.states"/>
     </div>
-    <span class="o-text-lg-semibold">{{ this.articleCards.length }} resultados </span>
+    <span *ngIf="this.homeService.isCompleted" class="o-text-lg-semibold">{{ this.homeService.totalArticlesCards }}
+        resultados</span>
     <div class="o-layout-article-cards">
-        <app-article-card *ngFor="let articleCard of this.articleCards"
-                          [articleCard]="articleCard"/>
+
+        <ng-template [ngIf]="this.homeService.isWorking">
+            <span class="o-text-lg-semibold"> Cargando...</span>
+        </ng-template>
+
+        <ng-template [ngIf]="this.homeService.isCompleted">
+            <app-article-card *ngFor="let articleCard of this.homeService.articlesCards"
+                              [articleCard]="articleCard"/>
+        </ng-template>
     </div>
 </div>
