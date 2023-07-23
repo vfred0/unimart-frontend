@@ -1,36 +1,41 @@
 <app-header [title]="'Artículo'"/>
-<div class="c-article-page">
+
+<ng-template [ngIf]="this.articlePageService.isWorking">
+    <span class="o-text-2xl-bold">Cargando...</span>
+</ng-template>
+
+<div *ngIf="this.articlePageService.isCompleted" class="c-article-page">
     <div class="c-article-page__banner">
-        <img class="c-article-page__banner-image" src="{{ this.articlePage.image }}"/>
+        <img class="c-article-page__banner-image" src="{{ this.articlePageService.articlePage.image }}"/>
         <div class="c-article-page__banner-container">
-            <span class="c-article-page__banner-title o-text-xl-semibold">{{this.articlePage.title}}</span>
-            <span class="c-article-page__banner-description o-text-normal-medium">{{this.articlePage.description}}</span>
-            <span class="c-article-page__banner-date-published o-text-sm-light">{{this.articlePage.datePublished}}</span>
+            <span class="c-article-page__banner-title o-text-xl-semibold">{{this.articlePageService.articlePage.title}}</span>
+            <span class="c-article-page__banner-description o-text-normal-medium">{{this.articlePageService.articlePage.description}}</span>
+            <span class="c-article-page__banner-date-published o-text-sm-light">{{this.articlePageService.articlePage.date}}</span>
         </div>
         <div class="c-article-page__banner-buttons">
-            <app-button [description]="this.articlePage.state"
+            <app-button [description]="this.articlePageService.articlePage.state"
                         [icon]="Icon.State"
                         [typeButton]="TypeButton.Tag"/>
-            <app-button [description]="this.proposalsQuantity"
+            <app-button [description]="this.numberProposals(this.articlePageService.articlePage.numbersProposals)"
                         [typeButton]="TypeButton.Tag"/>
         </div>
     </div>
     <div class="c-article-page__content">
         <span class="o-text-xl-semibold">Publicador</span>
         <div class="c-article-page__user-card">
-            <app-header-detail [headerDetail]="this.headerDetail"/>
-            <span class="o-text-base-normal"> {{ this.articlePage.user.description }}</span>
+            <app-header-detail [headerDetail]="this.articlePageService.headerDetail"/>
+            <span class="o-text-base-normal"> {{ this.articlePageService.articlePage.user.about }}</span>
             <div class="c-article-page__user-card-buttons">
-                <app-button [description]="this.rating"
+                <app-button [description]="this.articlePageService.user.rating.toString()"
                             [icon]="Icon.Star"
                             [typeButton]="TypeButton.Tag"/>
-                <app-button [description]="this.exchangesQuantity"
+                <app-button [description]="this.numbersOfExchanges(this.articlePageService.user.numberOfExchanges)"
                             [icon]="Icon.Exchanges"
                             [typeButton]="TypeButton.Tag"/>
             </div>
         </div>
         <span class="o-text-xl-semibold">Galería</span>
-        <app-gallery [images]="this.articlePage.images"/>
+        <app-gallery [images]="this.articlePageService.articlePage.images"/>
         <ng-template [ngIf]="!this.isOnlyViewPublication">
             <div class="c-article-page__buttons">
                 <ng-template [ngIf]="!this.isSuggest">
