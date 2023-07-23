@@ -31,7 +31,7 @@ export class ArticleCardComponent {
   }
 
   getProposalsQuantity(): string {
-    return `${this.articleCard.proposalsQuantity} propuestas`;
+    return `${this.articleCard.numberProposals} propuestas`;
   }
 
   navigateToViewArticle() {
