@@ -10,7 +10,7 @@
             [options]="this.categories"
             [optionSelected]="this.article.category"
             [title]="'Categorías'"/>
-    
+
     <div [class.double-column]="this.withGender"
          class="c-publish-article-page__gender-state">
         <ng-template [ngIf]="this.withGender">
@@ -33,11 +33,12 @@
     <ng-template [ngIf]="this.containsImages">
         <app-gallery [images]="this.images"/>
     </ng-template>
-    
+
     <div [class.c-publish-article-page__gallery-buttons]="this.containsImages">
-        <app-button [description]="'Cargar foto'"
-                    [icon]="Icon.Camera"
-                    [typeButton]="TypeButton.Secondary"/>
+        <app-button-select-image (imageSelected)="onImageSelected($event)"/>
+        <!--        <app-button [description]="'Cargar foto'"-->
+        <!--                    [icon]="Icon.Camera"-->
+        <!--                    [typeButton]="TypeButton.Secondary"/>-->
         <ng-template [ngIf]="this.containsImages">
             <app-button (click)="this.onDeleteImages()"
                         [description]="'Eliminar fotos'"
@@ -51,4 +52,6 @@
                     [icon]="Icon.Save"
                     [typeButton]="TypeButton.Primary"/>
     </div>
+
+
 </div>

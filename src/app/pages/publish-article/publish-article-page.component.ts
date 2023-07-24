@@ -18,6 +18,12 @@ import { ActivatedRoute } from '@angular/router';
 import { getLayout } from '@core/utils/app-route';
 import { Data } from '@core/utils/data';
 import { Article } from '@core/models/article';
+import { ArticleService } from '@shared/services/article.service';
+import { ArticleDto } from '@core/dtos/article.dto';
+import { AuthService } from '@shared/services/auth.service';
+import { TypeArticle } from '@core/types/type-article';
+import { ButtonSelectImageComponent } from '@components/button/button-select-image/button-select-image.component';
+import { User } from '@core/models/user';
 
 @Component({
   standalone: true,
@@ -30,7 +36,9 @@ import { Article } from '@core/models/article';
     SelectComponent,
     GalleryComponent,
     ButtonComponent,
+    ButtonSelectImageComponent,
   ],
+  providers: [ArticleService, AuthService],
   templateUrl: './publish-article-page.component.html',
 })
 export class PublishArticlePageComponent {
@@ -44,7 +52,11 @@ export class PublishArticlePageComponent {
   protected readonly Icon = Icon;
   protected readonly getLayout = getLayout;
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private articleService: ArticleService,
+    private authService: AuthService
+  ) {
     this.categories = getAllValues(Category);
     this.states = getAllValues(State);
     this.genders = getAllValues(Gender);
@@ -63,9 +75,6 @@ export class PublishArticlePageComponent {
         images: Data.article.images,
       };
     }
-
-    console.log(this.article);
-
     this.form = new FormGroup({
       title: new FormControl(this.article.title, [Validators.required]),
       description: new FormControl(this.article.description, [
@@ -87,7 +96,7 @@ export class PublishArticlePageComponent {
   }
 
   get containsImages(): boolean {
-    return this.form.get('images')?.value.length > 0;
+    return this.images.length > 0;
   }
 
   onTitleChanged(text: string) {
@@ -120,7 +129,28 @@ export class PublishArticlePageComponent {
 
   publishArticle() {
     if (this.form.valid) {
-      console.log(this.form.value);
+      const articleDto: ArticleDto = {
+        id: this.articleId,
+        userId: this.authService.getUser().id,
+        title: this.getValue('title'),
+        description: this.getValue('description'),
+        state: this.getValue('state') as State,
+        category: this.getValue('category') as Category,
+        gender: this.getValue('gender') as Gender,
+        typeArticle: this.getValue('typeArticle') as TypeArticle,
+        images: this.images,
+        user: {} as User,
+        date: new Date().toISOString(),
+      };
+      this.articleService.save(articleDto);
     }
+  }
+
+  getValue(name: string): string {
+    return this.form.get(name)?.value;
+  }
+
+  onImageSelected(image: string) {
+    console.log(image);
   }
 }
