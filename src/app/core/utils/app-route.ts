@@ -10,6 +10,8 @@ export enum AppRoute {
   ProposedArticles = 'articulos-propuestos',
   ProfileProposedArticles = 'perfil/articulos-propuestos',
   Auth = 'auth',
+  Login = 'login',
+  AuthLogin = 'auth/login',
   Exchanges = 'intercambios',
   Profile = 'perfil',
   EditProfile = 'editar-perfil',
@@ -116,14 +118,14 @@ function getCleanRoute(route: string): string {
     route
       .replace(/^\/+/, '')
       // .replace(/\/(?:\d+\/?)?/g, '/')
-      .replace(/\/[\w-]{36}\/?/g, '')
+      .replace(/\/(?:\[\w-]{36}\/?)?/g, '/')
+      // .replace(/\/\/?/g, '')
       .replace(/\/$/, '')
   );
 }
 
 export function setRoute(routeParam: string): void {
   route = getCleanRoute(routeParam);
-  console.log('route', route);
 }
 
 export function isEqualsRoute(routeCompare: string): boolean {
