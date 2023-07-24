@@ -18,6 +18,7 @@ import {
 import { HeaderDetailComponent } from '@components/header-detail/header-detail.component';
 import { HeaderDetail } from '@core/utils/header-detail';
 import { Data } from '@core/utils/data';
+import { AuthService } from '@shared/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -44,7 +45,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private location: Location
+    private location: Location,
+    private authService: AuthService
   ) {
     this.showPreferences = false;
     this.showHeader = false;
@@ -88,6 +90,12 @@ export class HeaderComponent implements OnInit {
     this.router
       .navigate([`${AppRoute.Profile}/${AppRoute.EditProfile}`])
       .then();
+    this.togglePreferences();
+  }
+
+  onLogout() {
+    this.authService.logout();
+    this.router.navigate([AppRoute.AuthLogin]).then();
     this.togglePreferences();
   }
 }
