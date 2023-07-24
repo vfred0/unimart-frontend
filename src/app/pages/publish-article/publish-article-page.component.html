@@ -36,9 +36,6 @@
 
     <div [class.c-publish-article-page__gallery-buttons]="this.containsImages">
         <app-button-select-image (imageSelected)="onImageSelected($event)"/>
-        <!--        <app-button [description]="'Cargar foto'"-->
-        <!--                    [icon]="Icon.Camera"-->
-        <!--                    [typeButton]="TypeButton.Secondary"/>-->
         <ng-template [ngIf]="this.containsImages">
             <app-button (click)="this.onDeleteImages()"
                         [description]="'Eliminar fotos'"
@@ -52,6 +49,4 @@
                     [icon]="Icon.Save"
                     [typeButton]="TypeButton.Primary"/>
     </div>
-
-
 </div>
