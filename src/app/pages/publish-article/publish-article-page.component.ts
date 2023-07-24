@@ -19,11 +19,11 @@ import { getLayout } from '@core/utils/app-route';
 import { Data } from '@core/utils/data';
 import { Article } from '@core/models/article';
 import { ArticleService } from '@shared/services/article.service';
-import { ArticleDto } from '@core/dtos/article.dto';
 import { AuthService } from '@shared/services/auth.service';
 import { TypeArticle } from '@core/types/type-article';
 import { ButtonSelectImageComponent } from '@components/button/button-select-image/button-select-image.component';
-import { User } from '@core/models/user';
+import { ImgurService } from '@shared/services/imgur.service';
+import { ArticleSaveDto } from '@core/dtos/article-save.dto';
 
 @Component({
   standalone: true,
@@ -55,12 +55,14 @@ export class PublishArticlePageComponent {
   constructor(
     private activatedRoute: ActivatedRoute,
     private articleService: ArticleService,
-    private authService: AuthService
+    private authService: AuthService,
+    private imgurService: ImgurService
   ) {
     this.categories = getAllValues(Category);
     this.states = getAllValues(State);
     this.genders = getAllValues(Gender);
     this.articleId = this.activatedRoute.snapshot.params['id'];
+    this.form = new FormGroup({});
 
     if (this.articleId) {
       this.article = Data.article;
@@ -75,16 +77,7 @@ export class PublishArticlePageComponent {
         images: Data.article.images,
       };
     }
-    this.form = new FormGroup({
-      title: new FormControl(this.article.title, [Validators.required]),
-      description: new FormControl(this.article.description, [
-        Validators.required,
-      ]),
-      state: new FormControl(this.article.state, [Validators.required]),
-      category: new FormControl(this.article.category, [Validators.required]),
-      gender: new FormControl(this.article.gender, [Validators.required]),
-      images: new FormControl(this.article.images, [Validators.required]),
-    });
+    this.initialForm();
   }
 
   get images(): Array<string> {
@@ -129,20 +122,26 @@ export class PublishArticlePageComponent {
 
   publishArticle() {
     if (this.form.valid) {
-      const articleDto: ArticleDto = {
-        id: this.articleId,
+      const articleDto: ArticleSaveDto = {
         userId: this.authService.getUser().id,
         title: this.getValue('title'),
         description: this.getValue('description'),
         state: this.getValue('state') as State,
         category: this.getValue('category') as Category,
         gender: this.getValue('gender') as Gender,
-        typeArticle: this.getValue('typeArticle') as TypeArticle,
-        images: this.images,
-        user: {} as User,
-        date: new Date().toISOString(),
+        typeArticle: TypeArticle.Published,
+        images: ['https://is.gd/I6j4Ye', 'https://is.gd/Y0ooLY'],
       };
       this.articleService.save(articleDto);
+      this.article = {
+        title: '',
+        description: '',
+        state: State.New,
+        category: Category.TextBooksEducationalMaterial,
+        gender: Gender.Male,
+        images: [] as Array<string>,
+      } as Article;
+      this.initialForm();
     }
   }
 
@@ -151,6 +150,25 @@ export class PublishArticlePageComponent {
   }
 
   onImageSelected(image: string) {
-    console.log(image);
+    console.log('image', image);
+    // this.imgurService.uploadImage(image).subscribe(response => {
+    //   console.log(response);
+    //   // const images = this.form.get('images')?.value;
+    //   // images.push(response);
+    //   // this.form.get('images')?.setValue(images);
+    // });
+  }
+
+  private initialForm() {
+    this.form = new FormGroup({
+      title: new FormControl(this.article.title, [Validators.required]),
+      description: new FormControl(this.article.description, [
+        Validators.required,
+      ]),
+      state: new FormControl(this.article.state, [Validators.required]),
+      category: new FormControl(this.article.category, [Validators.required]),
+      gender: new FormControl(this.article.gender, [Validators.required]),
+      images: new FormControl(this.article.images, [Validators.required]),
+    });
   }
 }
