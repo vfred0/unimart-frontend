@@ -22,6 +22,7 @@
                     [typeButton]="TypeButton.Secondary"/>
         </ng-template>
         <app-button
+                (click)="this.onLogout()"
                 [description]="'Cerrar sesión'"
                 [icon]="Icon.Logout"
                 [typeButton]="TypeButton.Secondary"/>
