@@ -47,5 +47,10 @@ export const routes: Routes = [
       import('@pages/publish-article/publish-article-page.routes').then(
         m => m.routes
       ),
+    canActivate: [canActivate],
+  },
+  {
+    path: '**',
+    redirectTo: AppRoute.Home,
   },
 ];
