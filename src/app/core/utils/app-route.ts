@@ -114,14 +114,10 @@ const routes: Array<IRoute> = [
 let route = '';
 
 function getCleanRoute(route: string): string {
-  return (
-    route
-      .replace(/^\/+/, '')
-      // .replace(/\/(?:\d+\/?)?/g, '/')
-      .replace(/\/(?:\[\w-]{36}\/?)?/g, '/')
-      // .replace(/\/\/?/g, '')
-      .replace(/\/$/, '')
-  );
+  return route
+    .replace(/^\/+/, '')
+    .replace(/\/\w+-\w+-\w+-\w+-\w+\/?/g, '/')
+    .replace(/\/$/, '');
 }
 
 export function setRoute(routeParam: string): void {
