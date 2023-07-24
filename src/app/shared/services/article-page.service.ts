@@ -20,17 +20,11 @@ export class ArticlePageService {
   }
 
   get headerDetail(): HeaderDetail {
-    // if (this.isCompleted) {
     return this.userMapper.toHeaderDetails(this.apiSignalState.result().user);
-    // }
-    // return {} as HeaderDetail;
   }
 
   get articlePage(): ArticlePage {
-    // if (this.isCompleted) {
     return this.articleMapper.toArticlePage(this.apiSignalState.result());
-    // }
-    // return {} as ArticlePage;
   }
 
   get isWorking() {
