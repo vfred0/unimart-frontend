@@ -11,12 +11,12 @@
             [optionSelected]="this.publishArticleService.article.category"
             [title]="'Categorías'"/>
 
-    <div [class.double-column]="this.withGender"
+    <div [class.double-column]="this.publishArticleService.withGender"
          class="c-publish-article-page__gender-state">
-        <ng-template [ngIf]="this.withGender">
+        <ng-template [ngIf]="this.publishArticleService.withGender">
             <app-select (selectedOption)="onSelectedGender($event)"
                         [options]="this.genders"
-                        [optionSelected]="this.publishArticleService.article.gender"
+                        [optionSelected]="this.publishArticleService.gender"
                         [title]="'Género'"/>
         </ng-template>
         <app-select (selectedOption)="onSelectedState($event)"
@@ -45,8 +45,13 @@
     </div>
     <div (click)="this.publishArticle()"
          class="c-publish-article-page__container-proposed">
-        <app-button [description]="'Publicar artículo'"
-                    [icon]="Icon.Save"
-                    [typeButton]="TypeButton.Primary"/>
+        <ng-template [ngIfElse]="publishArticleTemplate" [ngIf]="!this.publishArticleService.isFormValid">
+            <span class="o-text-sm-bold">Por favor, antes de publicar el artículo, completa los campos obligatorios...</span>
+        </ng-template>
+        <ng-template #publishArticleTemplate>
+            <app-button [description]="'Publicar artículo'"
+                        [icon]="Icon.Save"
+                        [typeButton]="TypeButton.Primary"/>
+        </ng-template>
     </div>
 </div>
