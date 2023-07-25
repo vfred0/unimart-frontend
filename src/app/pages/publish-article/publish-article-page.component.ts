@@ -13,8 +13,8 @@ import { ButtonComponent } from '@components/button/button.component';
 import { TypeButton } from '@core/types/type-button';
 import { getAllValues } from '@core/utils/enum-utils';
 import { Icon } from '@core/types/icon';
-import { ActivatedRoute } from '@angular/router';
-import { getLayout } from '@core/utils/app-route';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AppRoute, getLayout } from '@core/utils/app-route';
 import { ArticleService } from '@shared/services/article.service';
 import { ButtonSelectImageComponent } from '@components/button/button-select-image/button-select-image.component';
 import { PublishArticlePageService } from '@shared/services/publish-article-page.service';
@@ -45,7 +45,10 @@ export class PublishArticlePageComponent {
   protected readonly Icon = Icon;
   protected readonly getLayout = getLayout;
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {
     this.categories = getAllValues(Category);
     this.states = getAllValues(State);
     this.genders = getAllValues(Gender);
@@ -83,5 +86,14 @@ export class PublishArticlePageComponent {
 
   onImageSelected(image: string) {
     console.log('image', image);
+  }
+
+  publishArticle() {
+    if (this.articleId) {
+      this.publishArticleService.publishArticle(true);
+    } else {
+      this.publishArticleService.publishArticle(false);
+    }
+    this.router.navigate([`${AppRoute.Profile}`]).then();
   }
 }

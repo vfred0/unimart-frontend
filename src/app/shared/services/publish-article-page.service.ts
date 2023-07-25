@@ -7,6 +7,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ArticleSaveDto } from '@core/dtos/article-save.dto';
 import { State } from '@core/types/state';
 import { Category, CategoryService } from '@core/types/category';
+import { TypeArticle } from '@core/types/type-article';
+import { AuthService } from '@shared/services/auth.service';
 
 @Injectable()
 export class PublishArticlePageService {
@@ -14,6 +16,7 @@ export class PublishArticlePageService {
   private readonly http;
   private readonly articleMapper;
   private readonly articleService;
+  private authService;
   private readonly _form: FormGroup;
   private updateFormForArticleUpdate: boolean;
 
@@ -22,6 +25,7 @@ export class PublishArticlePageService {
     this.apiSignalState = new ApiSignalState<ArticleDto>({} as ArticleDto);
     this.articleMapper = inject(ArticleService);
     this.articleService = inject(ArticleService);
+    this.authService = inject(AuthService);
     this.updateFormForArticleUpdate = false;
     const article: ArticleSaveDto = {
       title: '',
@@ -73,6 +77,14 @@ export class PublishArticlePageService {
     return this._form.valid;
   }
 
+  get images(): Array<string> {
+    return this.article.images;
+  }
+
+  get containsImages(): boolean {
+    return this.images.length > 0;
+  }
+
   deleteImages() {
     this.article.images = [];
     this._form.get('images')?.setValue([]);
@@ -80,14 +92,6 @@ export class PublishArticlePageService {
 
   setValue(inputValue: string, value: string) {
     this._form.get(inputValue)?.setValue(value);
-  }
-
-  get images(): Array<string> {
-    return this.article.images;
-  }
-
-  get containsImages(): boolean {
-    return this.images.length > 0;
   }
 
   setArticleById(id: string): void {
@@ -100,24 +104,28 @@ export class PublishArticlePageService {
     this.article.category = this._form.get('category')?.value;
   }
 
-  publishArticle() {
-    let article: ArticleSaveDto = {} as ArticleSaveDto;
+  publishArticle(isUpdate: boolean) {
+    let article: ArticleSaveDto = this._form.value as ArticleSaveDto;
+    article.userId = this.authService.user.id as string;
     if (!this.withGender) {
       article = {
+        id: this.article.id,
         title: this.getValue('title'),
         description: this.getValue('description'),
         state: this.getValue('state'),
         category: this.getValue('category'),
         images: this.getValue('images'),
+        typeArticle: this.article.typeArticle,
       } as ArticleSaveDto;
     }
     if (this._form.valid) {
-      console.log('insert', article, this._form.valid, this._form.value);
+      if (isUpdate) {
+        this.articleService.update(article);
+      } else {
+        article.typeArticle = TypeArticle.Published;
+        this.articleService.save(article);
+      }
     }
-
-    // console.log('create', this._form.value);
-
-    // this.articleService.update(this.article.id as string, this.article);
   }
 
   setFormForUpdate() {
