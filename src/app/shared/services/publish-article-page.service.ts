@@ -1,7 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { ApiSignalState } from '@shared/services/api-signal-state';
 import { ArticleDto } from '@core/dtos/article.dto';
-import { HttpClient } from '@angular/common/http';
 import { ArticleService } from '@shared/services/article.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ArticleSaveDto } from '@core/dtos/article-save.dto';
@@ -9,30 +8,30 @@ import { State } from '@core/types/state';
 import { Category, CategoryService } from '@core/types/category';
 import { TypeArticle } from '@core/types/type-article';
 import { AuthService } from '@shared/services/auth.service';
+import { AppRoute } from '@core/utils/app-route';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class PublishArticlePageService {
   private readonly apiSignalState;
-  private readonly http;
-  private readonly articleMapper;
-  private readonly articleService;
+  private readonly articleService: ArticleService;
   private authService;
   private readonly _form: FormGroup;
   private updateFormForArticleUpdate: boolean;
+  private router;
 
   constructor() {
-    this.http = inject(HttpClient);
     this.apiSignalState = new ApiSignalState<ArticleDto>({} as ArticleDto);
-    this.articleMapper = inject(ArticleService);
     this.articleService = inject(ArticleService);
     this.authService = inject(AuthService);
+    this.router = inject(Router);
     this.updateFormForArticleUpdate = false;
     const article: ArticleSaveDto = {
       title: '',
       description: '',
       state: State.New,
       category: Category.TextBooksEducationalMaterial,
-      images: ['https://is.gd/XuVMzJ'] as Array<string>,
+      images: ['https://is.gd/w8TkJC'] as Array<string>,
     } as ArticleSaveDto;
     this._form = new FormGroup({
       title: new FormControl(article.title, [Validators.required]),
@@ -56,8 +55,8 @@ export class PublishArticlePageService {
     return new CategoryService().isWithGender(this.article.category);
   }
 
-  get article(): ArticleSaveDto {
-    return this.apiSignalState.result() as ArticleSaveDto;
+  get article(): ArticleDto {
+    return this.apiSignalState.result();
   }
 
   get isWorking() {
@@ -105,7 +104,37 @@ export class PublishArticlePageService {
   }
 
   publishArticle(isUpdate: boolean) {
-    const article: ArticleSaveDto = this._form.value as ArticleSaveDto;
+    const article = this.articleToSaveOrUpdate();
+    if (this._form.valid) {
+      if (isUpdate) {
+        this.update(article);
+      } else {
+        this.save(article);
+      }
+    }
+  }
+
+  private save(article: ArticleDto) {
+    article.typeArticle = TypeArticle.Published;
+    article.numbersProposals = 0;
+    article.date = new Date().toISOString();
+    this.articleService
+      .save(article)
+      .subscribe(() => this.router.navigate([`${AppRoute.Profile}`]).then());
+  }
+
+  private update(article: ArticleDto) {
+    article.id = this.article.id;
+    article.typeArticle = this.article.typeArticle;
+    article.numbersProposals = this.article.numbersProposals;
+    article.date = this.article.date;
+    this.articleService
+      .update(article)
+      .subscribe(() => this.router.navigate([`${AppRoute.Profile}`]).then());
+  }
+
+  private articleToSaveOrUpdate() {
+    const article: ArticleDto = this._form.value as ArticleDto;
     article.userId = this.authService.user.id as string;
     if (!this.withGender) {
       article.title = this.getValue('title');
@@ -114,16 +143,7 @@ export class PublishArticlePageService {
       article.category = this.getValue('category');
       article.images = this.getValue('images');
     }
-    if (this._form.valid) {
-      if (isUpdate) {
-        article.id = this.article.id;
-        article.typeArticle = this.article.typeArticle;
-        this.articleService.update(article);
-      } else {
-        article.typeArticle = TypeArticle.Published;
-        this.articleService.save(article);
-      }
-    }
+    return article;
   }
 
   setFormForUpdate() {
