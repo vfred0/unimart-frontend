@@ -9,14 +9,12 @@ export class ArticleService {
   private http = inject(HttpClient);
 
   save(article: ArticleSaveDto) {
-    this.http
-      .post<ArticleDto>(ArticleService.API_URL, article)
-      .subscribe(response => console.log(response));
+    this.http.post<ArticleDto>(ArticleService.API_URL, article).subscribe();
   }
 
-  update(article: ArticleDto) {
+  update(id: string, article: ArticleSaveDto): void {
     this.http
-      .put<ArticleDto>(`${ArticleService.API_URL}/${article.id}`, article)
+      .put<ArticleSaveDto>(`${ArticleService.API_URL}/${article.id}`, article)
       .subscribe();
   }
 
