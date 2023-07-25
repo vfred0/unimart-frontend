@@ -105,21 +105,19 @@ export class PublishArticlePageService {
   }
 
   publishArticle(isUpdate: boolean) {
-    let article: ArticleSaveDto = this._form.value as ArticleSaveDto;
+    const article: ArticleSaveDto = this._form.value as ArticleSaveDto;
     article.userId = this.authService.user.id as string;
     if (!this.withGender) {
-      article = {
-        id: this.article.id,
-        title: this.getValue('title'),
-        description: this.getValue('description'),
-        state: this.getValue('state'),
-        category: this.getValue('category'),
-        images: this.getValue('images'),
-        typeArticle: this.article.typeArticle,
-      } as ArticleSaveDto;
+      article.title = this.getValue('title');
+      article.description = this.getValue('description');
+      article.state = this.getValue('state');
+      article.category = this.getValue('category');
+      article.images = this.getValue('images');
     }
     if (this._form.valid) {
       if (isUpdate) {
+        article.id = this.article.id;
+        article.typeArticle = this.article.typeArticle;
         this.articleService.update(article);
       } else {
         article.typeArticle = TypeArticle.Published;
