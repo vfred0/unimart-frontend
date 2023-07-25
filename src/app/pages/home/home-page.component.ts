@@ -19,6 +19,7 @@ import { getLayout } from '@core/utils/app-route';
 import { ArticleCard } from '@core/models/article-card';
 import { HomeService } from '@shared/services/home.service';
 import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
+import { ArticleService } from '@shared/services/article.service';
 
 @Component({
   standalone: true,
@@ -32,7 +33,7 @@ import { ArticleMapperService } from '@shared/services/mappers/article-mapper.se
     MenuComponent,
     ReactiveFormsModule,
   ],
-  providers: [HomeService, ArticleMapperService],
+  providers: [HomeService, ArticleMapperService, ArticleService],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './home-page.component.html',
 })
