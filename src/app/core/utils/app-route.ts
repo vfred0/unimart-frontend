@@ -57,7 +57,7 @@ const routes: Array<IRoute> = [
   {
     path: AppRoute.EditArticle,
     title: 'Editar artículo',
-    withMenu: true,
+    withMenu: false,
     withHeader: true,
     withBack: true,
     withPreferences: true,
