@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { map, Observable, of, tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { map, Observable, of, switchMap, tap } from 'rxjs';
 import { LoginRequestDto } from '@core/dtos/login-request.dto';
 import { LoginResponseDto } from '@core/dtos/login-response.dto';
-import { User } from '@core/models/user';
+import { UserDto } from '@core/dtos/user.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -12,48 +12,48 @@ export class AuthService {
   private readonly API_AUTH_URL = `http://localhost:8080/api/v1/auth/login`;
   private readonly API_USERS_URL = `http://localhost:8080/api/v1/users`;
   private http: HttpClient;
-  private readonly USER_ID: string;
+  private readonly USER: string;
 
   constructor() {
-    this.USER_ID = 'user_id';
+    this.USER = 'user';
     this.http = inject(HttpClient);
   }
 
-  login(authDto: LoginRequestDto): Observable<boolean> {
+  get user(): UserDto {
+    return JSON.parse(localStorage.getItem(this.USER) || '{}');
+  }
+
+  login(authDto: LoginRequestDto): Observable<UserDto> {
     return this.http
-      .post<LoginResponseDto>(`${this.API_AUTH_URL}`, authDto)
+      .post<LoginResponseDto>(this.API_AUTH_URL, authDto)
       .pipe(
-        tap((userAuthDto: LoginResponseDto) => {
-          if (userAuthDto) {
-            localStorage.setItem(this.USER_ID, JSON.stringify(userAuthDto));
-          }
-        }),
-        map((userAuthDto: LoginResponseDto) => !!userAuthDto)
+        switchMap((response: LoginResponseDto) => this.getUser(response.id))
       );
+  }
+
+  getUser(userId: string): Observable<UserDto> {
+    return this.http.get<UserDto>(`${this.API_USERS_URL}/${userId}`).pipe(
+      tap((user: UserDto) => {
+        localStorage.setItem('user', JSON.stringify(user));
+      })
+    );
   }
 
   existsUser(): Observable<boolean> {
     if (this.existsUserInLocalStorage()) {
       return this.http
-        .get<User>(`${this.API_USERS_URL}/${this.getUser().id}`)
-        .pipe(map((user: User) => !!user));
+        .get<UserDto>(`${this.API_USERS_URL}/${this.user.id}`)
+        .pipe(map((user: UserDto) => !!user));
     }
     return of(false);
   }
 
   logout(): void {
-    localStorage.removeItem(this.USER_ID);
-  }
-
-  getUser(): LoginResponseDto {
-    const user = localStorage.getItem(this.USER_ID);
-    return {
-      id: JSON.parse(user || '').id,
-    };
+    localStorage.removeItem(this.USER);
   }
 
   existsUserInLocalStorage() {
-    const userId = localStorage.getItem(this.USER_ID);
+    const userId = localStorage.getItem(this.USER);
     return !!userId;
   }
 }
