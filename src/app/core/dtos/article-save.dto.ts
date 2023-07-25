@@ -11,6 +11,6 @@ export interface ArticleSaveDto {
   images: Array<string>;
   category: Category;
   state: State;
-  gender: Gender;
+  gender?: Gender;
   typeArticle: TypeArticle;
 }
