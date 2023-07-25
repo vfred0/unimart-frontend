@@ -1,5 +1,6 @@
 import { Category } from '@core/types/category';
 import { State } from '@core/types/state';
+import { TypeArticle } from '@core/types/type-article';
 
 export interface ArticleCard {
   id: string;
@@ -9,4 +10,5 @@ export interface ArticleCard {
   numberProposals: number;
   category: Category;
   state: State;
+  typeArticle?: TypeArticle;
 }

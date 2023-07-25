@@ -14,6 +14,7 @@ export class ArticleMapperService {
       numberProposals: article.numbersProposals,
       category: article.category,
       state: article.state,
+      typeArticle: article.typeArticle,
     } as ArticleCard;
   }
 
