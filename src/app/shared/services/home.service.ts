@@ -12,6 +12,7 @@ import { ArticleCard } from '@core/models/article-card';
 export class HomeService {
   private apiSignalState = new ApiSignalState<ArticleCard[]>([]);
   private articleMapper = inject(ArticleMapperService);
+  private articleService = inject(ArticleService);
   private http = inject(HttpClient);
 
   get totalArticlesCards(): number {
@@ -31,17 +32,13 @@ export class HomeService {
   }
 
   search(filterArticle: FilterArticleDto): void {
-    const observable = this.http
-      .get<Array<ArticleDto>>(
-        `${ArticleService.API_URL}/search?title=${filterArticle.title}&category=${filterArticle.category}&state=${filterArticle.state}`
-      )
-      .pipe(
-        map((articles: ArticleDto[]) => {
-          return articles.map((article: ArticleDto) =>
-            this.articleMapper.toArticleCard(article)
-          );
-        })
-      );
+    const observable = this.articleService.search(filterArticle).pipe(
+      map((articles: ArticleDto[]) => {
+        return articles.map((article: ArticleDto) =>
+          this.articleMapper.toArticleCard(article)
+        );
+      })
+    );
 
     this.apiSignalState.execute(observable);
   }

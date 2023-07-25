@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { ArticleDto } from '@core/dtos/article.dto';
 import { HttpClient } from '@angular/common/http';
 import { ArticleSaveDto } from '@core/dtos/article-save.dto';
+import { FilterArticleDto } from '@core/dtos/filter-article.dto';
 
 @Injectable()
 export class ArticleService {
@@ -24,5 +25,11 @@ export class ArticleService {
 
   getById(id: string) {
     return this.http.get<ArticleDto>(`${ArticleService.API_URL}/${id}`);
+  }
+
+  search(filterArticle: FilterArticleDto) {
+    return this.http.get<Array<ArticleDto>>(
+      `${ArticleService.API_URL}/search?title=${filterArticle.title}&category=${filterArticle.category}&state=${filterArticle.state}`
+    );
   }
 }
