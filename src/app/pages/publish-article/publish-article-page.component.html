@@ -1,14 +1,14 @@
-<div class="c-publish-article-page {{getLayout()}}">
+<div *ngIf="this.publishArticleService.isCompleted" class="c-publish-article-page {{getLayout()}}">
     <app-input
             (textChanged)="this.onTitleChanged($event)"
             [icon]="Icon.Edit"
             [placeholder]="'Ingresa el nombre del artículo'"
-            [value]="this.article.title"
+            [value]="this.publishArticleService.article.title"
             [title]="'Título'"/>
     <app-select
             (selectedOption)="onSelectedCategory($event)"
             [options]="this.categories"
-            [optionSelected]="this.article.category"
+            [optionSelected]="this.publishArticleService.article.category"
             [title]="'Categorías'"/>
 
     <div [class.double-column]="this.withGender"
@@ -16,22 +16,22 @@
         <ng-template [ngIf]="this.withGender">
             <app-select (selectedOption)="onSelectedGender($event)"
                         [options]="this.genders"
-                        [optionSelected]="this.article.gender"
+                        [optionSelected]="this.publishArticleService.article.gender"
                         [title]="'Género'"/>
         </ng-template>
         <app-select (selectedOption)="onSelectedState($event)"
                     [options]="this.states"
-                    [optionSelected]="this.article.state"
+                    [optionSelected]="this.publishArticleService.article.state"
                     [title]="'Estado'"/>
     </div>
     <app-input (textChanged)="this.onDescriptionChanged($event)"
                [isTextArea]="true"
                [placeholder]="'Ingresa la descripción del artículo'"
                [title]="'Descripción'"
-               [value]="this.article.description"/>
+               [value]="this.publishArticleService.article.description"/>
     <span class="o-text-xl-semibold">Galería</span>
     <ng-template [ngIf]="this.containsImages">
-        <app-gallery [images]="this.images"/>
+        <app-gallery [images]="this.publishArticleService.article.images"/>
     </ng-template>
 
     <div [class.c-publish-article-page__gallery-buttons]="this.containsImages">
