@@ -4,7 +4,7 @@ import { Gender } from '@core/types/gender';
 import { TypeArticle } from '@core/types/type-article';
 
 export interface ArticleSaveDto {
-  id?: string;
+  id: string;
   userId: string;
   title: string;
   description: string;

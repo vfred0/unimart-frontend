@@ -43,7 +43,7 @@
                         [typeButton]="TypeButton.Secondary"/>
         </ng-template>
     </div>
-    <div (click)="this.publishArticleService.publishArticle()"
+    <div (click)="this.publishArticle()"
          class="c-publish-article-page__container-proposed">
         <ng-template [ngIfElse]="publishArticleTemplate" [ngIf]="!this.publishArticleService.isFormValid">
             <span class="o-text-sm-bold">Por favor, antes de publicar el artículo, completa los campos obligatorios...</span>

@@ -6,7 +6,7 @@ import { UserDto } from '@core/dtos/user.dto';
 
 export interface ArticleDto {
   id: string;
-  userId?: string;
+  userId: string;
   user: UserDto;
   title: string;
   description: string;

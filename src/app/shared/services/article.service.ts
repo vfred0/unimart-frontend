@@ -12,7 +12,7 @@ export class ArticleService {
     this.http.post<ArticleDto>(ArticleService.API_URL, article).subscribe();
   }
 
-  update(id: string, article: ArticleSaveDto): void {
+  update(article: ArticleSaveDto): void {
     this.http
       .put<ArticleSaveDto>(`${ArticleService.API_URL}/${article.id}`, article)
       .subscribe();
