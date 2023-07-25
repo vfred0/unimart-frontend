@@ -5,7 +5,7 @@ import { HeaderComponent } from '@components/header/header.component';
 import { InputComponent } from '@components/input/input.component';
 import { MenuComponent } from '@components/menu/menu.component';
 import { SelectComponent } from '@components/select/select.component';
-import { Category, CategoryService } from '@core/types/category';
+import { Category } from '@core/types/category';
 import { State } from '@core/types/state';
 import { Gender } from '@core/types/gender';
 import { GalleryComponent } from '@components/gallery/gallery.component';
@@ -17,7 +17,7 @@ import { ActivatedRoute } from '@angular/router';
 import { getLayout } from '@core/utils/app-route';
 import { ArticleService } from '@shared/services/article.service';
 import { ButtonSelectImageComponent } from '@components/button/button-select-image/button-select-image.component';
-import { PublishArticleService } from '@shared/services/publish-article.service';
+import { PublishArticlePageService } from '@shared/services/publish-article-page.service';
 
 @Component({
   standalone: true,
@@ -32,7 +32,7 @@ import { PublishArticleService } from '@shared/services/publish-article.service'
     ButtonComponent,
     ButtonSelectImageComponent,
   ],
-  providers: [ArticleService, PublishArticleService],
+  providers: [ArticleService, PublishArticlePageService],
   templateUrl: './publish-article-page.component.html',
 })
 export class PublishArticlePageComponent {
@@ -40,7 +40,7 @@ export class PublishArticlePageComponent {
   states: Array<string>;
   genders: Array<string>;
   articleId: string;
-  publishArticleService: PublishArticleService;
+  publishArticleService: PublishArticlePageService;
   protected readonly TypeButton = TypeButton;
   protected readonly Icon = Icon;
   protected readonly getLayout = getLayout;
@@ -50,25 +50,11 @@ export class PublishArticlePageComponent {
     this.states = getAllValues(State);
     this.genders = getAllValues(Gender);
     this.articleId = this.activatedRoute.snapshot.params['id'];
-    this.publishArticleService = inject(PublishArticleService);
+    this.publishArticleService = inject(PublishArticlePageService);
 
     if (this.articleId) {
       this.publishArticleService.setArticleById(this.articleId);
     }
-  }
-
-  get images(): Array<string> {
-    return this.publishArticleService.article.images;
-  }
-
-  get withGender(): boolean {
-    return new CategoryService().isWithGender(
-      this.publishArticleService.article.category
-    );
-  }
-
-  get containsImages(): boolean {
-    return this.images.length > 0;
   }
 
   onTitleChanged(text: string) {
@@ -93,14 +79,6 @@ export class PublishArticlePageComponent {
 
   onDescriptionChanged(description: string) {
     this.publishArticleService.setValue('description', description);
-  }
-
-  onDeleteImages() {
-    this.publishArticleService.deleteImages();
-  }
-
-  publishArticle() {
-    this.publishArticleService.publishArticle();
   }
 
   onImageSelected(image: string) {

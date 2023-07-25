@@ -30,20 +30,20 @@
                [title]="'Descripción'"
                [value]="this.publishArticleService.article.description"/>
     <span class="o-text-xl-semibold">Galería</span>
-    <ng-template [ngIf]="this.containsImages">
+    <ng-template [ngIf]="this.publishArticleService.containsImages">
         <app-gallery [images]="this.publishArticleService.article.images"/>
     </ng-template>
 
-    <div [class.c-publish-article-page__gallery-buttons]="this.containsImages">
+    <div [class.c-publish-article-page__gallery-buttons]="this.publishArticleService.containsImages">
         <app-button-select-image (imageSelected)="onImageSelected($event)"/>
-        <ng-template [ngIf]="this.containsImages">
-            <app-button (click)="this.onDeleteImages()"
+        <ng-template [ngIf]="this.publishArticleService.containsImages">
+            <app-button (click)="this.publishArticleService.deleteImages()"
                         [description]="'Eliminar fotos'"
                         [icon]="Icon.Delete"
                         [typeButton]="TypeButton.Secondary"/>
         </ng-template>
     </div>
-    <div (click)="this.publishArticle()"
+    <div (click)="this.publishArticleService.publishArticle()"
          class="c-publish-article-page__container-proposed">
         <ng-template [ngIfElse]="publishArticleTemplate" [ngIf]="!this.publishArticleService.isFormValid">
             <span class="o-text-sm-bold">Por favor, antes de publicar el artículo, completa los campos obligatorios...</span>

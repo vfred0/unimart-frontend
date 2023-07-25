@@ -6,11 +6,10 @@ import { ArticleService } from '@shared/services/article.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ArticleSaveDto } from '@core/dtos/article-save.dto';
 import { State } from '@core/types/state';
-import { Category } from '@core/types/category';
-import { Gender } from '@core/types/gender';
+import { Category, CategoryService } from '@core/types/category';
 
 @Injectable()
-export class PublishArticleService {
+export class PublishArticlePageService {
   private readonly apiSignalState;
   private readonly http;
   private readonly articleMapper;
@@ -42,6 +41,15 @@ export class PublishArticleService {
       images: new FormControl(article.images, [Validators.required]),
     });
     this.apiSignalState.setSucceed(article as ArticleDto);
+    this.setFormForUpdate();
+  }
+
+  get gender(): string {
+    return this.withGender ? (this.article.gender as string) : '';
+  }
+
+  get withGender(): boolean {
+    return new CategoryService().isWithGender(this.article.category);
   }
 
   get article(): ArticleSaveDto {
@@ -72,6 +80,24 @@ export class PublishArticleService {
 
   setValue(inputValue: string, value: string) {
     this._form.get(inputValue)?.setValue(value);
+  }
+
+  get images(): Array<string> {
+    return this.article.images;
+  }
+
+  get containsImages(): boolean {
+    return this.images.length > 0;
+  }
+
+  setArticleById(id: string): void {
+    this.apiSignalState.execute(this.articleService.getById(id));
+    this.updateFormForArticleUpdate = true;
+  }
+
+  setCategory(option: string) {
+    this.setValue('category', option);
+    this.article.category = this._form.get('category')?.value;
   }
 
   publishArticle() {
