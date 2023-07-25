@@ -3,7 +3,7 @@ import { ArticleCard } from '@core/models/article-card';
 import { Injectable } from '@angular/core';
 import { ArticlePage } from '@core/models/article-page';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ArticleMapperService {
   toArticleCard(article: ArticleDto): ArticleCard {
     return {
