@@ -15,6 +15,6 @@ export interface ArticleDto {
   state: State;
   gender: Gender;
   typeArticle: TypeArticle;
-  numbersProposals?: number;
+  numbersProposals: number;
   date: string;
 }
