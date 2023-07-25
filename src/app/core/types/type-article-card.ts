@@ -1,8 +1,8 @@
 export enum TypeArticleCard {
   Normal = 'normal',
   Suggest = 'Proponer',
-  Published = 'Publicados',
-  Proposed = 'Propuestos',
+  Published = 'Publicado',
+  Proposed = 'Propuesto',
 }
 
 export function isSuggest(typeArticle: TypeArticleCard): boolean {
