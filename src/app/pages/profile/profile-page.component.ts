@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputComponent } from '@shared/components/input/input.component';
 import { HeaderComponent } from '@shared/components/header/header.component';
@@ -6,10 +6,7 @@ import { SelectComponent } from '@shared/components/select/select.component';
 import { TypeArticle } from '@core/types/type-article';
 import { getAllValues } from '@core/utils/enum-utils';
 import { ArticleCardComponent } from '@shared/components/article-card/article-card.component';
-import { ArticleCard } from '@core/models/article-card';
-import { Router } from '@angular/router';
 import { Data } from '@core/utils/data';
-import { isPublished, TypeArticleCard } from '@core/types/type-article-card';
 import { FilterRating } from '@core/types/filter-rating';
 import { ViewRatingCardComponent } from '@components/rating/view-rating-card/view-rating-card.component';
 import { ViewRatingCard } from '@core/models/view-rating-card';
@@ -19,6 +16,9 @@ import { Icon } from '@core/types/icon';
 import { PublishedArticleCardComponent } from '@components/article-card/published-article-card/published-article-card.component';
 import { ProposedArticleCardComponent } from '@components/article-card/proposed-article-card/proposed-article-card.component';
 import { getLayout } from '@core/utils/app-route';
+import { ProfilePageService } from '@shared/services/profile-page.service';
+import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
+import { ArticleService } from '@shared/services/article.service';
 
 @Component({
   standalone: true,
@@ -34,23 +34,23 @@ import { getLayout } from '@core/utils/app-route';
     PublishedArticleCardComponent,
     ProposedArticleCardComponent,
   ],
+  providers: [ProfilePageService, ArticleMapperService, ArticleService],
 })
 export class ProfilePageComponent {
-  articleCards: Array<ArticleCard>;
   typeArticles: Array<string>;
-  typeArticleCard: TypeArticleCard;
   filterRatings: Array<FilterRating>;
   viewRatingCards: Array<ViewRatingCard>;
+  profilePageService: ProfilePageService;
   protected readonly TypeButton = TypeButton;
   protected readonly Icon = Icon;
   protected readonly getLayout = getLayout;
 
-  constructor(private router: Router) {
+  constructor() {
     this.typeArticles = getAllValues(TypeArticle);
-    this.articleCards = Data.articleCards;
-    this.typeArticleCard = TypeArticleCard.Normal;
     this.filterRatings = getAllValues(FilterRating);
     this.viewRatingCards = Data.viewRatingCards;
+    this.profilePageService = inject(ProfilePageService);
+    this.profilePageService.allArticles();
   }
 
   get averageRating(): string {
@@ -61,17 +61,11 @@ export class ProfilePageComponent {
   }
 
   onTextSearchChanged(title: string) {
-    this.articleCards = Data.articleCards.filter(articleCard =>
-      articleCard.title.toLowerCase().includes(title.toLowerCase())
-    );
-  }
-
-  get isPublished(): boolean {
-    return isPublished(this.typeArticleCard);
+    this.profilePageService.filterByTitle(title);
   }
 
   onSelectedTypeArticle(typeArticle: string) {
-    this.typeArticleCard = typeArticle as TypeArticleCard;
+    this.profilePageService.filterByTypeArticle(typeArticle as TypeArticle);
   }
 
   onSelectedRating(filterRating: string) {
@@ -84,7 +78,7 @@ export class ProfilePageComponent {
   }
 
   onDeleteArticle(articleId: string) {
-    console.log(`Eliminar artículo ${articleId}`);
+    this.profilePageService.deleteArticle(articleId);
   }
 
   onDeleteProposed(articleId: string) {
