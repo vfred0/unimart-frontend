@@ -4,7 +4,7 @@ import { HeaderComponent } from '@components/header/header.component';
 import { InputComponent } from '@components/input/input.component';
 import { ButtonComponent } from '@components/button/button.component';
 import { Icon } from '@core/types/icon';
-import { User } from '@core/models/user';
+import { UserDto } from '@core/dtos/user.dto';
 import { Data } from '@core/utils/data';
 import { getLayout } from '@core/utils/app-route';
 
@@ -20,7 +20,7 @@ import { getLayout } from '@core/utils/app-route';
   templateUrl: './edit-profile-page.component.html',
 })
 export class EditProfilePageComponent {
-  user: User;
+  user: UserDto;
   protected readonly Icon = Icon;
 
   constructor() {

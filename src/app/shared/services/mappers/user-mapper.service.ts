@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { User } from '@core/models/user';
+import { UserDto } from '@core/dtos/user.dto';
 import { HeaderDetail } from '@core/utils/header-detail';
 
 @Injectable()
 export class UserMapperService {
-  toHeaderDetails(user: User): HeaderDetail {
+  toHeaderDetails(user: UserDto): HeaderDetail {
     return {
       title: user.name,
       description: user.about,

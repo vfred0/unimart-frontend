@@ -2,11 +2,12 @@ import { Category } from '@core/types/category';
 import { State } from '@core/types/state';
 import { Gender } from '@core/types/gender';
 import { TypeArticle } from '@core/types/type-article';
-import { User } from '@core/models/user';
+import { UserDto } from '@core/dtos/user.dto';
 
 export interface ArticleDto {
   id: string;
-  user: User;
+  userId?: string;
+  user: UserDto;
   title: string;
   description: string;
   images: Array<string>;
@@ -14,6 +15,6 @@ export interface ArticleDto {
   state: State;
   gender: Gender;
   typeArticle: TypeArticle;
-  numbersProposals: number;
+  numbersProposals?: number;
   date: string;
 }
