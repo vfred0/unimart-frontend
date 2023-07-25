@@ -1,5 +1,3 @@
-import { Data } from '@core/utils/data';
-
 export enum AppRoute {
   Home = '',
   Article = 'articulo',
@@ -31,7 +29,7 @@ interface IRoute {
 const routes: Array<IRoute> = [
   {
     path: AppRoute.Home,
-    title: Data.articlePage.user.name,
+    title: 'Inicio',
     withMenu: true,
     withHeader: true,
     withBack: false,
@@ -171,4 +169,8 @@ export function isArticleRoute(): boolean {
 export function getLayout(): string {
   const className = 'o-layout';
   return isWithMenu() ? `${className}-with-menu` : `${className}-without-menu`;
+}
+
+export function isHomeRoute(): boolean {
+  return route === AppRoute.Home;
 }
