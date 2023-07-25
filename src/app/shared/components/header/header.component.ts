@@ -9,6 +9,7 @@ import {
   AppRoute,
   getRouteTitle,
   isArticleRoute,
+  isHomeRoute,
   isWithBack,
   isWithHeader,
   isWithPreferences,
@@ -17,8 +18,8 @@ import {
 } from '@core/utils/app-route';
 import { HeaderDetailComponent } from '@components/header-detail/header-detail.component';
 import { HeaderDetail } from '@core/utils/header-detail';
-import { Data } from '@core/utils/data';
 import { AuthService } from '@shared/services/auth.service';
+import { UserMapperService } from '@shared/services/mappers/user-mapper.service';
 
 @Component({
   selector: 'app-header',
@@ -30,6 +31,7 @@ import { AuthService } from '@shared/services/auth.service';
     NgOptimizedImage,
     HeaderDetailComponent,
   ],
+  providers: [UserMapperService],
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit {
@@ -46,7 +48,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private router: Router,
     private location: Location,
-    private authService: AuthService
+    private authService: AuthService,
+    private userMapperService: UserMapperService
   ) {
     this.showPreferences = false;
     this.showHeader = false;
@@ -68,8 +71,12 @@ export class HeaderComponent implements OnInit {
           this.isWithButtonEditProfile =
             isWithPreferencesAndButtonEditProfile();
           this.isWithBack = isWithBack();
-          this.headerDetail.title = getRouteTitle();
-          this.headerDetail.photo = Data.headerDetail.photo;
+          this.headerDetail = this.userMapperService.toHeaderDetails(
+            this.authService.user
+          );
+          if (!isHomeRoute()) {
+            this.headerDetail.title = getRouteTitle();
+          }
           this.isForArticlePage = isArticleRoute();
         }
       }

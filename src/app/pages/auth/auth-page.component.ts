@@ -43,8 +43,8 @@ export class AuthPageComponent {
         username: this.form.controls['username'].value,
         password: this.form.controls['password'].value,
       };
-      this.authService.login(loginRequestDto).subscribe((response: boolean) => {
-        if (response) {
+      this.authService.login(loginRequestDto).subscribe(response => {
+        if (!!response) {
           this.router.navigate([AppRoute.Home]).then();
         }
       });
