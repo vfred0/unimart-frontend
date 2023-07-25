@@ -9,7 +9,7 @@ import { ArticleMapperService } from '@shared/services/mappers/article-mapper.se
 import { AuthService } from '@shared/services/auth.service';
 import { TypeArticle } from '@core/types/type-article';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ProfilePageService {
   private apiSignalState = new ApiSignalState<ArticleCard[]>([]);
   private readonly articleMapper = inject(ArticleMapperService);
@@ -67,5 +67,14 @@ export class ProfilePageService {
 
   filterByTypeArticle(typeArticle: TypeArticle) {
     this.typeArticle = typeArticle;
+  }
+
+  get categories() {
+    return this.apiSignalState
+      .result()
+      .map(articleCard => articleCard.category)
+      .filter(
+        (category, index, categories) => categories.indexOf(category) === index
+      );
   }
 }
