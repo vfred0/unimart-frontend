@@ -38,7 +38,7 @@
         <app-gallery [images]="this.articlePageService.articlePage.images"/>
         <ng-template [ngIf]="!this.isOnlyViewPublication">
             <div class="c-article-page__buttons">
-                <ng-template [ngIf]="!this.isSuggest">
+                <ng-template [ngIf]="!this.isSuggest && !this.articlePageService.isMyArticle">
                     <app-button (click)="this.onSuggestOrProposedArticle()"
                                 [description]="this.isProposed ? 'Aceptar intercambio' : 'Proponer artículo'"
                                 [icon]="this.isProposed ? Icon.Exchanges : Icon.Hand"

@@ -7,6 +7,7 @@ import { ArticlePage } from '@core/models/article-page';
 import { ArticleService } from '@shared/services/article.service';
 import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
 import { UserMapperService } from '@shared/services/mappers/user-mapper.service';
+import { AuthService } from '@shared/services/auth.service';
 
 @Injectable()
 export class ArticlePageService {
@@ -14,6 +15,7 @@ export class ArticlePageService {
   private http = inject(HttpClient);
   private articleMapper = inject(ArticleMapperService);
   private userMapper = inject(UserMapperService);
+  private authService = inject(AuthService);
 
   get user() {
     return this.articlePage.user;
@@ -25,6 +27,10 @@ export class ArticlePageService {
 
   get articlePage(): ArticlePage {
     return this.articleMapper.toArticlePage(this.apiSignalState.result());
+  }
+
+  get isMyArticle(): boolean {
+    return this.authService.containsId(this.articlePage.user.id);
   }
 
   get isWorking() {

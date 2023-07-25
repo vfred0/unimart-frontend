@@ -56,4 +56,8 @@ export class AuthService {
     const userId = localStorage.getItem(this.USER);
     return !!userId;
   }
+
+  containsId(id: string | undefined) {
+    return this.user.id === id;
+  }
 }
