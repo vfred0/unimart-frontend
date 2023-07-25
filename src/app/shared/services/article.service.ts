@@ -1,7 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { ArticleDto } from '@core/dtos/article.dto';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { ArticleSaveDto } from '@core/dtos/article-save.dto';
 
 @Injectable()
@@ -22,13 +21,6 @@ export class ArticleService {
   }
 
   delete(id: string) {
-    this.http
-      .delete(`${ArticleService.API_URL}/${id}`)
-      .subscribe()
-      .unsubscribe();
-  }
-
-  private getAll(): Observable<ArticleDto[]> {
-    return this.http.get<Array<ArticleDto>>(ArticleService.API_URL);
+    return this.http.delete(`${ArticleService.API_URL}/${id}`);
   }
 }
