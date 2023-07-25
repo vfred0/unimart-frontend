@@ -123,7 +123,7 @@ export class PublishArticlePageComponent {
   publishArticle() {
     if (this.form.valid) {
       const articleDto: ArticleSaveDto = {
-        userId: this.authService.getUser().id,
+        userId: this.authService.user.id as string,
         title: this.getValue('title'),
         description: this.getValue('description'),
         state: this.getValue('state') as State,
