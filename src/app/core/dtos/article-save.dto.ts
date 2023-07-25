@@ -13,4 +13,5 @@ export interface ArticleSaveDto {
   state: State;
   gender?: Gender;
   typeArticle: TypeArticle;
+  // numberProposals: number;
 }
