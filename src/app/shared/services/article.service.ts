@@ -23,4 +23,8 @@ export class ArticleService {
   delete(id: string) {
     return this.http.delete(`${ArticleService.API_URL}/${id}`);
   }
+
+  getById(id: string) {
+    return this.http.get<ArticleDto>(`${ArticleService.API_URL}/${id}`);
+  }
 }
