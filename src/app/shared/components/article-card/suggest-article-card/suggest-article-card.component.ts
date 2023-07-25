@@ -1,4 +1,4 @@
-import { Component, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ArticleCardComponent } from '@components/article-card/article-card.component';
 import { ButtonComponent } from '@components/button/button.component';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './suggest-article-card.component.html',
 })
 export class SuggestArticleCardComponent extends ArticleCardComponent {
-  private suggestArticle: EventEmitter<string>;
+  @Output() suggestArticle: EventEmitter<string>;
 
   constructor(protected override router: Router) {
     super(router);
@@ -20,6 +20,5 @@ export class SuggestArticleCardComponent extends ArticleCardComponent {
 
   onSuggestArticle(articleId: string) {
     this.suggestArticle.emit(articleId);
-    console.log('Suggest article: ' + articleId);
   }
 }
