@@ -1,11 +1,8 @@
-export interface ExchangeSaveDto {
-  articleId: string;
-  articleProposedId: string;
+export interface ExchangeDto {
+  exchangeId: string;
+  userName: string;
+  userPhoto: string;
+  articleToExchange: string;
+  articleToReceive: string;
+  date: string;
 }
-
-// id: string,
-//     userName: string,
-//     userPhoto: string,
-//     articleToExchange: string,
-//     articleToReceive: string,
-//     date: string,

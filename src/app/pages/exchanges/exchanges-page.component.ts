@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '@components/header/header.component';
 import { ExchangeCardComponent } from '@pages/exchanges/components/exchange-card/exchange-card.component';
-import { ExchangeCard } from '@core/models/exchange-card';
+import { ExchangeDto } from '@core/dtos/exchange/exchange.dto';
 import { Data } from '@core/utils/data';
 import { AddRatingComponent } from '@components/rating/add-rating/add-rating.component';
 import { getLayout } from '@core/utils/app-route';
@@ -18,7 +18,7 @@ import { getLayout } from '@core/utils/app-route';
   templateUrl: './exchanges-page.component.html',
 })
 export class ExchangesPageComponent {
-  exchangeCards: Array<ExchangeCard>;
+  exchangeCards: Array<ExchangeDto>;
   protected readonly getLayout = getLayout;
 
   constructor() {

@@ -2,7 +2,7 @@ import { ArticleCard } from '@core/models/article-card';
 import { Category } from '@core/types/category';
 import { State } from '@core/types/state';
 import { ViewRatingCard } from '@core/models/view-rating-card';
-import { ExchangeCard } from '@core/models/exchange-card';
+import { ExchangeDto } from '@core/dtos/exchange/exchange.dto';
 import { ArticlePage } from '@core/models/article-page';
 import { HeaderDetail } from '@core/utils/header-detail';
 import { Gender } from '@core/types/gender';
@@ -13,7 +13,7 @@ interface Data {
   articlePage: ArticlePage;
   article: Article;
   viewRatingCards: Array<ViewRatingCard>;
-  exchangeCards: Array<ExchangeCard>;
+  exchangeCards: Array<ExchangeDto>;
   articleCards: Array<ArticleCard>;
 }
 

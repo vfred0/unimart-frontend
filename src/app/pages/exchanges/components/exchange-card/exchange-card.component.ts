@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '@components/header/header.component';
-import { ExchangeCard } from '@core/models/exchange-card';
+import { ExchangeDto } from '@core/dtos/exchange/exchange.dto';
 import { ButtonComponent } from '@components/button/button.component';
 import { TypeButton } from '@core/types/type-button';
 import { AddRatingComponent } from '@components/rating/add-rating/add-rating.component';
@@ -23,7 +23,7 @@ import { Data } from '@core/utils/data';
   templateUrl: './exchange-card.component.html',
 })
 export class ExchangeCardComponent {
-  @Input() exchangeCard: ExchangeCard;
+  @Input() exchangeCard: ExchangeDto;
   @Output() discardExchange: EventEmitter<string>;
   showAddRating: boolean;
   headerDetail: HeaderDetail;
@@ -31,7 +31,7 @@ export class ExchangeCardComponent {
   protected readonly Icon = Icon;
 
   constructor() {
-    this.exchangeCard = {} as ExchangeCard;
+    this.exchangeCard = {} as ExchangeDto;
     this.discardExchange = new EventEmitter<string>();
     this.showAddRating = false;
     this.headerDetail = Data.headerDetail;
