@@ -26,6 +26,7 @@ export class ProposedArticlesPageComponent {
 
   constructor(private activatedRoute: ActivatedRoute) {
     this.service = inject(ProposedArticlesPageService);
+    this.service.proposedId = this.activatedRoute.snapshot.params['articleId'];
     this.service.proposedArticles(
       this.activatedRoute.snapshot.params['articleId']
     );

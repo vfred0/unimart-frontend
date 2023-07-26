@@ -9,6 +9,7 @@ import { ArticleCard } from '@core/models/article-card';
 
 @Injectable()
 export class ProposedArticlesPageService {
+  proposedId = '';
   private apiSignalState = new ApiSignalState<ArticleCard[]>([]);
   private articleMapper = inject(ArticleMapperService);
   private articleService = inject(ArticleService);
@@ -41,6 +42,7 @@ export class ProposedArticlesPageService {
   get isWorking() {
     return this.apiSignalState.isWorking();
   }
+
   proposedArticles(articleId: string): void {
     const observable = this.articleService.proposedArticles(articleId).pipe(
       map((articles: ArticleDto[]) => {
