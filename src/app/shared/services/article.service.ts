@@ -44,4 +44,10 @@ export class ArticleService {
       proposalArticleDto
     );
   }
+
+  proposedArticles(articleId: string) {
+    return this.http.get<Array<ArticleDto>>(
+      `${ArticleService.API_URL}/proposedArticles/${articleId}`
+    );
+  }
 }

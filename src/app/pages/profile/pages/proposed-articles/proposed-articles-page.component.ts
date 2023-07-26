@@ -1,13 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '@components/header/header.component';
-import { ArticleCard } from '@core/models/article-card';
-import { Data } from '@core/utils/data';
 import { ArticleCardComponent } from '@components/article-card/article-card.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { SelectComponent } from '@components/select/select.component';
 import { getLayout } from '@core/utils/app-route';
 import { ProposedArticleCardComponent } from '@components/article-card/proposed-article-card/proposed-article-card.component';
+import { ProposedArticlesPageService } from '@shared/services/proposed-articles-page.service';
 
 @Component({
   standalone: true,
@@ -18,24 +17,21 @@ import { ProposedArticleCardComponent } from '@components/article-card/proposed-
     SelectComponent,
     ProposedArticleCardComponent,
   ],
+  providers: [ProposedArticlesPageService],
   templateUrl: './proposed-articles-page.component.html',
 })
 export class ProposedArticlesPageComponent {
-  articleCards: Array<ArticleCard>;
-  categories: Array<string>;
+  service: ProposedArticlesPageService;
   protected readonly getLayout = getLayout;
-  constructor(private router: Router) {
-    this.articleCards = Data.articleCards;
-    this.categories = this.articleCards
-      .map(articleCard => articleCard.category)
-      .filter(
-        (category, index, categories) => categories.indexOf(category) === index
-      );
+
+  constructor(private activatedRoute: ActivatedRoute) {
+    this.service = inject(ProposedArticlesPageService);
+    this.service.proposedArticles(
+      this.activatedRoute.snapshot.params['articleId']
+    );
   }
 
   onSelectedCategory(category: string) {
-    this.articleCards = Data.articleCards.filter(
-      articleCard => articleCard.category === category
-    );
+    this.service.filterByCategory(category);
   }
 }
