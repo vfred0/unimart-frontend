@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { ArticleDto } from '@core/dtos/article.dto';
+import { ArticleDto } from '@core/dtos/article/article.dto';
 import { HttpClient } from '@angular/common/http';
-import { FilterArticleDto } from '@core/dtos/filter-article.dto';
-import { SuggestArticleDto } from '@core/dtos/suggest-article.dto';
+import { FilterArticleDto } from '@core/dtos/article/filter-article.dto';
+import { SuggestArticleDto } from '@core/dtos/article/suggest-article.dto';
 
 @Injectable({ providedIn: 'root' })
 export class ArticleService {

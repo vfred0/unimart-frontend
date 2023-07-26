@@ -1,5 +1,5 @@
 import { map } from 'rxjs';
-import { ArticleDto } from '@core/dtos/article.dto';
+import { ArticleDto } from '@core/dtos/article/article.dto';
 import { inject, Injectable } from '@angular/core';
 import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
 import { HttpClient } from '@angular/common/http';

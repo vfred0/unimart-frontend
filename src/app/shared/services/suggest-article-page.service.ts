@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { ProfilePageService } from '@shared/services/profile-page.service';
 import { ArticleCard } from '@core/models/article-card';
-import { SuggestArticleDto } from '@core/dtos/suggest-article.dto';
+import { SuggestArticleDto } from '@core/dtos/article/suggest-article.dto';
 import { ArticleService } from '@shared/services/article.service';
 import { AppRoute } from '@core/utils/app-route';
 import { Router } from '@angular/router';

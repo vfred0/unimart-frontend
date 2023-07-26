@@ -1,7 +1,7 @@
-import { FilterArticleDto } from '@core/dtos/filter-article.dto';
+import { FilterArticleDto } from '@core/dtos/article/filter-article.dto';
 import { map, Observable } from 'rxjs';
 import { ArticleCard } from '@core/models/article-card';
-import { ArticleDto } from '@core/dtos/article.dto';
+import { ArticleDto } from '@core/dtos/article/article.dto';
 import { inject, Injectable } from '@angular/core';
 import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
 import { HttpClient } from '@angular/common/http';

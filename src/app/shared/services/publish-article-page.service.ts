@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { ApiSignalState } from '@shared/services/api-signal-state';
-import { ArticleDto } from '@core/dtos/article.dto';
+import { ArticleDto } from '@core/dtos/article/article.dto';
 import { ArticleService } from '@shared/services/article.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ArticleSaveDto } from '@core/dtos/article-save.dto';
+import { ArticleSaveDto } from '@core/dtos/article/article-save.dto';
 import { State } from '@core/types/state';
 import { Category, CategoryService } from '@core/types/category';
 import { TypeArticle } from '@core/types/type-article';

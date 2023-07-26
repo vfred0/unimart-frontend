@@ -1,4 +1,4 @@
-import { ArticleDto } from '@core/dtos/article.dto';
+import { ArticleDto } from '@core/dtos/article/article.dto';
 import { ArticleCard } from '@core/models/article-card';
 import { Injectable } from '@angular/core';
 import { ArticlePage } from '@core/models/article-page';

@@ -16,7 +16,7 @@ import { HeaderDetailComponent } from '@components/header-detail/header-detail.c
 import { ArticlePageService } from '@shared/services/article-page.service';
 import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
 import { UserMapperService } from '@shared/services/mappers/user-mapper.service';
-import { ExchangeDto } from '@core/dtos/exchange.dto';
+import { ExchangeSaveDto } from '@core/dtos/exchange/exchange-save.dto';
 import { ExchangeService } from '@shared/services/exchange.service';
 
 @Component({
@@ -90,7 +90,7 @@ export class ArticlePageComponent {
       const exchange = {
         articleId: this.id,
         articleProposedId: history.state.articleProposedId,
-      } as ExchangeDto;
+      } as ExchangeSaveDto;
       this.exchangeService.save(exchange).subscribe(() => {
         this.router.navigate([AppRoute.Exchanges]).then();
       });

@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable, of, switchMap, tap } from 'rxjs';
-import { LoginRequestDto } from '@core/dtos/login-request.dto';
-import { LoginResponseDto } from '@core/dtos/login-response.dto';
+import { LoginRequestDto } from '@core/dtos/login/login-request.dto';
+import { LoginResponseDto } from '@core/dtos/login/login-response.dto';
 import { UserDto } from '@core/dtos/user.dto';
 
 @Injectable({

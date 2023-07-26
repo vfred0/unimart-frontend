@@ -8,7 +8,7 @@ import { SuggestArticleCardComponent } from '@components/article-card/suggest-ar
 import { getLayout } from '@core/utils/app-route';
 import { SuggestArticlePageService } from '@shared/services/suggest-article-page.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SuggestArticleDto } from '@core/dtos/suggest-article.dto';
+import { SuggestArticleDto } from '@core/dtos/article/suggest-article.dto';
 
 @Component({
   standalone: true,

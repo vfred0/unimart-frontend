@@ -7,7 +7,7 @@ import { ButtonComponent } from '@components/button/button.component';
 import { TypeButton } from '@core/types/type-button';
 import { AuthService } from '@shared/services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginRequestDto } from '@core/dtos/login-request.dto';
+import { LoginRequestDto } from '@core/dtos/login/login-request.dto';
 import { AppRoute } from '@core/utils/app-route';
 import { Router } from '@angular/router';
 
