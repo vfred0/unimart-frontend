@@ -16,6 +16,7 @@ export class ArticlePageService {
   private articleMapper = inject(ArticleMapperService);
   private userMapper = inject(UserMapperService);
   private authService = inject(AuthService);
+  private articleService: ArticleService = inject(ArticleService);
 
   get user() {
     return this.articlePage.user;
@@ -42,9 +43,7 @@ export class ArticlePageService {
   }
 
   getById(id: string): void {
-    const getById = this.http.get<ArticleDto>(
-      `${ArticleService.API_URL}/${id}`
-    );
+    const getById = this.articleService.getById(id);
     this.apiSignalState.execute(getById);
   }
 }
