@@ -8,6 +8,7 @@ import { ArticleService } from '@shared/services/article.service';
 import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
 import { UserMapperService } from '@shared/services/mappers/user-mapper.service';
 import { AuthService } from '@shared/services/auth.service';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class ArticlePageService {
@@ -17,6 +18,13 @@ export class ArticlePageService {
   private userMapper = inject(UserMapperService);
   private authService = inject(AuthService);
   private articleService: ArticleService = inject(ArticleService);
+
+  get isProposed(): Observable<boolean> {
+    return this.articleService.isProposedArticleByUserIdAndArticleId(
+      this.authService.user.id as string,
+      this.articlePage.id
+    );
+  }
 
   get user() {
     return this.articlePage.user;

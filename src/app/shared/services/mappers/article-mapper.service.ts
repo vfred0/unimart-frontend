@@ -20,6 +20,7 @@ export class ArticleMapperService {
 
   toArticlePage(article: ArticleDto): ArticlePage {
     return {
+      id: article.id,
       title: article.title,
       description: article.description,
       category: article.category,

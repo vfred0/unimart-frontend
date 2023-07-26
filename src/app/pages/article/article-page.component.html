@@ -38,12 +38,19 @@
         <app-gallery [images]="this.articlePageService.articlePage.images"/>
         <ng-template [ngIf]="!this.isOnlyViewPublication">
             <div class="c-article-page__buttons">
-                <ng-template [ngIf]="!this.isSuggest && !this.articlePageService.isMyArticle">
+                <ng-template
+                        [ngIf]="!this.isSuggest && !this.articlePageService.isMyArticle && !this.articlePageService.isProposed">
                     <app-button (click)="this.onSuggestOrProposedArticle()"
                                 [description]="this.isProposed ? 'Aceptar intercambio' : 'Proponer artículo'"
                                 [icon]="this.isProposed ? Icon.Exchanges : Icon.Hand"
                                 [typeButton]="TypeButton.Primary"/>
                 </ng-template>
+
+                <ng-template [ngIf]="this.articlePageService.isProposed">
+                    <span class="o-text-sm-bold">Anteriormente haz realizado una propuesta para este artículo</span>
+                </ng-template>
+
+
                 <ng-template [ngIf]="this.isProposed">
                     <app-button (click)="this.onContactWhatsApp()"
                                 [description]="'Contactar por WhatsApp'"
