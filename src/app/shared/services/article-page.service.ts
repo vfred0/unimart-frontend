@@ -7,6 +7,7 @@ import { ArticleService } from '@shared/services/article.service';
 import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
 import { UserMapperService } from '@shared/services/mappers/user-mapper.service';
 import { AuthService } from '@shared/services/auth.service';
+import { ProposedArticleService } from '@shared/services/proposed-article.service';
 
 @Injectable()
 export class ArticlePageService {
@@ -15,6 +16,7 @@ export class ArticlePageService {
   private articleMapper = inject(ArticleMapperService);
   private userMapper = inject(UserMapperService);
   private authService = inject(AuthService);
+  private readonly proposedArticleService = inject(ProposedArticleService);
   private articleService: ArticleService = inject(ArticleService);
 
   get isProposed(): boolean {
@@ -46,12 +48,12 @@ export class ArticlePageService {
   }
 
   setIsProposed(articleId: string): void {
-    const observable = this.articleService.userHasMadeProposed(
+    const request = this.proposedArticleService.userHasMadeProposed(
       this.authService.user.id as string,
       articleId
     );
 
-    this.proposedArticle.execute(observable);
+    this.proposedArticle.execute(request);
   }
 
   getById(id: string): void {

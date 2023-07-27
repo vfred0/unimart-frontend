@@ -2,7 +2,6 @@ import { inject, Injectable } from '@angular/core';
 import { ArticleDto } from '@core/dtos/article/article.dto';
 import { HttpClient } from '@angular/common/http';
 import { FilterArticleDto } from '@core/dtos/article/filter-article.dto';
-import { ProposedArticleDto } from '@core/dtos/article/proposed-article.dto';
 
 @Injectable({ providedIn: 'root' })
 export class ArticleService {
@@ -20,12 +19,6 @@ export class ArticleService {
     );
   }
 
-  deleteProposedArticleByArticleId(articleId: string, proposedArticle: string) {
-    return this.http.delete<string>(
-      `${ArticleService.API_URL}/proposedArticles/articles/${articleId}/delete/${proposedArticle}`
-    );
-  }
-
   getById(id: string) {
     return this.http.get<ArticleDto>(`${ArticleService.API_URL}/${id}`);
   }
@@ -38,31 +31,6 @@ export class ArticleService {
 
   getAll() {
     return this.http.get<Array<ArticleDto>>(`${ArticleService.API_URL}`);
-  }
-
-  proposedArticle(proposedArticleDto: ProposedArticleDto) {
-    return this.http.post<string>(
-      `${ArticleService.API_URL}/proposedArticles`,
-      proposedArticleDto
-    );
-  }
-
-  proposedArticlesByUserId(userId: string) {
-    return this.http.get<Array<ArticleDto>>(
-      `${ArticleService.API_URL}/proposedArticles/users/${userId}`
-    );
-  }
-
-  proposedArticlesByArticleId(articleId: string) {
-    return this.http.get<Array<ArticleDto>>(
-      `${ArticleService.API_URL}/proposedArticles/articles/${articleId}`
-    );
-  }
-
-  userHasMadeProposed(userId: string, articleId: string) {
-    return this.http.get<boolean>(
-      `${ArticleService.API_URL}/proposedArticles/users/${userId}/articles/${articleId}`
-    );
   }
 
   delete(articleId: string) {

@@ -8,12 +8,14 @@ import { ArticleService } from '@shared/services/article.service';
 import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
 import { AuthService } from '@shared/services/auth.service';
 import { TypeArticle } from '@core/types/type-article';
+import { ProposedArticleService } from '@shared/services/proposed-article.service';
 
 @Injectable()
 export class ProfilePageService {
   private apiSignalState = new ApiSignalState<ArticleCard[]>([]);
   private readonly articleMapper = inject(ArticleMapperService);
   private readonly articleService = inject(ArticleService);
+  private readonly proposedArticleService = inject(ProposedArticleService);
   private readonly http = inject(HttpClient);
   private readonly authService = inject(AuthService);
   private title = '';
@@ -73,13 +75,19 @@ export class ProfilePageService {
     this.title = title;
   }
 
+  filterByTypeArticle(typeArticle: TypeArticle) {
+    this.typeArticle = typeArticle;
+  }
+
   deleteArticle(articleId: string) {
     this.articleService.delete(articleId).subscribe(() => {
       this.allArticles();
     });
   }
 
-  filterByTypeArticle(typeArticle: TypeArticle) {
-    this.typeArticle = typeArticle;
+  deleteProposedArticleById(proposedArticleId: string) {
+    this.proposedArticleService.deleteById(proposedArticleId).subscribe(() => {
+      this.allArticles();
+    });
   }
 }

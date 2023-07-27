@@ -1,21 +1,26 @@
 import { inject, Injectable } from '@angular/core';
 import { ProfilePageService } from '@shared/services/profile-page.service';
 import { ArticleCard } from '@core/models/article-card';
-import { SuggestArticleDto } from '@core/dtos/article/suggest-article.dto';
-import { ArticleService } from '@shared/services/article.service';
+import { ProposedArticleDto } from '@core/dtos/article/proposed-article.dto';
 import { AppRoute } from '@core/utils/app-route';
 import { Router } from '@angular/router';
+import { TypeArticle } from '@core/types/type-article';
+import { ProposedArticleService } from '@shared/services/proposed-article.service';
 
 @Injectable()
 export class SuggestArticlePageService {
   private profileService: ProfilePageService;
-  private articleService: ArticleService;
+  private readonly proposedArticleService;
   private category: string;
 
   constructor(private router: Router) {
     this.category = '';
     this.profileService = inject(ProfilePageService);
-    this.articleService = inject(ArticleService);
+    this.proposedArticleService = inject(ProposedArticleService);
+  }
+
+  get containsPublishedArticles(): boolean {
+    return this.profileService.containsPublishedArticles;
   }
 
   get totalArticlesCards(): number {
@@ -57,8 +62,8 @@ export class SuggestArticlePageService {
     this.category = category;
   }
 
-  suggestArticle(proposalArticleDto: SuggestArticleDto) {
-    this.articleService.suggest(proposalArticleDto).subscribe(() => {
+  proposedArticle(proposedArticleDto: ProposedArticleDto) {
+    this.proposedArticleService.save(proposedArticleDto).subscribe(() => {
       this.router.navigate([AppRoute.Profile]).then();
     });
   }
