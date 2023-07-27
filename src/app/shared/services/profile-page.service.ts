@@ -29,13 +29,13 @@ export class ProfilePageService {
 
   get articlesCards(): ArticleCard[] {
     return this.apiSignalState.result().filter((articleCard: ArticleCard) => {
+      const includesTitle = articleCard.title
+        .toLowerCase()
+        .includes(this.title.toLowerCase());
       if (this.typeArticle === TypeArticle.Published) {
-        return articleCard.title.includes(this.title);
+        return includesTitle;
       }
-      return (
-        articleCard.title.includes(this.title) &&
-        articleCard.typeArticle === TypeArticle.Proposed
-      );
+      return includesTitle && articleCard.typeArticle === TypeArticle.Proposed;
     });
   }
 
