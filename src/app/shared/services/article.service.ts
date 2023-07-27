@@ -57,7 +57,7 @@ export class ArticleService {
     );
   }
 
-  isProposedArticleByUserIdAndArticleId(userId: string, articleId: string) {
+  userHasMadeProposed(userId: string, articleId: string) {
     return this.http.get<boolean>(
       `${ArticleService.API_URL}/proposedArticles/users/${userId}/articles/${articleId}`
     );
