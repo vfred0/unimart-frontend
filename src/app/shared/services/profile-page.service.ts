@@ -9,7 +9,7 @@ import { ArticleMapperService } from '@shared/services/mappers/article-mapper.se
 import { AuthService } from '@shared/services/auth.service';
 import { TypeArticle } from '@core/types/type-article';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class ProfilePageService {
   private apiSignalState = new ApiSignalState<ArticleCard[]>([]);
   private readonly articleMapper = inject(ArticleMapperService);
@@ -43,11 +43,18 @@ export class ProfilePageService {
     return this.apiSignalState.isCompleted();
   }
 
+  get categories() {
+    return this.apiSignalState
+      .result()
+      .map(articleCard => articleCard.category)
+      .filter(
+        (category, index, categories) => categories.indexOf(category) === index
+      );
+  }
+
   allArticles(): void {
-    const request = this.http
-      .get<Array<ArticleDto>>(
-        `${ArticleService.API_URL}/user/${this.authService.user.id}`
-      )
+    const request = this.articleService
+      .getByUserId(this.authService.userId)
       .pipe(
         map((articles: ArticleDto[]) => {
           return articles.map((article: ArticleDto) =>
@@ -70,14 +77,5 @@ export class ProfilePageService {
 
   filterByTypeArticle(typeArticle: TypeArticle) {
     this.typeArticle = typeArticle;
-  }
-
-  get categories() {
-    return this.apiSignalState
-      .result()
-      .map(articleCard => articleCard.category)
-      .filter(
-        (category, index, categories) => categories.indexOf(category) === index
-      );
   }
 }
