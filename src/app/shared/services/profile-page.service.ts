@@ -25,9 +25,12 @@ export class ProfilePageService {
 
   get articlesCards(): ArticleCard[] {
     return this.apiSignalState.result().filter((articleCard: ArticleCard) => {
+      if (this.typeArticle === TypeArticle.Published) {
+        return articleCard.title.includes(this.title);
+      }
       return (
         articleCard.title.includes(this.title) &&
-        articleCard.typeArticle === this.typeArticle
+        articleCard.typeArticle === TypeArticle.Proposed
       );
     });
   }
