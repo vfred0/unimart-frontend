@@ -20,8 +20,10 @@ export class ArticleService {
     );
   }
 
-  delete(id: string) {
-    return this.http.delete(`${ArticleService.API_URL}/${id}`);
+  deleteProposedArticleByArticleId(articleId: string, proposedArticle: string) {
+    return this.http.delete<string>(
+      `${ArticleService.API_URL}/proposedArticles/articles/${articleId}/delete/${proposedArticle}`
+    );
   }
 
   getById(id: string) {
@@ -60,6 +62,16 @@ export class ArticleService {
   userHasMadeProposed(userId: string, articleId: string) {
     return this.http.get<boolean>(
       `${ArticleService.API_URL}/proposedArticles/users/${userId}/articles/${articleId}`
+    );
+  }
+
+  delete(articleId: string) {
+    return this.http.delete<string>(`${ArticleService.API_URL}/${articleId}`);
+  }
+
+  getByUserId(userId: string) {
+    return this.http.get<Array<ArticleDto>>(
+      `${ArticleService.API_URL}/users/${userId}`
     );
   }
 }
