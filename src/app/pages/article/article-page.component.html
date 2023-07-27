@@ -36,20 +36,15 @@
         </div>
         <span class="o-text-xl-semibold">Galería</span>
         <app-gallery [images]="this.articlePageService.articlePage.images"/>
-        <ng-template [ngIf]="!this.isOnlyViewPublication">
+
+        <ng-template [ngIf]="!this.isOnlyViewPublication && !this.articlePageService.isProposed">
             <div class="c-article-page__buttons">
-                <ng-template
-                        [ngIf]="!this.isSuggest && !this.articlePageService.isMyArticle && !this.articlePageService.isProposed">
+                <ng-template [ngIf]="!this.isSuggest && !this.articlePageService.isMyArticle">
                     <app-button (click)="this.onSuggestOrProposedArticle()"
-                                [description]="this.isProposed ? 'Aceptar intercambio' : 'Proponer artículo'"
-                                [icon]="this.isProposed ? Icon.Exchanges : Icon.Hand"
+                                [description]="this.isOnlyViewPublication ? 'Aceptar intercambio' : 'Proponer artículo'"
+                                [icon]="this.isOnlyViewPublication ? Icon.Exchanges : Icon.Hand"
                                 [typeButton]="TypeButton.Primary"/>
                 </ng-template>
-
-                <ng-template [ngIf]="this.articlePageService.isProposed">
-                    <span class="o-text-sm-bold">Anteriormente haz realizado una propuesta para este artículo</span>
-                </ng-template>
-
 
                 <ng-template [ngIf]="this.isProposed">
                     <app-button (click)="this.onContactWhatsApp()"
@@ -58,5 +53,10 @@
                 </ng-template>
             </div>
         </ng-template>
+
+        <ng-template [ngIf]="this.articlePageService.isProposed">
+            <span class="o-text-sm-bold">Anteriormente haz realizado una propuesta para este artículo</span>
+        </ng-template>
+
     </div>
 </div>

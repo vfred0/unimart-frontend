@@ -1,29 +1,24 @@
 import { inject, Injectable } from '@angular/core';
 import { ApiSignalState } from '@shared/services/api-signal-state';
 import { ArticleDto } from '@core/dtos/article/article.dto';
-import { HttpClient } from '@angular/common/http';
 import { HeaderDetail } from '@core/utils/header-detail';
 import { ArticlePage } from '@core/models/article-page';
 import { ArticleService } from '@shared/services/article.service';
 import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
 import { UserMapperService } from '@shared/services/mappers/user-mapper.service';
 import { AuthService } from '@shared/services/auth.service';
-import { Observable } from 'rxjs';
 
 @Injectable()
 export class ArticlePageService {
+  private readonly proposedArticle = new ApiSignalState<boolean>(false);
   private apiSignalState = new ApiSignalState<ArticleDto>({} as ArticleDto);
-  private http = inject(HttpClient);
   private articleMapper = inject(ArticleMapperService);
   private userMapper = inject(UserMapperService);
   private authService = inject(AuthService);
   private articleService: ArticleService = inject(ArticleService);
 
-  get isProposed(): Observable<boolean> {
-    return this.articleService.isProposedArticleByUserIdAndArticleId(
-      this.authService.user.id as string,
-      this.articlePage.id
-    );
+  get isProposed(): boolean {
+    return this.proposedArticle.result();
   }
 
   get user() {
@@ -48,6 +43,15 @@ export class ArticlePageService {
 
   get isCompleted() {
     return this.apiSignalState.isCompleted();
+  }
+
+  setIsProposed(articleId: string): void {
+    const observable = this.articleService.userHasMadeProposed(
+      this.authService.user.id as string,
+      articleId
+    );
+
+    this.proposedArticle.execute(observable);
   }
 
   getById(id: string): void {

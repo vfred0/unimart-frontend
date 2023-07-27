@@ -54,6 +54,7 @@ export class ArticlePageComponent {
     this.exchangeService = inject(ExchangeService);
     this.id = this.activatedRoute.snapshot.params['id'];
     this.articlePageService.getById(this.id);
+    this.articlePageService.setIsProposed(this.id);
   }
 
   get isOnlyViewPublication(): boolean {
