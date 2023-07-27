@@ -19,6 +19,10 @@ export class ProfilePageService {
   private title = '';
   private typeArticle: TypeArticle = TypeArticle.Published;
 
+  get containsPublishedArticles(): boolean {
+    return this.articlesCards.length > 0;
+  }
+
   get isPublished(): boolean {
     return this.typeArticle === TypeArticle.Published;
   }
