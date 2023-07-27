@@ -12,6 +12,7 @@ import { ProposedArticlesPageService } from '@shared/services/proposed-articles-
   standalone: true,
   imports: [CommonModule, ButtonComponent, ArticleCardComponent],
   templateUrl: './proposed-article-card.component.html',
+  providers: [ProposedArticlesPageService],
 })
 export class ProposedArticleCardComponent extends ArticleCardComponent {
   @Input() onlyViewPublication: boolean;
