@@ -44,13 +44,15 @@ export class ProposedArticlesPageService {
   }
 
   proposedArticles(articleId: string): void {
-    const observable = this.articleService.proposedArticles(articleId).pipe(
-      map((articles: ArticleDto[]) => {
-        return articles.map((article: ArticleDto) =>
-          this.articleMapper.toArticleCard(article)
-        );
-      })
-    );
+    const observable = this.articleService
+      .proposedArticlesByArticleId(articleId)
+      .pipe(
+        map((articles: ArticleDto[]) => {
+          return articles.map((article: ArticleDto) =>
+            this.articleMapper.toArticleCard(article)
+          );
+        })
+      );
 
     this.apiSignalState.execute(observable);
   }
