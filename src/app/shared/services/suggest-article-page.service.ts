@@ -25,7 +25,10 @@ export class SuggestArticlePageService {
   get articlesCards() {
     return this.profileService.articlesCards.filter(
       (articleCard: ArticleCard) => {
-        return articleCard.category.includes(this.category);
+        return (
+          articleCard.category.includes(this.category) &&
+          articleCard.typeArticle !== TypeArticle.Proposed
+        );
       }
     );
   }
