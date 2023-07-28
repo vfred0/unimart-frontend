@@ -81,7 +81,7 @@ export class ProfilePageComponent {
     this.profilePageService.deleteArticle(articleId);
   }
 
-  onDeleteProposed(articleId: string) {
-    console.log(`Eliminar propuesta ${articleId}`);
+  onDeleteProposed(proposedArticleId: string) {
+    this.profilePageService.deleteProposedArticleById(proposedArticleId);
   }
 }
