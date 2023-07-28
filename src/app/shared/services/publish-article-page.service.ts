@@ -31,7 +31,7 @@ export class PublishArticlePageService {
       description: '',
       state: State.New,
       category: Category.TextBooksEducationalMaterial,
-      images: ['https://is.gd/w8TkJC'] as Array<string>,
+      images: ['https://is.gd/zjRzCR'] as Array<string>,
     } as ArticleSaveDto;
     this._form = new FormGroup({
       title: new FormControl(article.title, [Validators.required]),
@@ -136,6 +136,7 @@ export class PublishArticlePageService {
   private articleToSaveOrUpdate() {
     const article: ArticleDto = this._form.value as ArticleDto;
     article.userId = this.authService.user.id as string;
+
     if (!this.withGender) {
       article.title = this.getValue('title');
       article.description = this.getValue('description');
