@@ -57,7 +57,6 @@ export class SuggestArticlePageComponent {
       articleId: this.activateRoute.snapshot.params['id'],
       proposedArticleId: articleId,
     } as ProposedArticleDto;
-
     this.service.proposedArticle(proposalArticleDto);
   }
 
