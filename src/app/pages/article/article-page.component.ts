@@ -7,17 +7,14 @@ import { TypeButton } from '@core/types/type-button';
 import { GalleryComponent } from '@components/gallery/gallery.component';
 import { Icon } from '@core/types/icon';
 import { AppRoute } from '@core/utils/app-route';
-import {
-  isProposed,
-  isSuggest,
-  TypeArticleCard,
-} from '@core/types/type-article-card';
+import { isProposed, TypeArticleCard } from '@core/types/type-article-card';
 import { HeaderDetailComponent } from '@components/header-detail/header-detail.component';
 import { ArticlePageService } from '@shared/services/article-page.service';
 import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
 import { UserMapperService } from '@shared/services/mappers/user-mapper.service';
 import { ExchangeSaveDto } from '@core/dtos/exchange/exchange-save.dto';
 import { ExchangeService } from '@shared/services/exchange.service';
+import { ProfilePageService } from '@shared/services/profile-page.service';
 
 @Component({
   standalone: true,
@@ -34,12 +31,13 @@ import { ExchangeService } from '@shared/services/exchange.service';
     ArticleMapperService,
     UserMapperService,
     ExchangeService,
+    ProfilePageService,
   ],
   templateUrl: './article-page.component.html',
 })
 export class ArticlePageComponent {
   typeArticle: TypeArticleCard;
-  articlePageService: ArticlePageService;
+  service: ArticlePageService;
   protected readonly TypeButton = TypeButton;
   protected readonly Icon = Icon;
   private readonly id: string;
@@ -49,20 +47,27 @@ export class ArticlePageComponent {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
-    this.typeArticle = history.state.typeArticle;
-    this.articlePageService = inject(ArticlePageService);
+    this.typeArticle = TypeArticleCard.Normal;
+    this.service = inject(ArticlePageService);
     this.exchangeService = inject(ExchangeService);
     this.id = this.activatedRoute.snapshot.params['id'];
-    this.articlePageService.getById(this.id);
-    this.articlePageService.setIsProposed(this.id);
+    this.service.setIsProposed(this.id);
+    if (this.containsArticleDto()) {
+      this.typeArticle = history.state.articleDto.typeArticle;
+      this.service.setArticleDto(history.state.articleDto);
+    } else {
+      this.service.getById(this.id);
+    }
   }
 
-  get isOnlyViewPublication(): boolean {
-    return history.state.onlyViewPublication;
+  get acceptSuggest(): boolean {
+    return (
+      !this.isProposed && !this.service.isMyArticle && !this.service.isProposed
+    );
   }
 
-  get isSuggest(): boolean {
-    return isSuggest(this.typeArticle);
+  get isExchangeArticle(): boolean {
+    return history.state.isExchangeArticle;
   }
 
   get isProposed(): boolean {
@@ -81,24 +86,30 @@ export class ArticlePageComponent {
       : `${numberOfExchanges} intercambio`;
   }
 
-  onSuggestOrProposedArticle() {
-    const isSuggest = !this.isProposed;
-    if (isSuggest) {
-      this.router
-        .navigate([`${AppRoute.Article}/${this.id}/${AppRoute.Suggest}`])
-        .then();
-    } else {
-      const exchange = {
-        articleId: this.id,
-        articleProposedId: history.state.articleProposedId,
-      } as ExchangeSaveDto;
-      this.exchangeService.save(exchange).subscribe(() => {
-        this.router.navigate([AppRoute.Exchanges]).then();
-      });
-    }
-  }
-
   onContactWhatsApp() {
     console.log('Contactar por WhatsApp');
+  }
+
+  onAcceptProposedArticle() {
+    const exchange = {
+      articleId: this.id,
+      articleProposedId: history.state.articleProposedId,
+    } as ExchangeSaveDto;
+    this.exchangeService.save(exchange).subscribe(() => {
+      this.router.navigate([AppRoute.Exchanges]).then();
+    });
+  }
+
+  onSuggestArticle() {
+    this.router
+      .navigate([`${AppRoute.Article}/${this.id}/${AppRoute.Suggest}`])
+      .then();
+  }
+
+  private containsArticleDto() {
+    return (
+      history.state.hasOwnProperty('articleDto') &&
+      Object.keys(history.state.articleDto).length !== 0
+    );
   }
 }
