@@ -50,7 +50,7 @@
             </div>
         </ng-template>
 
-        <ng-template [ngIfElse]="showMessagesTemplate" [ngIf]="this.acceptSuggest">
+        <ng-template [ngIf]="this.acceptSuggest">
             <div class="c-article-page__buttons">
                 <app-button (click)="this.onSuggestArticle()"
                             [description]="'Proponer artículo'"
@@ -58,7 +58,7 @@
                             [typeButton]="TypeButton.Primary"/>
             </div>
         </ng-template>
-        <ng-template #showMessagesTemplate>
+        <ng-template [ngIf]="!this.isExchangeArticle">
             <ng-template [ngIf]="!this.service.isMyArticle && this.service.isProposed">
                 <span class="o-text-sm-bold">Existe una propuesta de intercambio</span>
             </ng-template>
