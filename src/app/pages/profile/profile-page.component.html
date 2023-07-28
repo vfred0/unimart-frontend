@@ -30,7 +30,8 @@
                                     (deleteProposed)="onDeleteProposed(articleCard.id)"
                                     *ngFor="let articleCard of this.profilePageService.articlesCards"
                                     [articleCard]="articleCard"
-                                    [onlyViewPublication]="true"/>
+                                    [isExchangeArticle]="false"
+                                    [searchProposed]="true"/>
                         </ng-template>
                     </ng-template>
                 </div>

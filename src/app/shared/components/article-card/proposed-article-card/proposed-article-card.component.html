@@ -1,7 +1,7 @@
 <app-article-card [articleCard]="articleCard" [typeArticleCard]="TypeArticleCard.Proposed">
     <app-button (click)="onViewPublication()"
                 [icon]="Icon.View"
-                [description]="this.onlyViewPublication ? 'Ver publicación' : 'Ver propuesta'"
+                [description]="this.isExchangeArticle ? 'Ver propuesta':'Ver publicación'"
                 [typeButton]="TypeButton.Primary"
                 class="c-article-card__button"/>
     <app-button (click)="onDeleteProposed()"
