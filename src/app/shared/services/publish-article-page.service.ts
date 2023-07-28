@@ -6,7 +6,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ArticleSaveDto } from '@core/dtos/article/article-save.dto';
 import { State } from '@core/types/state';
 import { Category, CategoryService } from '@core/types/category';
-import { TypeArticle } from '@core/types/type-article';
 import { AuthService } from '@shared/services/auth.service';
 import { AppRoute } from '@core/utils/app-route';
 import { Router } from '@angular/router';
@@ -115,9 +114,6 @@ export class PublishArticlePageService {
   }
 
   private save(article: ArticleDto) {
-    article.typeArticle = TypeArticle.Published;
-    article.numbersProposals = 0;
-    article.date = new Date().toISOString();
     this.articleService
       .save(article)
       .subscribe(() => this.router.navigate([`${AppRoute.Profile}`]).then());
@@ -126,8 +122,6 @@ export class PublishArticlePageService {
   private update(article: ArticleDto) {
     article.id = this.article.id;
     article.typeArticle = this.article.typeArticle;
-    article.numbersProposals = this.article.numbersProposals;
-    article.date = this.article.date;
     this.articleService
       .update(article)
       .subscribe(() => this.router.navigate([`${AppRoute.Profile}`]).then());
