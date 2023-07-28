@@ -1,62 +1,67 @@
 <app-header [title]="'Artículo'"/>
 
-<ng-template [ngIf]="this.articlePageService.isWorking">
+<ng-template [ngIf]="this.service.isWorking">
     <span class="o-text-2xl-bold">Cargando...</span>
 </ng-template>
 
-<div *ngIf="this.articlePageService.isCompleted" class="c-article-page">
+<div *ngIf="this.service.isCompleted" class="c-article-page">
     <div class="c-article-page__banner">
-        <img class="c-article-page__banner-image" src="{{ this.articlePageService.articlePage.image }}"/>
+        <img class="c-article-page__banner-image" src="{{ this.service.articlePage.image }}"/>
         <div class="c-article-page__banner-container">
-            <span class="c-article-page__banner-title o-text-xl-semibold">{{this.articlePageService.articlePage.title}}</span>
-            <span class="c-article-page__banner-description o-text-normal-medium">{{this.articlePageService.articlePage.description}}</span>
-            <span class="c-article-page__banner-date-published o-text-sm-light">{{this.articlePageService.articlePage.date}}</span>
+            <span class="c-article-page__banner-title o-text-xl-semibold">{{this.service.articlePage.title}}</span>
+            <span class="c-article-page__banner-description o-text-normal-medium">{{this.service.articlePage.description}}</span>
+            <span class="c-article-page__banner-date-published o-text-sm-light">{{this.service.articlePage.date}}</span>
         </div>
         <div class="c-article-page__banner-buttons">
-            <app-button [description]="this.articlePageService.articlePage.state"
+            <app-button [description]="this.service.articlePage.state"
                         [icon]="Icon.State"
                         [typeButton]="TypeButton.Tag"/>
-            <app-button [description]="this.numberProposals(this.articlePageService.articlePage.numbersProposals)"
+            <app-button [description]="this.numberProposals(this.service.articlePage.numbersProposals)"
                         [typeButton]="TypeButton.Tag"/>
         </div>
     </div>
     <div class="c-article-page__content">
         <span class="o-text-xl-semibold">Publicador</span>
         <div class="c-article-page__user-card">
-            <app-header-detail [headerDetail]="this.articlePageService.headerDetail"/>
-            <span class="o-text-base-normal"> {{ this.articlePageService.articlePage.user.about }}</span>
+            <app-header-detail [headerDetail]="this.service.headerDetail"/>
+            <span class="o-text-base-normal"> {{ this.service.articlePage.user.about }}</span>
             <div class="c-article-page__user-card-buttons">
-                <app-button [description]="this.articlePageService.user.rating.toString()"
+                <app-button [description]="this.service.user.rating.toString()"
                             [icon]="Icon.Star"
                             [typeButton]="TypeButton.Tag"/>
-                <app-button [description]="this.numbersOfExchanges(this.articlePageService.user.numberOfExchanges)"
+                <app-button [description]="this.numbersOfExchanges(this.service.user.numberOfExchanges)"
                             [icon]="Icon.Exchanges"
                             [typeButton]="TypeButton.Tag"/>
             </div>
         </div>
         <span class="o-text-xl-semibold">Galería</span>
-        <app-gallery [images]="this.articlePageService.articlePage.images"/>
+        <app-gallery [images]="this.service.articlePage.images"/>
 
-        <ng-template [ngIf]="!this.isOnlyViewPublication && !this.articlePageService.isProposed">
+        <ng-template [ngIf]="this.isExchangeArticle">
             <div class="c-article-page__buttons">
-                <ng-template [ngIf]="!this.isSuggest && !this.articlePageService.isMyArticle">
-                    <app-button (click)="this.onSuggestOrProposedArticle()"
-                                [description]="this.isOnlyViewPublication ? 'Aceptar intercambio' : 'Proponer artículo'"
-                                [icon]="this.isOnlyViewPublication ? Icon.Exchanges : Icon.Hand"
-                                [typeButton]="TypeButton.Primary"/>
-                </ng-template>
+                <app-button (click)="this.onAcceptProposedArticle()"
+                            [description]="'Aceptar intercambio'"
+                            [icon]="Icon.Exchanges"
+                            [typeButton]="TypeButton.Primary"/>
 
-                <ng-template [ngIf]="this.isProposed">
-                    <app-button (click)="this.onContactWhatsApp()"
-                                [description]="'Contactar por WhatsApp'"
-                                [typeButton]="TypeButton.Contact"/>
-                </ng-template>
+                <app-button (click)="this.onContactWhatsApp()"
+                            [description]="'Contactar por WhatsApp'"
+                            [typeButton]="TypeButton.Contact"/>
             </div>
         </ng-template>
 
-        <ng-template [ngIf]="this.articlePageService.isProposed">
-            <span class="o-text-sm-bold">Anteriormente haz realizado una propuesta para este artículo</span>
+        <ng-template [ngIfElse]="showMessagesTemplate" [ngIf]="this.acceptSuggest">
+            <div class="c-article-page__buttons">
+                <app-button (click)="this.onSuggestArticle()"
+                            [description]="'Proponer artículo'"
+                            [icon]="Icon.Hand"
+                            [typeButton]="TypeButton.Primary"/>
+            </div>
         </ng-template>
-
+        <ng-template #showMessagesTemplate>
+            <ng-template [ngIf]="!this.service.isMyArticle && this.service.isProposed">
+                <span class="o-text-sm-bold">Existe una propuesta de intercambio</span>
+            </ng-template>
+        </ng-template>
     </div>
 </div>
