@@ -8,6 +8,7 @@ import { ArticleMapperService } from '@shared/services/mappers/article-mapper.se
 import { UserMapperService } from '@shared/services/mappers/user-mapper.service';
 import { AuthService } from '@shared/services/auth.service';
 import { ProposedArticleService } from '@shared/services/proposed-article.service';
+import { ProfilePageService } from '@shared/services/profile-page.service';
 
 @Injectable()
 export class ArticlePageService {
@@ -18,6 +19,7 @@ export class ArticlePageService {
   private authService = inject(AuthService);
   private readonly proposedArticleService = inject(ProposedArticleService);
   private articleService: ArticleService = inject(ArticleService);
+  private readonly profileService = inject(ProfilePageService);
 
   get isProposed(): boolean {
     return this.proposedArticle.result();
@@ -52,12 +54,15 @@ export class ArticlePageService {
       this.authService.user.id as string,
       articleId
     );
-
     this.proposedArticle.execute(request);
   }
 
   getById(id: string): void {
     const getById = this.articleService.getById(id);
     this.apiSignalState.execute(getById);
+  }
+
+  setArticleDto(articleDto: ArticleDto) {
+    this.apiSignalState.setSucceed(articleDto);
   }
 }
