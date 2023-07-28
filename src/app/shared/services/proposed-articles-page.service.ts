@@ -60,4 +60,18 @@ export class ProposedArticlesPageService {
   filterByCategory(category: string) {
     this.category = category;
   }
+
+  deleteProposed(proposedArticleId: string) {
+    this.proposedArticleService.deleteById(proposedArticleId).subscribe(() => {
+      this.proposedArticleService
+        .proposedArticlesByArticleId(this.articleId)
+        .subscribe((articles: ArticleDto[]) => {
+          if (articles.length === 0) {
+            this.router.navigate([`${AppRoute.Profile}`]).then();
+          } else {
+            this.proposedArticles(this.articleId);
+          }
+        });
+    });
+  }
 }
