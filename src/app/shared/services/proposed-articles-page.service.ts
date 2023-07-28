@@ -2,18 +2,21 @@ import { map } from 'rxjs';
 import { ArticleDto } from '@core/dtos/article/article.dto';
 import { inject, Injectable } from '@angular/core';
 import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
-import { HttpClient } from '@angular/common/http';
 import { ArticleService } from '@shared/services/article.service';
 import { ApiSignalState } from '@shared/services/api-signal-state';
 import { ArticleCard } from '@core/models/article-card';
+import { AppRoute } from '@core/utils/app-route';
+import { Router } from '@angular/router';
+import { ProposedArticleService } from '@shared/services/proposed-article.service';
 
 @Injectable()
 export class ProposedArticlesPageService {
-  proposedId = '';
+  articleId = '';
   private apiSignalState = new ApiSignalState<ArticleCard[]>([]);
   private articleMapper = inject(ArticleMapperService);
   private articleService = inject(ArticleService);
-  private http = inject(HttpClient);
+  private readonly proposedArticleService = inject(ProposedArticleService);
+  private router = inject(Router);
   private category = '';
 
   get totalArticlesCards(): number {
@@ -44,7 +47,7 @@ export class ProposedArticlesPageService {
   }
 
   proposedArticles(articleId: string): void {
-    const observable = this.articleService
+    const request = this.proposedArticleService
       .proposedArticlesByArticleId(articleId)
       .pipe(
         map((articles: ArticleDto[]) => {
@@ -54,7 +57,7 @@ export class ProposedArticlesPageService {
         })
       );
 
-    this.apiSignalState.execute(observable);
+    this.apiSignalState.execute(request);
   }
 
   filterByCategory(category: string) {
