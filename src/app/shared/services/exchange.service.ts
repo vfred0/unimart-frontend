@@ -10,4 +10,8 @@ export class ExchangeService {
   save(exchange: ExchangeSaveDto) {
     return this.http.post<string>(`${this.API_URL}`, exchange);
   }
+
+  getByUserId(userId: string) {
+    return this.http.get<ExchangeSaveDto[]>(`${this.API_URL}/users/${userId}`);
+  }
 }
