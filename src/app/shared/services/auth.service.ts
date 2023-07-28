@@ -60,4 +60,8 @@ export class AuthService {
   containsId(id: string | undefined) {
     return this.user.id === id;
   }
+
+  get userId(): string {
+    return this.user.id as string;
+  }
 }
