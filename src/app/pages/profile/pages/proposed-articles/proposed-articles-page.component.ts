@@ -26,7 +26,7 @@ export class ProposedArticlesPageComponent {
 
   constructor(private activatedRoute: ActivatedRoute) {
     this.service = inject(ProposedArticlesPageService);
-    this.service.proposedId = this.activatedRoute.snapshot.params['articleId'];
+    this.service.articleId = this.activatedRoute.snapshot.params['articleId'];
     this.service.proposedArticles(
       this.activatedRoute.snapshot.params['articleId']
     );
@@ -34,5 +34,9 @@ export class ProposedArticlesPageComponent {
 
   onSelectedCategory(category: string) {
     this.service.filterByCategory(category);
+  }
+
+  onDeletedProposed(proposedArticleId: string) {
+    this.service.deleteProposed(proposedArticleId);
   }
 }
