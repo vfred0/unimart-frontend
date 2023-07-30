@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { ProfilePageService } from '@shared/services/profile-page.service';
-import { ArticleCard } from '@core/models/article-card';
+import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
 import { ProposedArticleDto } from '@core/dtos/article/proposed-article.dto';
 import { AppRoute } from '@core/utils/app-route';
 import { Router } from '@angular/router';
@@ -29,7 +29,7 @@ export class SuggestArticlePageService {
 
   get articlesCards() {
     return this.profileService.articlesCards.filter(
-      (articleCard: ArticleCard) => {
+      (articleCard: ArticleCardDto) => {
         return (
           articleCard.category.includes(this.category) &&
           articleCard.typeArticle !== TypeArticle.Proposed

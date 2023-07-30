@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { ApiSignalState } from '@shared/services/api-signal-state';
-import { ArticleCard } from '@core/models/article-card';
+import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
 import { map } from 'rxjs';
 import { ArticleDto } from '@core/dtos/article/article.dto';
 import { HttpClient } from '@angular/common/http';
@@ -12,7 +12,7 @@ import { ProposedArticleService } from '@shared/services/proposed-article.servic
 
 @Injectable()
 export class ProfilePageService {
-  private apiSignalState = new ApiSignalState<ArticleCard[]>([]);
+  private apiSignalState = new ApiSignalState<ArticleCardDto[]>([]);
   private readonly articleMapper = inject(ArticleMapperService);
   private readonly articleService = inject(ArticleService);
   private readonly proposedArticleService = inject(ProposedArticleService);
@@ -29,16 +29,20 @@ export class ProfilePageService {
     return this.typeArticle === TypeArticle.Published;
   }
 
-  get articlesCards(): ArticleCard[] {
-    return this.apiSignalState.result().filter((articleCard: ArticleCard) => {
-      const includesTitle = articleCard.title
-        .toLowerCase()
-        .includes(this.title.toLowerCase());
-      if (this.typeArticle === TypeArticle.Published) {
-        return includesTitle;
-      }
-      return includesTitle && articleCard.typeArticle === TypeArticle.Proposed;
-    });
+  get articlesCards(): ArticleCardDto[] {
+    return this.apiSignalState
+      .result()
+      .filter((articleCard: ArticleCardDto) => {
+        const includesTitle = articleCard.title
+          .toLowerCase()
+          .includes(this.title.toLowerCase());
+        if (this.typeArticle === TypeArticle.Published) {
+          return includesTitle;
+        }
+        return (
+          includesTitle && articleCard.typeArticle === TypeArticle.Proposed
+        );
+      });
   }
 
   get isWorking(): boolean {

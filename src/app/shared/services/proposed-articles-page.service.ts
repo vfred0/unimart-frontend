@@ -3,7 +3,7 @@ import { ArticleDto } from '@core/dtos/article/article.dto';
 import { inject, Injectable } from '@angular/core';
 import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
 import { ApiSignalState } from '@shared/services/api-signal-state';
-import { ArticleCard } from '@core/models/article-card';
+import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
 import { AppRoute } from '@core/utils/app-route';
 import { Router } from '@angular/router';
 import { ProposedArticleService } from '@shared/services/proposed-article.service';
@@ -11,7 +11,7 @@ import { ProposedArticleService } from '@shared/services/proposed-article.servic
 @Injectable()
 export class ProposedArticlesPageService {
   articleId = '';
-  private apiSignalState = new ApiSignalState<ArticleCard[]>([]);
+  private apiSignalState = new ApiSignalState<ArticleCardDto[]>([]);
   private articleMapper = inject(ArticleMapperService);
   private readonly proposedArticleService = inject(ProposedArticleService);
   private router = inject(Router);
@@ -30,10 +30,12 @@ export class ProposedArticlesPageService {
       );
   }
 
-  get articlesCards(): ArticleCard[] {
-    return this.apiSignalState.result().filter((articleCard: ArticleCard) => {
-      return articleCard.category.includes(this.category);
-    });
+  get articlesCards(): ArticleCardDto[] {
+    return this.apiSignalState
+      .result()
+      .filter((articleCard: ArticleCardDto) => {
+        return articleCard.category.includes(this.category);
+      });
   }
 
   get isCompleted() {
