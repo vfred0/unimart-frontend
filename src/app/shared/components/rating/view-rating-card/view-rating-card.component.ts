@@ -2,12 +2,11 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '@shared/components/button/button.component';
 import { HeaderComponent } from '@shared/components/header/header.component';
-import { ViewRatingCard } from '@core/models/view-rating-card';
+import { ViewRatingDto } from '@core/dtos/rating/view-rating.dto';
 import { TypeButton } from '@core/types/type-button';
 import { Icon } from '@core/types/icon';
 import { HeaderDetailComponent } from '@components/header-detail/header-detail.component';
 import { HeaderDetail } from '@core/utils/header-detail';
-import { Data } from '@core/utils/data';
 
 @Component({
   selector: 'app-view-rating-card',
@@ -22,13 +21,13 @@ import { Data } from '@core/utils/data';
   ],
 })
 export class ViewRatingCardComponent {
-  @Input() viewRatingCard: ViewRatingCard;
+  @Input() viewRatingCard: ViewRatingDto;
   headerDetail: HeaderDetail;
   protected readonly TypeButton = TypeButton;
   protected readonly Icon = Icon;
 
   constructor() {
-    this.viewRatingCard = {} as ViewRatingCard;
-    this.headerDetail = Data.headerDetail;
+    this.viewRatingCard = {} as ViewRatingDto;
+    this.headerDetail = {} as HeaderDetail;
   }
 }
