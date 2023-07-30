@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '@components/button/button.component';
 import { HeaderComponent } from '@components/header/header.component';
@@ -10,6 +10,7 @@ import { InputComponent } from '@components/input/input.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { TypeButton } from '@core/types/type-button';
 import { Icon } from '@core/types/icon';
+import { RatingDto } from '@core/dtos/rating/rating.dto';
 
 @Component({
   selector: 'app-add-rating',
@@ -26,20 +27,22 @@ import { Icon } from '@core/types/icon';
 })
 export class AddRatingComponent {
   scoreRatings: Array<string>;
+  @Input() userId: string;
   form: FormGroup;
   protected readonly onselect = onselect;
   protected readonly TypeButton = TypeButton;
 
   constructor() {
     this.scoreRatings = getAllValues(ScoreRating);
+    this.userId = '';
     this.form = new FormGroup({
-      scoreRating: new FormControl('', Validators.required),
+      score: new FormControl('', Validators.required),
       comment: new FormControl('', Validators.required),
     });
   }
 
-  onSelectedScoreRating(scoreRating: string) {
-    this.form.get('scoreRating')?.setValue(scoreRating);
+  onSelectedScoreRating(score: string) {
+    this.form.get('score')?.setValue(score);
   }
 
   onChangeComment(comment: string) {
@@ -47,7 +50,12 @@ export class AddRatingComponent {
   }
 
   onRating() {
-    console.log(this.form.value);
+    const rating: RatingDto = {
+      userId: this.userId,
+      score: this.form.get('score')?.value,
+      comment: this.form.get('comment')?.value,
+    };
+    console.log(`Rating: ${JSON.stringify(rating)}`);
   }
 
   protected readonly Icon = Icon;
