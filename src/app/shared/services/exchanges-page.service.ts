@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { ApiSignalState } from '@shared/services/api-signal-state';
-import { ExchangeDto } from '@core/dtos/exchange/exchange.dto';
+import { ExchangeDto } from '@core/dtos/exchange.dto';
 import { HttpClient } from '@angular/common/http';
 import { ExchangeService } from '@shared/services/exchange.service';
 import { AuthService } from '@shared/services/auth.service';
