@@ -6,10 +6,9 @@ import { SelectComponent } from '@shared/components/select/select.component';
 import { TypeArticle } from '@core/types/type-article';
 import { getAllValues } from '@core/utils/enum-utils';
 import { ArticleCardComponent } from '@shared/components/article-card/article-card.component';
-import { Data } from '@core/utils/data';
 import { FilterRating } from '@core/types/filter-rating';
 import { ViewRatingCardComponent } from '@components/rating/view-rating-card/view-rating-card.component';
-import { ViewRatingCard } from '@core/models/view-rating-card';
+import { ViewRatingDto } from '@core/dtos/rating/view-rating.dto';
 import { TypeButton } from '@core/types/type-button';
 import { ButtonComponent } from '@components/button/button.component';
 import { Icon } from '@core/types/icon';
@@ -39,7 +38,7 @@ import { ArticleService } from '@shared/services/article.service';
 export class ProfilePageComponent {
   typeArticles: Array<string>;
   filterRatings: Array<FilterRating>;
-  viewRatingCards: Array<ViewRatingCard>;
+  viewRatingCards: Array<ViewRatingDto>;
   profilePageService: ProfilePageService;
   protected readonly TypeButton = TypeButton;
   protected readonly Icon = Icon;
@@ -48,7 +47,7 @@ export class ProfilePageComponent {
   constructor() {
     this.typeArticles = getAllValues(TypeArticle);
     this.filterRatings = getAllValues(FilterRating);
-    this.viewRatingCards = Data.viewRatingCards;
+    this.viewRatingCards = new Array<ViewRatingDto>();
     this.profilePageService = inject(ProfilePageService);
     this.profilePageService.allArticles();
   }
