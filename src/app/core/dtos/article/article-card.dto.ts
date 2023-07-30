@@ -2,7 +2,7 @@ import { Category } from '@core/types/category';
 import { State } from '@core/types/state';
 import { TypeArticle } from '@core/types/type-article';
 
-export interface ArticleCard {
+export interface ArticleCardDto {
   id: string;
   image: string;
   title: string;
