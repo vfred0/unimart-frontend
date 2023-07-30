@@ -16,7 +16,7 @@ import { SelectComponent } from '@components/select/select.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { getAllValues } from '@core/utils/enum-utils';
 import { getLayout } from '@core/utils/app-route';
-import { ArticleCard } from '@core/models/article-card';
+import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
 import { HomeService } from '@shared/services/home.service';
 import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
 import { ArticleService } from '@shared/services/article.service';
@@ -44,7 +44,7 @@ export class HomePageComponent {
   categories: Array<string>;
   states: Array<string>;
   homeService: HomeService = inject(HomeService);
-  articlesCards: Array<ArticleCard>;
+  articlesCards: Array<ArticleCardDto>;
   protected readonly getLayout = getLayout;
 
   constructor(private cd: ChangeDetectorRef) {
@@ -53,7 +53,7 @@ export class HomePageComponent {
     this.title = '';
     this.category = Category.TextBooksEducationalMaterial;
     this.state = State.New;
-    this.articlesCards = [] as Array<ArticleCard>;
+    this.articlesCards = [] as Array<ArticleCardDto>;
   }
 
   onSelectedState(state: string) {
@@ -77,13 +77,6 @@ export class HomePageComponent {
       category: this.category,
       state: this.state,
     };
-
-    // this.homeService
-    //   .search(filterArticle)
-    //   .subscribe(articlesCards => {
-    //     this.articlesCards = articlesCards;
-    //   })
-    //   .unsubscribe();
     this.homeService.search(filterArticle);
     this.cd.detectChanges();
   }
