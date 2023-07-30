@@ -6,11 +6,11 @@ import { ArticleMapperService } from '@shared/services/mappers/article-mapper.se
 import { HttpClient } from '@angular/common/http';
 import { ArticleService } from '@shared/services/article.service';
 import { ApiSignalState } from '@shared/services/api-signal-state';
-import { ArticleCard } from '@core/models/article-card';
+import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
 
 @Injectable()
 export class HomeService {
-  private apiSignalState = new ApiSignalState<ArticleCard[]>([]);
+  private apiSignalState = new ApiSignalState<ArticleCardDto[]>([]);
   private articleMapper = inject(ArticleMapperService);
   private articleService = inject(ArticleService);
   private http = inject(HttpClient);
