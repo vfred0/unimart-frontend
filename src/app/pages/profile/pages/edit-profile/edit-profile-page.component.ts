@@ -5,7 +5,6 @@ import { InputComponent } from '@components/input/input.component';
 import { ButtonComponent } from '@components/button/button.component';
 import { Icon } from '@core/types/icon';
 import { UserDto } from '@core/dtos/user.dto';
-import { Data } from '@core/utils/data';
 import { getLayout } from '@core/utils/app-route';
 
 @Component({
@@ -24,7 +23,7 @@ export class EditProfilePageComponent {
   protected readonly Icon = Icon;
 
   constructor() {
-    this.user = Data.articlePage.user;
+    this.user = {} as UserDto;
   }
 
   onAboutMeChanged(aboutMe: string) {}
