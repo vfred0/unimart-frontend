@@ -2,7 +2,6 @@ import { map } from 'rxjs';
 import { ArticleDto } from '@core/dtos/article/article.dto';
 import { inject, Injectable } from '@angular/core';
 import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
-import { ArticleService } from '@shared/services/article.service';
 import { ApiSignalState } from '@shared/services/api-signal-state';
 import { ArticleCard } from '@core/models/article-card';
 import { AppRoute } from '@core/utils/app-route';
@@ -14,7 +13,6 @@ export class ProposedArticlesPageService {
   articleId = '';
   private apiSignalState = new ApiSignalState<ArticleCard[]>([]);
   private articleMapper = inject(ArticleMapperService);
-  private articleService = inject(ArticleService);
   private readonly proposedArticleService = inject(ProposedArticleService);
   private router = inject(Router);
   private category = '';
@@ -56,7 +54,6 @@ export class ProposedArticlesPageService {
           );
         })
       );
-
     this.apiSignalState.execute(request);
   }
 

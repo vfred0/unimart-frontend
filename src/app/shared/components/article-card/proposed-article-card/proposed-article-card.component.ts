@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ArticleCardComponent } from '@components/article-card/article-card.component';
 import { ButtonComponent } from '@components/button/button.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppRoute } from '@core/utils/app-route';
 import { ProposedArticleService } from '@shared/services/proposed-article.service';
 import { ArticleDto } from '@core/dtos/article/article.dto';
@@ -19,14 +19,17 @@ export class ProposedArticleCardComponent extends ArticleCardComponent {
   @Input() isExchangeArticle: boolean;
   @Input() searchProposed: boolean;
   @Output() deleteProposed: EventEmitter<string>;
+  private readonly articleId: string;
 
   constructor(
     protected override router: Router,
+    protected activateRoute: ActivatedRoute,
     private proposedArticleService: ProposedArticleService
   ) {
     super(router);
     this.isExchangeArticle = true;
     this.searchProposed = false;
+    this.articleId = activateRoute.snapshot.params['articleId'];
     this.deleteProposed = new EventEmitter<string>();
   }
 
@@ -57,6 +60,13 @@ export class ProposedArticleCardComponent extends ArticleCardComponent {
   }
 
   private getState() {
+    if (this.isExchangeArticle) {
+      return {
+        typeArticle: TypeArticle.Proposed,
+        articleId: this.articleId,
+        isExchangeArticle: this.isExchangeArticle,
+      };
+    }
     return {
       typeArticle: TypeArticle.Proposed,
       isExchangeArticle: this.isExchangeArticle,

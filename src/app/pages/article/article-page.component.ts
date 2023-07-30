@@ -12,9 +12,10 @@ import { HeaderDetailComponent } from '@components/header-detail/header-detail.c
 import { ArticlePageService } from '@shared/services/article-page.service';
 import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
 import { UserMapperService } from '@shared/services/mappers/user-mapper.service';
-import { ExchangeSaveDto } from '@core/dtos/exchange/exchange-save.dto';
 import { ExchangeService } from '@shared/services/exchange.service';
 import { ProfilePageService } from '@shared/services/profile-page.service';
+import { ProposedArticlesPageService } from '@shared/services/proposed-articles-page.service';
+import { ProposedArticleDto } from '@core/dtos/article/proposed-article.dto';
 
 @Component({
   standalone: true,
@@ -32,6 +33,7 @@ import { ProfilePageService } from '@shared/services/profile-page.service';
     UserMapperService,
     ExchangeService,
     ProfilePageService,
+    ProposedArticlesPageService,
   ],
   templateUrl: './article-page.component.html',
 })
@@ -42,6 +44,7 @@ export class ArticlePageComponent {
   protected readonly Icon = Icon;
   private readonly id: string;
   private exchangeService: ExchangeService;
+  private proposedArticleService: ProposedArticlesPageService;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -50,6 +53,7 @@ export class ArticlePageComponent {
     this.typeArticle = TypeArticleCard.Normal;
     this.service = inject(ArticlePageService);
     this.exchangeService = inject(ExchangeService);
+    this.proposedArticleService = inject(ProposedArticlesPageService);
     this.id = this.activatedRoute.snapshot.params['id'];
     this.service.setIsProposed(this.id);
     if (this.containsArticleDto()) {
@@ -92,9 +96,9 @@ export class ArticlePageComponent {
 
   onAcceptProposedArticle() {
     const exchange = {
-      articleId: this.id,
-      articleProposedId: history.state.articleProposedId,
-    } as ExchangeSaveDto;
+      articleId: history.state.articleId,
+      proposedArticleId: this.id,
+    } as ProposedArticleDto;
     this.exchangeService.save(exchange).subscribe(() => {
       this.router.navigate([AppRoute.Exchanges]).then();
     });
