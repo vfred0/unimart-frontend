@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { TypeButton } from '@core/types/type-button';
-import { ArticleCard } from '@core/models/article-card';
+import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
 import { ButtonComponent } from '@components/button/button.component';
 import { isNormal, TypeArticleCard } from '@core/types/type-article-card';
 import { Icon } from '@core/types/icon';
@@ -15,7 +15,7 @@ import { AppRoute } from '@core/utils/app-route';
   templateUrl: './article-card.component.html',
 })
 export class ArticleCardComponent {
-  @Input() articleCard: ArticleCard;
+  @Input() articleCard: ArticleCardDto;
   @Input() typeArticleCard: TypeArticleCard;
   protected readonly TypeButton = TypeButton;
   protected readonly TypeArticleCard = TypeArticleCard;
@@ -23,7 +23,7 @@ export class ArticleCardComponent {
 
   constructor(protected router: Router) {
     this.typeArticleCard = this.TypeArticleCard.Normal;
-    this.articleCard = {} as ArticleCard;
+    this.articleCard = {} as ArticleCardDto;
   }
 
   get isNormal(): boolean {

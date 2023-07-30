@@ -1,10 +1,10 @@
 import { ArticleDto } from '@core/dtos/article/article.dto';
-import { ArticleCard } from '@core/models/article-card';
+import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
 import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class ArticleMapperService {
-  toArticleCard(article: ArticleDto): ArticleCard {
+  toArticleCard(article: ArticleDto): ArticleCardDto {
     return {
       id: article.id,
       image: article.images[0],
@@ -14,6 +14,6 @@ export class ArticleMapperService {
       category: article.category,
       state: article.state,
       typeArticle: article.typeArticle,
-    } as ArticleCard;
+    } as ArticleCardDto;
   }
 }
