@@ -2,43 +2,61 @@ import { inject, Injectable } from '@angular/core';
 import { ApiSignalState } from '@shared/services/api-signal-state';
 import { ArticleDto } from '@core/dtos/article/article.dto';
 import { HeaderDetail } from '@core/utils/header-detail';
-import { ArticlePage } from '@core/models/article-page';
 import { ArticleService } from '@shared/services/article.service';
-import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
 import { UserMapperService } from '@shared/services/mappers/user-mapper.service';
 import { AuthService } from '@shared/services/auth.service';
-import { ProposedArticleService } from '@shared/services/proposed-article.service';
-import { ProfilePageService } from '@shared/services/profile-page.service';
 
 @Injectable()
 export class ArticlePageService {
-  private readonly proposedArticle = new ApiSignalState<boolean>(false);
-  private apiSignalState = new ApiSignalState<ArticleDto>({} as ArticleDto);
-  private articleMapper = inject(ArticleMapperService);
-  private userMapper = inject(UserMapperService);
-  private authService = inject(AuthService);
-  private readonly proposedArticleService = inject(ProposedArticleService);
-  private articleService: ArticleService = inject(ArticleService);
-  private readonly profileService = inject(ProfilePageService);
+  private readonly apiSignalState = new ApiSignalState<ArticleDto>(
+    {} as ArticleDto
+  );
+  private readonly userMapper = inject(UserMapperService);
+  private readonly authService = inject(AuthService);
+  private readonly articleService: ArticleService = inject(ArticleService);
 
-  get isProposed(): boolean {
-    return this.proposedArticle.result();
+  get hasProposedOrReceivedArticle(): boolean {
+    return this.hasProposedArticle || this.hasReceivedProposal;
+  }
+
+  get hasReceivedProposal(): boolean {
+    if (this.articleContainsProperty('receiverUserIdForArticle')) {
+      return this.article.receiverUserIdForArticle === this.authService.user.id;
+    }
+    return false;
+  }
+
+  get hasProposedArticle(): boolean {
+    if (this.articleContainsProperty('proposersUserIdsForArticle')) {
+      return this.article.proposersUserIdsForArticle.includes(
+        this.authService.user.id as string
+      );
+    }
+    return false;
+  }
+
+  get acceptProposals(): boolean {
+    return this.article.acceptProposals;
+  }
+
+  get hasPendingExchange(): boolean {
+    return !this.acceptProposals;
   }
 
   get user() {
-    return this.articlePage.user;
+    return this.article.user;
   }
 
   get headerDetail(): HeaderDetail {
-    return this.userMapper.toHeaderDetails(this.apiSignalState.result().user);
+    return this.userMapper.toHeaderDetails(this.user);
   }
 
-  get articlePage(): ArticlePage {
-    return this.articleMapper.toArticlePage(this.apiSignalState.result());
+  get article(): ArticleDto {
+    return this.apiSignalState.result();
   }
 
   get isMyArticle(): boolean {
-    return this.authService.containsId(this.articlePage.user.id);
+    return this.authService.containsId(this.article.user.id as string);
   }
 
   get isWorking() {
@@ -49,14 +67,6 @@ export class ArticlePageService {
     return this.apiSignalState.isCompleted();
   }
 
-  setIsProposed(articleId: string): void {
-    const request = this.proposedArticleService.userHasMadeProposed(
-      this.authService.user.id as string,
-      articleId
-    );
-    this.proposedArticle.execute(request);
-  }
-
   getById(id: string): void {
     const getById = this.articleService.getById(id);
     this.apiSignalState.execute(getById);
@@ -64,5 +74,9 @@ export class ArticlePageService {
 
   setArticleDto(articleDto: ArticleDto) {
     this.apiSignalState.setSucceed(articleDto);
+  }
+
+  private articleContainsProperty(property: string) {
+    return this.article.hasOwnProperty(property);
   }
 }

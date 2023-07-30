@@ -7,14 +7,13 @@ import { TypeButton } from '@core/types/type-button';
 import { GalleryComponent } from '@components/gallery/gallery.component';
 import { Icon } from '@core/types/icon';
 import { AppRoute } from '@core/utils/app-route';
-import { isProposed, TypeArticleCard } from '@core/types/type-article-card';
+import { TypeArticleCard } from '@core/types/type-article-card';
 import { HeaderDetailComponent } from '@components/header-detail/header-detail.component';
 import { ArticlePageService } from '@shared/services/article-page.service';
 import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
 import { UserMapperService } from '@shared/services/mappers/user-mapper.service';
 import { ExchangeService } from '@shared/services/exchange.service';
 import { ProfilePageService } from '@shared/services/profile-page.service';
-import { ProposedArticlesPageService } from '@shared/services/proposed-articles-page.service';
 import { ProposedArticleDto } from '@core/dtos/article/proposed-article.dto';
 
 @Component({
@@ -33,7 +32,6 @@ import { ProposedArticleDto } from '@core/dtos/article/proposed-article.dto';
     UserMapperService,
     ExchangeService,
     ProfilePageService,
-    ProposedArticlesPageService,
   ],
   templateUrl: './article-page.component.html',
 })
@@ -42,9 +40,8 @@ export class ArticlePageComponent {
   service: ArticlePageService;
   protected readonly TypeButton = TypeButton;
   protected readonly Icon = Icon;
-  private readonly id: string;
+  private readonly articleId: string;
   private exchangeService: ExchangeService;
-  private proposedArticleService: ProposedArticlesPageService;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -53,29 +50,34 @@ export class ArticlePageComponent {
     this.typeArticle = TypeArticleCard.Normal;
     this.service = inject(ArticlePageService);
     this.exchangeService = inject(ExchangeService);
-    this.proposedArticleService = inject(ProposedArticlesPageService);
-    this.id = this.activatedRoute.snapshot.params['id'];
-    this.service.setIsProposed(this.id);
+    this.articleId = this.activatedRoute.snapshot.params['id'];
     if (this.containsArticleDto()) {
       this.typeArticle = history.state.articleDto.typeArticle;
       this.service.setArticleDto(history.state.articleDto);
     } else {
-      this.service.getById(this.id);
+      this.service.getById(this.articleId);
     }
   }
 
-  get acceptSuggest(): boolean {
+  get acceptProposals(): boolean {
     return (
-      !this.isProposed && !this.service.isMyArticle && !this.service.isProposed
+      !this.service.isMyArticle &&
+      !this.service.hasProposedOrReceivedArticle &&
+      !this.service.hasPendingExchange &&
+      this.service.acceptProposals
     );
   }
 
-  get isExchangeArticle(): boolean {
-    return history.state.isExchangeArticle;
+  get showMessagesProposedOrReceived(): boolean {
+    return (
+      !this.service.isMyArticle &&
+      !this.showButtonsToExchangeArticle &&
+      this.service.hasProposedOrReceivedArticle
+    );
   }
 
-  get isProposed(): boolean {
-    return isProposed(this.typeArticle);
+  get showButtonsToExchangeArticle(): boolean {
+    return history.state.isExchangeArticle;
   }
 
   numberProposals(numbersProposals: number): string {
@@ -97,7 +99,7 @@ export class ArticlePageComponent {
   onAcceptProposedArticle() {
     const exchange = {
       articleId: history.state.articleId,
-      proposedArticleId: this.id,
+      proposedArticleId: this.articleId,
     } as ProposedArticleDto;
     this.exchangeService.save(exchange).subscribe(() => {
       this.router.navigate([AppRoute.Exchanges]).then();
@@ -106,7 +108,7 @@ export class ArticlePageComponent {
 
   onSuggestArticle() {
     this.router
-      .navigate([`${AppRoute.Article}/${this.id}/${AppRoute.Suggest}`])
+      .navigate([`${AppRoute.Article}/${this.articleId}/${AppRoute.Suggest}`])
       .then();
   }
 

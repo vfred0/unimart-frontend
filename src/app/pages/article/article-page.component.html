@@ -5,18 +5,19 @@
 </ng-template>
 
 <div *ngIf="this.service.isCompleted" class="c-article-page">
+
     <div class="c-article-page__banner">
-        <img class="c-article-page__banner-image" src="{{ this.service.articlePage.image }}"/>
+        <img class="c-article-page__banner-image" src="{{ this.service.article.images[0] }}"/>
         <div class="c-article-page__banner-container">
-            <span class="c-article-page__banner-title o-text-xl-semibold">{{this.service.articlePage.title}}</span>
-            <span class="c-article-page__banner-description o-text-normal-medium">{{this.service.articlePage.description}}</span>
-            <span class="c-article-page__banner-date-published o-text-sm-light">{{this.service.articlePage.date}}</span>
+            <span class="c-article-page__banner-title o-text-xl-semibold">{{this.service.article.title}}</span>
+            <span class="c-article-page__banner-description o-text-normal-medium">{{this.service.article.description}}</span>
+            <span class="c-article-page__banner-date-published o-text-sm-light">{{this.service.article.date}}</span>
         </div>
         <div class="c-article-page__banner-buttons">
-            <app-button [description]="this.service.articlePage.state"
+            <app-button [description]="this.service.article.state"
                         [icon]="Icon.State"
                         [typeButton]="TypeButton.Tag"/>
-            <app-button [description]="this.numberProposals(this.service.articlePage.numbersProposals)"
+            <app-button [description]="this.numberProposals(this.service.article.numbersProposals)"
                         [typeButton]="TypeButton.Tag"/>
         </div>
     </div>
@@ -24,7 +25,7 @@
         <span class="o-text-xl-semibold">Publicador</span>
         <div class="c-article-page__user-card">
             <app-header-detail [headerDetail]="this.service.headerDetail"/>
-            <span class="o-text-base-normal"> {{ this.service.articlePage.user.about }}</span>
+            <span class="o-text-base-normal"> {{ this.service.article.user.about }}</span>
             <div class="c-article-page__user-card-buttons">
                 <app-button [description]="this.service.user.rating.toString()"
                             [icon]="Icon.Star"
@@ -35,9 +36,9 @@
             </div>
         </div>
         <span class="o-text-xl-semibold">Galería</span>
-        <app-gallery [images]="this.service.articlePage.images"/>
 
-        <ng-template [ngIf]="this.isExchangeArticle">
+        <app-gallery [images]="this.service.article.images"/>
+        <ng-template [ngIf]="this.showButtonsToExchangeArticle">
             <div class="c-article-page__buttons">
                 <app-button (click)="this.onAcceptProposedArticle()"
                             [description]="'Aceptar intercambio'"
@@ -49,8 +50,7 @@
                             [typeButton]="TypeButton.Contact"/>
             </div>
         </ng-template>
-
-        <ng-template [ngIf]="this.acceptSuggest">
+        <ng-template [ngIf]="this.acceptProposals">
             <div class="c-article-page__buttons">
                 <app-button (click)="this.onSuggestArticle()"
                             [description]="'Proponer artículo'"
@@ -58,9 +58,13 @@
                             [typeButton]="TypeButton.Primary"/>
             </div>
         </ng-template>
-        <ng-template [ngIf]="!this.isExchangeArticle">
-            <ng-template [ngIf]="!this.service.isMyArticle && this.service.isProposed">
-                <span class="o-text-sm-bold">Existe una propuesta de intercambio</span>
+        <ng-template
+                [ngIf]="this.showMessagesProposedOrReceived">
+            <ng-template [ngIf]="this.service.hasReceivedProposal">
+                <span class="o-text-sm-bold">Te han propuesto este artículo</span>
+            </ng-template>
+            <ng-template [ngIf]="this.service.hasProposedArticle">
+                <span class="o-text-sm-bold">Has realizado una propuesta para este artículo</span>
             </ng-template>
         </ng-template>
     </div>
