@@ -2,8 +2,6 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '@components/header/header.component';
 import { ExchangeCardComponent } from '@pages/exchanges/components/exchange-card/exchange-card.component';
-import { ExchangeDto } from '@core/dtos/exchange/exchange.dto';
-import { Data } from '@core/utils/data';
 import { AddRatingComponent } from '@components/rating/add-rating/add-rating.component';
 import { getLayout } from '@core/utils/app-route';
 import { ExchangesPageService } from '@shared/services/exchanges-page.service';
@@ -21,12 +19,10 @@ import { ExchangeService } from '@shared/services/exchange.service';
   templateUrl: './exchanges-page.component.html',
 })
 export class ExchangesPageComponent {
-  exchangeCards: Array<ExchangeDto>;
   service: ExchangesPageService;
   protected readonly getLayout = getLayout;
 
   constructor() {
-    this.exchangeCards = Data.exchangeCards;
     this.service = inject(ExchangesPageService);
     this.service.setExchanges();
   }
