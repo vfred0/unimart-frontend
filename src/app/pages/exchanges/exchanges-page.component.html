@@ -1,7 +1,19 @@
 <div class="{{getLayout()}}">
     <div class="o-layout-view-rating-cards">
-        <app-exchange-card (discardExchange)="onDiscardRating(exchangeCard.exchangeId)"
-                           *ngFor="let exchangeCard of exchangeCards"
-                           [exchangeCard]="exchangeCard"/>
+        <ng-template [ngIf]="this.service.isWorking">
+            <span class="o-text-lg-semibold"> Cargando...</span>
+        </ng-template>
+
+        <ng-template [ngIf]="this.service.isEmpty">
+            <span class="o-text-lg-semibold"> No hay intercambios para mostrar</span>
+        </ng-template>
+
+        <ng-template [ngIf]="this.service.isCompleted">
+            <app-exchange-card (discardExchange)="onDiscardExchange(exchangeCard.exchangeId)"
+                               *ngFor="let exchangeCard of this.service.exchanges"
+                               [exchangeCard]="exchangeCard"/>
+        </ng-template>
+
+
     </div>
 </div>
