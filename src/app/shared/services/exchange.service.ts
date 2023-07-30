@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ExchangeDto } from '@core/dtos/exchange/exchange.dto';
+import { ExchangeDto } from '@core/dtos/exchange.dto';
 import { ProposedArticleDto } from '@core/dtos/article/proposed-article.dto';
 
 @Injectable()
