@@ -57,7 +57,7 @@ export class AuthService {
     return !!userId;
   }
 
-  containsId(id: string | undefined) {
+  containsId(id: string) {
     return this.user.id === id;
   }
 
