@@ -9,11 +9,12 @@ export class ArticleMapperService {
       id: article.id,
       image: article.images[0],
       title: article.title,
-      dateOfPublication: article.date,
-      numberProposals: article.numbersProposals,
+      date: article.date,
+      numbersProposals: article.numbersProposals,
       category: article.category,
       state: article.state,
       typeArticle: article.typeArticle,
+      acceptProposals: article.acceptProposals,
     } as ArticleCardDto;
   }
 }
