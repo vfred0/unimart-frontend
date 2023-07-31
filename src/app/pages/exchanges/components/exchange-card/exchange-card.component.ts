@@ -37,7 +37,7 @@ export class ExchangeCardComponent implements OnInit {
   }
 
   onDiscardExchange() {
-    this.discardExchange.emit(this.exchangeCard.exchangeId);
+    this.discardExchange.emit(this.exchangeCard.id);
   }
 
   onShowRating() {
@@ -50,5 +50,6 @@ export class ExchangeCardComponent implements OnInit {
       title: this.exchangeCard.userName,
       description: this.exchangeCard.date,
     } as HeaderDetail;
+    console.log(this.exchangeCard);
   }
 }
