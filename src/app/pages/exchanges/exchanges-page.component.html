@@ -9,7 +9,7 @@
         </ng-template>
 
         <ng-template [ngIf]="this.service.isCompleted">
-            <app-exchange-card (discardExchange)="onDiscardExchange(exchangeCard.exchangeId)"
+            <app-exchange-card (discardExchange)="onDiscardExchange(exchangeCard.id)"
                                *ngFor="let exchangeCard of this.service.exchanges"
                                [exchangeCard]="exchangeCard"/>
         </ng-template>
