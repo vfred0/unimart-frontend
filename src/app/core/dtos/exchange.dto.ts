@@ -1,9 +1,11 @@
 export interface ExchangeDto {
-  exchangeId: string;
+  id: string;
   userId: string;
   userName: string;
   userPhoto: string;
   articleToExchange: string;
   articleToReceive: string;
+  hasBeenRated: boolean;
+  isDiscarded: boolean;
   date: string;
 }
