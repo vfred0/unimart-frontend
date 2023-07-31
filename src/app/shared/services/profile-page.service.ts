@@ -1,14 +1,14 @@
 import { inject, Injectable } from '@angular/core';
 import { ApiSignalState } from '@shared/services/api-signal-state';
 import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
-import { map } from 'rxjs';
-import { ArticleDto } from '@core/dtos/article/article.dto';
 import { HttpClient } from '@angular/common/http';
 import { ArticleService } from '@shared/services/article.service';
 import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
 import { AuthService } from '@shared/services/auth.service';
 import { TypeArticle } from '@core/types/type-article';
 import { ProposedArticleService } from '@shared/services/proposed-article.service';
+import { map } from 'rxjs';
+import { ArticleDto } from '@core/dtos/article/article.dto';
 
 @Injectable()
 export class ProfilePageService {
