@@ -4,12 +4,15 @@ import { ExchangeDto } from '@core/dtos/exchange.dto';
 import { HttpClient } from '@angular/common/http';
 import { ExchangeService } from '@shared/services/exchange.service';
 import { AuthService } from '@shared/services/auth.service';
+import { RatingDto } from '@core/dtos/rating/rating.dto';
+import { RatingService } from '@shared/services/rating.service';
 
 @Injectable()
 export class ExchangesPageService {
   private readonly apiSignalState = new ApiSignalState<ExchangeDto[]>([]);
   private readonly httpService = inject(HttpClient);
   private exchangeService = inject(ExchangeService);
+  private readonly ratingService = inject(RatingService);
   private readonly authService = inject(AuthService);
 
   get isEmpty(): boolean {
@@ -35,6 +38,12 @@ export class ExchangesPageService {
 
   discardExchange(exchangeId: string) {
     this.exchangeService.delete(exchangeId).subscribe(() => {
+      this.setExchanges();
+    });
+  }
+
+  addRating(exchangeId: string, rating: RatingDto) {
+    this.exchangeService.setExchangeMade(exchangeId, rating).subscribe(() => {
       this.setExchanges();
     });
   }
