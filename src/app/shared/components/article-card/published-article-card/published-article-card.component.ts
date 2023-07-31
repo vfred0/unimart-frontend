@@ -20,7 +20,7 @@ export class PublishedArticleCardComponent extends ArticleCardComponent {
   }
 
   onShowProposals() {
-    if (this.articleCard.numberProposals > 0) {
+    if (this.articleCard.numbersProposals > 0) {
       this.router
         .navigate([
           `${AppRoute.ProfileProposedArticles}/${this.articleCard.id}`,
