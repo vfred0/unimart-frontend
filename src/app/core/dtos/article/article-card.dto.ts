@@ -6,9 +6,10 @@ export interface ArticleCardDto {
   id: string;
   image: string;
   title: string;
-  dateOfPublication: string;
-  numberProposals: number;
+  date: string;
+  numbersProposals: number;
   category: Category;
   state: State;
   typeArticle?: TypeArticle;
+  acceptProposals: boolean;
 }
