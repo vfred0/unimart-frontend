@@ -1,7 +1,7 @@
 <div class="c-view-rating-card">
     <div class="c-view-rating-card__header-rating">
         <app-header-detail [headerDetail]="this.headerDetail" [withDescription]="true"/>
-        <app-button [description]="this.viewRatingCard.rating.toString()" [icon]="Icon.Star"
+        <app-button [description]="this.viewRatingCard.score.toString()" [icon]="Icon.Star"
                     [typeButton]="TypeButton.Secondary"/>
     </div>
     <span class="o-text-base-normal">{{ this.viewRatingCard.comment }}</span>

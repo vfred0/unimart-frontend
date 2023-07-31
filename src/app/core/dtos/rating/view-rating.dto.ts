@@ -1,7 +1,7 @@
 export interface ViewRatingDto {
   userName: string;
   userPhoto: string;
-  publishDate: string;
-  rating: number;
+  date: string;
+  score: number;
   comment: string;
 }
