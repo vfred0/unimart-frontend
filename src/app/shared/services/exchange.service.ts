@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ExchangeDto } from '@core/dtos/exchange.dto';
 import { ProposedArticleDto } from '@core/dtos/article/proposed-article.dto';
+import { RatingDto } from '@core/dtos/rating/rating.dto';
 
 @Injectable()
 export class ExchangeService {
@@ -18,5 +19,9 @@ export class ExchangeService {
 
   delete(exchangeId: string) {
     return this.http.delete(`${this.API_URL}/${exchangeId}`);
+  }
+
+  setExchangeMade(exchangeId: string, rating: RatingDto) {
+    return this.http.put(`${this.API_URL}/${exchangeId}`, rating);
   }
 }
