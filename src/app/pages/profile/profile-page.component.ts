@@ -54,7 +54,7 @@ export class ProfilePageComponent {
 
   get averageRating(): string {
     return (
-      this.viewRatingCards.reduce((acc, curr) => acc + curr.rating, 0) /
+      this.viewRatingCards.reduce((acc, curr) => acc + curr.score, 0) /
       this.viewRatingCards.length
     ).toString();
   }
@@ -69,10 +69,10 @@ export class ProfilePageComponent {
 
   onSelectedRating(filterRating: string) {
     if (filterRating === FilterRating.High) {
-      this.viewRatingCards.sort((a, b) => b.rating - a.rating);
+      this.viewRatingCards.sort((a, b) => b.score - a.score);
     }
     if (filterRating === FilterRating.Low) {
-      this.viewRatingCards.sort((a, b) => a.rating - b.rating);
+      this.viewRatingCards.sort((a, b) => a.score - b.score);
     }
   }
 
