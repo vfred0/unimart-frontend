@@ -8,18 +8,24 @@ import { TypeArticle } from '@core/types/type-article';
 import { ProposedArticleService } from '@shared/services/proposed-article.service';
 import { map } from 'rxjs';
 import { ArticleDto } from '@core/dtos/article/article.dto';
-import { ViewRatingDto } from '@core/dtos/rating/view-rating.dto';
 
 @Injectable()
 export class ProfilePageService {
   private apiSignalState = new ApiSignalState<ArticleCardDto[]>([]);
-  private apiSignalStateRatings = new ApiSignalState<ViewRatingDto[]>([]);
   private readonly articleMapper = inject(ArticleMapperService);
   private readonly articleService = inject(ArticleService);
   private readonly proposedArticleService = inject(ProposedArticleService);
   private readonly authService = inject(AuthService);
   private title = '';
   private typeArticle: TypeArticle = TypeArticle.Published;
+
+  get isExchanged(): boolean {
+    return this.typeArticle === TypeArticle.Exchanged;
+  }
+
+  get isProposed(): boolean {
+    return this.typeArticle === TypeArticle.Proposed;
+  }
 
   get containsPublishedArticles(): boolean {
     return this.articlesCards.length > 0;
@@ -36,12 +42,7 @@ export class ProfilePageService {
         const includesTitle = articleCard.title
           .toLowerCase()
           .includes(this.title.toLowerCase());
-        if (this.typeArticle === TypeArticle.Published) {
-          return includesTitle;
-        }
-        return (
-          includesTitle && articleCard.typeArticle === TypeArticle.Proposed
-        );
+        return includesTitle && articleCard.typeArticle === this.typeArticle;
       });
   }
 

@@ -19,19 +19,25 @@
                 </ng-template>
                 <div class="o-layout-article-cards">
                     <ng-template [ngIf]="this.service.isCompleted">
-                        <ng-template [ngIfElse]="proposedTemplate" [ngIf]="this.service.isPublished">
+                        <ng-template [ngIf]="this.service.isPublished">
                             <app-published-article-card
                                     (deleteArticle)="onDeleteArticle(articleCard.id)"
                                     *ngFor="let articleCard of this.service.articlesCards"
                                     [articleCard]="articleCard"/>
                         </ng-template>
-                        <ng-template #proposedTemplate>
+                        <ng-template [ngIf]="this.service.isProposed">
                             <app-proposed-article-card
                                     (deleteProposed)="onDeleteProposed(articleCard.id)"
                                     *ngFor="let articleCard of this.service.articlesCards"
                                     [articleCard]="articleCard"
                                     [isExchangeArticle]="false"
                                     [searchProposed]="true"/>
+                        </ng-template>
+
+                        <ng-template [ngIf]="this.service.isExchanged">
+                            <app-article-card
+                                    *ngFor="let articleCard of this.service.articlesCards"
+                                    [articleCard]="articleCard"/>
                         </ng-template>
                     </ng-template>
                 </div>
