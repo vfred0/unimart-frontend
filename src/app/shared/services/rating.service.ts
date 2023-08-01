@@ -13,9 +13,16 @@ export class RatingService {
   private apiSignalState = new ApiSignalState<ViewRatingDto[]>([]);
   private authService = inject(AuthService);
 
+  get isCompleted(): boolean {
+    return this.apiSignalState.isCompleted();
+  }
+
   get averageRating(): number {
-    // const totalScore = this.ratings.reduce((a, b) => a + b.score, 0);
-    return this.authService.user.rating;
+    const user = this.authService.user;
+    if (!!user) {
+      return user.rating;
+    }
+    return 0;
   }
 
   get ratings(): Array<ViewRatingDto> {

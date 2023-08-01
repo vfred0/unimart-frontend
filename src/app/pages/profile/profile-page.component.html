@@ -55,14 +55,20 @@
                 <div class="c-tabs__content-row o-layout-width-100 ">
                     <span class="o-text-lg-semibold o-layout-width-100 ">{{ this.serviceRating.ratings.length }}
                         resultados </span>
-                    <app-button [description]="this.serviceRating.averageRating.toString()" [icon]="Icon.Star"
+                    <ng-template [ngIf]="this.service.isWorking">
+                        <span class="o-text-lg-semibold"> Cargando...</span>
+                    </ng-template>
+
+                    <app-button *ngIf="this.serviceRating.isCompleted"
+                                [description]="this.serviceRating.averageRating.toString()" [icon]="Icon.Star"
                                 [typeButton]="TypeButton.Secondary"/>
                 </div>
-
-                <div class="o-layout-view-rating-cards">
-                    <app-view-rating-card *ngFor="let viewRatingCard of this.serviceRating.ratings"
-                                          [viewRatingCard]="viewRatingCard"/>
-                </div>
+                <ng-template [ngIf]="this.serviceRating.isCompleted">
+                    <div class="o-layout-view-rating-cards">
+                        <app-view-rating-card *ngFor="let viewRatingCard of this.serviceRating.ratings"
+                                              [viewRatingCard]="viewRatingCard"/>
+                    </div>
+                </ng-template>
             </div>
         </div>
     </div>
