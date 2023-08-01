@@ -1,7 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { ApiSignalState } from '@shared/services/api-signal-state';
 import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
-import { HttpClient } from '@angular/common/http';
 import { ArticleService } from '@shared/services/article.service';
 import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
 import { AuthService } from '@shared/services/auth.service';
@@ -9,14 +8,15 @@ import { TypeArticle } from '@core/types/type-article';
 import { ProposedArticleService } from '@shared/services/proposed-article.service';
 import { map } from 'rxjs';
 import { ArticleDto } from '@core/dtos/article/article.dto';
+import { ViewRatingDto } from '@core/dtos/rating/view-rating.dto';
 
 @Injectable()
 export class ProfilePageService {
   private apiSignalState = new ApiSignalState<ArticleCardDto[]>([]);
+  private apiSignalStateRatings = new ApiSignalState<ViewRatingDto[]>([]);
   private readonly articleMapper = inject(ArticleMapperService);
   private readonly articleService = inject(ArticleService);
   private readonly proposedArticleService = inject(ProposedArticleService);
-  private readonly http = inject(HttpClient);
   private readonly authService = inject(AuthService);
   private title = '';
   private typeArticle: TypeArticle = TypeArticle.Published;
