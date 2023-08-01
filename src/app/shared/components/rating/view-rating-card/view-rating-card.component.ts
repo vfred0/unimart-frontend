@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '@shared/components/button/button.component';
 import { HeaderComponent } from '@shared/components/header/header.component';
@@ -20,7 +20,7 @@ import { HeaderDetail } from '@core/utils/header-detail';
     HeaderDetailComponent,
   ],
 })
-export class ViewRatingCardComponent {
+export class ViewRatingCardComponent implements OnInit {
   @Input() viewRatingCard: ViewRatingDto;
   headerDetail: HeaderDetail;
   protected readonly TypeButton = TypeButton;
@@ -29,5 +29,13 @@ export class ViewRatingCardComponent {
   constructor() {
     this.viewRatingCard = {} as ViewRatingDto;
     this.headerDetail = {} as HeaderDetail;
+  }
+
+  ngOnInit(): void {
+    this.headerDetail = {
+      photo: this.viewRatingCard.userPhoto,
+      title: this.viewRatingCard.userName,
+      description: this.viewRatingCard.date,
+    };
   }
 }
