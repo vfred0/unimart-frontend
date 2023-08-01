@@ -18,6 +18,7 @@ import { getLayout } from '@core/utils/app-route';
 import { ProfilePageService } from '@shared/services/profile-page.service';
 import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
 import { ArticleService } from '@shared/services/article.service';
+import { RatingService } from '@shared/services/rating.service';
 
 @Component({
   standalone: true,
@@ -33,13 +34,19 @@ import { ArticleService } from '@shared/services/article.service';
     PublishedArticleCardComponent,
     ProposedArticleCardComponent,
   ],
-  providers: [ProfilePageService, ArticleMapperService, ArticleService],
+  providers: [
+    ProfilePageService,
+    ArticleMapperService,
+    ArticleService,
+    RatingService,
+  ],
 })
 export class ProfilePageComponent {
   typeArticles: Array<string>;
   filterRatings: Array<FilterRating>;
   viewRatingCards: Array<ViewRatingDto>;
-  profilePageService: ProfilePageService;
+  service: ProfilePageService;
+  serviceRating: RatingService;
   protected readonly TypeButton = TypeButton;
   protected readonly Icon = Icon;
   protected readonly getLayout = getLayout;
@@ -48,8 +55,10 @@ export class ProfilePageComponent {
     this.typeArticles = getAllValues(TypeArticle);
     this.filterRatings = getAllValues(FilterRating);
     this.viewRatingCards = new Array<ViewRatingDto>();
-    this.profilePageService = inject(ProfilePageService);
-    this.profilePageService.allArticles();
+    this.service = inject(ProfilePageService);
+    this.serviceRating = inject(RatingService);
+    this.service.allArticles();
+    this.serviceRating.allRatings();
   }
 
   get averageRating(): string {
@@ -60,27 +69,22 @@ export class ProfilePageComponent {
   }
 
   onTextSearchChanged(title: string) {
-    this.profilePageService.filterByTitle(title);
+    this.service.filterByTitle(title);
   }
 
   onSelectedTypeArticle(typeArticle: string) {
-    this.profilePageService.filterByTypeArticle(typeArticle as TypeArticle);
+    this.service.filterByTypeArticle(typeArticle as TypeArticle);
   }
 
   onSelectedRating(filterRating: string) {
-    if (filterRating === FilterRating.High) {
-      this.viewRatingCards.sort((a, b) => b.score - a.score);
-    }
-    if (filterRating === FilterRating.Low) {
-      this.viewRatingCards.sort((a, b) => a.score - b.score);
-    }
+    this.serviceRating.filterByRating(filterRating as FilterRating);
   }
 
   onDeleteArticle(articleId: string) {
-    this.profilePageService.deleteArticle(articleId);
+    this.service.deleteArticle(articleId);
   }
 
   onDeleteProposed(proposedArticleId: string) {
-    this.profilePageService.deleteProposedArticleById(proposedArticleId);
+    this.service.deleteProposedArticleById(proposedArticleId);
   }
 }
