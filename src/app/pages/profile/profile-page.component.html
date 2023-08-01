@@ -14,21 +14,21 @@
                         [options]="this.typeArticles"
                         [label]="'Artículos:'"
                         class="o-layout-width-100"/>
-                <ng-template [ngIf]="this.profilePageService.isWorking">
+                <ng-template [ngIf]="this.service.isWorking">
                     <span class="o-text-2xl-bold">Cargando...</span>
                 </ng-template>
                 <div class="o-layout-article-cards">
-                    <ng-template [ngIf]="this.profilePageService.isCompleted">
-                        <ng-template [ngIfElse]="proposedTemplate" [ngIf]="this.profilePageService.isPublished">
+                    <ng-template [ngIf]="this.service.isCompleted">
+                        <ng-template [ngIfElse]="proposedTemplate" [ngIf]="this.service.isPublished">
                             <app-published-article-card
                                     (deleteArticle)="onDeleteArticle(articleCard.id)"
-                                    *ngFor="let articleCard of this.profilePageService.articlesCards"
+                                    *ngFor="let articleCard of this.service.articlesCards"
                                     [articleCard]="articleCard"/>
                         </ng-template>
                         <ng-template #proposedTemplate>
                             <app-proposed-article-card
                                     (deleteProposed)="onDeleteProposed(articleCard.id)"
-                                    *ngFor="let articleCard of this.profilePageService.articlesCards"
+                                    *ngFor="let articleCard of this.service.articlesCards"
                                     [articleCard]="articleCard"
                                     [isExchangeArticle]="false"
                                     [searchProposed]="true"/>
@@ -47,14 +47,14 @@
                         [options]="this.filterRatings"
                         class="o-layout-width-100"/>
                 <div class="c-tabs__content-row o-layout-width-100 ">
-                    <span class="o-text-lg-semibold o-layout-width-100 ">{{ this.viewRatingCards.length }}
+                    <span class="o-text-lg-semibold o-layout-width-100 ">{{ this.serviceRating.ratings.length }}
                         resultados </span>
-                    <app-button [description]="this.averageRating" [icon]="Icon.Star"
+                    <app-button [description]="this.serviceRating.averageRating.toString()" [icon]="Icon.Star"
                                 [typeButton]="TypeButton.Secondary"/>
                 </div>
 
                 <div class="o-layout-view-rating-cards">
-                    <app-view-rating-card *ngFor="let viewRatingCard of this.viewRatingCards"
+                    <app-view-rating-card *ngFor="let viewRatingCard of this.serviceRating.ratings"
                                           [viewRatingCard]="viewRatingCard"/>
                 </div>
             </div>
