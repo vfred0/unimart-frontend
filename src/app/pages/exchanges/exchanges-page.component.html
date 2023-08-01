@@ -10,10 +10,9 @@
 
         <ng-template [ngIf]="this.service.isCompleted">
             <app-exchange-card (discardExchange)="onDiscardExchange(exchangeCard.id)"
+                               (saveRating)="onSaveRating()"
                                *ngFor="let exchangeCard of this.service.exchanges"
                                [exchangeCard]="exchangeCard"/>
         </ng-template>
-
-
     </div>
 </div>

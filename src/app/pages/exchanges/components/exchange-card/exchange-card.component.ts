@@ -24,6 +24,7 @@ import { HeaderDetail } from '@core/utils/header-detail';
 export class ExchangeCardComponent implements OnInit {
   @Input() exchangeCard: ExchangeDto;
   @Output() discardExchange: EventEmitter<string>;
+  @Output() saveRating: EventEmitter<void>;
   showAddRating: boolean;
   headerDetail: HeaderDetail;
   protected readonly TypeButton = TypeButton;
@@ -34,6 +35,11 @@ export class ExchangeCardComponent implements OnInit {
     this.discardExchange = new EventEmitter<string>();
     this.showAddRating = false;
     this.headerDetail = {} as HeaderDetail;
+    this.saveRating = new EventEmitter<void>();
+  }
+
+  onSaveRating(): void {
+    this.saveRating.emit();
   }
 
   onDiscardExchange() {
@@ -50,6 +56,5 @@ export class ExchangeCardComponent implements OnInit {
       title: this.exchangeCard.userName,
       description: this.exchangeCard.date,
     } as HeaderDetail;
-    console.log(this.exchangeCard);
   }
 }

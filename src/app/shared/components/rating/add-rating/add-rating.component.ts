@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '@components/button/button.component';
 import { HeaderComponent } from '@components/header/header.component';
@@ -12,6 +12,7 @@ import { TypeButton } from '@core/types/type-button';
 import { Icon } from '@core/types/icon';
 import { RatingDto } from '@core/dtos/rating/rating.dto';
 import { ExchangesPageService } from '@shared/services/exchanges-page.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-rating',
@@ -24,19 +25,21 @@ import { ExchangesPageService } from '@shared/services/exchanges-page.service';
     InputComponent,
     AngularSvgIconModule,
   ],
-  providers: [ExchangesPageService],
   templateUrl: './add-rating.component.html',
+  providers: [ExchangesPageService],
 })
 export class AddRatingComponent {
   scoreRatings: Array<string>;
   @Input() userId: string;
   @Input() exchangeId: string;
+  @Output() saveRating: EventEmitter<void>;
   form: FormGroup;
   protected readonly onselect = onselect;
   protected readonly TypeButton = TypeButton;
+  protected readonly Icon = Icon;
   private readonly service: ExchangesPageService;
 
-  constructor() {
+  constructor(private router: Router) {
     this.scoreRatings = getAllValues(ScoreRating);
     this.userId = '';
     this.exchangeId = '';
@@ -45,6 +48,7 @@ export class AddRatingComponent {
       comment: new FormControl('', Validators.required),
     });
     this.service = inject(ExchangesPageService);
+    this.saveRating = new EventEmitter<void>();
   }
 
   onSelectedScoreRating(score: string) {
@@ -61,11 +65,8 @@ export class AddRatingComponent {
       score: this.form.get('score')?.value,
       comment: this.form.get('comment')?.value,
     };
-    console.log(
-      `Rating: ${JSON.stringify(rating)}, exchangeId: ${this.exchangeId}`
-    );
-    this.service.addRating(this.exchangeId, rating);
+    this.service.addRating(this.exchangeId, rating).subscribe(() => {
+      this.saveRating.emit();
+    });
   }
-
-  protected readonly Icon = Icon;
 }

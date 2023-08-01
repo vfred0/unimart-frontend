@@ -17,6 +17,7 @@
         </ng-template>
     </div>
     <ng-template [ngIf]="this.showAddRating">
-        <app-add-rating [exchangeId]="this.exchangeCard.id" [userId]="exchangeCard.userId"/>
+        <app-add-rating (saveRating)="this.onSaveRating()" [exchangeId]="this.exchangeCard.id"
+                        [userId]="exchangeCard.userId"/>
     </ng-template>
 </div>

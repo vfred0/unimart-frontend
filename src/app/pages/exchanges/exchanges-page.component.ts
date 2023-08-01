@@ -30,4 +30,8 @@ export class ExchangesPageComponent {
   onDiscardExchange(exchangeId: string): void {
     this.service.discardExchange(exchangeId);
   }
+
+  onSaveRating() {
+    this.service.setExchanges();
+  }
 }

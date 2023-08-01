@@ -7,7 +7,7 @@ import { AuthService } from '@shared/services/auth.service';
 import { RatingDto } from '@core/dtos/rating/rating.dto';
 import { RatingService } from '@shared/services/rating.service';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ExchangesPageService {
   private readonly apiSignalState = new ApiSignalState<ExchangeDto[]>([]);
   private readonly httpService = inject(HttpClient);
@@ -34,6 +34,7 @@ export class ExchangesPageService {
   }
 
   setExchanges() {
+    console.log('Actualizando exchanges');
     const request = this.exchangeService.getByUserId(this.authService.userId);
     this.apiSignalState.execute(request);
   }
@@ -45,8 +46,6 @@ export class ExchangesPageService {
   }
 
   addRating(exchangeId: string, rating: RatingDto) {
-    this.exchangeService.setExchangeMade(exchangeId, rating).subscribe(() => {
-      this.setExchanges();
-    });
+    return this.exchangeService.setExchangeMade(exchangeId, rating);
   }
 }

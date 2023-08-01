@@ -22,6 +22,6 @@ export class ExchangeService {
   }
 
   setExchangeMade(exchangeId: string, rating: RatingDto) {
-    return this.http.put(`${this.API_URL}/${exchangeId}`, rating);
+    return this.http.put<string>(`${this.API_URL}/${exchangeId}`, rating);
   }
 }
