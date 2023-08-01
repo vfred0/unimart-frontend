@@ -24,16 +24,6 @@ export class ProposedArticleService {
     return this.http.get<ArticleDto[]>(`${this.API_URL}/articles/${articleId}`);
   }
 
-  proposedArticlesByUserId(userId: string) {
-    return this.http.get<ArticleDto[]>(`${this.API_URL}/users/${userId}`);
-  }
-
-  userHasMadeProposed(userId: string, articleId: string) {
-    return this.http.get<boolean>(
-      `${this.API_URL}/users/${userId}/articles/${articleId}`
-    );
-  }
-
   getArticleByProposedArticleId(proposedArticle: string) {
     return this.http.get<ArticleDto>(
       `${this.API_URL}/${proposedArticle}/article`

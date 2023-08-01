@@ -3,7 +3,6 @@ import { map } from 'rxjs';
 import { ArticleDto } from '@core/dtos/article/article.dto';
 import { inject, Injectable } from '@angular/core';
 import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
-import { HttpClient } from '@angular/common/http';
 import { ArticleService } from '@shared/services/article.service';
 import { ApiSignalState } from '@shared/services/api-signal-state';
 import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
@@ -13,7 +12,6 @@ export class HomeService {
   private apiSignalState = new ApiSignalState<ArticleCardDto[]>([]);
   private articleMapper = inject(ArticleMapperService);
   private articleService = inject(ArticleService);
-  private http = inject(HttpClient);
 
   get totalArticlesCards(): number {
     return this.articlesCards.length;
