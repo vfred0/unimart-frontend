@@ -20,7 +20,9 @@ export class ExchangesPageService {
   }
 
   get exchanges() {
-    return this.apiSignalState.result();
+    return this.apiSignalState
+      .result()
+      .filter(exchange => !exchange.hasBeenRated);
   }
 
   get isCompleted() {
