@@ -42,6 +42,11 @@ export class ProfilePageService {
         const includesTitle = articleCard.title
           .toLowerCase()
           .includes(this.title.toLowerCase());
+        if (this.isPublished) {
+          return (
+            includesTitle && articleCard.typeArticle !== TypeArticle.Exchanged
+          );
+        }
         return includesTitle && articleCard.typeArticle === this.typeArticle;
       });
   }
