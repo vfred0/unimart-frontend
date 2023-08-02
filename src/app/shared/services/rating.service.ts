@@ -19,7 +19,7 @@ export class RatingService {
 
   get averageRating(): number {
     const user = this.authService.user;
-    if (!!user) {
+    if (Object.keys(user).length !== 0) {
       return user.rating;
     }
     return 0;

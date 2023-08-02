@@ -28,7 +28,12 @@ export class ProfilePageService {
   }
 
   get containsPublishedArticles(): boolean {
-    return this.articlesCards.length > 0;
+    return (
+      this.articlesCards.filter(
+        (articleCard: ArticleCardDto) =>
+          articleCard.typeArticle === TypeArticle.Published
+      ).length > 0
+    );
   }
 
   get isPublished(): boolean {
@@ -62,6 +67,9 @@ export class ProfilePageService {
   get categories() {
     return this.apiSignalState
       .result()
+      .filter(articleCard => {
+        return articleCard.typeArticle !== TypeArticle.Exchanged;
+      })
       .map(articleCard => articleCard.category)
       .filter(
         (category, index, categories) => categories.indexOf(category) === index
