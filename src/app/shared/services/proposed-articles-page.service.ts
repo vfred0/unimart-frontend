@@ -6,8 +6,8 @@ import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
 import { AppRoute } from '@core/utils/app-route';
 import { Router } from '@angular/router';
 import { ProposedArticleService } from '@shared/services/proposed-article.service';
-import { map } from 'rxjs';
 import { TypeArticle } from '@core/types/type-article';
+import { map } from 'rxjs';
 
 @Injectable()
 export class ProposedArticlesPageService {
@@ -32,7 +32,6 @@ export class ProposedArticlesPageService {
   }
 
   get articlesCards(): ArticleCardDto[] {
-    console.log(this.apiSignalState.result());
     return this.apiSignalState
       .result()
       .filter((articleCard: ArticleCardDto) => {

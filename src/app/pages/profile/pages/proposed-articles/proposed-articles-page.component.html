@@ -4,11 +4,12 @@
     <ng-template [ngIf]="this.service.isWorking">
         <span class="o-text-lg-bold">Cargando...</span>
     </ng-template>
-    <span *ngIf="this.service.isCompleted"
-          class="o-text-lg-semibold o-layout-width-100 ">{{ this.service.totalArticlesCards }} resultados </span>
-    <div class="o-layout-article-cards">
-        <app-proposed-article-card (deleteProposed)="this.onDeletedProposed($event)"
-                                   *ngFor="let articleCard of this.service.articlesCards"
-                                   [articleCard]="articleCard"/>
-    </div>
+    <ng-template [ngIf]="this.service.isCompleted">
+        <span class="o-text-lg-semibold o-layout-width-100 ">{{ this.service.totalArticlesCards }} resultados </span>
+        <div class="o-layout-article-cards">
+            <app-proposed-article-card (deleteProposed)="this.onDeletedProposed($event)"
+                                       *ngFor="let articleCard of this.service.articlesCards"
+                                       [articleCard]="articleCard"/>
+        </div>
+    </ng-template>
 </div>
