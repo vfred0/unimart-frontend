@@ -61,7 +61,8 @@ export class AddRatingComponent {
 
   onRating() {
     const rating: RatingDto = {
-      userId: this.userId,
+      userIdWhoWasRated: this.userId,
+      userIdWhoRated: this.service.userId,
       score: this.form.get('score')?.value,
       comment: this.form.get('comment')?.value,
     };

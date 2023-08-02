@@ -1,5 +1,6 @@
 export interface RatingDto {
-  userId: string;
+  userIdWhoWasRated: string;
+  userIdWhoRated: string;
   score: number;
   comment: string;
 }

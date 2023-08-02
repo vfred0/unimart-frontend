@@ -15,6 +15,10 @@ export class ExchangesPageService {
   private readonly ratingService = inject(RatingService);
   private readonly authService = inject(AuthService);
 
+  get userId() {
+    return this.authService.userId;
+  }
+
   get isEmpty(): boolean {
     return this.exchanges.length === 0;
   }
@@ -34,7 +38,6 @@ export class ExchangesPageService {
   }
 
   setExchanges() {
-    console.log('Actualizando exchanges');
     const request = this.exchangeService.getByUserId(this.authService.userId);
     this.apiSignalState.execute(request);
   }
