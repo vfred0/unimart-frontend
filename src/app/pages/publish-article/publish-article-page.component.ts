@@ -40,7 +40,7 @@ export class PublishArticlePageComponent {
   states: Array<string>;
   genders: Array<string>;
   articleId: string;
-  publishArticleService: PublishArticlePageService;
+  service: PublishArticlePageService;
   protected readonly TypeButton = TypeButton;
   protected readonly Icon = Icon;
   protected readonly getLayout = getLayout;
@@ -50,31 +50,30 @@ export class PublishArticlePageComponent {
     this.states = getAllValues(State);
     this.genders = getAllValues(Gender);
     this.articleId = this.activatedRoute.snapshot.params['id'];
-    this.publishArticleService = inject(PublishArticlePageService);
-
+    this.service = inject(PublishArticlePageService);
     if (this.articleId) {
-      this.publishArticleService.setArticleById(this.articleId);
+      this.service.setArticleById(this.articleId);
     }
   }
 
   onTitleChanged(text: string) {
-    this.publishArticleService.setValue('title', text);
+    this.service.setValue('title', text);
   }
 
   onSelectedState(option: string) {
-    this.publishArticleService.setValue('state', option);
+    this.service.setValue('state', option);
   }
 
   onSelectedCategory(option: string) {
-    this.publishArticleService.setCategory(option);
+    this.service.setCategory(option);
   }
 
   onSelectedGender(gender: string) {
-    this.publishArticleService.setValue('gender', gender);
+    this.service.setValue('gender', gender);
   }
 
   onDescriptionChanged(description: string) {
-    this.publishArticleService.setValue('description', description);
+    this.service.setValue('description', description);
   }
 
   onImageSelected(image: string) {
@@ -83,9 +82,9 @@ export class PublishArticlePageComponent {
 
   publishArticle() {
     if (this.articleId) {
-      this.publishArticleService.publishArticle(true);
+      this.service.publishArticle(true);
     } else {
-      this.publishArticleService.publishArticle(false);
+      this.service.publishArticle(false);
     }
   }
 }

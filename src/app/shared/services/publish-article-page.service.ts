@@ -10,10 +10,15 @@ import { AuthService } from '@shared/services/auth.service';
 import { AppRoute } from '@core/utils/app-route';
 import { Router } from '@angular/router';
 
+import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
+import { map } from 'rxjs';
+
 @Injectable()
 export class PublishArticlePageService {
   private readonly apiSignalState;
   private readonly articleService: ArticleService;
+  private readonly articleMapper: ArticleMapperService;
+
   private authService;
   private readonly _form: FormGroup;
   private updateFormForArticleUpdate: boolean;
@@ -24,6 +29,7 @@ export class PublishArticlePageService {
     this.articleService = inject(ArticleService);
     this.authService = inject(AuthService);
     this.router = inject(Router);
+    this.articleMapper = inject(ArticleMapperService);
     this.updateFormForArticleUpdate = false;
     const article: ArticleSaveDto = {
       title: '',
@@ -93,7 +99,11 @@ export class PublishArticlePageService {
   }
 
   setArticleById(id: string): void {
-    this.apiSignalState.execute(this.articleService.getById(id));
+    this.apiSignalState.execute(
+      this.articleService
+        .getById(id)
+        .pipe(map(article => this.articleMapper.mapTypes(article)))
+    );
     this.updateFormForArticleUpdate = true;
   }
 
@@ -103,8 +113,11 @@ export class PublishArticlePageService {
   }
 
   publishArticle(isUpdate: boolean) {
-    const article = this.articleToSaveOrUpdate();
+    const article = this.articleMapper.mapTypesOnUppercase(
+      this.articleToSaveOrUpdate()
+    );
     if (this._form.valid) {
+      console.log(article);
       if (isUpdate) {
         this.update(article);
       } else {
@@ -113,9 +126,20 @@ export class PublishArticlePageService {
     }
   }
 
+  setFormForUpdate() {
+    if (this.updateFormForArticleUpdate) {
+      this.setValue('title', this.article.title);
+      this.setValue('description', this.article.description);
+      this.setValue('state', this.article.state);
+      this.setValue('category', this.article.category);
+      this.setValue('gender', this.article.gender);
+      this._form.get('images')?.setValue(this.images);
+    }
+  }
+
   private save(article: ArticleDto) {
     this.articleService
-      .save(article)
+      .save(this.authService.user.id as string, article)
       .subscribe(() => this.router.navigate([`${AppRoute.Profile}`]).then());
   }
 
@@ -129,8 +153,6 @@ export class PublishArticlePageService {
 
   private articleToSaveOrUpdate() {
     const article: ArticleDto = this._form.value as ArticleDto;
-    article.userId = this.authService.user.id as string;
-
     if (!this.withGender) {
       article.title = this.getValue('title');
       article.description = this.getValue('description');
@@ -139,17 +161,6 @@ export class PublishArticlePageService {
       article.images = this.getValue('images');
     }
     return article;
-  }
-
-  setFormForUpdate() {
-    if (this.updateFormForArticleUpdate) {
-      this.setValue('title', this.article.title);
-      this.setValue('description', this.article.description);
-      this.setValue('state', this.article.state);
-      this.setValue('category', this.article.category);
-      this.setValue('gender', this.gender);
-      this._form.get('images')?.setValue(this.images);
-    }
   }
 
   private getValue(name: string) {

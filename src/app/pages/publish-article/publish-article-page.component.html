@@ -1,43 +1,43 @@
-<div *ngIf="this.publishArticleService.isCompleted" class="c-publish-article-page {{getLayout()}}">
+<div *ngIf="this.service.isCompleted" class="c-publish-article-page {{getLayout()}}">
     <app-input
             (textChanged)="this.onTitleChanged($event)"
             [icon]="Icon.Edit"
             [placeholder]="'Ingresa el nombre del artículo'"
-            [value]="this.publishArticleService.article.title"
+            [value]="this.service.article.title"
             [title]="'Título'"/>
     <app-select
             (selectedOption)="onSelectedCategory($event)"
             [options]="this.categories"
-            [optionSelected]="this.publishArticleService.article.category"
+            [optionSelected]="this.service.article.category"
             [title]="'Categorías'"/>
 
-    <div [class.double-column]="this.publishArticleService.withGender"
+    <div [class.double-column]="this.service.withGender"
          class="c-publish-article-page__gender-state">
-        <ng-template [ngIf]="this.publishArticleService.withGender">
+        <ng-template [ngIf]="this.service.withGender">
             <app-select (selectedOption)="onSelectedGender($event)"
                         [options]="this.genders"
-                        [optionSelected]="this.publishArticleService.gender"
+                        [optionSelected]="this.service.gender"
                         [title]="'Género'"/>
         </ng-template>
         <app-select (selectedOption)="onSelectedState($event)"
                     [options]="this.states"
-                    [optionSelected]="this.publishArticleService.article.state"
+                    [optionSelected]="this.service.article.state"
                     [title]="'Estado'"/>
     </div>
     <app-input (textChanged)="this.onDescriptionChanged($event)"
                [isTextArea]="true"
                [placeholder]="'Ingresa la descripción del artículo'"
                [title]="'Descripción'"
-               [value]="this.publishArticleService.article.description"/>
+               [value]="this.service.article.description"/>
     <span class="o-text-xl-semibold">Galería</span>
-    <ng-template [ngIf]="this.publishArticleService.containsImages">
-        <app-gallery [images]="this.publishArticleService.article.images"/>
+    <ng-template [ngIf]="this.service.containsImages">
+        <app-gallery [images]="this.service.article.images"/>
     </ng-template>
 
-    <div [class.c-publish-article-page__gallery-buttons]="this.publishArticleService.containsImages">
+    <div [class.c-publish-article-page__gallery-buttons]="this.service.containsImages">
         <app-button-select-image (imageSelected)="onImageSelected($event)"/>
-        <ng-template [ngIf]="this.publishArticleService.containsImages">
-            <app-button (click)="this.publishArticleService.deleteImages()"
+        <ng-template [ngIf]="this.service.containsImages">
+            <app-button (click)="this.service.deleteImages()"
                         [description]="'Eliminar fotos'"
                         [icon]="Icon.Delete"
                         [typeButton]="TypeButton.Secondary"/>
@@ -45,7 +45,7 @@
     </div>
     <div (click)="this.publishArticle()"
          class="c-publish-article-page__container-proposed">
-        <ng-template [ngIfElse]="publishArticleTemplate" [ngIf]="!this.publishArticleService.isFormValid">
+        <ng-template [ngIfElse]="publishArticleTemplate" [ngIf]="!this.service.isFormValid">
             <span class="o-text-sm-bold">Por favor, antes de publicar el artículo, completa los campos obligatorios...</span>
         </ng-template>
         <ng-template #publishArticleTemplate>

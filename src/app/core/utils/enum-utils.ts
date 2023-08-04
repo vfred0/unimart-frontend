@@ -1,7 +1,3 @@
-export function getLength<T extends object>(enumeration: T): number {
-  return Object.keys(enumeration).length / 2;
-}
-
 export function getAllValues<T extends object, K extends keyof T>(
   enumeration: T
 ): T[K][] {
@@ -18,16 +14,42 @@ export function getAllKeys<T extends object, K extends keyof T>(
   ) as K[];
 }
 
-export function containsKey<T extends object, K extends keyof T>(
-  enumeration: T,
-  key: K
-): boolean {
-  return key in enumeration;
-}
-
 export function containsValue<T extends object, K extends keyof T>(
   enumeration: T,
   value: string
 ): boolean {
   return getAllValues(enumeration).includes(value as T[K]);
+}
+
+export function toUpperSnakeCase(name: string): string {
+  return name
+    .replace(/([A-Z])/g, '_$1')
+    .replace(/^_/, '')
+    .toUpperCase();
+}
+
+export function toCamelCase(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/_/g, ' ')
+    .replace(/\b\w/g, firstChar => firstChar.toUpperCase())
+    .replace(/\s/g, '');
+}
+
+export function getValueFromEnum<T>(
+  value: string,
+  enumObject: T
+): T[keyof T] | undefined {
+  const camelCaseValue = toCamelCase(value) as keyof T;
+  return enumObject[camelCaseValue];
+}
+
+export function getKey<T extends object, K extends keyof T>(
+  enumeration: T,
+  value: T[K]
+): K | undefined {
+  const key = getAllKeys(enumeration).find(
+    key => enumeration[key] === value
+  ) as K;
+  return toUpperSnakeCase(key as string) as K;
 }
