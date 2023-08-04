@@ -102,7 +102,7 @@ export class PublishArticlePageService {
     this.apiSignalState.execute(
       this.articleService
         .getById(id)
-        .pipe(map(article => this.articleMapper.mapTypes(article)))
+        .pipe(map(article => this.articleMapper.mapTypesToCamelCase(article)))
     );
     this.updateFormForArticleUpdate = true;
   }
@@ -113,11 +113,10 @@ export class PublishArticlePageService {
   }
 
   publishArticle(isUpdate: boolean) {
-    const article = this.articleMapper.mapTypesOnUppercase(
+    const article = this.articleMapper.mapTypesToUpperSnakeCase(
       this.articleToSaveOrUpdate()
     );
     if (this._form.valid) {
-      console.log(article);
       if (isUpdate) {
         this.update(article);
       } else {
@@ -144,10 +143,8 @@ export class PublishArticlePageService {
   }
 
   private update(article: ArticleDto) {
-    article.id = this.article.id;
-    article.typeArticle = this.article.typeArticle;
     this.articleService
-      .update(article)
+      .update(this.article.id, article)
       .subscribe(() => this.router.navigate([`${AppRoute.Profile}`]).then());
   }
 

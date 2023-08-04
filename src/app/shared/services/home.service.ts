@@ -30,7 +30,7 @@ export class HomeService {
   }
 
   search(filterArticle: FilterArticleDto): void {
-    this.articleMapper.mapTypesFilterArticle(filterArticle);
+    this.articleMapper.mapTypesFilterArticleToUpperSnakeCase(filterArticle);
     const observable = this.articleService.search(filterArticle).pipe(
       map((articles: ArticleDto[]) => {
         return articles.map((article: ArticleDto) =>

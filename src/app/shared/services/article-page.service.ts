@@ -5,6 +5,8 @@ import { HeaderDetail } from '@core/utils/header-detail';
 import { ArticleService } from '@shared/services/article.service';
 import { UserMapperService } from '@shared/services/mappers/user-mapper.service';
 import { AuthService } from '@shared/services/auth.service';
+import { map } from 'rxjs';
+import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
 
 @Injectable()
 export class ArticlePageService {
@@ -14,6 +16,7 @@ export class ArticlePageService {
   private readonly userMapper = inject(UserMapperService);
   private readonly authService = inject(AuthService);
   private readonly articleService: ArticleService = inject(ArticleService);
+  private articleMapper: ArticleMapperService = inject(ArticleMapperService);
 
   get hasProposedOrReceivedArticle(): boolean {
     return this.hasProposedArticle || this.hasReceivedProposal;
@@ -68,7 +71,12 @@ export class ArticlePageService {
   }
 
   getById(id: string): void {
-    const getById = this.articleService.getById(id);
+    const getById = this.articleService.getById(id).pipe(
+      map((article: ArticleDto) => {
+        return this.articleMapper.mapTypesToCamelCase(article);
+      })
+    );
+
     this.apiSignalState.execute(getById);
   }
 
