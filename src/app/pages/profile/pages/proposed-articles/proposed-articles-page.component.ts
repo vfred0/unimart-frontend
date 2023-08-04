@@ -1,5 +1,5 @@
 import {
-  AfterViewInit,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   inject,
@@ -24,8 +24,9 @@ import { ProposedArticlesPageService } from '@shared/services/proposed-articles-
   ],
   providers: [ProposedArticlesPageService],
   templateUrl: './proposed-articles-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProposedArticlesPageComponent implements AfterViewInit {
+export class ProposedArticlesPageComponent {
   service: ProposedArticlesPageService;
   protected readonly getLayout = getLayout;
 
@@ -35,15 +36,10 @@ export class ProposedArticlesPageComponent implements AfterViewInit {
   ) {
     this.service = inject(ProposedArticlesPageService);
     this.service.articleId = this.activatedRoute.snapshot.params['articleId'];
-  }
-
-  ngAfterViewInit(): void {
     this.service.proposedArticles(
       this.activatedRoute.snapshot.params['articleId']
     );
-    this.cd.detectChanges();
   }
-
   onSelectedCategory(category: string) {
     this.service.filterByCategory(category);
   }
