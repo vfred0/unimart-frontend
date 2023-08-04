@@ -31,7 +31,8 @@
                                     *ngFor="let articleCard of this.service.articlesCards"
                                     [articleCard]="articleCard"
                                     [isExchangeArticle]="false"
-                                    [searchProposed]="true"/>
+                                    [showReceiverArticle]="true"
+                            />
                         </ng-template>
 
                         <ng-template [ngIf]="this.service.isExchanged">
