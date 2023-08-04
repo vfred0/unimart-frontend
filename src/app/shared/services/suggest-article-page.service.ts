@@ -10,7 +10,7 @@ import { ProposedArticleService } from '@shared/services/proposed-article.servic
 @Injectable()
 export class SuggestArticlePageService {
   private profileService: ProfilePageService;
-  private readonly proposedArticleService;
+  private readonly proposedArticleService: ProposedArticleService;
   private category: string;
 
   constructor(private router: Router) {
