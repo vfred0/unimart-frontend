@@ -15,9 +15,9 @@ export class ArticleService {
     );
   }
 
-  update(article: ArticleDto) {
+  update(articleId: string, article: ArticleDto) {
     return this.http.put<string>(
-      `${ArticleService.API_URL}/${article.id}`,
+      `${ArticleService.API_URL}/${articleId}`,
       article
     );
   }
