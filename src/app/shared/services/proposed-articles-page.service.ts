@@ -6,7 +6,6 @@ import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
 import { AppRoute } from '@core/utils/app-route';
 import { Router } from '@angular/router';
 import { ProposedArticleService } from '@shared/services/proposed-article.service';
-import { TypeArticle } from '@core/types/type-article';
 import { map } from 'rxjs';
 
 @Injectable()
@@ -35,11 +34,7 @@ export class ProposedArticlesPageService {
     return this.apiSignalState
       .result()
       .filter((articleCard: ArticleCardDto) => {
-        return (
-          articleCard.category.includes(this.category) &&
-          articleCard.acceptProposals &&
-          articleCard.typeArticle !== TypeArticle.Published
-        );
+        return articleCard.category.includes(this.category);
       });
   }
 

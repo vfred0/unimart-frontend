@@ -60,14 +60,6 @@ export class ProfilePageComponent {
     this.service.allArticles();
     this.serviceRating.allRatings();
   }
-
-  get averageRating(): string {
-    return (
-      this.viewRatingCards.reduce((acc, curr) => acc + curr.score, 0) /
-      this.viewRatingCards.length
-    ).toString();
-  }
-
   onTextSearchChanged(title: string) {
     this.service.filterByTitle(title);
   }
