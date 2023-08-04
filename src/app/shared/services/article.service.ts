@@ -8,8 +8,11 @@ export class ArticleService {
   static readonly API_URL = 'http://localhost:8080/api/v1/articles';
   private http = inject(HttpClient);
 
-  save(article: ArticleDto) {
-    return this.http.post<string>(ArticleService.API_URL, article);
+  save(userId: string, article: ArticleDto) {
+    return this.http.post<string>(
+      `${ArticleService.API_URL}/${userId}`,
+      article
+    );
   }
 
   update(article: ArticleDto) {
@@ -27,10 +30,6 @@ export class ArticleService {
     return this.http.get<Array<ArticleDto>>(
       `${ArticleService.API_URL}/search?title=${filterArticle.title}&category=${filterArticle.category}&state=${filterArticle.state}`
     );
-  }
-
-  getAll() {
-    return this.http.get<Array<ArticleDto>>(`${ArticleService.API_URL}`);
   }
 
   delete(articleId: string) {
