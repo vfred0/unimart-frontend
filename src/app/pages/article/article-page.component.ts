@@ -98,10 +98,10 @@ export class ArticlePageComponent {
 
   onAcceptProposedArticle() {
     const exchange = {
-      articleId: history.state.articleId,
-      proposedArticleId: this.articleId,
+      receiverArticleId: history.state.articleId,
+      proposerArticleId: this.articleId,
     } as ProposedArticleDto;
-    this.exchangeService.save(exchange).subscribe(() => {
+    this.exchangeService.accept(exchange).subscribe(() => {
       this.router.navigate([AppRoute.Exchanges]).then();
     });
   }
