@@ -66,8 +66,10 @@ export class AddRatingComponent {
       score: this.form.get('score')?.value,
       comment: this.form.get('comment')?.value,
     };
-    this.service.addRating(this.exchangeId, rating).subscribe(() => {
-      this.saveRating.emit();
-    });
+    if (this.form.valid) {
+      this.service.addRating(this.exchangeId, rating).subscribe(() => {
+        this.saveRating.emit();
+      });
+    }
   }
 }

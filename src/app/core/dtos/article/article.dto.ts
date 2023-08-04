@@ -19,5 +19,6 @@ export interface ArticleDto {
   date: string;
   acceptProposals: boolean;
   receiverUserIdForArticle: string;
+  receiverArticleId: string;
   proposersUserIdsForArticle: Array<string>;
 }

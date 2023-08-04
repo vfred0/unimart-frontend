@@ -43,7 +43,7 @@ export class ExchangesPageService {
   }
 
   discardExchange(exchangeId: string) {
-    this.exchangeService.delete(exchangeId).subscribe(() => {
+    this.exchangeService.discard(exchangeId).subscribe(() => {
       this.setExchanges();
     });
   }

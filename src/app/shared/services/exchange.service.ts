@@ -9,7 +9,7 @@ export class ExchangeService {
   private readonly API_URL = 'http://localhost:8080/api/v1/exchanges';
   private readonly http = inject(HttpClient);
 
-  save(proposedArticleDto: ProposedArticleDto) {
+  accept(proposedArticleDto: ProposedArticleDto) {
     return this.http.post<string>(`${this.API_URL}`, proposedArticleDto);
   }
 
@@ -17,7 +17,7 @@ export class ExchangeService {
     return this.http.get<ExchangeDto[]>(`${this.API_URL}/users/${userId}`);
   }
 
-  delete(exchangeId: string) {
+  discard(exchangeId: string) {
     return this.http.delete(`${this.API_URL}/${exchangeId}`);
   }
 
