@@ -5,7 +5,6 @@ import { ButtonComponent } from '@components/button/button.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppRoute } from '@core/utils/app-route';
 import { ProposedArticleService } from '@shared/services/proposed-article.service';
-import { ArticleDto } from '@core/dtos/article/article.dto';
 import { TypeArticle } from '@core/types/type-article';
 
 @Component({
@@ -17,18 +16,17 @@ import { TypeArticle } from '@core/types/type-article';
 })
 export class ProposedArticleCardComponent extends ArticleCardComponent {
   @Input() isExchangeArticle: boolean;
-  @Input() searchProposed: boolean;
+  @Input() showReceiverArticle: boolean;
   @Output() deleteProposed: EventEmitter<string>;
   private readonly articleId: string;
 
   constructor(
     protected override router: Router,
-    protected activateRoute: ActivatedRoute,
-    private proposedArticleService: ProposedArticleService
+    protected activateRoute: ActivatedRoute
   ) {
     super(router);
     this.isExchangeArticle = true;
-    this.searchProposed = false;
+    this.showReceiverArticle = false;
     this.articleId = activateRoute.snapshot.params['articleId'];
     this.deleteProposed = new EventEmitter<string>();
   }
@@ -39,24 +37,15 @@ export class ProposedArticleCardComponent extends ArticleCardComponent {
 
   onViewPublication() {
     const state = this.getState();
-    if (this.searchProposed) {
-      this.proposedArticleService
-        .getArticleByProposedArticleId(this.articleCard.id)
-        .subscribe(article => {
-          state.articleDto = article;
-          this.router
-            .navigate([`${AppRoute.Article}/${article.id}`], {
-              state,
-            })
-            .then();
-        });
-    } else {
-      this.router
-        .navigate([`${AppRoute.Article}/${this.articleCard.id}`], {
-          state,
-        })
-        .then();
+    let articleId = this.articleCard.id;
+    if (this.showReceiverArticle) {
+      articleId = this.articleCard.receiverArticleId;
     }
+    this.router
+      .navigate([`${AppRoute.Article}/${articleId}`], {
+        state,
+      })
+      .then();
   }
 
   private getState() {
@@ -70,7 +59,6 @@ export class ProposedArticleCardComponent extends ArticleCardComponent {
     return {
       typeArticle: TypeArticle.Proposed,
       isExchangeArticle: this.isExchangeArticle,
-      articleDto: {} as ArticleDto,
     };
   }
 }
