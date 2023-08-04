@@ -11,5 +11,6 @@ export interface ArticleCardDto {
   category: Category;
   state: State;
   typeArticle?: TypeArticle;
+  receiverArticleId: string;
   acceptProposals: boolean;
 }

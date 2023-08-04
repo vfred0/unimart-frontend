@@ -3,7 +3,7 @@ export interface UserDto {
   photo: string;
   name: string;
   about: string;
-  numberOfExchanges: number;
+  numberExchanges: number;
   rating: number;
   whatsapp: string;
 }
