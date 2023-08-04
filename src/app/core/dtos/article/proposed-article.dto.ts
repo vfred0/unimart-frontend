@@ -1,4 +1,4 @@
 export interface ProposedArticleDto {
-  articleId: string;
-  proposedArticleId: string;
+  receiverArticleId: string;
+  proposerArticleId: string;
 }
