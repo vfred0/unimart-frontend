@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ArticleCardComponent } from '@components/article-card/article-card.component';
 import { HeaderComponent } from '@components/header/header.component';
@@ -27,6 +27,7 @@ import { Icon } from '@core/types/icon';
   ],
   providers: [SuggestArticlePageService, ProfilePageService],
   templateUrl: './suggest-article-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SuggestArticlePageComponent {
   title: string;
@@ -54,8 +55,8 @@ export class SuggestArticlePageComponent {
 
   onSuggestArticle(articleId: string) {
     const proposalArticleDto: ProposedArticleDto = {
-      articleId: this.activateRoute.snapshot.params['id'],
-      proposedArticleId: articleId,
+      receiverArticleId: this.activateRoute.snapshot.params['id'],
+      proposerArticleId: articleId,
     } as ProposedArticleDto;
     this.service.proposedArticle(proposalArticleDto);
   }
