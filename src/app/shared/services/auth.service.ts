@@ -25,7 +25,7 @@ export class AuthService {
 
   login(authDto: LoginRequestDto): Observable<UserDto> {
     return this.http
-      .post<LoginResponseDto>(this.API_AUTH_URL, authDto)
+      .put<LoginResponseDto>(this.API_AUTH_URL, authDto)
       .pipe(
         switchMap((response: LoginResponseDto) => this.getUser(response.id))
       );
