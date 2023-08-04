@@ -8,12 +8,8 @@ export class ProposedArticleService {
   private readonly API_URL = 'http://localhost:8080/api/v1/proposedArticles';
   private http = inject(HttpClient);
 
-  getById(id: string) {
-    return this.http.get<ArticleDto>(`${this.API_URL}/${id}`);
-  }
-
-  save(article: ProposedArticleDto) {
-    return this.http.post<ArticleDto>(this.API_URL, article);
+  save(proposedArticleDto: ProposedArticleDto) {
+    return this.http.post<ArticleDto>(this.API_URL, proposedArticleDto);
   }
 
   deleteById(id: string) {
@@ -21,12 +17,6 @@ export class ProposedArticleService {
   }
 
   proposedArticlesByArticleId(articleId: string) {
-    return this.http.get<ArticleDto[]>(`${this.API_URL}/articles/${articleId}`);
-  }
-
-  getArticleByProposedArticleId(proposedArticle: string) {
-    return this.http.get<ArticleDto>(
-      `${this.API_URL}/${proposedArticle}/article`
-    );
+    return this.http.get<ArticleDto[]>(`${this.API_URL}/${articleId}`);
   }
 }
