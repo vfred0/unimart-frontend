@@ -36,7 +36,7 @@ export function toCamelCase(name: string): string {
     .replace(/\s/g, '');
 }
 
-export function getValueFromEnum<T>(
+export function getValue<T>(
   value: string,
   enumObject: T
 ): T[keyof T] | undefined {
