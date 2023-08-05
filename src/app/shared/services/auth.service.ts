@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable, of, switchMap, tap } from 'rxjs';
+import { catchError, map, Observable, of, switchMap, tap } from 'rxjs';
 import { LoginRequestDto } from '@core/dtos/login/login-request.dto';
 import { LoginResponseDto } from '@core/dtos/login/login-response.dto';
 import { UserDto } from '@core/dtos/user.dto';
@@ -23,6 +23,10 @@ export class AuthService {
     return JSON.parse(localStorage.getItem(this.USER) || '{}');
   }
 
+  get userId(): string {
+    return this.user.id as string;
+  }
+
   login(authDto: LoginRequestDto): Observable<UserDto> {
     return this.http
       .put<LoginResponseDto>(this.API_AUTH_URL, authDto)
@@ -43,7 +47,13 @@ export class AuthService {
     if (this.existsUserInLocalStorage()) {
       return this.http
         .get<UserDto>(`${this.API_USERS_URL}/${this.user.id}`)
-        .pipe(map((user: UserDto) => !!user));
+        .pipe(
+          map((user: UserDto) => !!user),
+          catchError(() => {
+            this.logout();
+            return of(false);
+          })
+        );
     }
     return of(false);
   }
@@ -59,9 +69,5 @@ export class AuthService {
 
   containsId(id: string) {
     return this.user.id === id;
-  }
-
-  get userId(): string {
-    return this.user.id as string;
   }
 }
