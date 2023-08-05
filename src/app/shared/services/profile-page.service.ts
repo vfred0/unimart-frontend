@@ -41,19 +41,10 @@ export class ProfilePageService {
   }
 
   get articlesCards(): ArticleCardDto[] {
-    return this.apiSignalState
-      .result()
-      .filter((articleCard: ArticleCardDto) => {
-        const includesTitle = articleCard.title
-          .toLowerCase()
-          .includes(this.title.toLowerCase());
-        if (this.isPublished) {
-          return (
-            includesTitle && articleCard.typeArticle !== TypeArticle.Exchanged
-          );
-        }
-        return includesTitle && articleCard.typeArticle === this.typeArticle;
-      });
+    const articleCardDtos = this.apiSignalState.result();
+    return articleCardDtos.filter((articleCard: ArticleCardDto) =>
+      this.filterArticle(articleCard)
+    );
   }
 
   get isWorking(): boolean {
@@ -107,5 +98,15 @@ export class ProfilePageService {
     this.proposedArticleService.deleteById(proposedArticleId).subscribe(() => {
       this.allArticles();
     });
+  }
+
+  private filterArticle(articleCard: ArticleCardDto) {
+    const includesTitle = articleCard.title
+      .toLowerCase()
+      .includes(this.title.toLowerCase());
+    if (this.isPublished) {
+      return includesTitle && articleCard.typeArticle !== TypeArticle.Exchanged;
+    }
+    return includesTitle && articleCard.typeArticle === this.typeArticle;
   }
 }

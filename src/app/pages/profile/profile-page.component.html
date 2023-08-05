@@ -31,14 +31,13 @@
                                     *ngFor="let articleCard of this.service.articlesCards"
                                     [articleCard]="articleCard"
                                     [isExchangeArticle]="false"
-                                    [showReceiverArticle]="true"
-                            />
+                                    [showReceiverArticle]="true"/>
                         </ng-template>
 
                         <ng-template [ngIf]="this.service.isExchanged">
                             <app-article-card
                                     *ngFor="let articleCard of this.service.articlesCards"
-                                    [articleCard]="articleCard"/>
+                                    [articleCard]="this.incrementNumberProposals(articleCard)"/>
                         </ng-template>
                     </ng-template>
                 </div>
