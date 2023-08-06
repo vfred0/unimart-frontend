@@ -19,7 +19,6 @@ import { ProfilePageService } from '@shared/services/profile-page.service';
 import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
 import { ArticleService } from '@shared/services/article.service';
 import { RatingService } from '@shared/services/rating.service';
-import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
 
 @Component({
   standalone: true,
@@ -79,12 +78,5 @@ export class ProfilePageComponent {
 
   onDeleteProposed(proposedArticleId: string) {
     this.service.deleteProposedArticleById(proposedArticleId);
-  }
-
-  incrementNumberProposals(articleCard: ArticleCardDto) {
-    return {
-      ...articleCard,
-      numbersProposals: articleCard.numbersProposals + 1,
-    } as ArticleCardDto;
   }
 }
