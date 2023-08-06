@@ -63,6 +63,9 @@
             <ng-template [ngIf]="this.service.hasReceivedProposal">
                 <span class="o-text-sm-bold">Te han propuesto este artículo</span>
             </ng-template>
+            <ng-template [ngIf]="!this.service.article.isAcceptableForExchange">
+                <span class="o-text-sm-bold">No puedes aceptar este intercambio porque ya tienes otro...</span>
+            </ng-template>
             <ng-template [ngIf]="this.service.hasProposedArticle">
                 <span class="o-text-sm-bold">Has realizado una propuesta para este artículo</span>
             </ng-template>

@@ -20,5 +20,6 @@ export interface ArticleDto {
   acceptProposals: boolean;
   receiverUserIdForArticle: string;
   receiverArticleId: string;
+  isAcceptableForExchange: boolean;
   proposersUserIdsForArticle: Array<string>;
 }

@@ -61,10 +61,7 @@ export class ArticlePageComponent {
 
   get acceptProposals(): boolean {
     return (
-      !this.service.isMyArticle &&
-      !this.service.hasProposedOrReceivedArticle &&
-      !this.service.hasPendingExchange &&
-      this.service.acceptProposals
+      !this.service.isMyArticle && !this.service.hasProposedOrReceivedArticle
     );
   }
 
@@ -77,7 +74,10 @@ export class ArticlePageComponent {
   }
 
   get showButtonsToExchangeArticle(): boolean {
-    return history.state.isExchangeArticle;
+    return (
+      history.state.isExchangeArticle &&
+      this.service.article.isAcceptableForExchange
+    );
   }
 
   numberProposals(numbersProposals: number): string {
