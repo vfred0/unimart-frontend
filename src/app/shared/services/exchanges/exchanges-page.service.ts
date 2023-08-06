@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { ApiSignalState } from '@shared/services/api-signal-state';
 import { ExchangeDto } from '@core/dtos/exchange.dto';
 import { HttpClient } from '@angular/common/http';
-import { ExchangeService } from '@shared/services/exchange.service';
+import { ExchangeService } from '@shared/services/exchanges/exchange.service';
 import { AuthService } from '@shared/services/auth.service';
 import { RatingDto } from '@core/dtos/rating/rating.dto';
 import { RatingService } from '@shared/services/rating.service';

@@ -18,8 +18,8 @@ import { getAllValues } from '@core/utils/enum-utils';
 import { getLayout } from '@core/utils/app-route';
 import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
 import { HomeService } from '@shared/services/home.service';
-import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
-import { ArticleService } from '@shared/services/article.service';
+import { ArticleMapperService } from '@shared/mappers/article-mapper.service';
+import { ArticleService } from '@shared/services/articles/article.service';
 
 @Component({
   standalone: true,

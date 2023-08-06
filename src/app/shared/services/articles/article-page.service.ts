@@ -2,11 +2,11 @@ import { inject, Injectable } from '@angular/core';
 import { ApiSignalState } from '@shared/services/api-signal-state';
 import { ArticleDto } from '@core/dtos/article/article.dto';
 import { HeaderDetail } from '@core/utils/header-detail';
-import { ArticleService } from '@shared/services/article.service';
-import { UserMapperService } from '@shared/services/mappers/user-mapper.service';
+import { ArticleService } from '@shared/services/articles/article.service';
+import { UserMapperService } from '@shared/mappers/user-mapper.service';
 import { AuthService } from '@shared/services/auth.service';
 import { map } from 'rxjs';
-import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
+import { ArticleMapperService } from '@shared/mappers/article-mapper.service';
 
 @Injectable()
 export class ArticlePageService {

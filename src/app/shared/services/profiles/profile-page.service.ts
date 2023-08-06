@@ -1,11 +1,11 @@
 import { inject, Injectable } from '@angular/core';
 import { ApiSignalState } from '@shared/services/api-signal-state';
 import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
-import { ArticleService } from '@shared/services/article.service';
-import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
+import { ArticleService } from '@shared/services/articles/article.service';
+import { ArticleMapperService } from '@shared/mappers/article-mapper.service';
 import { AuthService } from '@shared/services/auth.service';
 import { TypeArticle } from '@core/types/type-article';
-import { ProposedArticleService } from '@shared/services/proposed-article.service';
+import { ProposedArticleService } from '@shared/services/proposed-articles/proposed-article.service';
 import { map } from 'rxjs';
 import { ArticleDto } from '@core/dtos/article/article.dto';
 import { UserService } from '@shared/services/user.service';

@@ -9,11 +9,11 @@ import { Icon } from '@core/types/icon';
 import { AppRoute } from '@core/utils/app-route';
 import { TypeArticleCard } from '@core/types/type-article-card';
 import { HeaderDetailComponent } from '@components/header-detail/header-detail.component';
-import { ArticlePageService } from '@shared/services/article-page.service';
-import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
-import { UserMapperService } from '@shared/services/mappers/user-mapper.service';
-import { ExchangeService } from '@shared/services/exchange.service';
-import { ProfilePageService } from '@shared/services/profile-page.service';
+import { ArticlePageService } from '@shared/services/articles/article-page.service';
+import { ArticleMapperService } from '@shared/mappers/article-mapper.service';
+import { UserMapperService } from '@shared/mappers/user-mapper.service';
+import { ExchangeService } from '@shared/services/exchanges/exchange.service';
+import { ProfilePageService } from '@shared/services/profiles/profile-page.service';
 import { ProposedArticleDto } from '@core/dtos/article/proposed-article.dto';
 
 @Component({

@@ -4,11 +4,11 @@ import { ArticleCardComponent } from '@components/article-card/article-card.comp
 import { ButtonComponent } from '@components/button/button.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppRoute } from '@core/utils/app-route';
-import { ProposedArticleService } from '@shared/services/proposed-article.service';
+import { ProposedArticleService } from '@shared/services/proposed-articles/proposed-article.service';
 import { TypeArticle } from '@core/types/type-article';
 
 @Component({
-  selector: 'app-proposed-article-card',
+  selector: 'app-proposed-articles-card',
   standalone: true,
   imports: [CommonModule, ButtonComponent, ArticleCardComponent],
   providers: [ProposedArticleService],

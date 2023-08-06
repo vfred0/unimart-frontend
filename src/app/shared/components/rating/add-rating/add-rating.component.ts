@@ -11,7 +11,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { TypeButton } from '@core/types/type-button';
 import { Icon } from '@core/types/icon';
 import { RatingDto } from '@core/dtos/rating/rating.dto';
-import { ExchangesPageService } from '@shared/services/exchanges-page.service';
+import { ExchangesPageService } from '@shared/services/exchanges/exchanges-page.service';
 import { Router } from '@angular/router';
 
 @Component({

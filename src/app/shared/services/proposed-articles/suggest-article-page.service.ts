@@ -1,11 +1,11 @@
 import { inject, Injectable } from '@angular/core';
-import { ProfilePageService } from '@shared/services/profile-page.service';
+import { ProfilePageService } from '@shared/services/profiles/profile-page.service';
 import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
 import { ProposedArticleDto } from '@core/dtos/article/proposed-article.dto';
 import { AppRoute } from '@core/utils/app-route';
 import { Router } from '@angular/router';
 import { TypeArticle } from '@core/types/type-article';
-import { ProposedArticleService } from '@shared/services/proposed-article.service';
+import { ProposedArticleService } from '@shared/services/proposed-articles/proposed-article.service';
 
 @Injectable()
 export class SuggestArticlePageService {

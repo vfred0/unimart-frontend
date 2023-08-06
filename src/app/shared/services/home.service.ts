@@ -2,8 +2,8 @@ import { FilterArticleDto } from '@core/dtos/article/filter-article.dto';
 import { map } from 'rxjs';
 import { ArticleDto } from '@core/dtos/article/article.dto';
 import { inject, Injectable } from '@angular/core';
-import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
-import { ArticleService } from '@shared/services/article.service';
+import { ArticleMapperService } from '@shared/mappers/article-mapper.service';
+import { ArticleService } from '@shared/services/articles/article.service';
 import { ApiSignalState } from '@shared/services/api-signal-state';
 import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
 

@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { AppRoute } from '@core/utils/app-route';
 
 @Component({
-  selector: 'app-article-card',
+  selector: 'app-articles-card',
   standalone: true,
   imports: [CommonModule, ButtonComponent, NgOptimizedImage],
   templateUrl: './article-card.component.html',

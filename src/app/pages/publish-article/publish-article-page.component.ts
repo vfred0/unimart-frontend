@@ -15,9 +15,9 @@ import { getAllValues } from '@core/utils/enum-utils';
 import { Icon } from '@core/types/icon';
 import { ActivatedRoute } from '@angular/router';
 import { getLayout } from '@core/utils/app-route';
-import { ArticleService } from '@shared/services/article.service';
+import { ArticleService } from '@shared/services/articles/article.service';
 import { ButtonSelectImageComponent } from '@components/button/button-select-image/button-select-image.component';
-import { PublishArticlePageService } from '@shared/services/publish-article-page.service';
+import { PublishArticlePageService } from '@shared/services/articles/publish-article-page.service';
 import { ImageService } from '@shared/services/image.service';
 
 @Component({

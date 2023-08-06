@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { ApiSignalState } from '@shared/services/api-signal-state';
 import { ArticleDto } from '@core/dtos/article/article.dto';
-import { ArticleService } from '@shared/services/article.service';
+import { ArticleService } from '@shared/services/articles/article.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ArticleSaveDto } from '@core/dtos/article/article-save.dto';
 import { State } from '@core/types/state';
@@ -10,7 +10,7 @@ import { AuthService } from '@shared/services/auth.service';
 import { AppRoute } from '@core/utils/app-route';
 import { Router } from '@angular/router';
 
-import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
+import { ArticleMapperService } from '@shared/mappers/article-mapper.service';
 import { map } from 'rxjs';
 
 @Injectable({

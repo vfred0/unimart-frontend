@@ -6,7 +6,7 @@ import { AppRoute } from '@core/utils/app-route';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-published-article-card',
+  selector: 'app-published-articles-card',
   standalone: true,
   imports: [CommonModule, ButtonComponent, ArticleCardComponent],
   templateUrl: './published-article-card.component.html',

@@ -19,7 +19,7 @@ import {
 import { HeaderDetailComponent } from '@components/header-detail/header-detail.component';
 import { HeaderDetail } from '@core/utils/header-detail';
 import { AuthService } from '@shared/services/auth.service';
-import { UserMapperService } from '@shared/services/mappers/user-mapper.service';
+import { UserMapperService } from '@shared/mappers/user-mapper.service';
 
 @Component({
   selector: 'app-header',

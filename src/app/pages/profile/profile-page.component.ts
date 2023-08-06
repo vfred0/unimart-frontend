@@ -15,9 +15,9 @@ import { Icon } from '@core/types/icon';
 import { PublishedArticleCardComponent } from '@components/article-card/published-article-card/published-article-card.component';
 import { ProposedArticleCardComponent } from '@components/article-card/proposed-article-card/proposed-article-card.component';
 import { getLayout } from '@core/utils/app-route';
-import { ProfilePageService } from '@shared/services/profile-page.service';
-import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
-import { ArticleService } from '@shared/services/article.service';
+import { ProfilePageService } from '@shared/services/profiles/profile-page.service';
+import { ArticleMapperService } from '@shared/mappers/article-mapper.service';
+import { ArticleService } from '@shared/services/articles/article.service';
 import { RatingService } from '@shared/services/rating.service';
 
 @Component({
