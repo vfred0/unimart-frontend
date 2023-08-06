@@ -51,12 +51,7 @@ export class ArticlePageComponent {
     this.service = inject(ArticlePageService);
     this.exchangeService = inject(ExchangeService);
     this.articleId = this.activatedRoute.snapshot.params['id'];
-    if (this.containsArticleDto()) {
-      this.typeArticle = history.state.articleDto.typeArticle;
-      this.service.setArticleDto(history.state.articleDto);
-    } else {
-      this.service.getById(this.articleId);
-    }
+    this.service.getById(this.articleId);
   }
 
   get acceptProposals(): boolean {
@@ -110,12 +105,5 @@ export class ArticlePageComponent {
     this.router
       .navigate([`${AppRoute.Article}/${this.articleId}/${AppRoute.Suggest}`])
       .then();
-  }
-
-  private containsArticleDto() {
-    return (
-      history.state.hasOwnProperty('articleDto') &&
-      Object.keys(history.state.articleDto).length !== 0
-    );
   }
 }

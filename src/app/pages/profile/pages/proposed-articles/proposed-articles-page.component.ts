@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '@components/header/header.component';
 import { ArticleCardComponent } from '@components/article-card/article-card.component';
@@ -30,16 +25,14 @@ export class ProposedArticlesPageComponent {
   service: ProposedArticlesPageService;
   protected readonly getLayout = getLayout;
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private cd: ChangeDetectorRef
-  ) {
+  constructor(private activatedRoute: ActivatedRoute) {
     this.service = inject(ProposedArticlesPageService);
     this.service.articleId = this.activatedRoute.snapshot.params['articleId'];
     this.service.proposedArticles(
       this.activatedRoute.snapshot.params['articleId']
     );
   }
+
   onSelectedCategory(category: string) {
     this.service.filterByCategory(category);
   }
