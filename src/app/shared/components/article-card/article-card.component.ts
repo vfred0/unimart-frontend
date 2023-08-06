@@ -17,6 +17,7 @@ import { AppRoute } from '@core/utils/app-route';
 export class ArticleCardComponent {
   @Input() articleCard: ArticleCardDto;
   @Input() typeArticleCard: TypeArticleCard;
+  @Input() showNumberProposals: boolean;
   protected readonly TypeButton = TypeButton;
   protected readonly TypeArticleCard = TypeArticleCard;
   protected readonly Icon = Icon;
@@ -24,6 +25,7 @@ export class ArticleCardComponent {
   constructor(protected router: Router) {
     this.typeArticleCard = this.TypeArticleCard.Normal;
     this.articleCard = {} as ArticleCardDto;
+    this.showNumberProposals = true;
   }
 
   get isNormal(): boolean {

@@ -13,7 +13,7 @@
             <app-button [description]="this.articleCard.state"
                         [icon]="Icon.State"
                         [typeButton]="TypeButton.Tag"/>
-            <app-button [description]="this.getProposalsQuantity()"
+            <app-button *ngIf="this.showNumberProposals" [description]="this.getProposalsQuantity()"
                         [typeButton]="TypeButton.Tag"/>
         </div>
     </div>
