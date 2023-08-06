@@ -8,6 +8,7 @@ import { TypeArticle } from '@core/types/type-article';
 import { ProposedArticleService } from '@shared/services/proposed-article.service';
 import { map } from 'rxjs';
 import { ArticleDto } from '@core/dtos/article/article.dto';
+import { UserService } from '@shared/services/user.service';
 
 @Injectable()
 export class ProfilePageService {
@@ -18,6 +19,7 @@ export class ProfilePageService {
   private readonly authService = inject(AuthService);
   private title = '';
   private typeArticle: TypeArticle = TypeArticle.Published;
+  private userService: UserService = inject(UserService);
 
   get isExchanged(): boolean {
     return this.typeArticle === TypeArticle.Exchanged;
@@ -68,15 +70,13 @@ export class ProfilePageService {
   }
 
   allArticles(): void {
-    const request = this.articleService
-      .getByUserId(this.authService.userId)
-      .pipe(
-        map((articles: ArticleDto[]) => {
-          return articles.map((article: ArticleDto) =>
-            this.articleMapper.toArticleCard(article)
-          );
-        })
-      );
+    const request = this.userService.getArticles(this.authService.userId).pipe(
+      map((articles: ArticleDto[]) => {
+        return articles.map((article: ArticleDto) =>
+          this.articleMapper.toArticleCard(article)
+        );
+      })
+    );
     this.apiSignalState.execute(request);
   }
 

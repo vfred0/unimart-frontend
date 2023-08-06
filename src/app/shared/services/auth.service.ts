@@ -4,15 +4,16 @@ import { catchError, map, Observable, of, switchMap, tap } from 'rxjs';
 import { LoginRequestDto } from '@core/dtos/login/login-request.dto';
 import { LoginResponseDto } from '@core/dtos/login/login-response.dto';
 import { UserDto } from '@core/dtos/user.dto';
+import { UserService } from '@shared/services/user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private readonly API_AUTH_URL = `http://localhost:8080/api/v1/auth/login`;
-  private readonly API_USERS_URL = `http://localhost:8080/api/v1/users`;
   private http: HttpClient;
   private readonly USER: string;
+  private readonly userService: UserService = inject(UserService);
 
   constructor() {
     this.USER = 'user';
@@ -36,7 +37,7 @@ export class AuthService {
   }
 
   getUser(userId: string): Observable<UserDto> {
-    return this.http.get<UserDto>(`${this.API_USERS_URL}/${userId}`).pipe(
+    return this.userService.getById(userId).pipe(
       tap((user: UserDto) => {
         localStorage.setItem('user', JSON.stringify(user));
       })
@@ -45,15 +46,13 @@ export class AuthService {
 
   existsUser(): Observable<boolean> {
     if (this.existsUserInLocalStorage()) {
-      return this.http
-        .get<UserDto>(`${this.API_USERS_URL}/${this.user.id}`)
-        .pipe(
-          map((user: UserDto) => !!user),
-          catchError(() => {
-            this.logout();
-            return of(false);
-          })
-        );
+      return this.userService.getById(this.user.id as string).pipe(
+        map((user: UserDto) => !!user),
+        catchError(() => {
+          this.logout();
+          return of(false);
+        })
+      );
     }
     return of(false);
   }
