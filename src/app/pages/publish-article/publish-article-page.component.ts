@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ArticleCardComponent } from '@components/article-card/article-card.component';
 import { HeaderComponent } from '@components/header/header.component';
@@ -18,6 +18,7 @@ import { getLayout } from '@core/utils/app-route';
 import { ArticleService } from '@shared/services/article.service';
 import { ButtonSelectImageComponent } from '@components/button/button-select-image/button-select-image.component';
 import { PublishArticlePageService } from '@shared/services/publish-article-page.service';
+import { ImageService } from '@shared/services/image.service';
 
 @Component({
   standalone: true,
@@ -41,6 +42,8 @@ export class PublishArticlePageComponent {
   genders: Array<string>;
   articleId: string;
   service: PublishArticlePageService;
+  imageService: ImageService;
+  @ViewChild(GalleryComponent) gallery!: GalleryComponent;
   protected readonly TypeButton = TypeButton;
   protected readonly Icon = Icon;
   protected readonly getLayout = getLayout;
@@ -51,6 +54,7 @@ export class PublishArticlePageComponent {
     this.genders = getAllValues(Gender);
     this.articleId = this.activatedRoute.snapshot.params['id'];
     this.service = inject(PublishArticlePageService);
+    this.imageService = inject(ImageService);
     if (this.articleId) {
       this.service.setArticleById(this.articleId);
     }
@@ -77,7 +81,11 @@ export class PublishArticlePageComponent {
   }
 
   onImageSelected(image: string) {
-    console.log('image', image);
+    image = image.replace(/^data:image\/(png|jpg|jpeg|webp);base64,/, '');
+    this.imageService.uploadImage(image).subscribe(response => {
+      this.service.addImage(response.data.url);
+      this.gallery.updateSlider();
+    });
   }
 
   publishArticle() {

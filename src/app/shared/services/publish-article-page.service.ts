@@ -13,16 +13,18 @@ import { Router } from '@angular/router';
 import { ArticleMapperService } from '@shared/services/mappers/article-mapper.service';
 import { map } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class PublishArticlePageService {
-  private readonly apiSignalState;
+  private readonly apiSignalState: ApiSignalState<ArticleDto>;
   private readonly articleService: ArticleService;
   private readonly articleMapper: ArticleMapperService;
 
-  private authService;
+  private authService: AuthService;
   private readonly _form: FormGroup;
   private updateFormForArticleUpdate: boolean;
-  private router;
+  private router: Router;
 
   constructor() {
     this.apiSignalState = new ApiSignalState<ArticleDto>({} as ArticleDto);
@@ -36,7 +38,7 @@ export class PublishArticlePageService {
       description: '',
       state: State.New,
       category: Category.TextBooksEducationalMaterial,
-      images: ['https://is.gd/zjRzCR'] as Array<string>,
+      images: [] as Array<string>,
     } as ArticleSaveDto;
     this._form = new FormGroup({
       title: new FormControl(article.title, [Validators.required]),
@@ -134,6 +136,15 @@ export class PublishArticlePageService {
       this.setValue('gender', this.article.gender);
       this._form.get('images')?.setValue(this.images);
     }
+  }
+
+  addImage(imageUrl: string) {
+    const article = {
+      ...this.article,
+      images: [...this.article.images, imageUrl],
+    };
+    this.apiSignalState.setSucceed(article);
+    this._form.get('images')?.setValue(this.article.images);
   }
 
   private save(article: ArticleDto) {

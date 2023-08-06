@@ -1,4 +1,9 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
+import {
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  Input,
+  Renderer2,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,7 +15,19 @@ import { CommonModule } from '@angular/common';
 })
 export class GalleryComponent {
   @Input() images: Array<string>;
-  constructor() {
+
+  constructor(private renderer: Renderer2) {
     this.images = [];
+  }
+
+  updateSlider() {
+    const swiperContainer = document.querySelector('swiper-container');
+    const hasMoreThanTwoImages = this.images.length > 1;
+    const className = 'swiper-backface-hidden';
+    if (hasMoreThanTwoImages) {
+      this.renderer.removeClass(swiperContainer, className);
+    } else {
+      this.renderer.addClass(swiperContainer, className);
+    }
   }
 }

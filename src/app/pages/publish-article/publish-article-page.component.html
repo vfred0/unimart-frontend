@@ -30,10 +30,7 @@
                [title]="'Descripción'"
                [value]="this.service.article.description"/>
     <span class="o-text-xl-semibold">Galería</span>
-    <ng-template [ngIf]="this.service.containsImages">
-        <app-gallery [images]="this.service.article.images"/>
-    </ng-template>
-
+    <app-gallery [images]="this.service.article.images"/>
     <div [class.c-publish-article-page__gallery-buttons]="this.service.containsImages">
         <app-button-select-image (imageSelected)="onImageSelected($event)"/>
         <ng-template [ngIf]="this.service.containsImages">
