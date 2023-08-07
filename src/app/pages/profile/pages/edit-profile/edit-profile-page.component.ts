@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { HeaderComponent } from '@components/header/header.component';
 import { InputComponent } from '@components/input/input.component';
 import { ButtonComponent } from '@components/button/button.component';
 import { Icon } from '@core/types/icon';
-import { UserDto } from '@core/dtos/user.dto';
 import { getLayout } from '@core/utils/app-route';
+import { EditProfileService } from '@shared/services/profiles/edit-profile.service';
+import { ButtonSelectImageComponent } from '@components/button/button-select-image/button-select-image.component';
+import { ImageService } from '@shared/services/image.service';
 
 @Component({
   standalone: true,
@@ -15,24 +17,36 @@ import { getLayout } from '@core/utils/app-route';
     NgOptimizedImage,
     InputComponent,
     ButtonComponent,
+    ButtonSelectImageComponent,
   ],
   templateUrl: './edit-profile-page.component.html',
 })
 export class EditProfilePageComponent {
-  user: UserDto;
+  service: EditProfileService;
+  imageService: ImageService;
   protected readonly Icon = Icon;
+  protected readonly getLayout = getLayout;
 
   constructor() {
-    this.user = {} as UserDto;
+    this.service = inject(EditProfileService);
+    this.imageService = inject(ImageService);
   }
 
-  onAboutMeChanged(aboutMe: string) {}
+  onAboutMeChanged(about: string) {
+    this.service.setValue('about', about);
+  }
 
-  onWhatsappChanged(whatsapp: string) {}
+  onWhatsappChanged(whatsapp: string) {
+    this.service.setValue('numberWhatsapp', whatsapp);
+  }
 
-  onPhotoChanged() {}
+  onEditProfile() {
+    this.service.editProfile();
+  }
 
-  onEditProfile() {}
-
-  protected readonly getLayout = getLayout;
+  onImageSelected(image: string) {
+    this.imageService.uploadImage(image).subscribe(response => {
+      this.service.setPhoto(response.data.url);
+    });
+  }
 }

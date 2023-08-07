@@ -1,9 +1,9 @@
 export interface UserDto {
-  id?: string;
+  id: string;
   photo: string;
   name: string;
   about: string;
   numberExchanges: number;
   rating: number;
-  whatsapp: string;
+  numberWhatsapp: string;
 }

@@ -1,16 +1,22 @@
 <div class="c-edit-profile-page {{getLayout()}}">
     <div class="c-edit-profile-page__upload-photo">
-        <img [alt]="this.user.name" class="c-edit-profile-page__photo" src="{{this.user.photo}}"/>
-        <app-button (click)="onPhotoChanged()" [description]="'Cambiar foto'" [icon]="Icon.Camera"/>
+        <img [alt]="this.service.user.name" class="c-edit-profile-page__photo" src="{{this.service.user.photo}}"/>
+        <app-button-select-image (imageSelected)="onImageSelected($event)"/>
     </div>
     <app-input (textChanged)="onAboutMeChanged($event)"
                [isTextArea]="true"
                [placeholder]="'Escribe algo sobre ti'"
                [title]="'Acerca de mí'"
-               [value]="this.user.about"/>
+               [value]="this.service.user.about"/>
     <app-input (textChanged)="onWhatsappChanged($event)" [icon]="Icon.Whatsapp"
                [placeholder]="'Escribe tu número de WhatsApp'"
                [title]="'WhatsApp'"
-               [value]="this.user.whatsapp"/>
-    <app-button (click)="onEditProfile()" [description]="'Guardar cambios'" [icon]="Icon.Save"/>
+               [value]="this.service.user.numberWhatsapp"/>
+
+    <ng-template [ngIfElse]="buttonEditProfileTemplate" [ngIf]="!this.service.isFormValid">
+        <span class="o-text-sm-bold">Por favor, antes de editar el perfil, completa los campos obligatorios...</span>
+    </ng-template>
+    <ng-template #buttonEditProfileTemplate>
+        <app-button (click)="onEditProfile()" [description]="'Guardar cambios'" [icon]="Icon.Save"/>
+    </ng-template>
 </div>

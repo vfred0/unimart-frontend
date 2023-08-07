@@ -69,4 +69,9 @@ export class AuthService {
   containsId(id: string) {
     return this.user.id === id;
   }
+
+  setUser(user: UserDto) {
+    this.logout();
+    localStorage.setItem(this.USER, JSON.stringify(user));
+  }
 }
