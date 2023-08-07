@@ -4,7 +4,7 @@ import { ExchangeDto } from '@core/dtos/exchange.dto';
 import { ProposedArticleDto } from '@core/dtos/article/proposed-article.dto';
 import { RatingDto } from '@core/dtos/rating/rating.dto';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ExchangeService {
   private readonly API_URL = 'http://localhost:8080/api/v1/exchanges';
   private readonly http = inject(HttpClient);
