@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, Signal } from '@angular/core';
 import { ApiSignalState } from '@shared/services/api-signal-state';
 import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
 import { ArticleService } from '@shared/services/articles/article.service';
@@ -26,10 +26,10 @@ export class ProfilePageService extends ApiSignalState<ArticleCardDto[]> {
   );
   private readonly authService: AuthService = inject(AuthService);
   private readonly userService: UserService = inject(UserService);
-  private title = '';
   private typeArticle: TypeArticle = TypeArticle.Published;
   private readonly articleCardService: ArticleCardService =
     inject(ArticleCardService);
+  private title = '';
 
   constructor() {
     super([] as ArticleCardDto[]);
@@ -47,12 +47,19 @@ export class ProfilePageService extends ApiSignalState<ArticleCardDto[]> {
     return this.articleCardService.containsPublishedArticles;
   }
 
+  override get isCompleted(): Signal<boolean> {
+    const isCompleted = super.isCompleted();
+    if (isCompleted) {
+      this.articleCardService.setArticlesCards(this.result());
+    }
+    return super.isCompleted;
+  }
+
   get isPublished(): boolean {
     return isPublished(this.typeArticle);
   }
 
   get articlesCards(): ArticleCardDto[] {
-    this.articleCardService.setArticlesCards(this.result());
     return this.articleCardService.filterByTitleAndTypeArticle(
       this.title,
       this.typeArticle

@@ -10,10 +10,7 @@ import { AppRoute } from '@core/utils/app-route';
 import { TypeArticleCard } from '@core/enums/type-article-card';
 import { HeaderDetailComponent } from '@components/header-detail/header-detail.component';
 import { ArticlePageService } from '@shared/services/articles/article-page.service';
-import { ArticleMapperService } from '@shared/mappers/article-mapper.service';
-import { UserMapperService } from '@shared/mappers/user-mapper.service';
 import { ExchangeService } from '@shared/services/exchanges/exchange.service';
-import { ProfilePageService } from '@shared/services/profiles/profile-page.service';
 import { ProposedArticleDto } from '@core/dtos/article/proposed-article.dto';
 
 @Component({
@@ -25,13 +22,6 @@ import { ProposedArticleDto } from '@core/dtos/article/proposed-article.dto';
     GalleryComponent,
     HeaderComponent,
     HeaderDetailComponent,
-  ],
-  providers: [
-    ArticlePageService,
-    ArticleMapperService,
-    UserMapperService,
-    ExchangeService,
-    ProfilePageService,
   ],
   templateUrl: './article-page.component.html',
 })
