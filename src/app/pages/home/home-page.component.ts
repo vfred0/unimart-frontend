@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '@shared/components/header/header.component';
 import { Category } from '@core/types/category';
 import { State } from '@core/types/state';
-import { ArticleCardComponent } from '@components/article-card/article-card.component';
 import { MenuComponent } from '@components/menu/menu.component';
 import { ButtonComponent } from '@components/button/button.component';
 import { InputComponent } from '@components/input/input.component';
@@ -20,6 +19,7 @@ import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
 import { HomeService } from '@shared/services/home.service';
 import { ArticleMapperService } from '@shared/mappers/article-mapper.service';
 import { ArticleService } from '@shared/services/articles/article.service';
+import { ArticleCardComponent } from '@components/article-card/article-card.component';
 
 @Component({
   standalone: true,

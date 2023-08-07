@@ -81,7 +81,6 @@ export class PublishArticlePageComponent {
   }
 
   onImageSelected(image: string) {
-    image = image.replace(/^data:image\/(png|jpg|jpeg|webp);base64,/, '');
     this.imageService.uploadImage(image).subscribe(response => {
       this.service.addImage(response.data.url);
       this.gallery.updateSlider();

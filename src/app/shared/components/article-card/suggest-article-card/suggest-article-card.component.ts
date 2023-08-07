@@ -5,7 +5,7 @@ import { ButtonComponent } from '@components/button/button.component';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-suggest-articles-card',
+  selector: 'app-suggest-article-card',
   standalone: true,
   imports: [CommonModule, ButtonComponent, ArticleCardComponent],
   templateUrl: './suggest-article-card.component.html',

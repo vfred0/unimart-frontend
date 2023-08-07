@@ -8,7 +8,7 @@ import { ProposedArticleService } from '@shared/services/proposed-articles/propo
 import { TypeArticle } from '@core/types/type-article';
 
 @Component({
-  selector: 'app-proposed-articles-card',
+  selector: 'app-proposed-article-card',
   standalone: true,
   imports: [CommonModule, ButtonComponent, ArticleCardComponent],
   providers: [ProposedArticleService],
