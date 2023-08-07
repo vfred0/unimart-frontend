@@ -11,6 +11,7 @@ export class ImageService {
   private readonly http: HttpClient = inject(HttpClient);
 
   public uploadImage(image: string) {
+    image = image.replace(/^data:image\/(png|jpg|jpeg|webp);base64,/, '');
     const formData = new FormData();
     formData.append('image', image);
     return this.http.post<Image>(
