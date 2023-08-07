@@ -6,8 +6,8 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '@shared/components/header/header.component';
-import { Category } from '@core/types/category';
-import { State } from '@core/types/state';
+import { Category } from '@core/enums/category';
+import { State } from '@core/enums/state';
 import { MenuComponent } from '@components/menu/menu.component';
 import { ButtonComponent } from '@components/button/button.component';
 import { InputComponent } from '@components/input/input.component';
@@ -43,7 +43,7 @@ export class HomePageComponent {
   state: State;
   categories: Array<string>;
   states: Array<string>;
-  homeService: HomeService = inject(HomeService);
+  service: HomeService = inject(HomeService);
   articlesCards: Array<ArticleCardDto>;
   protected readonly getLayout = getLayout;
 
@@ -77,7 +77,7 @@ export class HomePageComponent {
       category: this.category,
       state: this.state,
     };
-    this.homeService.search(filterArticle);
+    this.service.search(filterArticle);
     this.cd.detectChanges();
   }
 }

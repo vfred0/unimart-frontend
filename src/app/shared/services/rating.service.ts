@@ -1,20 +1,19 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FilterRating } from '@core/types/filter-rating';
+import { FilterRating } from '@core/enums/filter-rating';
 import { ViewRatingDto } from '@core/dtos/rating/view-rating.dto';
 import { ApiSignalState } from '@shared/services/api-signal-state';
 import { AuthService } from '@shared/services/auth.service';
 
 @Injectable({ providedIn: 'root' })
-export class RatingService {
+export class RatingService extends ApiSignalState<ViewRatingDto[]> {
   private readonly API_URL = `http://localhost:8080/api/v1/ratings`;
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
+  private readonly authService = inject(AuthService);
   private _filterByRating: FilterRating = FilterRating.High;
-  private apiSignalState = new ApiSignalState<ViewRatingDto[]>([]);
-  private authService = inject(AuthService);
 
-  get isCompleted(): boolean {
-    return this.apiSignalState.isCompleted();
+  constructor() {
+    super([] as ViewRatingDto[]);
   }
 
   get averageRating(): number {
@@ -26,7 +25,7 @@ export class RatingService {
   }
 
   get ratings(): Array<ViewRatingDto> {
-    const ratings = this.apiSignalState.result();
+    const ratings = this.result();
     if (this._filterByRating === FilterRating.High) {
       return ratings.sort((a, b) => b.score - a.score);
     }
@@ -34,7 +33,7 @@ export class RatingService {
   }
 
   allRatings() {
-    this.apiSignalState.execute(this.getByUserId(this.authService.userId));
+    this.execute(this.getByUserId(this.authService.userId));
   }
 
   filterByRating(filterRating: FilterRating) {

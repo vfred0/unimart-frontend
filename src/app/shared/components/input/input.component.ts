@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
-import { Icon } from '@core/types/icon';
+import { Icon } from '@core/enums/icon';
 
 @Component({
   standalone: true,

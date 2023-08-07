@@ -11,8 +11,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProposedArticleDto } from '@core/dtos/article/proposed-article.dto';
 import { ProfilePageService } from '@shared/services/profiles/profile-page.service';
 import { ButtonComponent } from '@components/button/button.component';
-import { TypeButton } from '@core/types/type-button';
-import { Icon } from '@core/types/icon';
+import { TypeButton } from '@core/enums/type-button';
+import { Icon } from '@core/enums/icon';
 
 @Component({
   standalone: true,
@@ -34,6 +34,7 @@ export class SuggestArticlePageComponent {
   service: SuggestArticlePageService;
   protected readonly getLayout = getLayout;
   protected readonly TypeButton = TypeButton;
+  protected readonly Icon = Icon;
 
   constructor(
     private activateRoute: ActivatedRoute,
@@ -47,7 +48,6 @@ export class SuggestArticlePageComponent {
   onTitleSearchChanged(title: string) {
     this.service.filterByTitle(title);
   }
-  protected readonly Icon = Icon;
 
   onSelectedCategory(category: string) {
     this.service.filterByCategory(category);

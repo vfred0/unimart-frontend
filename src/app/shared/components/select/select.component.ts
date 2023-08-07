@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-import { Category, CategoryService } from '@core/types/category';
+import { Category, CategoryService } from '@core/enums/category';
 import { containsValue } from '@core/utils/enum-utils';
 
 @Component({

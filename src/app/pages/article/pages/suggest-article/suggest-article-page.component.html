@@ -1,9 +1,9 @@
 <div class="{{getLayout()}}">
-    <ng-template [ngIf]="this.service.isWorking">
+    <ng-template [ngIf]="this.service.isWorking()">
         <span class="o-text-lg-semibold"> Cargando...</span>
     </ng-template>
 
-    <ng-template [ngIf]="this.service.isCompleted && !this.service.containsPublishedArticles">
+    <ng-template [ngIf]="this.service.isCompleted() && !this.service.containsPublishedArticles">
         <span class="o-text-lg-semibold"> No hay artículos publicados </span>
         <app-button (click)="onPublishArticle()" [description]="'Publicar artículo'" [icon]="Icon.Publication"
                     [typeButton]="TypeButton.Primary"></app-button>
@@ -13,12 +13,12 @@
         <app-input (textChanged)="this.onTitleSearchChanged($event)"/>
         <app-select (selectedOption)="onSelectedCategory($event)" *ngIf="this.service.isCompleted"
                     [options]="this.service.categories"/>
-        <ng-template [ngIf]="this.service.isWorking">
+        <ng-template [ngIf]="this.service.isWorking()">
             <span class="o-text-lg-semibold"> Cargando...</span>
         </ng-template>
-        <span *ngIf="this.service.isCompleted"
+        <span *ngIf="this.service.isCompleted()"
               class="o-text-lg-semibold o-layout-width-100 ">{{ this.service.totalArticlesCards }} resultados </span>
-        <div *ngIf="this.service.isCompleted" class="o-layout-article-cards">
+        <div *ngIf="this.service.isCompleted()" class="o-layout-article-cards">
             <app-suggest-article-card (suggestArticle)="onSuggestArticle($event)"
                                       *ngFor="let articleCard of this.service.articlesCards"
                                       [articleCard]="articleCard"/>

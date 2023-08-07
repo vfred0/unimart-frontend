@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { TypeButton } from '@core/types/type-button';
+import { TypeButton } from '@core/enums/type-button';
 import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
 import { ButtonComponent } from '@components/button/button.component';
-import { isNormal, TypeArticleCard } from '@core/types/type-article-card';
-import { Icon } from '@core/types/icon';
+import { isNormal, TypeArticleCard } from '@core/enums/type-article-card';
+import { Icon } from '@core/enums/icon';
 import { Router } from '@angular/router';
 import { AppRoute } from '@core/utils/app-route';
 

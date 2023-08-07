@@ -9,7 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class EditProfileService {
   private readonly userService: UserService = inject(UserService);
-  private readonly authService = inject(AuthService);
+  private readonly authService: AuthService = inject(AuthService);
   private form: FormGroup;
 
   constructor() {

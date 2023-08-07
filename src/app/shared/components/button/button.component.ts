@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { isBack, isTag, TypeButton } from '@core/types/type-button';
+import { isBack, isTag, TypeButton } from '@core/enums/type-button';
 import { CommonModule } from '@angular/common';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 

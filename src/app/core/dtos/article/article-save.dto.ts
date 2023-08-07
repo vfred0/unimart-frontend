@@ -1,7 +1,7 @@
-import { Category } from '@core/types/category';
-import { State } from '@core/types/state';
-import { Gender } from '@core/types/gender';
-import { TypeArticle } from '@core/types/type-article';
+import { Category } from '@core/enums/category';
+import { State } from '@core/enums/state';
+import { Gender } from '@core/enums/gender';
+import { TypeArticle } from '@core/enums/type-article';
 
 export interface ArticleSaveDto {
   id: string;

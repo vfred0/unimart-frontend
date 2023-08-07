@@ -1,5 +1,5 @@
-import { Category } from '@core/types/category';
-import { State } from '@core/types/state';
+import { Category } from '@core/enums/category';
+import { State } from '@core/enums/state';
 
 export interface FilterArticleDto {
   title: string;

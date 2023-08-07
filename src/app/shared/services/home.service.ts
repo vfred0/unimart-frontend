@@ -7,31 +7,26 @@ import { ArticleService } from '@shared/services/articles/article.service';
 import { ApiSignalState } from '@shared/services/api-signal-state';
 import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
 
-@Injectable()
-export class HomeService {
-  private apiSignalState = new ApiSignalState<ArticleCardDto[]>([]);
-  private articleMapper = inject(ArticleMapperService);
-  private articleService = inject(ArticleService);
+@Injectable({ providedIn: 'root' })
+export class HomeService extends ApiSignalState<ArticleCardDto[]> {
+  private articleMapper: ArticleMapperService = inject(ArticleMapperService);
+  private articleService: ArticleService = inject(ArticleService);
+
+  constructor() {
+    super([] as ArticleCardDto[]);
+  }
 
   get totalArticlesCards(): number {
     return this.articlesCards.length;
   }
 
   get articlesCards() {
-    return this.apiSignalState.result();
-  }
-
-  get isCompleted() {
-    return this.apiSignalState.isCompleted();
-  }
-
-  get isWorking() {
-    return this.apiSignalState.isWorking();
+    return this.result();
   }
 
   search(filterArticle: FilterArticleDto): void {
     this.articleMapper.mapTypesFilterArticleToUpperSnakeCase(filterArticle);
-    const observable = this.articleService.search(filterArticle).pipe(
+    const request = this.articleService.search(filterArticle).pipe(
       map((articles: ArticleDto[]) => {
         return articles.map((article: ArticleDto) =>
           this.articleMapper.toArticleCard(article)
@@ -39,6 +34,6 @@ export class HomeService {
       })
     );
 
-    this.apiSignalState.execute(observable);
+    this.execute(request);
   }
 }

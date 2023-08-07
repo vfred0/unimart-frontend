@@ -4,20 +4,17 @@ import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
 import { ProposedArticleDto } from '@core/dtos/article/proposed-article.dto';
 import { AppRoute } from '@core/utils/app-route';
 import { Router } from '@angular/router';
-import { TypeArticle } from '@core/types/type-article';
 import { ProposedArticleService } from '@shared/services/proposed-articles/proposed-article.service';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class SuggestArticlePageService {
-  private profileService: ProfilePageService;
-  private readonly proposedArticleService: ProposedArticleService;
-  private category: string;
-
-  constructor(private router: Router) {
-    this.category = '';
-    this.profileService = inject(ProfilePageService);
-    this.proposedArticleService = inject(ProposedArticleService);
-  }
+  private readonly profileService: ProfilePageService =
+    inject(ProfilePageService);
+  private readonly proposedArticleService: ProposedArticleService = inject(
+    ProposedArticleService
+  );
+  private readonly router: Router = inject(Router);
+  private category = '';
 
   get containsPublishedArticles(): boolean {
     return this.profileService.containsPublishedArticles;
@@ -30,10 +27,7 @@ export class SuggestArticlePageService {
   get articlesCards() {
     return this.profileService.articlesCards.filter(
       (articleCard: ArticleCardDto) => {
-        return (
-          articleCard.category.includes(this.category) &&
-          articleCard.typeArticle !== TypeArticle.Proposed
-        );
+        return articleCard.category.includes(this.category);
       }
     );
   }

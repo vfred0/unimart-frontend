@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '@shared/components/button/button.component';
 import { HeaderComponent } from '@shared/components/header/header.component';
 import { ViewRatingDto } from '@core/dtos/rating/view-rating.dto';
-import { TypeButton } from '@core/types/type-button';
-import { Icon } from '@core/types/icon';
+import { TypeButton } from '@core/enums/type-button';
+import { Icon } from '@core/enums/icon';
 import { HeaderDetailComponent } from '@components/header-detail/header-detail.component';
 import { HeaderDetail } from '@core/utils/header-detail';
 

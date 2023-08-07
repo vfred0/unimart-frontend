@@ -4,69 +4,63 @@ import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
 import { ArticleService } from '@shared/services/articles/article.service';
 import { ArticleMapperService } from '@shared/mappers/article-mapper.service';
 import { AuthService } from '@shared/services/auth.service';
-import { TypeArticle } from '@core/types/type-article';
+import {
+  isExchanged,
+  isProposed,
+  isPublished,
+  TypeArticle,
+} from '@core/enums/type-article';
 import { ProposedArticleService } from '@shared/services/proposed-articles/proposed-article.service';
 import { map } from 'rxjs';
 import { ArticleDto } from '@core/dtos/article/article.dto';
 import { UserService } from '@shared/services/user.service';
+import { ArticleCardService } from '@shared/services/articles/article-card.service';
 
-@Injectable()
-export class ProfilePageService {
-  private apiSignalState = new ApiSignalState<ArticleCardDto[]>([]);
-  private readonly articleMapper = inject(ArticleMapperService);
-  private readonly articleService = inject(ArticleService);
-  private readonly proposedArticleService = inject(ProposedArticleService);
-  private readonly authService = inject(AuthService);
+@Injectable({ providedIn: 'root' })
+export class ProfilePageService extends ApiSignalState<ArticleCardDto[]> {
+  private readonly articleMapper: ArticleMapperService =
+    inject(ArticleMapperService);
+  private readonly articleService: ArticleService = inject(ArticleService);
+  private readonly proposedArticleService: ProposedArticleService = inject(
+    ProposedArticleService
+  );
+  private readonly authService: AuthService = inject(AuthService);
+  private readonly userService: UserService = inject(UserService);
   private title = '';
   private typeArticle: TypeArticle = TypeArticle.Published;
-  private userService: UserService = inject(UserService);
+  private readonly articleCardService: ArticleCardService =
+    inject(ArticleCardService);
+
+  constructor() {
+    super([] as ArticleCardDto[]);
+  }
 
   get isExchanged(): boolean {
-    return this.typeArticle === TypeArticle.Exchanged;
+    return isExchanged(this.typeArticle);
   }
 
   get isProposed(): boolean {
-    return this.typeArticle === TypeArticle.Proposed;
+    return isProposed(this.typeArticle);
   }
 
   get containsPublishedArticles(): boolean {
-    return (
-      this.articlesCards.filter(
-        (articleCard: ArticleCardDto) =>
-          articleCard.typeArticle === TypeArticle.Published
-      ).length > 0
-    );
+    return this.articleCardService.containsPublishedArticles;
   }
 
   get isPublished(): boolean {
-    return this.typeArticle === TypeArticle.Published;
+    return isPublished(this.typeArticle);
   }
 
   get articlesCards(): ArticleCardDto[] {
-    const articleCardDtos = this.apiSignalState.result();
-    return articleCardDtos.filter((articleCard: ArticleCardDto) =>
-      this.filterArticle(articleCard)
+    this.articleCardService.setArticlesCards(this.result());
+    return this.articleCardService.filterByTitleAndTypeArticle(
+      this.title,
+      this.typeArticle
     );
   }
 
-  get isWorking(): boolean {
-    return this.apiSignalState.isWorking();
-  }
-
-  get isCompleted(): boolean {
-    return this.apiSignalState.isCompleted();
-  }
-
   get categories() {
-    return this.apiSignalState
-      .result()
-      .filter(articleCard => {
-        return articleCard.typeArticle !== TypeArticle.Exchanged;
-      })
-      .map(articleCard => articleCard.category)
-      .filter(
-        (category, index, categories) => categories.indexOf(category) === index
-      );
+    return this.articleCardService.getCategoriesNotExchanged();
   }
 
   allArticles(): void {
@@ -77,7 +71,7 @@ export class ProfilePageService {
         );
       })
     );
-    this.apiSignalState.execute(request);
+    this.execute(request);
   }
 
   filterByTitle(title: string) {
@@ -98,15 +92,5 @@ export class ProfilePageService {
     this.proposedArticleService.deleteById(proposedArticleId).subscribe(() => {
       this.allArticles();
     });
-  }
-
-  private filterArticle(articleCard: ArticleCardDto) {
-    const includesTitle = articleCard.title
-      .toLowerCase()
-      .includes(this.title.toLowerCase());
-    if (this.isPublished) {
-      return includesTitle && articleCard.typeArticle !== TypeArticle.Exchanged;
-    }
-    return includesTitle && articleCard.typeArticle === this.typeArticle;
   }
 }

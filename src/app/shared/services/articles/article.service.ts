@@ -35,10 +35,4 @@ export class ArticleService {
   delete(articleId: string) {
     return this.http.delete<string>(`${ArticleService.API_URL}/${articleId}`);
   }
-
-  getByUserId(userId: string) {
-    return this.http.get<Array<ArticleDto>>(
-      `${ArticleService.API_URL}/users/${userId}`
-    );
-  }
 }

@@ -4,8 +4,8 @@ import { ArticleDto } from '@core/dtos/article/article.dto';
 import { ArticleService } from '@shared/services/articles/article.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ArticleSaveDto } from '@core/dtos/article/article-save.dto';
-import { State } from '@core/types/state';
-import { Category, CategoryService } from '@core/types/category';
+import { State } from '@core/enums/state';
+import { Category, CategoryService } from '@core/enums/category';
 import { AuthService } from '@shared/services/auth.service';
 import { AppRoute } from '@core/utils/app-route';
 import { Router } from '@angular/router';
@@ -16,18 +16,16 @@ import { map } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class PublishArticlePageService {
-  private readonly apiSignalState: ApiSignalState<ArticleDto>;
+export class PublishArticlePageService extends ApiSignalState<ArticleDto> {
   private readonly articleService: ArticleService;
   private readonly articleMapper: ArticleMapperService;
-
-  private authService: AuthService;
+  private readonly authService: AuthService;
   private readonly _form: FormGroup;
+  private readonly router: Router;
   private updateFormForArticleUpdate: boolean;
-  private router: Router;
 
   constructor() {
-    this.apiSignalState = new ApiSignalState<ArticleDto>({} as ArticleDto);
+    super({} as ArticleDto);
     this.articleService = inject(ArticleService);
     this.authService = inject(AuthService);
     this.router = inject(Router);
@@ -50,7 +48,7 @@ export class PublishArticlePageService {
       gender: new FormControl(null),
       images: new FormControl(article.images, [Validators.required]),
     });
-    this.apiSignalState.setSucceed(article as ArticleDto);
+    this.setSucceed(article as ArticleDto);
     this.setFormForUpdate();
   }
 
@@ -63,20 +61,16 @@ export class PublishArticlePageService {
   }
 
   get article(): ArticleDto {
-    return this.apiSignalState.result();
+    return this.result();
   }
 
-  get isWorking() {
-    return this.apiSignalState.isWorking();
-  }
-
-  get isCompleted() {
-    const isCompleted = this.apiSignalState.isCompleted();
+  override get isCompleted() {
+    const isCompleted = super.isCompleted();
     if (isCompleted) {
       this.setFormForUpdate();
       this.updateFormForArticleUpdate = false;
     }
-    return isCompleted;
+    return super.isCompleted;
   }
 
   get isFormValid(): boolean {
@@ -101,7 +95,7 @@ export class PublishArticlePageService {
   }
 
   setArticleById(id: string): void {
-    this.apiSignalState.execute(
+    this.execute(
       this.articleService
         .getById(id)
         .pipe(map(article => this.articleMapper.mapTypesToCamelCase(article)))
@@ -143,7 +137,7 @@ export class PublishArticlePageService {
       ...this.article,
       images: [...this.article.images, imageUrl],
     };
-    this.apiSignalState.setSucceed(article);
+    this.setSucceed(article);
     this._form.get('images')?.setValue(this.article.images);
   }
 

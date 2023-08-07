@@ -1,10 +1,10 @@
 <app-header [title]="'Artículo'"/>
 
-<ng-template [ngIf]="this.service.isWorking">
+<ng-template [ngIf]="this.service.isWorking()">
     <span class="o-text-2xl-bold">Cargando...</span>
 </ng-template>
 
-<div *ngIf="this.service.isCompleted" class="c-article-page">
+<div *ngIf="this.service.isCompleted()" class="c-article-page">
     <div class="c-article-page__banner">
         <img class="c-article-page__banner-image" src="{{ this.service.article.images[0] }}"/>
         <div class="c-article-page__banner-container">

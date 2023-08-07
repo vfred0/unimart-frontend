@@ -1,10 +1,10 @@
 <div class="{{getLayout()}}">
     <app-select (selectedOption)="onSelectedCategory($event)" *ngIf="this.service.isCompleted"
                 [options]="this.service.categories"/>
-    <ng-template [ngIf]="this.service.isWorking">
+    <ng-template [ngIf]="this.service.isWorking()">
         <span class="o-text-lg-bold">Cargando...</span>
     </ng-template>
-    <ng-template [ngIf]="this.service.isCompleted">
+    <ng-template [ngIf]="this.service.isCompleted()">
         <span class="o-text-lg-semibold o-layout-width-100 ">{{ this.service.totalArticlesCards }} resultados </span>
         <div class="o-layout-article-cards">
             <app-proposed-article-card (deleteProposed)="this.onDeletedProposed($event)"

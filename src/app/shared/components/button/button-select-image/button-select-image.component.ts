@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '@components/button/button.component';
-import { Icon } from '@core/types/icon';
-import { TypeButton } from '@core/types/type-button';
+import { Icon } from '@core/enums/icon';
+import { TypeButton } from '@core/enums/type-button';
 
 @Component({
   selector: 'app-button-select-image',

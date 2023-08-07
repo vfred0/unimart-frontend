@@ -14,11 +14,11 @@
                         [options]="this.typeArticles"
                         [label]="'Artículos:'"
                         class="o-layout-width-100"/>
-                <ng-template [ngIf]="this.service.isWorking">
+                <ng-template [ngIf]="this.service.isWorking()">
                     <span class="o-text-2xl-bold">Cargando...</span>
                 </ng-template>
                 <div class="o-layout-article-cards">
-                    <ng-template [ngIf]="this.service.isCompleted">
+                    <ng-template [ngIf]="this.service.isCompleted()">
                         <ng-template [ngIf]="this.service.isPublished">
                             <app-published-article-card
                                     (deleteArticle)="onDeleteArticle(articleCard.id)"
@@ -56,15 +56,15 @@
                 <div class="c-tabs__content-row o-layout-width-100 ">
                     <span class="o-text-lg-semibold o-layout-width-100 ">{{ this.serviceRating.ratings.length }}
                         resultados </span>
-                    <ng-template [ngIf]="this.service.isWorking">
+                    <ng-template [ngIf]="this.service.isWorking()">
                         <span class="o-text-lg-semibold"> Cargando...</span>
                     </ng-template>
 
-                    <app-button *ngIf="this.serviceRating.isCompleted"
+                    <app-button *ngIf="this.serviceRating.isCompleted()"
                                 [description]="this.serviceRating.averageRating.toString()" [icon]="Icon.Star"
                                 [typeButton]="TypeButton.Secondary"/>
                 </div>
-                <ng-template [ngIf]="this.serviceRating.isCompleted">
+                <ng-template [ngIf]="this.serviceRating.isCompleted()">
                     <div class="o-layout-view-rating-cards">
                         <app-view-rating-card *ngFor="let viewRatingCard of this.serviceRating.ratings"
                                               [viewRatingCard]="viewRatingCard"/>

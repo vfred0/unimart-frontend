@@ -1,4 +1,4 @@
-import { computed, signal } from '@angular/core';
+import { computed, Signal, signal } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 
 export class ApiSignalState<T> {
@@ -6,15 +6,17 @@ export class ApiSignalState<T> {
   readonly _isWorking = signal(false);
   readonly _result = signal<T>(this.defaultValue);
   readonly _error = signal<object | null>(null);
-
-  readonly isWorking = this._isWorking.asReadonly();
   readonly result = this._result.asReadonly();
-  readonly error = this._error.asReadonly();
-  readonly isCompleted = computed(() => this.result() !== this.defaultValue);
-  readonly hasError = computed(() => this._error() !== null);
-  readonly errorMessage = computed(() => this.getErrorMessage(this._error()));
 
   constructor(private readonly defaultValue: T) {}
+
+  public get isWorking() {
+    return this._isWorking.asReadonly();
+  }
+
+  public get isCompleted(): Signal<boolean> {
+    return computed(() => this.result() !== this.defaultValue);
+  }
 
   execute(observable: Observable<T>) {
     this.setStarted();

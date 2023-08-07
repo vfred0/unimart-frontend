@@ -5,7 +5,7 @@ import { ButtonComponent } from '@components/button/button.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppRoute } from '@core/utils/app-route';
 import { ProposedArticleService } from '@shared/services/proposed-articles/proposed-article.service';
-import { TypeArticle } from '@core/types/type-article';
+import { TypeArticle } from '@core/enums/type-article';
 
 @Component({
   selector: 'app-proposed-article-card',

@@ -2,11 +2,11 @@ import { ArticleDto } from '@core/dtos/article/article.dto';
 import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
 import { Injectable } from '@angular/core';
 import { getKey, getValue } from '@core/utils/enum-utils';
-import { State } from '@core/types/state';
-import { Category } from '@core/types/category';
-import { Gender } from '@core/types/gender';
+import { State } from '@core/enums/state';
+import { Category } from '@core/enums/category';
+import { Gender } from '@core/enums/gender';
 import { FilterArticleDto } from '@core/dtos/article/filter-article.dto';
-import { TypeArticle } from '@core/types/type-article';
+import { TypeArticle } from '@core/enums/type-article';
 
 @Injectable({ providedIn: 'root' })
 export class ArticleMapperService {

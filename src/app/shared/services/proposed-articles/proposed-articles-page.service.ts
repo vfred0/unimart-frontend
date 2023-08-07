@@ -7,43 +7,34 @@ import { AppRoute } from '@core/utils/app-route';
 import { Router } from '@angular/router';
 import { ProposedArticleService } from '@shared/services/proposed-articles/proposed-article.service';
 import { map } from 'rxjs';
+import { ArticleCardService } from '@shared/services/articles/article-card.service';
 
-@Injectable()
-export class ProposedArticlesPageService {
+@Injectable({ providedIn: 'root' })
+export class ProposedArticlesPageService extends ApiSignalState<
+  ArticleCardDto[]
+> {
   articleId = '';
-  private apiSignalState = new ApiSignalState<ArticleCardDto[]>([]);
-  private articleMapper = inject(ArticleMapperService);
+  private readonly articleMapper = inject(ArticleMapperService);
   private readonly proposedArticleService = inject(ProposedArticleService);
-  private router = inject(Router);
+  private readonly router = inject(Router);
+  private readonly articleCardService = inject(ArticleCardService);
   private category = '';
 
+  constructor() {
+    super([] as ArticleCardDto[]);
+  }
+
   get totalArticlesCards(): number {
-    return this.articlesCards.length;
+    return this.articleCardService.totalArticlesCards;
   }
 
   get categories() {
-    return this.apiSignalState
-      .result()
-      .map(articleCard => articleCard.category)
-      .filter(
-        (category, index, categories) => categories.indexOf(category) === index
-      );
+    this.articleCardService.setArticlesCards(this.articlesCards);
+    return this.articleCardService.categories;
   }
 
   get articlesCards(): ArticleCardDto[] {
-    return this.apiSignalState
-      .result()
-      .filter((articleCard: ArticleCardDto) => {
-        return articleCard.category.includes(this.category);
-      });
-  }
-
-  get isCompleted() {
-    return this.apiSignalState.isCompleted();
-  }
-
-  get isWorking() {
-    return this.apiSignalState.isWorking();
+    return this.articleCardService.filterByCategory(this.category);
   }
 
   proposedArticles(articleId: string): void {
@@ -56,7 +47,7 @@ export class ProposedArticlesPageService {
           );
         })
       );
-    this.apiSignalState.execute(request);
+    this.execute(request);
   }
 
   filterByCategory(category: string) {

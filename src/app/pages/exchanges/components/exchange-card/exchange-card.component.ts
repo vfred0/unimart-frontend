@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '@components/header/header.component';
 import { ExchangeDto } from '@core/dtos/exchange.dto';
 import { ButtonComponent } from '@components/button/button.component';
-import { TypeButton } from '@core/types/type-button';
+import { TypeButton } from '@core/enums/type-button';
 import { AddRatingComponent } from '@components/rating/add-rating/add-rating.component';
-import { Icon } from '@core/types/icon';
+import { Icon } from '@core/enums/icon';
 import { HeaderDetailComponent } from '@components/header-detail/header-detail.component';
 import { HeaderDetail } from '@core/utils/header-detail';
 

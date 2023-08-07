@@ -3,7 +3,7 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { HeaderComponent } from '@components/header/header.component';
 import { InputComponent } from '@components/input/input.component';
 import { ButtonComponent } from '@components/button/button.component';
-import { Icon } from '@core/types/icon';
+import { Icon } from '@core/enums/icon';
 import { getLayout } from '@core/utils/app-route';
 import { EditProfileService } from '@shared/services/profiles/edit-profile.service';
 import { ButtonSelectImageComponent } from '@components/button/button-select-image/button-select-image.component';

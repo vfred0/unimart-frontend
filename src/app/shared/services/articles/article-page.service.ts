@@ -8,15 +8,19 @@ import { AuthService } from '@shared/services/auth.service';
 import { map } from 'rxjs';
 import { ArticleMapperService } from '@shared/mappers/article-mapper.service';
 
-@Injectable()
-export class ArticlePageService {
-  private readonly apiSignalState = new ApiSignalState<ArticleDto>(
-    {} as ArticleDto
-  );
-  private readonly userMapper = inject(UserMapperService);
-  private readonly authService = inject(AuthService);
+@Injectable({
+  providedIn: 'root',
+})
+export class ArticlePageService extends ApiSignalState<ArticleDto> {
+  private readonly userMapper: UserMapperService = inject(UserMapperService);
+  private readonly authService: AuthService = inject(AuthService);
   private readonly articleService: ArticleService = inject(ArticleService);
-  private articleMapper: ArticleMapperService = inject(ArticleMapperService);
+  private readonly articleMapper: ArticleMapperService =
+    inject(ArticleMapperService);
+
+  constructor() {
+    super({} as ArticleDto);
+  }
 
   get hasProposedOrReceivedArticle(): boolean {
     return this.hasProposedArticle || this.hasReceivedProposal;
@@ -38,14 +42,6 @@ export class ArticlePageService {
     return false;
   }
 
-  get acceptProposals(): boolean {
-    return this.article.acceptProposals;
-  }
-
-  get hasPendingExchange(): boolean {
-    return !this.acceptProposals;
-  }
-
   get user() {
     return this.article.user;
   }
@@ -55,19 +51,11 @@ export class ArticlePageService {
   }
 
   get article(): ArticleDto {
-    return this.apiSignalState.result();
+    return this.result();
   }
 
   get isMyArticle(): boolean {
     return this.authService.containsId(this.article.user.id as string);
-  }
-
-  get isWorking() {
-    return this.apiSignalState.isWorking();
-  }
-
-  get isCompleted() {
-    return this.apiSignalState.isCompleted();
   }
 
   getById(id: string): void {
@@ -77,11 +65,7 @@ export class ArticlePageService {
       })
     );
 
-    this.apiSignalState.execute(getById);
-  }
-
-  setArticleDto(articleDto: ArticleDto) {
-    this.apiSignalState.setSucceed(articleDto);
+    this.execute(getById);
   }
 
   private articleContainsProperty(property: string) {

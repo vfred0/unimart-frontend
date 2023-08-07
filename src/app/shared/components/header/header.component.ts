@@ -2,9 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule, Location, NgOptimizedImage } from '@angular/common';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ButtonComponent } from '@components/button/button.component';
-import { TypeButton } from '@core/types/type-button';
+import { TypeButton } from '@core/enums/type-button';
 import { NavigationEnd, Router } from '@angular/router';
-import { Icon } from '@core/types/icon';
+import { Icon } from '@core/enums/icon';
 import {
   AppRoute,
   getRouteTitle,
