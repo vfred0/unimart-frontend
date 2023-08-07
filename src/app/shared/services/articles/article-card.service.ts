@@ -9,36 +9,42 @@ import { Category } from '@core/enums/category';
 
 @Injectable({ providedIn: 'root' })
 export class ArticleCardService {
-  private articlesCards: ArticleCardDto[] = [];
+  private articleCard: ArticleCardDto[] = [];
 
   get containsPublishedArticles(): boolean {
-    return this.articlesCards.some(articleCard => {
+    return this.articleCard.some(articleCard => {
       return isPublished(articleCard.typeArticle as TypeArticle);
     });
   }
 
   get categories() {
-    return this.articlesCards
+    return this.articleCard
       .map(articleCard => articleCard.category)
       .filter(this.filterByIndexCategory());
   }
 
   get totalArticlesCards(): number {
-    return this.articlesCards.length;
+    return this.articleCard.length;
   }
 
   setArticlesCards(articlesCards: ArticleCardDto[]) {
-    this.articlesCards = articlesCards;
+    this.articleCard = articlesCards;
   }
 
   filterByCategory(category: string) {
-    return this.articlesCards.filter(
+    return this.articleCard.filter(
       articleCard => articleCard.category === category
     );
   }
 
+  filterByTitleAndCategory(title: string, category: Category) {
+    return this.filterByCategory(category).filter(articleCard => {
+      return articleCard.title.toLowerCase().includes(title.toLowerCase());
+    });
+  }
+
   filterByTitleAndTypeArticle(title: string, typeArticle: TypeArticle) {
-    return this.articlesCards.filter(articleCard => {
+    return this.articleCard.filter(articleCard => {
       const includesTitle = articleCard.title
         .toLowerCase()
         .includes(title.toLowerCase());
@@ -52,7 +58,7 @@ export class ArticleCardService {
   }
 
   getCategoriesNotExchanged() {
-    return this.articlesCards
+    return this.articleCard
       .filter(articleCard => {
         return !isExchanged(articleCard.typeArticle as TypeArticle);
       })
