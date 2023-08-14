@@ -3,17 +3,17 @@ import { ProfilePageService } from '@shared/services/profiles/profile-page.servi
 import { ProposedArticleDto } from '@core/dtos/article/proposed-article.dto';
 import { AppRoute } from '@core/utils/app-route';
 import { Router } from '@angular/router';
-import { ProposedArticleService } from '@shared/services/proposed-articles/proposed-article.service';
+import { ProposalService } from '@shared/services/proposals/proposal.service';
 import { ArticleCardService } from '@shared/services/articles/article-card.service';
 import { Category } from '@core/enums/category';
+import { isProposed, TypeArticle } from '@core/enums/type-article';
 
 @Injectable({ providedIn: 'root' })
 export class SuggestArticlePageService {
   private readonly profileService: ProfilePageService =
     inject(ProfilePageService);
-  private readonly proposedArticleService: ProposedArticleService = inject(
-    ProposedArticleService
-  );
+  private readonly proposedArticleService: ProposalService =
+    inject(ProposalService);
 
   private readonly articleCardService: ArticleCardService =
     inject(ArticleCardService);
@@ -31,19 +31,25 @@ export class SuggestArticlePageService {
   }
 
   get articlesCards() {
-    this.articleCardService.setArticlesCards(this.profileService.articlesCards);
-    return this.articleCardService.filterByTitleAndCategory(
-      this.title,
-      this.category
-    );
+    return this.articleCardService
+      .filterByTitleAndCategory(this.title, this.category)
+      .filter(
+        articleCard => !isProposed(articleCard.typeArticle as TypeArticle)
+      );
   }
 
   get categories() {
-    return this.profileService.categories;
+    return this.articleCardService.filterCategoriesNotProposed();
   }
 
   get isCompleted() {
-    return this.profileService.isCompleted();
+    const isCompleted = this.profileService.isCompleted();
+    if (isCompleted) {
+      this.articleCardService.setArticlesCards(
+        this.profileService.articlesCards
+      );
+    }
+    return isCompleted;
   }
 
   get isWorking() {

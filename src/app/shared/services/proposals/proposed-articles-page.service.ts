@@ -1,11 +1,11 @@
 import { ArticleDto } from '@core/dtos/article/article.dto';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, Signal } from '@angular/core';
 import { ArticleMapperService } from '@shared/mappers/article-mapper.service';
 import { ApiSignalState } from '@shared/services/api-signal-state';
 import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
 import { AppRoute } from '@core/utils/app-route';
 import { Router } from '@angular/router';
-import { ProposedArticleService } from '@shared/services/proposed-articles/proposed-article.service';
+import { ProposalService } from '@shared/services/proposals/proposal.service';
 import { map } from 'rxjs';
 import { ArticleCardService } from '@shared/services/articles/article-card.service';
 
@@ -15,7 +15,7 @@ export class ProposedArticlesPageService extends ApiSignalState<
 > {
   articleId = '';
   private readonly articleMapper = inject(ArticleMapperService);
-  private readonly proposedArticleService = inject(ProposedArticleService);
+  private readonly proposedArticleService = inject(ProposalService);
   private readonly router = inject(Router);
   private readonly articleCardService = inject(ArticleCardService);
   private category = '';
@@ -24,12 +24,19 @@ export class ProposedArticlesPageService extends ApiSignalState<
     super([] as ArticleCardDto[]);
   }
 
+  override get isCompleted(): Signal<boolean> {
+    const isCompleted = super.isCompleted();
+    if (isCompleted) {
+      this.articleCardService.setArticlesCards(this.result());
+    }
+    return super.isCompleted;
+  }
+
   get totalArticlesCards(): number {
     return this.articleCardService.totalArticlesCards;
   }
 
   get categories() {
-    this.articleCardService.setArticlesCards(this.articlesCards);
     return this.articleCardService.categories;
   }
 
@@ -39,7 +46,7 @@ export class ProposedArticlesPageService extends ApiSignalState<
 
   proposedArticles(articleId: string): void {
     const request = this.proposedArticleService
-      .proposedArticlesByArticleId(articleId)
+      .getProposerArticlesByReceiverArticleId(articleId)
       .pipe(
         map((articles: ArticleDto[]) => {
           return articles.map((article: ArticleDto) =>
@@ -57,7 +64,7 @@ export class ProposedArticlesPageService extends ApiSignalState<
   deleteProposed(proposedArticleId: string) {
     this.proposedArticleService.deleteById(proposedArticleId).subscribe(() => {
       this.proposedArticleService
-        .proposedArticlesByArticleId(this.articleId)
+        .getProposerArticlesByReceiverArticleId(this.articleId)
         .subscribe((articles: ArticleDto[]) => {
           if (articles.length === 0) {
             this.router.navigate([`${AppRoute.Profile}`]).then();

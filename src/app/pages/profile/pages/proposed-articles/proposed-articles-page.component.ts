@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SelectComponent } from '@components/select/select.component';
 import { getLayout } from '@core/utils/app-route';
 import { ProposedArticleCardComponent } from '@components/article-card/proposed-article-card/proposed-article-card.component';
-import { ProposedArticlesPageService } from '@shared/services/proposed-articles/proposed-articles-page.service';
+import { ProposedArticlesPageService } from '@shared/services/proposals/proposed-articles-page.service';
 
 @Component({
   standalone: true,

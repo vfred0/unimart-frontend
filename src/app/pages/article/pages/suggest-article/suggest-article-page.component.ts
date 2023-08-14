@@ -6,7 +6,7 @@ import { SelectComponent } from '@components/select/select.component';
 import { InputComponent } from '@components/input/input.component';
 import { SuggestArticleCardComponent } from '@components/article-card/suggest-article-card/suggest-article-card.component';
 import { AppRoute, getLayout } from '@core/utils/app-route';
-import { SuggestArticlePageService } from '@shared/services/proposed-articles/suggest-article-page.service';
+import { SuggestArticlePageService } from '@shared/services/proposals/suggest-article-page.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProposedArticleDto } from '@core/dtos/article/proposed-article.dto';
 import { ProfilePageService } from '@shared/services/profiles/profile-page.service';
