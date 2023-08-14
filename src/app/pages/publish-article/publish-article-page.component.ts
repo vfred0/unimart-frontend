@@ -69,7 +69,7 @@ export class PublishArticlePageComponent {
   }
 
   onSelectedCategory(option: string) {
-    this.service.setCategory(option);
+    this.service.setValue('category', option);
   }
 
   onSelectedGender(gender: string) {
@@ -88,10 +88,6 @@ export class PublishArticlePageComponent {
   }
 
   publishArticle() {
-    if (this.articleId) {
-      this.service.publishArticle(true);
-    } else {
-      this.service.publishArticle(false);
-    }
+    this.service.publishArticle();
   }
 }
