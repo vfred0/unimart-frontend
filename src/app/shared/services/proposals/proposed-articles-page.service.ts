@@ -1,7 +1,7 @@
 import { ArticleDto } from '@core/dtos/article/article.dto';
 import { inject, Injectable, Signal } from '@angular/core';
 import { ArticleMapperService } from '@shared/mappers/article-mapper.service';
-import { ApiSignalState } from '@shared/services/api-signal-state';
+import { Service } from '@shared/services/service';
 import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
 import { AppRoute } from '@core/utils/app-route';
 import { Router } from '@angular/router';
@@ -10,9 +10,7 @@ import { map } from 'rxjs';
 import { ArticleCardService } from '@shared/services/articles/article-card.service';
 
 @Injectable({ providedIn: 'root' })
-export class ProposedArticlesPageService extends ApiSignalState<
-  ArticleCardDto[]
-> {
+export class ProposedArticlesPageService extends Service<ArticleCardDto[]> {
   articleId = '';
   private readonly articleMapper = inject(ArticleMapperService);
   private readonly proposedArticleService = inject(ProposalService);

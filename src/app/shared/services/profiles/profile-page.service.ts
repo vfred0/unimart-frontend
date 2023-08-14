@@ -1,5 +1,5 @@
 import { inject, Injectable, Signal } from '@angular/core';
-import { ApiSignalState } from '@shared/services/api-signal-state';
+import { Service } from '@shared/services/service';
 import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
 import { ArticleService } from '@shared/services/articles/article.service';
 import { ArticleMapperService } from '@shared/mappers/article-mapper.service';
@@ -17,7 +17,7 @@ import { UserService } from '@shared/services/user.service';
 import { ArticleCardService } from '@shared/services/articles/article-card.service';
 
 @Injectable({ providedIn: 'root' })
-export class ProfilePageService extends ApiSignalState<ArticleCardDto[]> {
+export class ProfilePageService extends Service<ArticleCardDto[]> {
   private readonly articleMapper: ArticleMapperService =
     inject(ArticleMapperService);
   private readonly articleService: ArticleService = inject(ArticleService);

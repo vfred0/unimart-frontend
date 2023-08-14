@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { ApiSignalState } from '@shared/services/api-signal-state';
+import { Service } from '@shared/services/service';
 import { ArticleDto } from '@core/dtos/article/article.dto';
 import { HeaderDetail } from '@core/utils/header-detail';
 import { ArticleService } from '@shared/services/articles/article.service';
@@ -11,7 +11,7 @@ import { ArticleMapperService } from '@shared/mappers/article-mapper.service';
 @Injectable({
   providedIn: 'root',
 })
-export class ArticlePageService extends ApiSignalState<ArticleDto> {
+export class ArticlePageService extends Service<ArticleDto> {
   private readonly userMapper: UserMapperService = inject(UserMapperService);
   private readonly authService: AuthService = inject(AuthService);
   private readonly articleService: ArticleService = inject(ArticleService);

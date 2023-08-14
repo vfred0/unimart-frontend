@@ -4,11 +4,11 @@ import { ArticleDto } from '@core/dtos/article/article.dto';
 import { inject, Injectable } from '@angular/core';
 import { ArticleMapperService } from '@shared/mappers/article-mapper.service';
 import { ArticleService } from '@shared/services/articles/article.service';
-import { ApiSignalState } from '@shared/services/api-signal-state';
+import { Service } from '@shared/services/service';
 import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
 
 @Injectable({ providedIn: 'root' })
-export class HomeService extends ApiSignalState<ArticleCardDto[]> {
+export class HomeService extends Service<ArticleCardDto[]> {
   private articleMapper: ArticleMapperService = inject(ArticleMapperService);
   private articleService: ArticleService = inject(ArticleService);
 

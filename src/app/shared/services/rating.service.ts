@@ -2,11 +2,11 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FilterRating } from '@core/enums/filter-rating';
 import { ViewRatingDto } from '@core/dtos/rating/view-rating.dto';
-import { ApiSignalState } from '@shared/services/api-signal-state';
+import { Service } from '@shared/services/service';
 import { AuthService } from '@shared/services/auth.service';
 
 @Injectable({ providedIn: 'root' })
-export class RatingService extends ApiSignalState<ViewRatingDto[]> {
+export class RatingService extends Service<ViewRatingDto[]> {
   private readonly API_URL = `http://localhost:8080/api/v1/ratings`;
   private readonly http = inject(HttpClient);
   private readonly authService = inject(AuthService);

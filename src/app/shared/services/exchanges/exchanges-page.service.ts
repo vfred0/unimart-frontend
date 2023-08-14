@@ -1,12 +1,12 @@
 import { inject, Injectable } from '@angular/core';
-import { ApiSignalState } from '@shared/services/api-signal-state';
+import { Service } from '@shared/services/service';
 import { ExchangeDto } from '@core/dtos/exchange.dto';
 import { ExchangeService } from '@shared/services/exchanges/exchange.service';
 import { AuthService } from '@shared/services/auth.service';
 import { RatingDto } from '@core/dtos/rating/rating.dto';
 
 @Injectable({ providedIn: 'root' })
-export class ExchangesPageService extends ApiSignalState<ExchangeDto[]> {
+export class ExchangesPageService extends Service<ExchangeDto[]> {
   private readonly exchangeService = inject(ExchangeService);
   private readonly authService = inject(AuthService);
 

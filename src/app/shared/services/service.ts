@@ -1,7 +1,7 @@
 import { computed, Signal, signal } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 
-export class ApiSignalState<T> {
+export class Service<T> {
   subscription!: Subscription;
   readonly _isWorking = signal(false);
   readonly _result = signal<T>(this.defaultValue);
