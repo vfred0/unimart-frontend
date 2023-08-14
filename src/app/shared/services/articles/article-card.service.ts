@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
 import {
   isExchanged,
+  isProposed,
   isPublished,
   TypeArticle,
 } from '@core/enums/type-article';
@@ -9,30 +10,30 @@ import { Category } from '@core/enums/category';
 
 @Injectable({ providedIn: 'root' })
 export class ArticleCardService {
-  private articleCard: ArticleCardDto[] = [];
+  private articleCards: ArticleCardDto[] = [];
 
   get containsPublishedArticles(): boolean {
-    return this.articleCard.some(articleCard => {
+    return this.articleCards.some(articleCard => {
       return isPublished(articleCard.typeArticle as TypeArticle);
     });
   }
 
   get categories() {
-    return this.articleCard
+    return this.articleCards
       .map(articleCard => articleCard.category)
       .filter(this.filterByIndexCategory());
   }
 
   get totalArticlesCards(): number {
-    return this.articleCard.length;
+    return this.articleCards.length;
   }
 
   setArticlesCards(articlesCards: ArticleCardDto[]) {
-    this.articleCard = articlesCards;
+    this.articleCards = articlesCards;
   }
 
   filterByCategory(category: string) {
-    return this.articleCard.filter(
+    return this.articleCards.filter(
       articleCard => articleCard.category === category
     );
   }
@@ -44,7 +45,7 @@ export class ArticleCardService {
   }
 
   filterByTitleAndTypeArticle(title: string, typeArticle: TypeArticle) {
-    return this.articleCard.filter(articleCard => {
+    return this.articleCards.filter(articleCard => {
       const includesTitle = articleCard.title
         .toLowerCase()
         .includes(title.toLowerCase());
@@ -58,9 +59,18 @@ export class ArticleCardService {
   }
 
   getCategoriesNotExchanged() {
-    return this.articleCard
+    return this.articleCards
       .filter(articleCard => {
         return !isExchanged(articleCard.typeArticle as TypeArticle);
+      })
+      .map(articleCard => articleCard.category)
+      .filter(this.filterByIndexCategory());
+  }
+
+  filterCategoriesNotProposed() {
+    return this.articleCards
+      .filter(articleCard => {
+        return !isProposed(articleCard.typeArticle as TypeArticle);
       })
       .map(articleCard => articleCard.category)
       .filter(this.filterByIndexCategory());
