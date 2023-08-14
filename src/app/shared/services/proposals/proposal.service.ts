@@ -4,8 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { ProposedArticleDto } from '@core/dtos/article/proposed-article.dto';
 
 @Injectable({ providedIn: 'root' })
-export class ProposedArticleService {
-  private readonly API_URL = 'http://localhost:8080/api/v1/proposedArticles';
+export class ProposalService {
+  private readonly API_URL = 'http://localhost:8080/api/v1/proposals';
   private http = inject(HttpClient);
 
   save(proposedArticleDto: ProposedArticleDto) {
@@ -16,7 +16,7 @@ export class ProposedArticleService {
     return this.http.delete(`${this.API_URL}/${id}`);
   }
 
-  proposedArticlesByArticleId(articleId: string) {
+  getProposerArticlesByReceiverArticleId(articleId: string) {
     return this.http.get<ArticleDto[]>(`${this.API_URL}/${articleId}`);
   }
 }

@@ -4,14 +4,14 @@ import { ArticleCardComponent } from '@components/article-card/article-card.comp
 import { ButtonComponent } from '@components/button/button.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppRoute } from '@core/utils/app-route';
-import { ProposedArticleService } from '@shared/services/proposed-articles/proposed-article.service';
+import { ProposalService } from '@shared/services/proposals/proposal.service';
 import { TypeArticle } from '@core/enums/type-article';
 
 @Component({
   selector: 'app-proposed-article-card',
   standalone: true,
   imports: [CommonModule, ButtonComponent, ArticleCardComponent],
-  providers: [ProposedArticleService],
+  providers: [ProposalService],
   templateUrl: './proposed-article-card.component.html',
 })
 export class ProposedArticleCardComponent extends ArticleCardComponent {

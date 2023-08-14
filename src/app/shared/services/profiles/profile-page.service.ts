@@ -10,7 +10,7 @@ import {
   isPublished,
   TypeArticle,
 } from '@core/enums/type-article';
-import { ProposedArticleService } from '@shared/services/proposed-articles/proposed-article.service';
+import { ProposalService } from '@shared/services/proposals/proposal.service';
 import { map } from 'rxjs';
 import { ArticleDto } from '@core/dtos/article/article.dto';
 import { UserService } from '@shared/services/user.service';
@@ -21,9 +21,8 @@ export class ProfilePageService extends ApiSignalState<ArticleCardDto[]> {
   private readonly articleMapper: ArticleMapperService =
     inject(ArticleMapperService);
   private readonly articleService: ArticleService = inject(ArticleService);
-  private readonly proposedArticleService: ProposedArticleService = inject(
-    ProposedArticleService
-  );
+  private readonly proposedArticleService: ProposalService =
+    inject(ProposalService);
   private readonly authService: AuthService = inject(AuthService);
   private readonly userService: UserService = inject(UserService);
   private typeArticle: TypeArticle = TypeArticle.Published;
