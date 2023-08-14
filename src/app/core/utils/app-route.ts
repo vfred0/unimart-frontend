@@ -42,8 +42,8 @@ const routes: Array<IRoute> = [
     withMenu: false,
     withHeader: true,
     withBack: true,
-    withPreferences: false,
-    withPreferencesAndButtonEditProfile: false,
+    withPreferences: true,
+    withPreferencesAndButtonEditProfile: true,
   },
   {
     path: AppRoute.PublishArticle,
