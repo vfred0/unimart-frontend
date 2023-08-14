@@ -17,7 +17,6 @@ import { ProposedArticlesPageService } from '@shared/services/proposals/proposed
     SelectComponent,
     ProposedArticleCardComponent,
   ],
-  providers: [ProposedArticlesPageService],
   templateUrl: './proposed-articles-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

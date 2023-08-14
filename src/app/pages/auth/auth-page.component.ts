@@ -19,7 +19,6 @@ import { Router } from '@angular/router';
     InputComponent,
     ButtonComponent,
   ],
-  providers: [AuthService],
   templateUrl: './auth-page.component.html',
 })
 export class AuthPageComponent {

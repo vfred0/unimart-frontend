@@ -1,4 +1,4 @@
-<div *ngIf="this.service.isCompleted" class="c-publish-article-page {{getLayout()}}">
+<div *ngIf="this.service.isCompleted()" class="c-publish-article-page {{getLayout()}}">
     <app-input
             (textChanged)="this.onTitleChanged($event)"
             [icon]="Icon.Edit"

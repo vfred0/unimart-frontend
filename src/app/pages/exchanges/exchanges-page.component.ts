@@ -5,7 +5,6 @@ import { ExchangeCardComponent } from '@pages/exchanges/components/exchange-card
 import { AddRatingComponent } from '@components/rating/add-rating/add-rating.component';
 import { getLayout } from '@core/utils/app-route';
 import { ExchangesPageService } from '@shared/services/exchanges/exchanges-page.service';
-import { ExchangeService } from '@shared/services/exchanges/exchange.service';
 
 @Component({
   standalone: true,
@@ -15,7 +14,6 @@ import { ExchangeService } from '@shared/services/exchanges/exchange.service';
     ExchangeCardComponent,
     AddRatingComponent,
   ],
-  providers: [ExchangesPageService, ExchangeService],
   templateUrl: './exchanges-page.component.html',
 })
 export class ExchangesPageComponent {

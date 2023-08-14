@@ -15,7 +15,6 @@ import { getAllValues } from '@core/utils/enum-utils';
 import { Icon } from '@core/enums/icon';
 import { ActivatedRoute } from '@angular/router';
 import { getLayout } from '@core/utils/app-route';
-import { ArticleService } from '@shared/services/articles/article.service';
 import { ButtonSelectImageComponent } from '@components/button/button-select-image/button-select-image.component';
 import { PublishArticlePageService } from '@shared/services/articles/publish-article-page.service';
 import { ImageService } from '@shared/services/image.service';
@@ -33,7 +32,6 @@ import { ImageService } from '@shared/services/image.service';
     ButtonComponent,
     ButtonSelectImageComponent,
   ],
-  providers: [ArticleService, PublishArticlePageService],
   templateUrl: './publish-article-page.component.html',
 })
 export class PublishArticlePageComponent {

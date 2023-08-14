@@ -16,8 +16,6 @@ import { PublishedArticleCardComponent } from '@components/article-card/publishe
 import { ProposedArticleCardComponent } from '@components/article-card/proposed-article-card/proposed-article-card.component';
 import { getLayout } from '@core/utils/app-route';
 import { ProfilePageService } from '@shared/services/profiles/profile-page.service';
-import { ArticleMapperService } from '@shared/mappers/article-mapper.service';
-import { ArticleService } from '@shared/services/articles/article.service';
 import { RatingService } from '@shared/services/rating.service';
 
 @Component({
@@ -33,12 +31,6 @@ import { RatingService } from '@shared/services/rating.service';
     ButtonComponent,
     PublishedArticleCardComponent,
     ProposedArticleCardComponent,
-  ],
-  providers: [
-    ProfilePageService,
-    ArticleMapperService,
-    ArticleService,
-    RatingService,
   ],
 })
 export class ProfilePageComponent {

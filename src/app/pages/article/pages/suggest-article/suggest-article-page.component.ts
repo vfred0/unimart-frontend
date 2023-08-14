@@ -9,7 +9,6 @@ import { AppRoute, getLayout } from '@core/utils/app-route';
 import { SuggestArticlePageService } from '@shared/services/proposals/suggest-article-page.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProposedArticleDto } from '@core/dtos/article/proposed-article.dto';
-import { ProfilePageService } from '@shared/services/profiles/profile-page.service';
 import { ButtonComponent } from '@components/button/button.component';
 import { TypeButton } from '@core/enums/type-button';
 import { Icon } from '@core/enums/icon';
@@ -25,7 +24,6 @@ import { Icon } from '@core/enums/icon';
     SuggestArticleCardComponent,
     ButtonComponent,
   ],
-  providers: [SuggestArticlePageService, ProfilePageService],
   templateUrl: './suggest-article-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
