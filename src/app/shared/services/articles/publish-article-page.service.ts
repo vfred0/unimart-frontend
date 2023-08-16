@@ -20,6 +20,7 @@ export class PublishArticlePageService extends Service<ArticleDto> {
   private readonly router: Router;
   private articleForm: ArticleForm;
   private isUpdate: boolean;
+  private onlyFirstTime: boolean;
 
   constructor() {
     super({} as ArticleDto);
@@ -28,6 +29,7 @@ export class PublishArticlePageService extends Service<ArticleDto> {
     this.router = inject(Router);
     this.articleMapper = inject(ArticleMapperService);
     this.isUpdate = false;
+    this.onlyFirstTime = true;
     this.articleForm = new ArticleForm();
     this.setSucceed(this.articleForm.article);
   }
@@ -46,9 +48,9 @@ export class PublishArticlePageService extends Service<ArticleDto> {
 
   override get isCompleted() {
     const isCompleted = super.isCompleted();
-    if (isCompleted && this.isUpdate) {
+    if (isCompleted && this.isUpdate && this.onlyFirstTime) {
       this.articleForm.setValuesFromArticle(this.result());
-      this.isUpdate = false;
+      this.onlyFirstTime = false;
     }
     return super.isCompleted;
   }
@@ -79,6 +81,7 @@ export class PublishArticlePageService extends Service<ArticleDto> {
       .pipe(map(article => this.articleMapper.mapTypesToCamelCase(article)));
     this.execute(request);
     this.isUpdate = true;
+    this.onlyFirstTime = true;
   }
 
   publishArticle() {
@@ -87,18 +90,18 @@ export class PublishArticlePageService extends Service<ArticleDto> {
     );
     if (this.articleForm.isFormValid) {
       if (this.isUpdate) {
-        console.log('update', article);
-        // this.update(article);
+        this.update(article);
       } else {
-        console.log('save', article);
-        // this.save(article);
+        this.save(article);
       }
     }
+
+    this.articleForm = new ArticleForm();
+    this.setSucceed({} as ArticleDto);
   }
 
   addImage(image: string) {
     this.articleForm.addImage(image);
-    // this.setSucceed();
   }
 
   private save(article: ArticleDto) {
@@ -109,7 +112,7 @@ export class PublishArticlePageService extends Service<ArticleDto> {
 
   private update(article: ArticleDto) {
     this.articleService
-      .update(this.article.id, article)
+      .update(this.result().id, article)
       .subscribe(() => this.router.navigate([`${AppRoute.Profile}`]).then());
   }
 }
