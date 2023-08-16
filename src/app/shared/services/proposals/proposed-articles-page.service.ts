@@ -1,5 +1,5 @@
 import { ArticleDto } from '@core/dtos/article/article.dto';
-import { inject, Injectable, Signal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { ArticleMapperService } from '@shared/mappers/article-mapper.service';
 import { Service } from '@shared/services/service';
 import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
@@ -22,7 +22,7 @@ export class ProposedArticlesPageService extends Service<ArticleCardDto[]> {
     super([] as ArticleCardDto[]);
   }
 
-  override get isCompleted(): Signal<boolean> {
+  override get isCompleted() {
     const isCompleted = super.isCompleted();
     if (isCompleted) {
       this.articleCardService.setArticlesCards(this.result());

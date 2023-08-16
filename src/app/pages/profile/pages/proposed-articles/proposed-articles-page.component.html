@@ -3,7 +3,7 @@
         <span class="o-text-lg-bold">Cargando...</span>
     </ng-template>
 
-    <ng-template [ngIf]="this.service.isCompleted">
+    <ng-template [ngIf]="this.service.isCompleted()">
         <app-select (selectedOption)="onSelectedCategory($event)" [options]="this.service.categories"/>
         <span class="o-text-lg-semibold o-layout-width-100 ">{{ this.service.totalArticlesCards }} resultados </span>
         <div class="o-layout-article-cards">

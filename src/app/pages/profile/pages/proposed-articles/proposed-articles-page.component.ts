@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '@components/header/header.component';
 import { ArticleCardComponent } from '@components/article-card/article-card.component';
@@ -18,7 +18,6 @@ import { ProposedArticlesPageService } from '@shared/services/proposals/proposed
     ProposedArticleCardComponent,
   ],
   templateUrl: './proposed-articles-page.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProposedArticlesPageComponent {
   service: ProposedArticlesPageService;
