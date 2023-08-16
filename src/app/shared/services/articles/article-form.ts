@@ -48,9 +48,6 @@ export class ArticleForm {
   }
 
   articleToSaveOrUpdate() {
-    console.log('articleToSaveOrUpdate');
-    console.log(this.article);
-
     const article: ArticleDto = this.article;
     if (!this.withGender) {
       article.title = this.getValue('title');
@@ -68,8 +65,6 @@ export class ArticleForm {
   }
 
   setValuesFromArticle(article: ArticleDto) {
-    console.log('setValuesFromArticle', article);
-
     this.setValue('title', article.title);
     this.setValue('description', article.description);
     this.setValue('state', article.state);
@@ -84,7 +79,6 @@ export class ArticleForm {
   }
 
   setValue(name: string, value: string) {
-    console.log('setValue', name, value, this.article);
     this.form.get(name)?.setValue(value);
   }
 
