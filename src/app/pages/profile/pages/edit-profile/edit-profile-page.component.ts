@@ -30,6 +30,7 @@ export class EditProfilePageComponent {
   constructor() {
     this.service = inject(EditProfileService);
     this.imageService = inject(ImageService);
+    this.service.setUser();
   }
 
   onAboutMeChanged(about: string) {
