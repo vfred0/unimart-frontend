@@ -7,6 +7,7 @@ import { isNormal, TypeArticleCard } from '@core/enums/type-article-card';
 import { Icon } from '@core/enums/icon';
 import { Router } from '@angular/router';
 import { AppRoute } from '@core/utils/app-route';
+import { ParseDate } from '@core/utils/parse-date';
 
 @Component({
   selector: 'app-article-card',
@@ -30,6 +31,10 @@ export class ArticleCardComponent {
 
   get isNormal(): boolean {
     return isNormal(this.typeArticleCard);
+  }
+
+  get date(): string {
+    return ParseDate.toRelativeTime(this.articleCard.date);
   }
 
   getProposalsQuantity(): string {

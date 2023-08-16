@@ -7,6 +7,7 @@ import { TypeButton } from '@core/enums/type-button';
 import { Icon } from '@core/enums/icon';
 import { HeaderDetailComponent } from '@components/header-detail/header-detail.component';
 import { HeaderDetail } from '@core/utils/header-detail';
+import { ParseDate } from '@core/utils/parse-date';
 
 @Component({
   selector: 'app-view-rating-card',
@@ -35,7 +36,7 @@ export class ViewRatingCardComponent implements OnInit {
     this.headerDetail = {
       photo: this.viewRatingCard.userPhoto,
       title: this.viewRatingCard.userName,
-      description: this.viewRatingCard.date,
+      description: ParseDate.toRelativeTime(this.viewRatingCard.date),
     };
   }
 }
