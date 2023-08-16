@@ -7,6 +7,7 @@ import { UserMapperService } from '@shared/mappers/user-mapper.service';
 import { AuthService } from '@shared/services/auth.service';
 import { map } from 'rxjs';
 import { ArticleMapperService } from '@shared/mappers/article-mapper.service';
+import { ParseDate } from '@core/utils/parse-date';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,10 @@ export class ArticlePageService extends Service<ArticleDto> {
 
   constructor() {
     super({} as ArticleDto);
+  }
+
+  get date(): string {
+    return ParseDate.toRelativeTime(this.article.date);
   }
 
   get hasProposedOrReceivedArticle(): boolean {
