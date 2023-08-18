@@ -4,6 +4,7 @@ import { ExchangeDto } from '@core/dtos/exchange.dto';
 import { ExchangeService } from '@shared/services/exchanges/exchange.service';
 import { AuthService } from '@shared/services/auth.service';
 import { RatingDto } from '@core/dtos/rating/rating.dto';
+import { ParseDate } from '@core/utils/parse-date';
 
 @Injectable({ providedIn: 'root' })
 export class ExchangesPageService extends Service<ExchangeDto[]> {
@@ -23,7 +24,12 @@ export class ExchangesPageService extends Service<ExchangeDto[]> {
   }
 
   get exchanges() {
-    return this.result().filter(exchange => !exchange.hasBeenRated);
+    return this.result()
+      .filter(exchange => !exchange.hasBeenRated)
+      .map(exchange => {
+        exchange.date = ParseDate.toRelativeTime(exchange.date);
+        return exchange;
+      });
   }
 
   setExchanges() {
