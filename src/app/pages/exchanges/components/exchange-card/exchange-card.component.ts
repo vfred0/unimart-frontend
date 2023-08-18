@@ -8,6 +8,7 @@ import { AddRatingComponent } from '@components/rating/add-rating/add-rating.com
 import { Icon } from '@core/enums/icon';
 import { HeaderDetailComponent } from '@components/header-detail/header-detail.component';
 import { HeaderDetail } from '@core/utils/header-detail';
+import { ParseDate } from '@core/utils/parse-date';
 
 @Component({
   selector: 'app-exchange-card',
@@ -54,7 +55,7 @@ export class ExchangeCardComponent implements OnInit {
     this.headerDetail = {
       photo: this.exchangeCard.userPhoto,
       title: this.exchangeCard.userName,
-      description: this.exchangeCard.date,
+      description: ParseDate.toRelativeTime(this.exchangeCard.date),
     } as HeaderDetail;
   }
 }
