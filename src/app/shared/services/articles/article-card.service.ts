@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { ArticleCardDto } from '@core/dtos/article/article-card.dto';
 import {
   isExchanged,
-  isProposed,
   isPublished,
   TypeArticle,
 } from '@core/enums/type-article';
@@ -67,10 +66,10 @@ export class ArticleCardService {
       .filter(this.filterByIndexCategory());
   }
 
-  filterCategoriesNotProposed() {
+  filterCategoriesPublished() {
     return this.articleCards
       .filter(articleCard => {
-        return !isProposed(articleCard.typeArticle as TypeArticle);
+        return isPublished(articleCard.typeArticle as TypeArticle);
       })
       .map(articleCard => articleCard.category)
       .filter(this.filterByIndexCategory());
