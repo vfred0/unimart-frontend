@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { ProposalService } from '@shared/services/proposals/proposal.service';
 import { ArticleCardService } from '@shared/services/articles/article-card.service';
 import { Category } from '@core/enums/category';
-import { isProposed, TypeArticle } from '@core/enums/type-article';
+import { isExchanged, isProposed, TypeArticle } from '@core/enums/type-article';
 
 @Injectable({ providedIn: 'root' })
 export class SuggestArticlePageService {
@@ -34,12 +34,14 @@ export class SuggestArticlePageService {
     return this.articleCardService
       .filterByTitleAndCategory(this.title, this.category)
       .filter(
-        articleCard => !isProposed(articleCard.typeArticle as TypeArticle)
+        articleCard =>
+          !isProposed(articleCard.typeArticle as TypeArticle) &&
+          !isExchanged(articleCard.typeArticle as TypeArticle)
       );
   }
 
   get categories() {
-    return this.articleCardService.filterCategoriesNotProposed();
+    return this.articleCardService.filterCategoriesNotProposedAndExchanged();
   }
 
   get isCompleted() {
@@ -49,7 +51,7 @@ export class SuggestArticlePageService {
         this.profileService.articlesCards
       );
     }
-    return isCompleted;
+    return this.profileService.isCompleted();
   }
 
   get isWorking() {
