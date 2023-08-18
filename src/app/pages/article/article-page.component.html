@@ -26,7 +26,7 @@
             <app-header-detail [headerDetail]="this.service.headerDetail"/>
             <span class="o-text-base-normal"> {{ this.service.article.user.about }}</span>
             <div class="c-article-page__user-card-buttons">
-                <app-button [description]="this.service.user.rating.toString()"
+                <app-button [description]="this.service.user.rating.toFixed(1).toString()"
                             [icon]="Icon.Star"
                             [typeButton]="TypeButton.Tag"/>
                 <app-button [description]="this.numbersOfExchanges(this.service.user.numberExchanges)"
