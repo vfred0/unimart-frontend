@@ -61,7 +61,8 @@
                     </ng-template>
 
                     <app-button *ngIf="this.serviceRating.isCompleted()"
-                                [description]="this.serviceRating.averageRating.toString()" [icon]="Icon.Star"
+                                [description]="this.serviceRating.averageRating.toFixed(1).toString()"
+                                [icon]="Icon.Star"
                                 [typeButton]="TypeButton.Secondary"/>
                 </div>
                 <ng-template [ngIf]="this.serviceRating.isCompleted()">
